@@ -1,0 +1,32 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Recruitment from "@components/Recruitment/Recruitment.astro";
+import WaveHighlightTitle from "@components/WaveHighlightTitle.astro";
+
+const pageTitle = "採用情報 | ZetaX - 東大発DeepTechスタートアップ";
+const pageDescription = "フォトニクスReservoir ComputingとAIの融合で世界を変える。ZetaXは、東大発DeepTechスタートアップの創業メンバーとして、技術革新に挑むエンジニア・研究者を募集しています。";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="container mx-auto px-4 py-20">
+    <section class="mb-16">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900/50 dark:to-blue-900/20 rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-slate-700 shadow-sm">
+          <div class="space-y-6">
+            <p class="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 leading-relaxed">
+              <span class="font-bold text-slate-900 dark:text-white">ZetaX</span>では、
+              <span class="font-semibold text-blue-600 dark:text-blue-400">フォトニクス</span>と<span class="font-semibold text-blue-600 dark:text-blue-400">AI</span>の最先端技術に挑戦する、情熱的で才能あるチームメンバーを募集しています。
+            </p>
+            <div class="pt-4 border-t border-slate-300 dark:border-slate-600">
+              <p class="text-xl md:text-2xl font-semibold text-slate-700 dark:text-slate-200">
+                一緒に日本発ユニコーンを創出しませんか？
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Recruitment />
+  </div>
+</BaseLayout>

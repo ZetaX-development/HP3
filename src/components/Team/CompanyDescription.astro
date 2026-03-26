@@ -1,0 +1,274 @@
+---
+---
+
+<section class="company-description">
+  <div class="container mx-auto px-4">
+    <div class="description-content" data-mos="fade-up">
+      <h2 class="description-title">東京大学発 DeepTechスタートアップ</h2>
+      <div class="description-text">
+        <p>
+          AI・機械学習、ブロックチェーン、フルスタック開発など多様な技術領域において高度な専門性を持ち、理論と実践の両面から社会に価値を提供します
+        </p>
+
+        
+        <div class="contact-section">
+          <h3 class="contact-title">連絡先</h3>
+          <a href="mailto:contact@zetax.jp" class="contact-email">
+            contact@zetax.jp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .company-description {
+    padding: 5rem 0;
+    background: var(--section-bg, linear-gradient(
+      180deg,
+      rgba(248, 250, 252, 1) 0%,
+      rgba(241, 245, 249, 1) 100%
+    ));
+    background-attachment: fixed;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+  }
+
+  :global(.dark) .company-description {
+    --section-bg: linear-gradient(
+      180deg,
+      rgba(10, 15, 25, 1) 0%,
+      rgba(15, 20, 30, 1) 100%
+    );
+  }
+
+
+
+  .description-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--card-bg, rgba(255, 255, 255, 0.6));
+    padding: 3.5rem 2.5rem;
+    border-radius: 1.5rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10;
+    overflow: visible;
+    box-shadow: 0 20px 60px var(--card-shadow, rgba(0, 0, 0, 0.12));
+  }
+
+  /* Neon shimmer border - travels around all 4 sides using conic-gradient */
+  .description-content::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 1.5rem;
+    background: conic-gradient(
+      from var(--shimmer-angle, 0deg),
+      transparent 0deg,
+      transparent 60deg,
+      #3b82f6 90deg,
+      #06b6d4 120deg,
+      #ec4899 180deg,
+      #f472b6 210deg,
+      #3b82f6 240deg,
+      transparent 270deg,
+      transparent 360deg
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 3px;
+    z-index: -1;
+    animation: shimmerRotate 4s linear infinite;
+  }
+
+  /* Secondary glow layer for enhanced neon effect */
+  .description-content::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 1.75rem;
+    background: conic-gradient(
+      from var(--shimmer-angle, 0deg),
+      transparent 0deg,
+      transparent 90deg,
+      rgba(59, 130, 246, 0.6) 120deg,
+      rgba(236, 72, 153, 0.8) 180deg,
+      rgba(244, 114, 182, 0.6) 210deg,
+      transparent 270deg,
+      transparent 360deg
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 6px;
+    z-index: -2;
+    animation: shimmerRotate 4s linear infinite;
+    filter: blur(15px);
+  }
+
+  @keyframes shimmerRotate {
+    0% {
+      --shimmer-angle: 0deg;
+    }
+    100% {
+      --shimmer-angle: 360deg;
+    }
+  }
+
+  /* Fallback animation for browsers without @property support */
+  @supports not (background: conic-gradient(from 0deg, red, blue)) {
+    .description-content::before {
+      background: linear-gradient(90deg, #3b82f6, #ec4899, #3b82f6);
+      background-size: 200% 100%;
+      animation: shimmerFallback 3s linear infinite;
+    }
+  }
+
+  @keyframes shimmerFallback {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  :global(.dark) .description-content {
+    --card-bg: rgba(15, 23, 42, 0.5);
+    --card-shadow: rgba(0, 0, 0, 0.5);
+  }
+
+  .description-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .description-text {
+    font-size: 1.125rem;
+    line-height: 2.2;
+    color: var(--text-color, #334155);
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+
+  :global(.dark) .description-text {
+    --text-color: #f1f5f9;
+  }
+
+  .description-text p {
+    margin: 1.5rem 0;
+  }
+
+  .description-text p:first-child {
+    margin-top: 0;
+  }
+
+  .description-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .company-description {
+      padding: 3rem 0;
+    }
+
+    .description-title {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .description-text {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .description-text p {
+      margin: 1rem 0;
+    }
+  }
+
+  .highlight {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.25) 0%, rgba(118, 75, 162, 0.25) 100%);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-weight: 700;
+    color: var(--highlight-text, #1e293b);
+    position: relative;
+    z-index: 1;
+  }
+
+  :global(.dark) .highlight {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+    --highlight-text: #f1f5f9;
+  }
+
+  .contact-section {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--contact-border, rgba(102, 126, 234, 0.2));
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  :global(.dark) .contact-section {
+    --contact-border: rgba(102, 126, 234, 0.3);
+  }
+
+  .contact-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--contact-title-color, #334155);
+  }
+
+  :global(.dark) .contact-title {
+    --contact-title-color: #e2e8f0;
+  }
+
+  .contact-email {
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--email-color, #667eea);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    background: var(--email-bg, rgba(102, 126, 234, 0.08));
+  }
+
+  .contact-email:hover {
+    --email-bg: rgba(102, 126, 234, 0.15);
+    transform: scale(1.05);
+  }
+
+  :global(.dark) .contact-email {
+    --email-color: #818cf8;
+  }
+</style>
+
+<!-- CSS @property for shimmer animation angle -->
+<style is:global>
+  @property --shimmer-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+</style>

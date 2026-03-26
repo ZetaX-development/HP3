@@ -1,0 +1,21 @@
+---
+/**
+ * ZetaX Hero Background Component
+ * Simple gradient background with no animations
+ */
+interface Props { showText?: boolean }
+const { showText = false } = Astro.props as Props
+---
+
+<div aria-hidden="true" class="fixed inset-0 w-full h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-blue-950 overflow-hidden z-0 pointer-events-none flex items-center justify-center" transition:persist>
+  <!-- Optional text overlay -->
+  {showText && (
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="text-center z-10">
+        <h1 class="text-7xl md:text-9xl font-bold tracking-tighter" style="color: #00ffff; text-shadow: 0 0 30px rgba(0, 255, 255, 0.5), 0 0 60px rgba(0, 153, 255, 0.3);">
+          ZetaX
+        </h1>
+      </div>
+    </div>
+  )}
+</div>

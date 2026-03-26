@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zetax.jp/sitemap-index.xml

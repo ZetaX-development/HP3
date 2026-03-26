@@ -1,0 +1,158 @@
+---
+/**
+ * Hero Statement Section (English)
+ */
+---
+
+<section class="hero-statement">
+  <div class="hero-content">
+    <div class="statement-container" data-mos="fade-up">
+      <h1 class="statement-main">
+        <span class="statement-line">Forging the Future</span>
+        <span class="statement-line highlight">with AI & Photonics</span>
+      </h1>
+      <div class="statement-sub">
+        <p>An AI & Photonics Deep Tech Startup from The University of Tokyo.</p>
+        <p>Bridging cutting-edge research and real-world deployment to tackle next-generation industrial challenges.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-statement {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: transparent;
+    padding-top: 4rem; /* Add padding for fixed nav */
+  }
+
+  @media (min-width: 768px) {
+    .hero-statement {
+      padding-top: 5rem; /* Larger padding on desktop */
+    }
+  }
+
+  /* Content */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .statement-container {
+    text-align: center;
+    max-width: 900px;
+  }
+
+  .statement-main {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--statement-color, #0f172a);
+  }
+
+  :global(.dark) .statement-main {
+    --statement-color: #f1f5f9;
+  }
+
+  .statement-line {
+    display: block;
+    margin: 0.2em 0;
+  }
+
+  .statement-line.highlight {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Underline effect for highlight */
+  .statement-line.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.12em;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    opacity: 0.3;
+    border-radius: 0.06em;
+  }
+
+  .statement-sub {
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-weight: 500;
+    line-height: 1.8;
+    color: var(--sub-color, #334155);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  :global(.dark) .statement-sub {
+    --sub-color: #cbd5e1;
+  }
+
+  .statement-sub p {
+    margin: 0.3rem 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hero-statement {
+      min-height: 90vh;
+    }
+
+    .hero-content {
+      padding: 0 2rem 4rem 2rem;
+      min-height: 90vh;
+    }
+
+    .statement-container {
+      max-width: 100%;
+    }
+
+    .statement-main {
+      margin-bottom: 1.25rem;
+    }
+
+    .statement-sub {
+      line-height: 1.7;
+      max-width: 100%;
+    }
+
+    .statement-sub p {
+      margin: 0.25rem 0;
+    }
+
+    .statement-line.highlight::after {
+      height: 0.1em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content {
+      padding: 0 1.5rem 3rem 1.5rem;
+    }
+
+    .statement-main {
+      font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+  }
+</style>

@@ -1,0 +1,203 @@
+---
+---
+
+<section class="team-hero">
+  <div class="hero-background">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+  </div>
+  
+  <div class="hero-content">
+    <h1 class="hero-title" data-mos="fade-up">
+      東大発 DeepTechスタートアップ
+    </h1>
+    <p class="hero-subtitle" data-mos="fade-up" data-mos-delay="200">
+      最先端技術で未来を創造する
+    </p>
+    <p class="hero-description" data-mos="fade-up" data-mos-delay="400">
+      東大をはじめとする一流大学出身のエンジニアと、<br />
+      豊富な実務経験を持つリーダーが集結したチーム
+    </p>
+  </div>
+</section>
+
+<style>
+  .team-hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--hero-bg, linear-gradient(
+      180deg,
+      rgba(240, 244, 248, 1) 0%,
+      rgba(226, 232, 240, 1) 100%
+    ));
+  }
+
+  :global(.dark) .team-hero {
+    --hero-bg: linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 1) 0%,
+      rgba(30, 41, 59, 1) 100%
+    );
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    bottom: -10%;
+    right: -5%;
+    animation-delay: -7s;
+  }
+
+  .orb-3 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -14s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    background: var(--title-gradient, linear-gradient(135deg, #0f172a 0%, #334155 100%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: var(--title-shadow, 0 0 40px rgba(0, 0, 0, 0.05));
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  :global(.dark) .hero-title {
+    --title-gradient: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+    --title-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
+  }
+
+  .hero-subtitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--desc-color, #475569);
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  :global(.dark) .hero-description {
+    --desc-color: #cbd5e1;
+  }
+
+  @media (max-width: 768px) {
+    .team-hero {
+      min-height: 50vh;
+    }
+
+    .hero-content {
+      padding: 3rem 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      line-height: 1.3;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+    }
+
+    .gradient-orb {
+      filter: blur(60px);
+    }
+
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+    }
+
+    .orb-2 {
+      width: 250px;
+      height: 250px;
+    }
+
+    .orb-3 {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.75rem;
+    }
+  }
+</style>

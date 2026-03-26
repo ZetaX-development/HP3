@@ -1,0 +1,9 @@
+name = "zetax-hp"
+compatibility_date = "2024-11-01"
+workers_dev = true
+
+[build]
+command = "npx pnpm@latest install --frozen-lockfile && npx pnpm@latest run build"
+
+[assets]
+directory = "./dist"

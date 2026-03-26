@@ -1,0 +1,228 @@
+---
+import { type teamMember } from "@config/types/configDataTypes";
+
+interface Props {
+  member: teamMember;
+  size?: "large" | "normal";
+  dataAos?: string;
+  dataAosDelay?: string;
+}
+
+const { member, size = "normal", dataAos = "fade-up", dataAosDelay = "0" } = Astro.props;
+const isLarge = size === "large";
+---
+
+<div
+  class={`team-member-card ${isLarge ? "team-member-card-large" : ""}`}
+  data-mos={dataAos}
+>
+  <div class="card-inner">
+    <div class="avatar-container">
+      <img
+        src={member.image.src || member.image}
+        alt={member.name}
+        class="avatar"
+        loading="lazy"
+      />
+      <div class="avatar-glow"></div>
+    </div>
+    
+    <div class="member-info">
+      <h3 class="member-name">{member.name}</h3>
+      <p class="member-title">{member.title}</p>
+      <div class="member-bio">
+        {member.bio.split('\n').map((line: string) => (
+          line.trim() && <p>{line.trim()}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .team-member-card {
+    position: relative;
+    border-radius: 1.5rem;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.90) 100%
+    );
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+
+  .team-member-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(102, 126, 234, 0.1) 0%,
+      rgba(118, 75, 162, 0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+
+  .team-member-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(102, 126, 234, 0.5);
+    box-shadow: 
+      0 20px 40px rgba(102, 126, 234, 0.2),
+      0 0 60px rgba(118, 75, 162, 0.1);
+  }
+
+  .team-member-card:hover::before {
+    opacity: 1;
+  }
+
+  .team-member-card-large {
+    padding: 2.5rem;
+  }
+
+  .team-member-card-large .avatar {
+    width: 180px;
+    height: 180px;
+  }
+
+  .team-member-card-large .member-name {
+    font-size: 1.75rem;
+  }
+
+  .card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .avatar-container {
+    position: relative;
+    border-radius: 50%;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .team-member-card:hover .avatar {
+    transform: scale(1.05);
+  }
+
+  .avatar-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(102, 126, 234, 0.3) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .team-member-card:hover .avatar-glow {
+    opacity: 1;
+  }
+
+  .member-info {
+    width: 100%;
+  }
+
+  .member-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .member-title {
+    font-size: 1rem;
+    color: #94a3b8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .member-bio {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--bio-color, #1e293b);
+  }
+
+  :global(.dark) .team-member-card {
+    background: linear-gradient(
+      135deg,
+      rgba(20, 25, 35, 0.95) 0%,
+      rgba(15, 20, 30, 0.90) 100%
+    );
+    border-color: rgba(60, 70, 90, 0.4);
+  }
+
+  :global(.dark) .member-bio {
+    --bio-color: #e2e8f0;
+  }
+
+  .member-bio p {
+    margin: 0.5rem 0;
+  }
+
+  .member-bio p:first-child {
+    margin-top: 0;
+  }
+
+  .member-bio p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .team-member-card {
+      padding: 1.5rem;
+    }
+
+    .team-member-card-large {
+      padding: 2rem;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+    }
+
+    .team-member-card-large .avatar {
+      width: 150px;
+      height: 150px;
+    }
+
+    .member-name {
+      font-size: 1.25rem;
+    }
+
+    .team-member-card-large .member-name {
+      font-size: 1.5rem;
+    }
+  }
+</style>

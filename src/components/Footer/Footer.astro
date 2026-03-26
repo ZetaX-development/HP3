@@ -1,0 +1,17 @@
+---
+import { getLocaleFromUrl } from "@js/localeUtils";
+import { getTranslatedData } from "@js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+
+const today = new Date();
+---
+
+<footer class="py-4 bg-base-50 dark:bg-dark-bg">
+  <div class="site-container">
+    <p class="text-center text-xs opacity-50">
+      &copy; {today.getFullYear()} {siteData.name}. All rights reserved.
+    </p>
+  </div>
+</footer>

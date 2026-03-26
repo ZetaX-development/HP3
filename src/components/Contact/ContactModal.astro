@@ -1,0 +1,230 @@
+---
+import { getLocaleFromUrl } from "@js/localeUtils";
+const currLocale = getLocaleFromUrl(Astro.url);
+const isJa = currLocale === "ja";
+---
+
+<div id="contactModal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="modal-header">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="header-icon">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+      <h2 class="modal-title">{isJa ? "お問い合わせ" : "Contact Us"}</h2>
+    </div>
+    
+    <div class="contact-info">
+      <div class="info-item">
+        <span class="info-label">{isJa ? "メールアドレス" : "Email Address"}</span>
+        <a href="mailto:contact@zetax.jp" class="info-value">
+          contact@zetax.jp
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initContactModal() {
+    const modal = document.getElementById('contactModal');
+    // Select all buttons with class 'contact-button' or ID 'openContactModal'
+    const openButtons = document.querySelectorAll('.contact-button, #openContactModal');
+    const closeButton = document.getElementById('closeModal');
+    
+    if (!modal || !closeButton) return;
+    
+    openButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    closeButton.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+  
+  // Initialize on page load
+  initContactModal();
+  
+  // Reinitialize after view transitions
+  document.addEventListener('astro:after-swap', initContactModal);
+</script>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .modal-overlay.hidden {
+    display: none;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .modal-content {
+    background: var(--modal-bg, #ffffff);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease-out;
+  }
+
+  :global(.dark) .modal-content {
+    --modal-bg: #1e293b;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--close-color, #64748b);
+    transition: all 0.2s ease;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .modal-close:hover {
+    background: var(--close-hover-bg, rgba(100, 116, 139, 0.1));
+    color: var(--close-hover-color, #334155);
+    transform: rotate(90deg);
+  }
+
+  :global(.dark) .modal-close {
+    --close-color: #94a3b8;
+    --close-hover-bg: rgba(148, 163, 184, 0.1);
+    --close-hover-color: #cbd5e1;
+  }
+
+  .modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .header-icon {
+    color: #667eea;
+    margin: 0 auto 1rem;
+  }
+
+  .modal-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .info-item {
+    text-align: center;
+  }
+
+  .info-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--label-color, #64748b);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  :global(.dark) .info-label {
+    --label-color: #94a3b8;
+  }
+
+  .info-value {
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--value-color, #667eea);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    background: var(--value-bg, rgba(102, 126, 234, 0.08));
+    transition: all 0.3s ease;
+  }
+
+  .info-value:hover {
+    --value-bg: rgba(102, 126, 234, 0.15);
+    transform: scale(1.05);
+  }
+
+  :global(.dark) .info-value {
+    --value-color: #818cf8;
+  }
+
+  @media (max-width: 768px) {
+    .modal-content {
+      padding: 2rem;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+    }
+
+    .info-value {
+      font-size: 1.125rem;
+    }
+  }
+</style>

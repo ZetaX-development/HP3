@@ -1,0 +1,325 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import HeroStatement from "@components/en/HeroStatement.astro";
+import CompanyDescription from "@components/en/CompanyDescription.astro";
+import BusinessAxes from "@components/en/BusinessAxes.astro";
+import HomeNews from "@components/en/HomeNews.astro";
+
+const pageTitle = "ZetaX | Deep Tech Startup from UTokyo";
+const pageDescription = "ZetaX is a Deep Tech Startup from The University of Tokyo. Fusing Photonics Reservoir Computing with AI, we provide next-gen high-speed, low-power AI Solutions.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Hexagon Canvas Background - Fixed positioning -->
+  <canvas
+    id="hexagonCanvas"
+    class="fixed inset-0 w-full h-full pointer-events-none"
+    style="z-index: 1;"
+  ></canvas>
+  
+  <!-- Triangle Background - Fixed positioning -->
+  <div class="triangle-background fixed inset-0 pointer-events-none" style="z-index: 2;"></div>
+
+  <!-- Main Content -->
+  <div style="position: relative; z-index: 10;">
+    <!-- Hero Statement - Large impactful typography -->
+    <HeroStatement />
+    
+    <!-- Company Description -->
+    <div id="about" class="page-section bg-slate-900/40 backdrop-blur-md border-y border-slate-800">
+      <CompanyDescription />
+    </div>
+    
+    <!-- Business Axes (Replaces MVV) -->
+    <div id="business" class="page-section relative">
+       <!-- Geometric flourish -->
+       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-radial from-slate-200/50 to-transparent dark:from-slate-800/50 -z-10 pointer-events-none"></div>
+      <BusinessAxes />
+    </div>
+
+    <!-- News Section -->
+    <div id="news-section">
+      <HomeNews />
+    </div>
+  </div>
+</BaseLayout>
+
+
+<style>
+  /* Global Dark Theme Enforcement */
+  :global(body) {
+    background-color: #020617 !important;
+    color: #f8fafc;
+  }
+
+  /* Sections styling */
+  .page-section {
+    padding: 3rem 0;
+  }
+  
+  #about,
+  #mvv,
+  #what-is-prc,
+  #era-evolution,
+  #how-to-use-prc,
+  #project-flow {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Triangle background animation - flows LEFT TO RIGHT */
+  .triangle-background {
+    overflow: hidden;
+    animation: triangleBrightness 10s ease-in-out infinite;
+  }
+
+  .triangle-background::before,
+  .triangle-background::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    left: -100%;
+    background-image: 
+      repeating-linear-gradient(0deg, transparent, transparent 80px, var(--tri-color, rgba(59, 130, 246, 0.15)) 80px, var(--tri-color, rgba(59, 130, 246, 0.15)) 82px),
+      repeating-linear-gradient(60deg, transparent, transparent 80px, var(--tri-color, rgba(59, 130, 246, 0.15)) 80px, var(--tri-color, rgba(59, 130, 246, 0.15)) 82px),
+      repeating-linear-gradient(-60deg, transparent, transparent 80px, var(--tri-color, rgba(59, 130, 246, 0.15)) 80px, var(--tri-color, rgba(59, 130, 246, 0.15)) 82px);
+    animation: triangleFlowLeftToRight 25s linear infinite;
+  }
+
+  .triangle-background::after {
+    animation-duration: 35s;
+    opacity: 0.7;
+  }
+
+  :global(.dark) .triangle-background::before,
+  :global(.dark) .triangle-background::after {
+    --tri-color: rgba(96, 165, 250, 0.2);
+  }
+
+  @keyframes triangleFlowLeftToRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(50%);
+    }
+  }
+
+  @keyframes triangleBrightness {
+    0%, 100% {
+      opacity: 0.5;
+      filter: brightness(0.8);
+    }
+    50% {
+      opacity: 1;
+      filter: brightness(1.3);
+    }
+  }
+</style>
+
+<script>
+  // Hexagon Canvas Animation
+  function initHexagonCanvas() {
+    const canvas = document.getElementById('hexagonCanvas') as HTMLCanvasElement;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    
+    // Setup canvas size
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Neon color palette
+    const colorPalette = [
+      '#3b82f6', // blue
+      '#60a5fa', // light blue
+      '#2563eb', // dark blue
+      '#1d4ed8', // deeper blue
+    ];
+    
+    function getRandomColor() {
+      return colorPalette[Math.floor(Math.random() * colorPalette.length)];
+    }
+    
+    // Draw hexagon
+    function drawHexagon(x: number, y: number, radius: number, rotation: number, color: string, opacity: number, thickness: number) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = thickness;
+      ctx.globalAlpha = opacity;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 15;
+      
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const angle = (Math.PI / 3) * i;
+        const px = radius * Math.cos(angle);
+        const py = radius * Math.sin(angle);
+        
+        if (i === 0) {
+          ctx.moveTo(px, py);
+        } else {
+          ctx.lineTo(px, py);
+        }
+      }
+      ctx.closePath();
+      ctx.stroke();
+      
+      ctx.restore();
+    }
+    
+    // Hexagon class
+    class Hexagon {
+      x: number;
+      y: number;
+      startX: number;
+      startY: number;
+      targetX: number;
+      targetY: number;
+      duration: number;
+      startTime: number;
+      radius: number;
+      color: string;
+      thickness: number;
+      fadeInDuration: number;
+      fadeOutStart: number;
+      
+      constructor(x: number, y: number) {
+        this.startX = x;
+        this.startY = y;
+        this.x = x;
+        this.y = y;
+        this.targetX = -200;
+        this.targetY = y;
+        this.duration = 8000 + Math.random() * 4000;
+        this.startTime = Date.now();
+        this.radius = 40 + Math.random() * 40;
+        this.color = getRandomColor();
+        this.thickness = 1.5 + Math.random() * 1.5;
+        this.fadeInDuration = 500;
+        this.fadeOutStart = this.duration - 1000;
+      }
+      
+      getProgress(): number {
+        const elapsed = Date.now() - this.startTime;
+        return Math.min(elapsed / this.duration, 1);
+      }
+      
+      getOpacity(): number {
+        const elapsed = Date.now() - this.startTime;
+        
+        if (elapsed < this.fadeInDuration) {
+          return elapsed / this.fadeInDuration;
+        }
+        
+        if (elapsed > this.fadeOutStart) {
+          const fadeOutProgress = (elapsed - this.fadeOutStart) / (this.duration - this.fadeOutStart);
+          return 1 - fadeOutProgress;
+        }
+        
+        return 1;
+      }
+      
+      update() {
+        const progress = this.getProgress();
+        const easeProgress = progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        
+        this.x = this.startX + (this.targetX - this.startX) * easeProgress;
+        this.y = this.startY + (this.targetY - this.startY) * easeProgress;
+      }
+      
+      draw() {
+        const progress = this.getProgress();
+        const opacity = this.getOpacity();
+        
+        if (opacity <= 0) return;
+        
+        const rotation = progress * Math.PI * 2;
+        
+        drawHexagon(
+          this.x,
+          this.y,
+          this.radius,
+          rotation,
+          this.color,
+          opacity,
+          this.thickness
+        );
+      }
+      
+      isComplete(): boolean {
+        return this.getProgress() >= 1 || this.x < -200;
+      }
+    }
+    
+    const hexagons: Hexagon[] = [];
+    let hexagonCounter = 0;
+    let lastTime = Date.now();
+    
+    // Create initial hexagons
+    const gridRows = 5;
+    const spacing = canvas.height / gridRows;
+    for (let i = 0; i < 3; i++) {
+      const rowIndex = Math.floor(Math.random() * gridRows);
+      hexagons.push(new Hexagon(canvas.width + 100, spacing * rowIndex + spacing / 2));
+    }
+    
+    // Animation loop
+    function animate() {
+      const now = Date.now();
+      const deltaTime = now - lastTime;
+      lastTime = now;
+      
+      // Semi-transparent fade for trail effect
+      ctx.fillStyle = 'rgba(2, 6, 23, 0.15)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Update and draw hexagons
+      for (let i = hexagons.length - 1; i >= 0; i--) {
+        const hexagon = hexagons[i];
+        hexagon.update();
+        hexagon.draw();
+        
+        if (hexagon.isComplete()) {
+          hexagons.splice(i, 1);
+        }
+      }
+      
+      // Create new hexagons periodically
+      hexagonCounter += deltaTime;
+      if (hexagonCounter > 800) {
+        const gridRows = 5;
+        const spacing = canvas.height / gridRows;
+        const randomRow = Math.floor(Math.random() * gridRows);
+        hexagons.push(
+          new Hexagon(canvas.width + 100, spacing * randomRow + spacing / 2)
+        );
+        hexagonCounter = 0;
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  }
+  
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHexagonCanvas);
+  } else {
+    initHexagonCanvas();
+  }
+  
+  // Re-initialize on Astro page transitions
+  document.addEventListener('astro:page-load', initHexagonCanvas);
+</script>

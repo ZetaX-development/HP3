@@ -1,0 +1,88 @@
+---
+import TeamMemberCard from "./TeamMemberCard.astro";
+import { type teamMember } from "@config/types/configDataTypes";
+
+interface Props {
+  members: teamMember[];
+  title: string;
+  size?: "large" | "normal";
+  columns?: number;
+  dataAos?: string;
+  underlineColor?: string;
+}
+
+const { 
+  members, 
+  title,
+  size = "normal", 
+  columns = 3,
+  dataAos = "fade-up",
+  underlineColor = "from-blue-500 to-teal-400"
+} = Astro.props;
+---
+
+<section class="team-grid-section">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white tracking-tight" data-mos="fade-down">
+        {title}
+      </h2>
+      <div class={`h-1 w-24 bg-gradient-to-r ${underlineColor} mx-auto rounded-full`}></div>
+    </div>
+    
+    <div class:list={["team-grid", `team-grid-${columns}`]}>
+      {members.map((member, index) => (
+        <TeamMemberCard
+          member={member}
+          size={size}
+          dataAos={dataAos}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-grid-section {
+    padding: 4rem 0;
+    background: transparent; /* Changed to transparent to blend with page bg */
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .team-grid-2,
+    .team-grid-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .team-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .team-grid-section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .team-grid {
+      gap: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import SiteLogo from "@components/SiteLogo/SiteLogo.astro";
+import MobileNav from "@components/Nav/MobileNav/MobileNav.astro";
+import LanguageSelect from "@components/LanguageSelect/LanguageSelect.astro";
+import { getLocaleFromUrl } from "@js/localeUtils";
+import { getTranslatedData } from "@js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const navData = getTranslatedData("navData", currLocale);
+---
+
+<div
+  id="nav__container"
+  class="navbar--initial fixed top-0 left-0 z-30 flex w-full flex-col border-b transition-all duration-300"
+  transition:name={`nav`}
+>
+  <div class="mx-auto flex w-full">
+    <div class="site-container flex h-16 w-full items-center justify-between px-4 md:px-6">
+      <!-- Logo (left aligned) -->
+      <div class="flex items-center">
+        <a href={currLocale === "ja" ? "/" : `/${currLocale}`} class="inline-block">
+          <SiteLogo />
+        </a>
+      </div>
+
+      <header class="relative flex w-full items-center justify-end md:justify-end">
+        <!-- desktop menu (right aligned) -->
+        <nav class="hidden md:flex items-center">
+          <ul class="flex h-fit items-center gap-8">
+            {
+              navData.map((navItem) => 
+                "dropdown" in navItem ? (
+                  <li class="relative group">
+                    <button class="text-sm font-medium px-3 py-2 rounded transition-colors text-slate-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-400 flex items-center gap-2">
+                      {navItem.text}
+                      <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <ul class="absolute right-0 mt-2 w-44 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1 z-50">
+                      {navItem.dropdown?.map((item) => (
+                        <li>
+                          <a
+                            href={item.link}
+                            class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+                          >
+                            {item.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ) : (
+                  <li>
+                    <a 
+                      href={navItem.link}
+                      class="text-sm font-medium px-3 py-2 rounded transition-colors text-slate-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-400"
+                    >
+                      {navItem.text}
+                    </a>
+                  </li>
+                )
+              )
+            }
+            <li>
+              <LanguageSelect />
+            </li>
+            <li>
+              <button 
+                id="openContactModal"
+                class="contact-button"
+              >
+                Contact Us
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- mobile nav menu -->
+        <div class="md:hidden flex items-center gap-2">
+          <MobileNav />
+        </div>
+      </header>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import "tailwindcss/theme" theme(reference);
+  @import "@/styles/tailwind-theme.css" theme(reference);
+
+  .navbar--scrolled {
+    @apply border-foreground/10 bg-background/70 backdrop-blur-sm;
+  }
+
+  .navbar--initial {
+    @apply border-b-transparent bg-transparent;
+  }
+
+
+</style>
+
+<script>
+  let navbar: HTMLElement | null;
+
+  function scrollHandler() {
+    if (navbar) {
+      if (window.scrollY > 50) {
+        // if we have scrolled down the page a bit, add a frosted-glass look to the navbar
+        navbar.classList.add("navbar--scrolled");
+        navbar.classList.remove("navbar--initial");
+      } else {
+        navbar.classList.add("navbar--initial");
+        navbar.classList.remove("navbar--scrolled");
+      }
+    }
+  }
+
+  function initNav() {
+    navbar = document.getElementById("nav__container");
+    window.addEventListener("scroll", scrollHandler, { passive: true });
+  }
+
+  // runs on initial page load
+  initNav();
+
+  // runs on view transitions navigation. Not needed if item has "transition:persist"
+  document.addEventListener("astro:after-swap", initNav);
+</script>

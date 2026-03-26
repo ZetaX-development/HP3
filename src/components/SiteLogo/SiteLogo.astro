@@ -1,0 +1,23 @@
+---
+import { getLocaleFromUrl } from "@js/localeUtils";
+import { getTranslatedData } from "@js/translationUtils";
+import { Image } from "astro:assets";
+
+import { getLocalizedRoute } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<a
+  class="text-base-800 dark:text-base-200 flex items-center gap-2 align-middle text-xl font-bold tracking-tight"
+  href={getLocalizedRoute(currLocale)}
+>
+  <img 
+    src="/icon_image/ロゴ背景紺正方形.png" 
+    alt="ZetaX logo"
+    class="h-10 w-auto rounded-lg"
+    loading="eager"
+  />
+  <span>{siteData.name}</span>
+</a>

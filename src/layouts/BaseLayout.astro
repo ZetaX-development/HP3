@@ -1,0 +1,146 @@
+---
+// style import
+import "@/styles/global.css";
+
+import CookieConsent from "@components/CookieConsent/CookieConsent.astro";
+import Footer from "@components/Footer/Footer.astro";
+import FooterSimple from "@components/Footer/FooterSimple.astro";
+import Nav from "@components/Nav/Nav.astro";
+import HeroZetaX from "@components/HeroZetaX.astro";
+import ContactModal from "@components/Contact/ContactModal.astro";
+import siteSettings from "@config/siteSettings.json";
+import { getLocaleFromUrl } from "@js/localeUtils";
+import BaseHead from "@layouts/BaseHead.astro";
+import { type CollectionEntry } from "astro:content";
+
+// heroImage and authorData are defined on blog posts
+// authorData could also be defined on the about author page
+interface Props {
+  type?: "blog" | "general";
+  title: string;
+  description: string;
+  image?: ImageMetadata;
+  authorsData?: CollectionEntry<"authors">[];
+  postFrontmatter?: CollectionEntry<"blog">["data"];
+  noindex?: boolean; // you need to opt-in to no indexing, as it hides the page from search engines
+}
+
+const {
+  type = "general",
+  title,
+  description,
+  image,
+  authorsData,
+  postFrontmatter,
+  noindex = false,
+} = Astro.props as Props;
+
+const currLocale = getLocaleFromUrl(Astro.url);
+---
+
+<!doctype html>
+<html lang={currLocale} class="dark" transition:animate="fade">
+  <head>
+    <BaseHead
+      type={type}
+      title={title}
+      description={description}
+      image={image ? image : undefined}
+      authors={authorsData ? authorsData : undefined}
+      postFrontmatter={postFrontmatter ? postFrontmatter : undefined}
+      noindex={noindex}
+    />
+  </head>
+  <body
+    id="body"
+    class={`text-base-900 dark:text-base-200 ${
+      siteSettings.useAnimations === true ? "use-animations" : ""
+    }`}
+    style="background: transparent;"
+  >
+    <!-- Fixed Background -->
+    <HeroZetaX showText={false} />
+    
+    <!-- put cookie consent first so it is seen first by screen readers -->
+    <!-- <CookieConsent /> -->
+    
+    <!-- Navigation -->
+    <div class="relative z-30">
+      <Nav />
+    </div>
+    
+    <!-- Main Content -->
+    <main class="relative z-10">
+      <slot />
+    </main>
+    
+    <!-- Simple Footer with Copyright -->
+    <footer class="copyright-footer">
+      <div class="copyright-container">
+        <p class="copyright-text">
+          © {new Date().getFullYear()} ZetaX. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+    
+    <style is:global>
+      .copyright-footer {
+        position: relative;
+        z-index: 20;
+        padding: 2rem 1rem;
+        text-align: center;
+        background: var(--footer-bg, #0f172a);
+        border-top: 1px solid var(--footer-border, rgba(148, 163, 184, 0.2));
+        margin-top: 0;
+      }
+      
+      :global(.dark) .copyright-footer {
+        --footer-bg: #0f172a;
+        --footer-border: rgba(71, 85, 105, 0.3);
+      }
+      
+      .copyright-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .copyright-text {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--copyright-color, #cbd5e1);
+        font-weight: 500;
+      }
+      
+      :global(.dark) .copyright-text {
+        --copyright-color: #94a3b8;
+      }
+    </style>
+    
+    <!-- Contact Modal -->
+    <ContactModal />
+
+
+    <!-- Scroll animations -->
+    <script>
+      import siteSettings from "@config/siteSettings.json";
+      import MOS from "motion-on-scroll";
+
+      if (siteSettings.useAnimations === true) {
+        // runs on initial page load
+        MOS.init({
+          offset: 100,
+          duration: 0.8,
+          timeUnits: "s",
+          distance: 20,
+          delay: 0,
+          easing: "ease-out-cubic",
+          once: true,
+          mirror: false,
+        });
+
+        // runs on view transitions navigation
+        document.addEventListener("astro:after-swap", MOS.refreshHard);
+      }
+    </script>
+  </body>
+</html>

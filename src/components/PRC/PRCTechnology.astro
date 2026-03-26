@@ -1,0 +1,510 @@
+<section class="prc-technology-section">
+  <div class="container mx-auto px-4">
+    <!-- PRCとは -->
+    <div class="tech-block" data-mos="fade-up">
+      <div class="text-left mb-12">
+        <h3 class="text-4xl font-bold text-white mb-4">PRCとは</h3>
+        <div class="h-1 w-24 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full"></div>
+      </div>
+      
+      <!-- Two Column Layout: Text Left, Image Right -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Text Content -->
+        <div class="text-content">
+           <div class="mb-8">
+             <h4 class="text-xl font-bold mb-4 text-slate-700 dark:text-slate-200">Photonics Reservoir Computing</h4>
+             <p>
+              再帰ニューラルネットワーク(RNN)の手法の一つである<strong>リザバーコンピューティング</strong>を、光の物理現象を利用して実装する革新的な計算技術です。
+             </p>
+             <p class="mt-4">
+              通常のリザバーコンピューティングがソフトウェアや電気回路で中間層を構築するのに対し、PRCでは<strong>レーザーダイオード、光ファイバー、光集積回路</strong>などの光学系そのものをリザバーとして利用します。
+             </p>
+           </div>
+
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border-l-4 border-blue-500">
+            <h4 class="font-bold mb-4 text-lg">主な強み</h4>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">●</span>
+                <span><strong>超高速処理</strong> 光のまま直接処理するため、遅延が極小</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">●</span>
+                <span><strong>圧倒的な低消費電力</strong> 物理現象を利用するため、計算にかかる電力がほぼゼロ</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">●</span>
+                <span><strong>並列処理の拡張性</strong> 波長・位相・偏光を利用した多次元処理が可能</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Image Content -->
+        <div class="relative">
+          <div class="absolute inset-0 bg-blue-500/10 dark:bg-blue-500/20 blur-3xl rounded-full"></div>
+          <div class="relative bg-white dark:bg-slate-800 p-2 rounded-xl shadow-xl">
+            <img src="/other/image12.png" alt="Reservoir Computing Diagram" class="w-full h-auto rounded-lg" />
+            <p class="text-xs text-center text-slate-400 mt-2">Reservoir Computing 概念図</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 時代の流れ -->
+    <div class="tech-block" data-mos="fade-up">
+      
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Image Content (Left) -->
+        <div class="relative order-2 lg:order-1">
+          <div class="absolute inset-0 bg-violet-500/10 dark:bg-violet-500/20 blur-3xl rounded-full"></div>
+           <!-- Using image11 (Traditional RNN) to represent the 'Before/Large Model' state conceptually -->
+           <div class="relative bg-white dark:bg-slate-800 p-2 rounded-xl shadow-xl">
+            <img src="/other/image11.png" alt="Evolution of AI Models" class="w-full h-auto rounded-lg" />
+            <p class="text-xs text-center text-slate-400 mt-2">Cloud AI / Conventional Models</p>
+          </div>
+        </div>
+
+        <!-- Text Content (Right) -->
+        <div class="text-content order-1 lg:order-2">
+          <div class="mb-8">
+            <h3 class="text-4xl font-bold text-white mb-4">時代の流れ</h3>
+            <div class="h-1 w-20 bg-gradient-to-r from-blue-500 to-teal-400 rounded-full"></div>
+          </div>
+          <h4 class="text-2xl font-bold mb-6 text-violet-600 dark:text-violet-400">
+            <strong>巨大モデル</strong>から<br class="lg:hidden"/><strong>特化型エッジモデル</strong>へのシフト
+          </h4>
+          
+          <div class="space-y-8">
+            <div class="era-section">
+              <h5 class="font-bold text-xl mb-3 flex items-center">
+                <span class="w-9 h-9 rounded-full bg-violet-100 dark:bg-violet-900/50 text-violet-600 flex items-center justify-center mr-3 text-base">1</span>
+                リアルタイム性とプライバシー
+              </h5>
+              <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed ml-12">
+                クラウドAIの課題である<strong>通信遅延</strong>と<strong>セキュリティリスク</strong>を解決するため、
+                現場で完結するオンデバイスAIへの需要が急増しています。
+                自動運転や医療現場など、0.1秒を争う現場で必須の技術となります。
+              </p>
+            </div>
+            
+            <div class="era-section">
+              <h5 class="font-bold text-xl mb-3 flex items-center">
+                <span class="w-9 h-9 rounded-full bg-violet-100 dark:bg-violet-900/50 text-violet-600 flex items-center justify-center mr-3 text-base">2</span>
+                サステナビリティ(電力・通信コスト)
+              </h5>
+              <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed ml-12">
+                膨大なデータをクラウドに送る通信コストと、データセンターの電力消費が限界を迎えています。
+                エッジ側で処理を行うことで、これらを劇的に削減する<strong>分散処理</strong>が主流となりつつあります。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .prc-technology-section {
+    padding: 3rem 0;
+    background: #020617; /* slate-950 */
+    color: #e2e8f0;
+  }
+
+  /* Force dark aesthetic */
+  :global(.dark) .prc-technology-section {
+    --section-bg: #020617;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 4rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+    word-wrap: break-word;
+  }
+
+  .tech-block {
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    background: rgba(30, 41, 59, 0.4); /* Dark translucent */
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  :global(.dark) .tech-block {
+    --block-bg: rgba(30, 41, 59, 0.6);
+    --block-shadow: rgba(0, 0, 0, 0.3);
+  }
+
+  .block-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--title-color, #0f172a);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    word-wrap: break-word;
+  }
+
+  :global(.dark) .block-title {
+    --title-color: #f1f5f9;
+  }
+
+  .subsection-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    color: var(--subtitle-color, #334155);
+    line-height: 1.4;
+  }
+
+  :global(.dark) .subsection-title {
+    --subtitle-color: #e2e8f0;
+  }
+
+  .text-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #cbd5e1; /* slate-300 */
+  }
+
+  :global(.dark) .text-content {
+    --text-color: #f1f5f9;
+  }
+
+  .text-content p {
+    margin: 1.25rem 0;
+  }
+
+  .content-with-image {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (min-width: 1024px) {
+    .content-with-image {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Comparison Grid for RNN vs RC */
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .comparison-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .comparison-item {
+    text-align: center;
+  }
+
+  .comparison-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--comparison-title-color, #475569);
+    margin-bottom: 1rem;
+  }
+
+  :global(.dark) .comparison-title {
+    --comparison-title-color: #cbd5e1;
+  }
+
+  .comparison-image {
+    background: var(--comparison-bg, #ffffff);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--comparison-shadow, rgba(0, 0, 0, 0.08));
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  :global(.dark) .comparison-image {
+    --comparison-bg: rgba(255, 255, 255, 0.9);
+    --comparison-shadow: rgba(0, 0, 0, 0.3);
+  }
+
+  .comparison-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    display: block;
+    padding: 1rem;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border-left: 4px solid #667eea;
+    margin-top: 1.5rem;
+  }
+
+  .highlight-box p {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .image-container,
+  .image-container-full {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 30px var(--img-shadow, rgba(0, 0, 0, 0.1));
+  }
+
+  :global(.dark) .image-container,
+  :global(.dark) .image-container-full {
+    --img-shadow: rgba(0, 0, 0, 0.4);
+  }
+
+  .image-container img,
+  .image-container-full img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+
+  .feature-list li {
+    padding: 1rem 0;
+    margin: 0.5rem 0;
+    border-left: 4px solid #667eea;
+    padding-left: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .feature-list strong {
+    color: var(--strong-color, #1e293b);
+    font-size: 1.1rem;
+  }
+
+  :global(.dark) .feature-list strong {
+    --strong-color: #f1f5f9;
+  }
+
+  .era-section {
+    margin: 2rem 0;
+  }
+
+  .era-subsection {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+    color: var(--era-title, #475569);
+  }
+
+  :global(.dark) .era-subsection {
+    --era-title: #cbd5e1;
+  }
+
+  .era-section ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .era-section li {
+    margin: 0.75rem 0;
+    line-height: 1.7;
+  }
+
+  .highlight-text {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid #667eea;
+    margin: 1.5rem 0;
+    font-weight: 500;
+  }
+
+  .reference-image {
+    margin: 2rem 0;
+  }
+
+  .image-citation {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--citation-color, #64748b);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: var(--citation-bg, #f8fafc);
+    border-left: 3px solid #94a3b8;
+    border-radius: 0.5rem;
+  }
+
+  :global(.dark) .image-citation {
+    --citation-color: #94a3b8;
+    --citation-bg: rgba(15, 23, 42, 0.4);
+  }
+
+  .image-citation a {
+    color: var(--citation-link, #667eea);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .image-citation a:hover {
+    text-decoration: underline;
+  }
+
+  :global(.dark) .image-citation a {
+    --citation-link: #818cf8;
+  }
+
+  /* NVIDIA Example Grid */
+  .nvidia-example-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .nvidia-example-grid {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .nvidia-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nvidia-text .highlight-text {
+    margin: 0;
+  }
+
+  .nvidia-graph {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nvidia-graph .image-container {
+    max-width: 500px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .nvidia-graph .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.75rem;
+  }
+
+  .nvidia-graph .image-citation {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .case-study {
+    margin: 2rem 0;
+  }
+
+  .case-description {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--case-text, #64748b);
+    margin-top: 1.5rem;
+    font-weight: 500;
+  }
+
+  :global(.dark) .case-description {
+    --case-text: #94a3b8;
+  }
+
+  .story-section {
+    margin: 2rem 0;
+  }
+
+  .story-steps {
+    margin-top: 3rem;
+  }
+
+  .story-step {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--step-bg, #f8fafc);
+    border-radius: 1rem;
+    border-left: 4px solid #667eea;
+  }
+
+  :global(.dark) .story-step {
+    --step-bg: rgba(15, 23, 42, 0.6);
+  }
+
+  .story-step h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--step-title, #1e293b);
+    line-height: 1.4;
+  }
+
+  :global(.dark) .story-step h4 {
+    --step-title: #f1f5f9;
+  }
+
+  .story-step p {
+    line-height: 1.7;
+    color: var(--step-text, #64748b);
+  }
+
+  :global(.dark) .story-step p {
+    --step-text: #94a3b8;
+  }
+
+  @media (max-width: 768px) {
+    .prc-technology-section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-block {
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .block-title {
+      font-size: 1.5rem;
+    }
+
+    .subsection-title {
+      font-size: 1.25rem;
+    }
+
+    .text-content {
+      font-size: 1rem;
+    }
+  }
+</style>

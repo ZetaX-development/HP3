@@ -1,0 +1,119 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ProjectFlow from "@components/Business/ProjectFlow.astro";
+
+const pageTitle = "AI Solution | ZetaX";
+const pageDescription = "最先端のAI技術を活用し、製造・金融・小売など様々な業界の課題を解決します。";
+
+const solutions = [
+  {
+    title: "予測と最適化",
+    subtitle: "Predictive & Optimization",
+    description: "大規模な時系列データや複雑なパラメータを解析し、需要動向の可視化やリソース配分の最適化モデルを構築します。サプライチェーンの効率化やエネルギー需要の予測など、データに基づく客観的な意思決定を強力にサポートします。",
+    tags: ["Demand Forecasting", "Logistics", "Resource Optimization"],
+    color: "from-blue-500 to-cyan-400"
+  },
+  {
+    title: "画像認識・外観検査",
+    subtitle: "Recognition & Inspection",
+    description: "Deep Learningを用いた画像認識技術により、目視では見逃しやすい微細な欠陥や異常を安定した精度で検知します。製造ラインの自動化・省人化や、セキュリティ監視における検知精度の向上など、現場のオペレーションに変革をもたらします。",
+    tags: ["Visual Inspection", "Anomaly Detection", "Computer Vision"],
+    color: "from-emerald-500 to-teal-400"
+  },
+  {
+    title: "自然言語処理 (LLM/RAG)",
+    subtitle: "Natural Language Processing",
+    description: "最先端の大規模言語モデル(LLM)と社内ナレッジを融合したRAG構築により、業務効率を劇的に向上させます。カスタマーサポートの自動化、ドキュメント解析、要約生成など、言葉を扱うあらゆる業務をサポートします。",
+    tags: ["Generative AI", "Chatbot", "Text Mining"],
+    color: "from-violet-500 to-fuchsia-400"
+  },
+  {
+    title: "データ分析・マーケティング",
+    subtitle: "Data Analytics & Marketing",
+    description: "顧客の行動ログや購買データ、Web上の非構造化データを統合的に分析し、潜在的なニーズやトレンドを発見します。パーソナライズされたレコメンデーションやLTV向上施策など、データドリブンなマーケティングを実現します。",
+    tags: ["Customer Analytics", "Recommendation", "Trend Analysis"],
+    color: "from-orange-500 to-amber-400"
+  }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="relative overflow-hidden h-[60vh] flex items-center justify-center bg-slate-900">
+     <!-- Background Effects -->
+    <div class="absolute inset-0 bg-slate-900 z-0">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-900 to-slate-900"></div>
+      <!-- Animated abstract lines or grid can go here via CSS if needed, keeping it clean for now -->
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center flex flex-col justify-center h-full">
+      <h1 class="text-6xl md:text-8xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-teal-200 drop-shadow-2xl tracking-tight">
+        AI Solution
+      </h1>
+      <p class="text-2xl md:text-3xl text-slate-300 max-w-5xl mx-auto font-light leading-relaxed tracking-wide">
+        最先端アルゴリズムで、ビジネスの未踏領域へ。
+      </p>
+    </div>
+  </div>
+
+  <section class="py-24 bg-slate-950">
+    <div class="container mx-auto px-4">
+      
+      <!-- Project Flow Section (Redesigned) -->
+      <div class="mb-32">
+        <div class="text-center mb-16">
+           <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white tracking-tight">
+            Project Flow
+          </h2>
+          <div class="h-1 w-24 bg-gradient-to-r from-blue-500 to-teal-400 mx-auto rounded-full"></div>
+        </div>
+        
+        <ProjectFlow />
+      </div>
+      
+        <div class="text-center mb-20">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white tracking-tight">
+            Our Capabilities
+          </h2>
+          <div class="h-1 w-24 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+          
+          <p class="text-slate-400 text-lg leading-relaxed mt-8">
+            ZetaXは、Deep Techの知見を応用し、顧客ごとの固有な課題に対して<br class="hidden md:inline" />最適なAIソリューションを提供・実装します。
+          </p>
+        </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {solutions.map((item) => (
+          <div class="relative group p-[1px] rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 hover:bg-gradient-to-br hover:from-slate-700 hover:to-slate-800 transition-all duration-500 overflow-hidden">
+            <!-- Border Gradient Effect -->
+            <div class={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md`}></div>
+            
+            <div class="relative h-full bg-slate-900/95 backdrop-blur-xl rounded-[23px] p-10 flex flex-col justify-start border border-slate-800 group-hover:border-transparent transition-colors duration-300">
+              
+              <div class="mb-6">
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-300 transition-all">
+                  {item.title}
+                </h3>
+                <p class={`text-sm font-bold bg-gradient-to-r ${item.color} bg-clip-text text-transparent uppercase tracking-wider`}>
+                  {item.subtitle}
+                </p>
+              </div>
+
+              <p class="text-slate-400 leading-relaxed mb-8 flex-grow group-hover:text-slate-300 transition-colors">
+                {item.description}
+              </p>
+              
+              <div class="flex flex-wrap gap-2 mt-auto">
+                {item.tags.map((tag) => (
+                  <span class="text-xs font-medium px-3 py-1 rounded-full border border-slate-700 text-slate-400 group-hover:border-slate-600 group-hover:text-slate-300 transition-colors">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
