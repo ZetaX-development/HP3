@@ -24,17 +24,17 @@
     }
 
     :root {
-      --bg: #0A0A0A;
-      --bg-subtle: #111114;
-      --bg-card: #16161a;
-      --text-primary: #E8E8EC;
-      --text-secondary: #8A8A9A;
-      --text-dim: #525262;
+      --bg: #ffffff;
+      --bg-subtle: #f5f5f7;
+      --bg-card: #f8f8f8;
+      --text-primary: #111111;
+      --text-secondary: #555555;
+      --text-dim: #999999;
       --accent: #3B82F6;
       --accent-bright: #60A5FA;
-      --accent-glow: rgba(59, 130, 246, 0.15);
+      --accent-glow: rgba(59, 130, 246, 0.08);
       --accent-cyan: #22D3EE;
-      --silver: #C0C0D0;
+      --silver: #888888;
       --font-jp: 'Noto Sans JP', sans-serif;
       --font-en: 'Noto Sans JP', sans-serif;
       --font-display: 'Noto Sans JP', sans-serif;
@@ -68,11 +68,11 @@
       display: flex;
       align-items: center;
       gap: 0;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.04);
       border-radius: 20px;
       padding: 3px;
       margin-left: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .lang-btn {
@@ -114,10 +114,28 @@
     }
 
     .nav.scrolled {
-      background: rgba(10, 10, 10, 0.85);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
       padding: 1rem 3rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .nav:not(.scrolled) .nav-logo { color: #E8E8EC; }
+    .nav:not(.scrolled) .nav-links a { color: rgba(255,255,255,0.6); }
+    .nav:not(.scrolled) .lang-btn { color: rgba(255,255,255,0.45); }
+    .nav:not(.scrolled) .lang-toggle {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .nav.scrolled .nav-logo { color: #111111; }
+    .nav.scrolled .nav-links a { color: #666666; }
+    .nav.scrolled .nav-links a:hover { color: #111111; }
+    .nav.scrolled .lang-btn { color: #999999; }
+    .nav.scrolled .lang-btn.active { color: #ffffff; }
+    .nav.scrolled .lang-toggle {
+      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.08);
     }
 
     .nav-logo {
@@ -176,6 +194,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      background: #0A0A0A;
     }
 
     #heroCanvas {
@@ -211,7 +230,7 @@
       font-weight: 700;
       line-height: 1.08;
       letter-spacing: -0.03em;
-      color: var(--text-primary);
+      color: #E8E8EC;
       margin-bottom: 1.5rem;
       text-shadow: 0 0 80px rgba(59, 130, 246, 0.15);
       opacity: 0;
@@ -247,7 +266,7 @@
       font-family: var(--font-jp);
       font-size: clamp(1.3rem, 2.5vw, 1.8rem);
       font-weight: 400;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.6);
       letter-spacing: 0.15em;
       opacity: 0;
       transform: translateY(20px);
@@ -381,7 +400,7 @@
       line-height: 1.15;
       letter-spacing: -0.01em;
       margin-bottom: 1rem;
-      color: var(--text-primary);
+      color: #111111;
     }
 
     .reveal {
@@ -472,7 +491,7 @@
     .mission-bridge {
       margin-top: 3rem;
       padding-top: 3rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
       font-family: var(--font-en);
       font-size: 0.8rem;
       letter-spacing: 0.08em;
@@ -508,11 +527,11 @@
     .service-block {
       padding: 8rem 2rem;
       position: relative;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .service-block:last-child {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .service-inner {
@@ -577,7 +596,7 @@
       aspect-ratio: 1;
       border-radius: 16px;
       background: var(--bg-subtle);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.06);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -1110,7 +1129,7 @@
       font-size: 0.76rem;
       letter-spacing: 0.08em;
       padding: 0.4rem 0.9rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 100px;
       color: var(--text-dim);
       transition: border-color 0.3s ease, color 0.3s ease;
@@ -1124,7 +1143,7 @@
     .service-usecase {
       margin-top: 2.2rem;
       padding-top: 1.8rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .service-usecase-label {
@@ -1189,7 +1208,7 @@
       gap: 0;
       margin-top: 2.5rem;
       margin-bottom: 3rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .company-tab {
@@ -1233,7 +1252,7 @@
     }
 
     .company-table tr {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .company-table th,
@@ -1274,7 +1293,7 @@
 
     .ceo-card {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 14px;
       padding: 2.5rem 2rem;
       text-align: center;
@@ -1344,7 +1363,7 @@
 
     .team-card {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 12px;
       padding: 2rem 1.5rem;
       text-align: center;
@@ -1352,8 +1371,8 @@
     }
 
     .team-card:hover {
-      border-color: rgba(59, 130, 246, 0.2);
-      background: #1a1a22;
+      border-color: rgba(59, 130, 246, 0.25);
+      background: #f0f4ff;
       box-shadow: 0 0 30px rgba(59, 130, 246, 0.06);
     }
 
@@ -1417,12 +1436,12 @@
       gap: 2rem;
       align-items: baseline;
       padding: 1.5rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       transition: background 0.3s ease;
     }
 
     .news-item:first-child {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .news-date {
@@ -1483,7 +1502,7 @@
       font-size: clamp(2.5rem, 5vw, 4rem);
       font-style: normal;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--text-primary), var(--accent-bright));
+      background: linear-gradient(135deg, #111111, #2563EB);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -1527,10 +1546,10 @@
     .form-group textarea {
       width: 100%;
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.12);
       border-radius: 8px;
       padding: 0.9rem 1rem;
-      color: var(--text-primary);
+      color: #111111;
       font-family: var(--font-jp);
       font-size: 0.9rem;
       transition: border-color 0.3s ease;
@@ -1616,7 +1635,7 @@
       font-size: 0.75rem;
       letter-spacing: 0.08em;
       color: var(--text-dim);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
       padding-bottom: 2px;
       transition: color 0.3s ease, border-color 0.3s ease;
     }
@@ -1629,7 +1648,7 @@
     /* FOOTER */
     .footer {
       background: var(--bg);
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
       padding: 3rem 2rem;
     }
 
@@ -1765,7 +1784,7 @@
     }
     .challenge-card {
       background: var(--bg-card);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(0,0,0,0.08);
       border-radius: 12px;
       padding: 2rem;
     }
@@ -1787,7 +1806,7 @@
     .fde-subheading {
       font-size: 1.4rem;
       font-weight: 700;
-      color: var(--accent-bright);
+      color: #2563EB;
       margin-bottom: 1.5rem;
     }
     .fde-desc {
@@ -1816,17 +1835,17 @@
       letter-spacing: 0.04em;
       padding: 1rem 1.5rem;
       text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
     }
     .compare-table td {
       padding: 1rem 1.5rem;
       color: var(--text-secondary);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
       vertical-align: top;
       line-height: 1.75;
     }
-    .compare-table .zetax-col { color: var(--accent-bright); }
-    .compare-table thead .zetax-col { color: var(--accent); }
+    .compare-table .zetax-col { color: #2563EB; }
+    .compare-table thead .zetax-col { color: #1d4ed8; }
 
     /* SOLUTIONS */
     .solutions-grid {
@@ -1838,7 +1857,7 @@
     .solution-card {
       display: block;
       background: var(--bg-card);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(0,0,0,0.08);
       border-radius: 16px;
       padding: 2.5rem;
       text-decoration: none;
@@ -1846,7 +1865,7 @@
     }
     .solution-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
     }
     .solution-primary:hover { border-color: rgba(59,130,246,0.35); }
     .solution-secondary:hover { border-color: rgba(34,211,238,0.35); }
@@ -1864,8 +1883,8 @@
       margin-bottom: 1rem;
       line-height: 1.4;
     }
-    .solution-primary .solution-title { color: var(--accent-bright); }
-    .solution-secondary .solution-title { color: var(--accent-cyan); }
+    .solution-primary .solution-title { color: #2563EB; }
+    .solution-secondary .solution-title { color: #0891B2; }
     .solution-desc {
       font-size: 0.93rem;
       color: var(--text-secondary);
@@ -1889,8 +1908,7 @@
   <nav class="nav" id="nav">
     <div class="nav-logo">ZETA<span>X</span></div>
     <ul class="nav-links">
-      <li><a href="#reality">Reality</a></li>
-      <li><a href="#fde">FDE</a></li>
+      <li><a href="#hero">Home</a></li>
       <li><a href="#solutions">Solutions</a></li>
       <li><a href="#company">Company</a></li>
       <li><a href="#news">News</a></li>
