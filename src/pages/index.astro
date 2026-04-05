@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <style is:global>
     *,
@@ -36,8 +36,8 @@
       --accent-cyan: #22D3EE;
       --silver: #C0C0D0;
       --font-jp: 'Noto Sans JP', sans-serif;
-      --font-en: 'DM Sans', sans-serif;
-      --font-display: 'Instrument Serif', serif;
+      --font-en: 'Noto Sans JP', sans-serif;
+      --font-display: 'Noto Sans JP', sans-serif;
       --transition: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -206,7 +206,7 @@
     }
 
     .hero-title {
-      font-family: 'Space Grotesk', var(--font-en);
+      font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
       font-size: clamp(2.8rem, 6.5vw, 5.8rem);
       font-weight: 700;
       line-height: 1.08;
@@ -220,8 +220,8 @@
     }
 
     .hero-title em {
-      font-family: var(--font-display);
-      font-style: italic;
+      font-family: var(--font-jp);
+      font-style: normal;
       font-weight: 400;
       background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent-cyan) 50%, #a78bfa 100%);
       background-size: 200% auto;
@@ -1481,7 +1481,7 @@
     .contact-headline {
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 5vw, 4rem);
-      font-style: italic;
+      font-style: normal;
       margin-bottom: 1rem;
       background: linear-gradient(135deg, var(--text-primary), var(--accent-bright));
       -webkit-background-clip: text;
