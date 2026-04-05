@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <style is:global>
     *,
@@ -24,20 +24,20 @@
     }
 
     :root {
-      --bg: #0A0A0A;
-      --bg-subtle: #111114;
-      --bg-card: #16161a;
-      --text-primary: #E8E8EC;
-      --text-secondary: #8A8A9A;
-      --text-dim: #525262;
+      --bg: #ffffff;
+      --bg-subtle: #f5f5f7;
+      --bg-card: #f8f8f8;
+      --text-primary: #111111;
+      --text-secondary: #555555;
+      --text-dim: #999999;
       --accent: #3B82F6;
       --accent-bright: #60A5FA;
-      --accent-glow: rgba(59, 130, 246, 0.15);
+      --accent-glow: rgba(59, 130, 246, 0.08);
       --accent-cyan: #22D3EE;
-      --silver: #C0C0D0;
+      --silver: #888888;
       --font-jp: 'Noto Sans JP', sans-serif;
-      --font-en: 'DM Sans', sans-serif;
-      --font-display: 'Instrument Serif', serif;
+      --font-en: 'Noto Sans JP', sans-serif;
+      --font-display: 'Noto Sans JP', sans-serif;
       --transition: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -68,11 +68,11 @@
       display: flex;
       align-items: center;
       gap: 0;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.04);
       border-radius: 20px;
       padding: 3px;
       margin-left: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .lang-btn {
@@ -114,10 +114,28 @@
     }
 
     .nav.scrolled {
-      background: rgba(10, 10, 10, 0.85);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
       padding: 1rem 3rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .nav:not(.scrolled) .nav-logo { color: #E8E8EC; }
+    .nav:not(.scrolled) .nav-links a { color: rgba(255,255,255,0.6); }
+    .nav:not(.scrolled) .lang-btn { color: rgba(255,255,255,0.45); }
+    .nav:not(.scrolled) .lang-toggle {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .nav.scrolled .nav-logo { color: #111111; }
+    .nav.scrolled .nav-links a { color: #666666; }
+    .nav.scrolled .nav-links a:hover { color: #111111; }
+    .nav.scrolled .lang-btn { color: #999999; }
+    .nav.scrolled .lang-btn.active { color: #ffffff; }
+    .nav.scrolled .lang-toggle {
+      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.08);
     }
 
     .nav-logo {
@@ -176,6 +194,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      background: #0A0A0A;
     }
 
     #heroCanvas {
@@ -206,12 +225,12 @@
     }
 
     .hero-title {
-      font-family: 'Space Grotesk', var(--font-en);
+      font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
       font-size: clamp(2.8rem, 6.5vw, 5.8rem);
       font-weight: 700;
       line-height: 1.08;
       letter-spacing: -0.03em;
-      color: var(--text-primary);
+      color: #E8E8EC;
       margin-bottom: 1.5rem;
       text-shadow: 0 0 80px rgba(59, 130, 246, 0.15);
       opacity: 0;
@@ -220,8 +239,8 @@
     }
 
     .hero-title em {
-      font-family: var(--font-display);
-      font-style: italic;
+      font-family: var(--font-jp);
+      font-style: normal;
       font-weight: 400;
       background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent-cyan) 50%, #a78bfa 100%);
       background-size: 200% auto;
@@ -245,9 +264,9 @@
 
     .hero-sub {
       font-family: var(--font-jp);
-      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-      font-weight: 300;
-      color: var(--text-secondary);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
       letter-spacing: 0.15em;
       opacity: 0;
       transform: translateY(20px);
@@ -381,7 +400,7 @@
       line-height: 1.15;
       letter-spacing: -0.01em;
       margin-bottom: 1rem;
-      color: var(--text-primary);
+      color: #111111;
     }
 
     .reveal {
@@ -472,7 +491,7 @@
     .mission-bridge {
       margin-top: 3rem;
       padding-top: 3rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
       font-family: var(--font-en);
       font-size: 0.8rem;
       letter-spacing: 0.08em;
@@ -508,11 +527,11 @@
     .service-block {
       padding: 8rem 2rem;
       position: relative;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .service-block:last-child {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .service-inner {
@@ -577,7 +596,7 @@
       aspect-ratio: 1;
       border-radius: 16px;
       background: var(--bg-subtle);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.06);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -1110,7 +1129,7 @@
       font-size: 0.76rem;
       letter-spacing: 0.08em;
       padding: 0.4rem 0.9rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 100px;
       color: var(--text-dim);
       transition: border-color 0.3s ease, color 0.3s ease;
@@ -1124,7 +1143,7 @@
     .service-usecase {
       margin-top: 2.2rem;
       padding-top: 1.8rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .service-usecase-label {
@@ -1189,7 +1208,7 @@
       gap: 0;
       margin-top: 2.5rem;
       margin-bottom: 3rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .company-tab {
@@ -1233,7 +1252,7 @@
     }
 
     .company-table tr {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .company-table th,
@@ -1274,7 +1293,7 @@
 
     .ceo-card {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 14px;
       padding: 2.5rem 2rem;
       text-align: center;
@@ -1344,7 +1363,7 @@
 
     .team-card {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 12px;
       padding: 2rem 1.5rem;
       text-align: center;
@@ -1352,8 +1371,8 @@
     }
 
     .team-card:hover {
-      border-color: rgba(59, 130, 246, 0.2);
-      background: #1a1a22;
+      border-color: rgba(59, 130, 246, 0.25);
+      background: #f0f4ff;
       box-shadow: 0 0 30px rgba(59, 130, 246, 0.06);
     }
 
@@ -1417,12 +1436,12 @@
       gap: 2rem;
       align-items: baseline;
       padding: 1.5rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       transition: background 0.3s ease;
     }
 
     .news-item:first-child {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .news-date {
@@ -1481,9 +1500,9 @@
     .contact-headline {
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 5vw, 4rem);
-      font-style: italic;
+      font-style: normal;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--text-primary), var(--accent-bright));
+      background: linear-gradient(135deg, #111111, #2563EB);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -1527,10 +1546,10 @@
     .form-group textarea {
       width: 100%;
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.12);
       border-radius: 8px;
       padding: 0.9rem 1rem;
-      color: var(--text-primary);
+      color: #111111;
       font-family: var(--font-jp);
       font-size: 0.9rem;
       transition: border-color 0.3s ease;
@@ -1616,7 +1635,7 @@
       font-size: 0.75rem;
       letter-spacing: 0.08em;
       color: var(--text-dim);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
       padding-bottom: 2px;
       transition: color 0.3s ease, border-color 0.3s ease;
     }
@@ -1629,7 +1648,7 @@
     /* FOOTER */
     .footer {
       background: var(--bg);
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
       padding: 3rem 2rem;
     }
 
@@ -1732,6 +1751,164 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* REALITY */
+    .reality-quote {
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 2rem;
+      margin: 2rem 0 3rem;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+    }
+    .reality-quote-text {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      line-height: 1.7;
+    }
+    .reality-quote-source {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+    .reality-question {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+    }
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .challenge-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .challenge-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .challenge-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+    }
+
+    /* FDE */
+    .fde-intro { margin-top: 3rem; }
+    .fde-subheading {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2563EB;
+      margin-bottom: 1.5rem;
+    }
+    .fde-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+    .fde-emphasis {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .compare-table-wrap {
+      margin-top: 3rem;
+      overflow-x: auto;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .compare-table th {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .compare-table td {
+      padding: 1rem 1.5rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      vertical-align: top;
+      line-height: 1.75;
+    }
+    .compare-table .zetax-col { color: #2563EB; }
+    .compare-table thead .zetax-col { color: #1d4ed8; }
+
+    /* SOLUTIONS */
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .solution-card {
+      display: block;
+      background: var(--bg-card);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-decoration: none;
+      transition: transform 0.3s var(--transition), box-shadow 0.3s var(--transition), border-color 0.3s;
+    }
+    .solution-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+    }
+    .solution-primary:hover { border-color: rgba(59,130,246,0.35); }
+    .solution-secondary:hover { border-color: rgba(34,211,238,0.35); }
+    .solution-number {
+      font-family: var(--font-en);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+    }
+    .solution-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .solution-primary .solution-title { color: #2563EB; }
+    .solution-secondary .solution-title { color: #0891B2; }
+    .solution-desc {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+    .solution-link {
+      font-family: var(--font-en);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+    .solution-card:hover .solution-link { color: var(--text-primary); }
+
+    /* ALTERNATING SECTION BACKGROUNDS */
+    #reality  { background: #ffffff; }
+    #fde      { background: #f7f7f7; }
+    #solutions{ background: #ffffff; }
+    .company  { background: #f7f7f7; }
+    .news     { background: #ffffff; }
+    .contact  { background: #f7f7f7; }
+    .footer   { background: #f0f0f0; border-top: 1px solid rgba(0,0,0,0.06); }
+
   </style>
 </head>
 
@@ -1741,9 +1918,8 @@
   <nav class="nav" id="nav">
     <div class="nav-logo">ZETA<span>X</span></div>
     <ul class="nav-links">
-      <li><a href="#mission">Mission</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#origin">Origin</a></li>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#solutions">Solutions</a></li>
       <li><a href="#company">Company</a></li>
       <li><a href="#news">News</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1758,327 +1934,123 @@
   <section class="hero" id="hero">
     <canvas id="heroCanvas"></canvas>
     <div class="hero-content">
-      <p class="hero-tag">Deep Tech Startup from the University of Tokyo</p>
-      <h1 class="hero-title">Redefine the Standard<br>with <em>Science.</em></h1>
-      <p class="hero-sub" data-ja="東大発の深層技術で、企業の難題を解く。" data-en="Solving enterprise challenges with deep technology from UTokyo.">
-        東大発の深層技術で、企業の難題を解く。</p>
+      <p class="hero-tag">FDE Company from the University of Tokyo</p>
+      <h1 class="hero-title">東大発、<em>FDE集団。</em></h1>
+      <p class="hero-sub" data-ja="課題の特定から、実装まで。一気通貫。" data-en="From problem identification to implementation. All in one.">
+        課題の特定から、実装まで。一気通貫。</p>
       <div class="hero-pills">
-        <span class="hero-pill accent">AI 実装</span>
-        <span class="hero-pill">耐量子暗号 (PQC)</span>
-        <span class="hero-pill">リザバーコンピューティング</span>
+        <span class="hero-pill accent">FDE</span>
+        <span class="hero-pill">AI活用 / DX</span>
+        <span class="hero-pill">異常検知</span>
       </div>
     </div>
     <div class="hero-scroll">Scroll</div>
   </section>
 
-  <!-- MISSION -->
-  <section class="section mission" id="mission">
+  <!-- REALITY -->
+  <section class="section" id="reality">
     <div class="section-inner">
-      <div class="reveal"><span class="section-label">Mission</span></div>
+      <div class="reveal">
+        <span class="section-label">Reality</span>
+        <h2 class="section-heading" data-ja="多くの企業が直面する、<br>ソフトウェア開発の現実的な課題" data-en="The Real Challenges of<br>Software Development">多くの企業が直面する、<br>ソフトウェア開発の現実的な課題</h2>
+      </div>
       <div class="reveal reveal-delay-1">
-        <h2 class="section-heading" style="margin-bottom: 3rem;" data-ja="論文の中に眠る技術を、<br>ビジネスの現場へ。"
-          data-en="Moving Cutting-Edge Research<br>from Papers to Products.">論文の中に眠る技術を、<br>ビジネスの現場へ。</h2>
+        <div class="reality-quote">
+          <p class="reality-quote-text" data-ja="「AIプロジェクトの80%は失敗。技術の問題ではない。何を作るかの見極め方の問題。」" data-en="&ldquo;80% of AI projects fail. It&#39;s not a technology problem. It&#39;s about knowing what to build.&rdquo;">「AIプロジェクトの80%は失敗。技術の問題ではない。何を作るかの見極め方の問題。」</p>
+          <p class="reality-quote-source" data-ja="（出典：RAND Corporation, 2025）" data-en="(Source: RAND Corporation, 2025)">（出典：RAND Corporation, 2025）</p>
+        </div>
       </div>
       <div class="reveal reveal-delay-2">
-        <p class="mission-text"
-          data-ja='ZetaXは<strong>AI実装・耐量子暗号(PQC)・リザバーコンピューティング</strong>の3領域に特化した、東京大学発のディープテックスタートアップです。<br><br>単なるツール導入や表面的なDXではなく、<strong>経営課題の本質を数理・科学で解き直す</strong>コンサルティングと実装を提供します。アカデミアの厳密さとスタートアップの機動力で、企業の次の一手を実現します。'
-          data-en='ZetaX is a deep-tech startup from the University of Tokyo, specializing in three domains: <strong>AI implementation, post-quantum cryptography (PQC), and reservoir computing</strong>.<br><br>We go beyond simple tool adoption or superficial DX. We <strong>deconstruct and solve core business challenges through mathematics and science</strong>—combining academic rigor with startup agility.'>
-          ZetaXは<strong>AI実装・耐量子暗号(PQC)・リザバーコンピューティング</strong>の3領域に特化した、東京大学発のディープテックスタートアップです。<br><br>
-          単なるツール導入や表面的なDXではなく、<strong>経営課題の本質を数理・科学で解き直す</strong>コンサルティングと実装を提供します。アカデミアの厳密さとスタートアップの機動力で、企業の次の一手を実現します。
-        </p>
+        <h3 class="reality-question" data-ja="こんなことありませんか？" data-en="Does this sound familiar?">こんなことありませんか？</h3>
       </div>
-      <div class="reveal reveal-delay-3">
-        <p class="mission-bridge">
-          Three Core Domains — <span>AI Implementation</span> / <span>Post-Quantum Cryptography</span> / <span>Reservoir Computing</span>
-        </p>
+      <div class="challenge-grid reveal reveal-delay-3">
+        <div class="challenge-card">
+          <h4 class="challenge-title" data-ja="課題が分からないまま、開発だけが始まる" data-en="Development starts without understanding the problem">課題が分からないまま、開発だけが始まる</h4>
+          <p class="challenge-desc" data-ja="「AI導入」が目的になっている。でも現場の本当のボトルネックが何なのか、技術で解ける問題なのか、分からない。" data-en="AI adoption becomes the goal. But no one knows what the real bottleneck is, or whether technology can solve it.">「AI導入」が目的になっている。でも現場の本当のボトルネックが何なのか、技術で解ける問題なのか、分からない。</p>
+        </div>
+        <div class="challenge-card">
+          <h4 class="challenge-title" data-ja="見た目は100点 でも現場は誰も使わない" data-en="Beautiful design. But nobody uses it.">見た目は100点 でも現場は誰も使わない</h4>
+          <p class="challenge-desc" data-ja="ダッシュボードは美しい。でも現場が困っていたのはそこじゃない。営業→PM→エンジニアの伝言ゲームで、本当の課題は消えている。" data-en="The dashboard looks perfect. But that&#39;s not what the field needed. Lost in translation through sales → PM → engineers, the real problem disappears.">ダッシュボードは美しい。でも現場が困っていたのはそこじゃない。営業→PM→エンジニアの伝言ゲームで、本当の課題は消えている。</p>
+        </div>
+        <div class="challenge-card">
+          <h4 class="challenge-title" data-ja="完成した頃には、もう古い。" data-en="By the time it&#39;s done, it&#39;s obsolete.">完成した頃には、もう古い。</h4>
+          <p class="challenge-desc" data-ja="要件定義に3ヶ月、開発に半年。納品された頃にはAIモデルは世代交代し、課題自体が変わっている。開発サイクルの長さそのものが、最大のリスク。" data-en="3 months for requirements, 6 months for development. By launch, AI models have evolved and the original problem has changed. Long development cycles are the biggest risk.">要件定義に3ヶ月、開発に半年。納品された頃にはAIモデルは世代交代し、課題自体が変わっている。開発サイクルの長さそのものが、最大のリスク。</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <div class="services-section" id="services">
-    <div class="services-intro reveal">
-      <span class="section-label">Services</span>
-      <h2 class="section-heading" data-ja="3つのコア領域" data-en="Three Core Domains">3つのコア領域</h2>
-      <p class="services-intro-text"
-        data-ja="AI・暗号・機械学習の各専門家チームが、貴社の課題に合わせたソリューションを設計・実装します。"
-        data-en="Expert teams in AI, cryptography, and machine learning design and implement solutions tailored to your business challenges.">
-        AI・暗号・機械学習の各専門家チームが、貴社の課題に合わせたソリューションを設計・実装します。
-      </p>
-    </div>
-    <div class="service-block">
-      <div class="service-inner">
-        <div class="service-text">
-          <p class="service-number">SERVICE 01</p>
-          <h3 class="service-title">Strategic AI<br>Implementation</h3>
-          <p class="service-catch" data-ja="「AIを入れたが成果が出ない」を終わらせる。" data-en="Fix the AI that never delivers results.">
-            「AIを入れたが成果が出ない」を終わらせる。</p>
-          <div class="service-desc">
-            <p data-ja="PoC止まりのAIを、本番稼働する価値に変えます。経営課題を数理モデルで再定義し、要件定義・モデル開発・MLOps構築まで一気通貫でサポート。東大の研究知見に基づいたカスタムAIを実装します。"
-              data-en="We turn pilot-stage AI into production-grade value. We redefine your business challenge as a mathematical model, then handle requirements, model development, and MLOps end-to-end—delivering custom AI grounded in UTokyo research.">
-              PoC止まりのAIを、本番稼働する価値に変えます。経営課題を数理モデルで再定義し、要件定義・モデル開発・MLOps構築まで一気通貫でサポート。東大の研究知見に基づいたカスタムAIを実装します。</p>
-            <ul style="margin-top:1rem;">
-              <li data-ja="経営課題の数理モデリング・最適化" data-en="Mathematical modeling & optimization of business challenges">
-                経営課題の数理モデリング・最適化</li>
-              <li data-ja="カスタムAIモデルの設計・開発" data-en="Custom AI model design & development">カスタムAIモデルの設計・開発</li>
-              <li data-ja="PoC〜本番運用まで一気通貫サポート" data-en="End-to-end support from PoC to production">PoC〜本番運用まで一気通貫サポート
-              </li>
-            </ul>
-          </div>
-          <div class="service-specs">
-            <span class="spec-tag">Deep Learning</span><span class="spec-tag">Mathematical Optimization</span><span
-              class="spec-tag">MLOps</span>
-          </div>
-          <div class="service-usecase">
-            <p class="service-usecase-label">Use Case</p>
-            <p class="service-usecase-text"
-              data-ja="製薬・素材メーカーのR&amp;D部門におけるデータ解析自動化。仮説生成からシミュレーション・検証までのサイクルを大幅に短縮し、研究開発のスピードと精度を飛躍的に向上させます。"
-              data-en="Automating data analysis in R&amp;D divisions of pharmaceutical and materials manufacturers. Dramatically shortening the cycle from hypothesis generation to simulation and validation, exponentially improving R&amp;D speed and accuracy.">
-              製薬・素材メーカーのR&amp;D部門におけるデータ解析自動化。仮説生成からシミュレーション・検証までのサイクルを大幅に短縮し、研究開発のスピードと精度を飛躍的に向上させます。</p>
-          </div>
-        </div>
-        <div class="service-visual" id="visual01">
-          <div class="sv-chip">
-            <div class="chip-glow"></div>
-            <svg class="chip-svg" viewBox="0 0 400 400">
-              <!-- Circuit traces (input side) -->
-              <path class="trace" d="M40,120 L140,120 L140,160 L170,160" />
-              <path class="trace-bright" d="M40,160 L100,160 L120,180 L170,180" />
-              <path class="trace" d="M40,200 L170,200" />
-              <path class="trace-bright" d="M40,240 L100,240 L120,220 L170,220" />
-              <path class="trace" d="M40,280 L140,280 L140,240 L170,240" />
-              <path class="trace" d="M120,40 L120,100 L160,140 L170,160" />
-              <path class="trace" d="M200,40 L200,170" />
-              <path class="trace" d="M280,40 L280,100 L240,140 L230,160" />
-              <!-- Circuit traces (output side) -->
-              <path class="trace-bright" d="M230,180 L280,180 L300,160 L360,160" />
-              <path class="trace" d="M230,200 L360,200" />
-              <path class="trace" d="M230,220 L280,220 L300,240 L360,240" />
-              <path class="trace-bright" d="M230,160 L260,160 L260,120 L360,120" />
-              <path class="trace" d="M230,240 L260,240 L260,280 L360,280" />
-              <path class="trace" d="M200,230 L200,360" />
-              <path class="trace" d="M160,230 L140,260 L140,360" />
-              <path class="trace" d="M240,230 L260,260 L260,360" />
-              <!-- Central chip -->
-              <rect class="chip-core" x="170" y="160" width="60" height="80" rx="6" stroke="rgba(96,165,250,0.6)"
-                stroke-width="1.5" fill="rgba(96,165,250,0.03)" />
-              <rect class="chip-inner-core" x="182" y="172" width="36" height="56" rx="3" stroke="rgba(96,165,250,0.35)"
-                stroke-width="0.8" fill="rgba(96,165,250,0.03)" />
-              <text x="200" y="204" text-anchor="middle" fill="rgba(96,165,250,0.5)" font-size="11"
-                font-family="DM Sans" font-weight="600">AI</text>
-              <!-- Pin dots on chip edges -->
-              <circle class="pin-dot" cx="170" cy="175" r="2.5" />
-              <circle class="pin-dot" cx="170" cy="195" r="2.5" />
-              <circle class="pin-dot" cx="170" cy="215" r="2.5" />
-              <circle class="pin-dot" cx="170" cy="235" r="2.5" />
-              <circle class="pin-dot" cx="230" cy="175" r="2.5" />
-              <circle class="pin-dot" cx="230" cy="195" r="2.5" />
-              <circle class="pin-dot" cx="230" cy="215" r="2.5" />
-              <circle class="pin-dot" cx="230" cy="235" r="2.5" />
-              <circle class="pin-dot" cx="185" cy="160" r="2.5" />
-              <circle class="pin-dot" cx="200" cy="160" r="2.5" />
-              <circle class="pin-dot" cx="215" cy="160" r="2.5" />
-              <circle class="pin-dot" cx="185" cy="240" r="2.5" />
-              <circle class="pin-dot" cx="200" cy="240" r="2.5" />
-              <circle class="pin-dot" cx="215" cy="240" r="2.5" />
-              <!-- Input side endpoint dots -->
-              <circle fill="rgba(96,165,250,0.3)" cx="40" cy="120" r="2" />
-              <circle fill="rgba(96,165,250,0.3)" cx="40" cy="160" r="2" />
-              <circle fill="rgba(96,165,250,0.3)" cx="40" cy="200" r="2" />
-              <circle fill="rgba(96,165,250,0.3)" cx="40" cy="240" r="2" />
-              <circle fill="rgba(96,165,250,0.3)" cx="40" cy="280" r="2" />
-              <!-- Output side endpoint dots -->
-              <circle fill="rgba(96,165,250,0.3)" cx="360" cy="120" r="2" />
-              <circle fill="rgba(96,165,250,0.3)" cx="360" cy="160" r="2" />
-              <circle fill="rgba(96,165,250,0.3)" cx="360" cy="200" r="2" />
-              <circle fill="rgba(96,165,250,0.3)" cx="360" cy="240" r="2" />
-              <circle fill="rgba(96,165,250,0.3)" cx="360" cy="280" r="2" />
-              <!-- Flowing data dots -->
-              <circle class="data-dot d1" />
-              <circle class="data-dot d2" />
-              <circle class="data-dot d3" />
-              <circle class="data-dot d4" />
-              <circle class="data-dot d5" />
-              <circle class="data-dot d6" />
-              <!-- Labels -->
-              <text x="30" y="100" fill="rgba(96,165,250,0.22)" font-size="7" font-family="DM Sans"
-                letter-spacing="0.1em">INPUT</text>
-              <text x="340" y="100" fill="rgba(96,165,250,0.22)" font-size="7" font-family="DM Sans"
-                letter-spacing="0.1em">OUTPUT</text>
-            </svg>
-            <span class="chip-label">AI Processor</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="service-block">
-      <div class="service-inner" style="direction:rtl;">
-        <div class="service-text" style="direction:ltr;">
-          <p class="service-number">SERVICE 02</p>
-          <h3 class="service-title">Quantum-Ready<br>Security</h3>
-          <p class="service-catch" data-ja="2030年、あなたの暗号は破られる。今から備える。" data-en="Your encryption will be broken by 2030. Prepare now.">
-            2030年、あなたの暗号は破られる。今から備える。</p>
-          <div class="service-desc">
-            <p data-ja="量子コンピュータの実用化により、RSA・楕円曲線暗号などの既存暗号が無力化されます。ZetaXはNIST標準の耐量子アルゴリズム（CRYSTALS-Kyberなど）への移行を、コンサルから実装まで一気通貫で支援します。"
-              data-en="Quantum computers will break existing encryption like RSA and ECC. ZetaX provides end-to-end support—from consulting to implementation—for migrating to NIST-standard post-quantum algorithms like CRYSTALS-Kyber.">
-              量子コンピュータの実用化により、RSA・楕円曲線暗号などの既存暗号が無力化されます。ZetaXはNIST標準の耐量子アルゴリズム（CRYSTALS-Kyberなど）への移行を、コンサルから実装まで一気通貫で支援します。</p>
-            <ul style="margin-top:1rem;">
-              <li data-ja="NIST標準PQCアルゴリズムの実装支援" data-en="NIST-standard PQC algorithm implementation support">
-                NIST標準PQCアルゴリズムの実装支援</li>
-              <li data-ja="既存システムの暗号マイグレーション計画策定" data-en="Cryptographic migration planning for existing systems">
-                既存システムの暗号マイグレーション計画策定</li>
-              <li data-ja="PQCに関する専門講演・啓蒙セミナー" data-en="Expert lectures & educational seminars on PQC">
-                PQCに関する専門講演・啓蒙セミナー</li>
-            </ul>
-          </div>
-          <div class="service-specs">
-            <span class="spec-tag">Lattice Cryptography</span><span class="spec-tag">CRYSTALS-Kyber</span><span
-              class="spec-tag">NIST PQC</span>
-          </div>
-          <div class="service-usecase">
-            <p class="service-usecase-label">Use Case</p>
-            <p class="service-usecase-text" data-ja="金融機関の暗号インフラを耐量子仕様にマイグレーション。量子コンピュータによるゼロデイ脅威に備え、次世代セキュリティ基盤を構築します。"
-              data-en="Migrating financial institution cryptographic infrastructure to quantum-resistant standards. Building next-generation security foundations against quantum zero-day threats.">
-              金融機関の暗号インフラを耐量子仕様にマイグレーション。量子コンピュータによるゼロデイ脅威に備え、次世代セキュリティ基盤を構築します。</p>
-          </div>
-        </div>
-        <div style="direction:ltr;" class="service-visual" id="visual02">
-          <div class="sv-shield">
-            <div class="shield-glow"></div>
-            <div class="shield-icon">
-              <svg viewBox="0 0 120 140" fill="none">
-                <path d="M60 8L12 32V68C12 100 32 126 60 134C88 126 108 100 108 68V32L60 8Z"
-                  stroke="rgba(34,211,238,0.5)" stroke-width="1.5" fill="rgba(34,211,238,0.04)" />
-                <path d="M60 20L22 40V68C22 94 38 116 60 124C82 116 98 94 98 68V40L60 20Z"
-                  stroke="rgba(34,211,238,0.25)" stroke-width="0.8" fill="none" />
-                <!-- Lock icon -->
-                <rect x="44" y="62" width="32" height="24" rx="3" stroke="rgba(34,211,238,0.7)" stroke-width="1.5"
-                  fill="rgba(34,211,238,0.08)" />
-                <path d="M50 62V54C50 48.5 54.5 44 60 44C65.5 44 70 48.5 70 54V62" stroke="rgba(34,211,238,0.6)"
-                  stroke-width="1.5" fill="none" stroke-linecap="round" />
-                <circle cx="60" cy="74" r="3" fill="rgba(34,211,238,0.8)" />
-              </svg>
-            </div>
-            <svg class="lattice-grid" viewBox="0 0 400 400">
-              <line x1="0" y1="50" x2="400" y2="50" />
-              <line x1="0" y1="100" x2="400" y2="100" />
-              <line x1="0" y1="150" x2="400" y2="150" />
-              <line x1="0" y1="200" x2="400" y2="200" />
-              <line x1="0" y1="250" x2="400" y2="250" />
-              <line x1="0" y1="300" x2="400" y2="300" />
-              <line x1="0" y1="350" x2="400" y2="350" />
-              <line x1="50" y1="0" x2="50" y2="400" />
-              <line x1="100" y1="0" x2="100" y2="400" />
-              <line x1="150" y1="0" x2="150" y2="400" />
-              <line x1="200" y1="0" x2="200" y2="400" />
-              <line x1="250" y1="0" x2="250" y2="400" />
-              <line x1="300" y1="0" x2="300" y2="400" />
-              <line x1="350" y1="0" x2="350" y2="400" />
-              <circle class="lattice-dot" cx="100" cy="100" r="2" />
-              <circle class="lattice-dot" cx="200" cy="150" r="2" />
-              <circle class="lattice-dot" cx="300" cy="100" r="2" />
-              <circle class="lattice-dot" cx="150" cy="250" r="2" />
-              <circle class="lattice-dot" cx="250" cy="300" r="2" />
-              <circle class="lattice-dot" cx="100" cy="300" r="2" />
-              <circle class="lattice-dot" cx="300" cy="250" r="2" />
-              <circle class="lattice-dot" cx="200" cy="350" r="2" />
-              <circle class="lattice-dot" cx="350" cy="200" r="2" />
-              <circle class="lattice-dot" cx="50" cy="200" r="2" />
-            </svg>
-            <span class="shield-label">Lattice Cryptography</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="service-block">
-      <div class="service-inner">
-        <div class="service-text">
-          <p class="service-number">SERVICE 03</p>
-          <h3 class="service-title">Next-Gen Reservoir<br>Computing</h3>
-          <p class="service-catch" data-ja="LSTMより精度が高く、データは1/100で済む。"
-            data-en="Higher accuracy than LSTM—with 1/100th the training data.">LSTMより精度が高く、データは1/100で済む。</p>
-          <div class="service-desc">
-            <p data-ja="リザバーコンピューティングは、時系列データの処理において従来のRNN（LSTM）を大幅に超える性能を発揮します。少量の教師データで高精度モデルを構築でき、低消費電力デバイスで動作するため、製造・インフラ現場のエッジAIに最適です。"
-              data-en="Reservoir computing dramatically outperforms conventional RNNs (LSTM) for time-series processing. It builds high-accuracy models with minimal training data and runs on low-power devices—ideal for edge AI in manufacturing and infrastructure.">
-              リザバーコンピューティングは、時系列データの処理において従来のRNN（LSTM）を大幅に超える性能を発揮します。少量の教師データで高精度モデルを構築でき、低消費電力デバイスで動作するため、製造・インフラ現場のエッジAIに最適です。</p>
-            <ul style="margin-top:1rem;">
-              <li data-ja="VS LSTM — 推論精度で従来手法を凌駕"
-                data-en="VS LSTM — Surpasses conventional methods in inference accuracy">VS LSTM — 推論精度で従来手法を凌駕</li>
-              <li data-ja="Data Efficiency — 教師データ1/100で同等精度"
-                data-en="Data Efficiency — Equivalent accuracy with 1/100th training data">Data Efficiency —
-                教師データ1/100で同等精度</li>
-              <li data-ja="Edge Ready — 低消費電力デバイスで稼働可能" data-en="Edge Ready — Runs on low-power devices">Edge Ready —
-                低消費電力デバイスで稼働可能</li>
-            </ul>
-          </div>
-          <div class="service-specs">
-            <span class="spec-tag">Echo State Network</span><span class="spec-tag">Anomaly Detection</span><span
-              class="spec-tag">Edge AI</span>
-          </div>
-          <div class="service-usecase">
-            <p class="service-usecase-label">Use Case</p>
-            <p class="service-usecase-text"
-              data-ja="製造ラインにリアルタイム異常検知を実装。従来手法では見逃していた微細な兆候をエッジデバイス上で即座に検知し、予知保全によるダウンタイム削減を実現します。"
-              data-en="Implementing real-time anomaly detection on production lines. Instantly detecting subtle signs that conventional methods miss, on edge devices, reducing downtime through predictive maintenance.">
-              製造ラインにリアルタイム異常検知を実装。従来手法では見逃していた微細な兆候をエッジデバイス上で即座に検知し、予知保全によるダウンタイム削減を実現します。
-            </p>
-          </div>
-        </div>
-        <div class="service-visual" id="visual03">
-          <div class="sv-wave">
-            <svg viewBox="0 0 400 200">
-              <!-- Main signal -->
-              <path class="wave-line w1"
-                d="M0,100 Q25,40 50,100 T100,100 T150,100 T200,100 T250,100 T300,100 T350,100 T400,100" />
-              <!-- Secondary signal -->
-              <path class="wave-line w2"
-                d="M0,100 Q25,140 50,100 T100,100 T150,100 T200,100 T250,100 T300,100 T350,100 T400,100"
-                transform="translate(0, 20)" />
-              <!-- Anomaly detection -->
-              <path class="wave-line w3"
-                d="M0,100 C30,100 40,30 60,100 S90,100 100,100 S130,100 150,100 S180,170 200,100 S230,100 250,100 S280,100 300,100 S330,40 350,100 S380,100 400,100"
-                transform="translate(0,-20)" />
-              <!-- Baseline -->
-              <path class="wave-line w4" d="M0,100 L400,100" transform="translate(0, 50)" />
-              <!-- Data points -->
-              <circle class="wave-dot" cx="60" cy="80" r="3" />
-              <circle class="wave-dot" cx="200" cy="120" r="3" />
-              <circle class="wave-dot" cx="350" cy="80" r="3" />
-              <!-- Axis labels -->
-              <text x="5" y="15" fill="rgba(96,165,250,0.25)" font-size="8" font-family="DM Sans">Signal</text>
-              <text x="370" y="195" fill="rgba(96,165,250,0.25)" font-size="8" font-family="DM Sans">Time</text>
-            </svg>
-            <span class="wave-label">Reservoir Computing</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ORIGIN -->
-  <section class="section origin" id="origin">
+  <!-- FDE -->
+  <section class="section" id="fde">
     <div class="section-inner">
       <div class="reveal">
-        <span class="section-label">Our Origin</span>
-        <h2 class="section-heading" data-ja="論文から、<br>プロダクトへ。" data-en="From Papers<br>to Products.">論文から、<br>プロダクトへ。
-        </h2>
+        <span class="section-label">Our Approach</span>
+        <h2 class="section-heading" data-ja="我々は課題解決の<br>プロフェッショナル" data-en="We Are Problem-Solving<br>Professionals">我々は課題解決の<br>プロフェッショナル</h2>
       </div>
-      <div class="origin-text-full reveal reveal-delay-1">
-        <p data-ja="ZetaXは東京大学の研究室から生まれたディープテックスタートアップです。耐量子暗号（PQC）、リザバーコンピューティング、機械学習——いずれも、大学の研究環境で長い年月をかけて磨かれてきた深層技術を土台としています。"
-          data-en="ZetaX is a deep-tech startup born from the University of Tokyo's research labs. Post-quantum cryptography (PQC), reservoir computing, and machine learning—all are built on deep technologies refined over years in academic research environments.">
-          ZetaXは東京大学の研究室から生まれたディープテックスタートアップです。耐量子暗号（PQC）、リザバーコンピューティング、機械学習——いずれも、大学の研究環境で長い年月をかけて磨かれてきた深層技術を土台としています。
-        </p>
-        <p data-ja="しかし、どれほど革新的な技術も、論文の中に留まったままでは社会を変えることはできません。私たちは「論文を書くこと」ではなく「論文を社会に届けること」をミッションに掲げ、学術の厳密さとスタートアップの機動力を兼ね備えた、唯一無二の組織を構築しています。"
-          data-en="However, no matter how innovative a technology may be, it cannot change society if it remains confined to papers. Our mission is not 'writing papers' but 'delivering papers to society,' building a one-of-a-kind organization that combines academic rigor with startup agility.">
-          しかし、どれほど革新的な技術も、論文の中に留まったままでは社会を変えることはできません。私たちは「論文を書くこと」ではなく「論文を社会に届けること」をミッションに掲げ、学術の厳密さとスタートアップの機動力を兼ね備えた、唯一無二の組織を構築しています。
-        </p>
-        <p data-ja="創業メンバーは、東京大学において暗号理論、情報工学、数理最適化を専門に研究を重ねてきたメンバーで構成されています。彼らが持つアカデミックな知見——査読を経て検証された確かな理論と、最先端の国際会議で発表されるレベルの研究成果——それこそが、ZetaXのソリューションの信頼性を根底から支えています。"
-          data-en="The founding team consists of members who specialized in cryptography theory, information engineering, and mathematical optimization at the University of Tokyo. Their academic expertise—peer-reviewed theories and research presented at top international conferences—is what fundamentally underpins the reliability of ZetaX's solutions.">
-          創業メンバーは、東京大学において暗号理論、情報工学、数理最適化を専門に研究を重ねてきたメンバーで構成されています。彼らが持つアカデミックな知見——査読を経て検証された確かな理論と、最先端の国際会議で発表されるレベルの研究成果——それこそが、ZetaXのソリューションの信頼性を根底から支えています。
-        </p>
-        <p data-ja="技術顧問として大学の現役研究者が参画しており、常に最新の学術動向をプロダクト開発に反映できる体制を維持しています。研究室と社会の間に架かる橋——それがZetaXの存在意義です。"
-          data-en="Active university researchers participate as technical advisors, maintaining a structure that constantly reflects the latest academic trends in product development. A bridge between the lab and society—that is ZetaX's raison d'être.">
-          技術顧問として大学の現役研究者が参画しており、常に最新の学術動向をプロダクト開発に反映できる体制を維持しています。研究室と社会の間に架かる橋——それがZetaXの存在意義です。</p>
+      <div class="fde-intro reveal reveal-delay-1">
+        <h3 class="fde-subheading" data-ja="FDEとは" data-en="What is FDE?">FDEとは</h3>
+        <p class="fde-desc" data-ja="FDE（Forward Deployed Engineer）は、Palantir社が生み出し、今やOpenAI・Anthropicなど世界のトップAI企業が採用する開発モデルです。" data-en="Forward Deployed Engineer (FDE) is a development model pioneered by Palantir and now adopted by world-leading AI companies like OpenAI and Anthropic.">FDE（Forward Deployed Engineer）は、Palantir社が生み出し、今やOpenAI・Anthropicなど世界のトップAI企業が採用する開発モデルです。</p>
+        <p class="fde-desc" data-ja="従来の開発では、営業・PM・エンジニアがそれぞれ分業し、課題の理解が薄まっていく。FDEはその構造を壊します。エンジニア自身が顧客の現場に入り、自分の目で課題を見て、自分の手で解決策を形にする。アウトプットではなく、課題を解決できたか、それだけが至上命題です。" data-en="Traditional development separates sales, PMs, and engineers, diluting problem understanding. FDE breaks this structure. Engineers themselves go to the field, see the problem firsthand, and build solutions on the spot. Success is measured not by output, but by whether the problem is actually solved.">従来の開発では、営業・PM・エンジニアがそれぞれ分業し、課題の理解が薄まっていく。FDEはその構造を壊します。エンジニア自身が顧客の現場に入り、自分の目で課題を見て、自分の手で解決策を形にする。アウトプットではなく、課題を解決できたか、それだけが至上命題です。</p>
+        <p class="fde-desc fde-emphasis" data-ja="我々は、東大発のアカデミアの知性と、泥臭い現場力を兼ね備えたエンジニア集団です。最初の20分のヒアリングでビジュアルプロトタイプを提示し、何を作るべきかのブレを初日に潰します。" data-en="We are an engineer collective combining Tokyo University&#39;s academic rigor with hands-on field expertise. In the first 20 minutes of consultation, we present a visual prototype and eliminate ambiguity on day one.">我々は、東大発のアカデミアの知性と、泥臭い現場力を兼ね備えたエンジニア集団です。最初の20分のヒアリングでビジュアルプロトタイプを提示し、何を作るべきかのブレを初日に潰します。</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th data-ja="項目" data-en="Item">項目</th>
+                <th data-ja="従来の開発" data-en="Traditional Development">従来の開発</th>
+                <th class="zetax-col" data-ja="ZetaX FDE" data-en="ZetaX FDE">ZetaX FDE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-ja="課題把握" data-en="Problem Identification">課題把握</td>
+                <td data-ja="現場の課題感との違い。アウトプットのイメージが湧かない。" data-en="Disconnect between field reality and output vision.">現場の課題感との違い。アウトプットのイメージが湧かない。</td>
+                <td class="zetax-col" data-ja="アウトプットのビジュアルイメージを高速で作成。複数選択肢から選ぶことで認識のずれを無くす。" data-en="Rapid visualization of workflows and UI in multiple options. See and choose—no misalignment.">アウトプットのビジュアルイメージを高速で作成。複数選択肢から選ぶことで認識のずれを無くす。</td>
+              </tr>
+              <tr>
+                <td data-ja="開発サイクル" data-en="Development Cycle">開発サイクル</td>
+                <td data-ja="要件定義→設計→開発→テスト→納品で半年〜1年" data-en="Requirements → Design → Development → Testing → Delivery: 6–12 months">要件定義→設計→開発→テスト→納品で半年〜1年</td>
+                <td class="zetax-col" data-ja="小さく作り、現場で試し、毎週改善。動くものを起点にした高速イテレーション" data-en="Build small, test in the field, improve weekly. Working systems drive fast iteration.">小さく作り、現場で試し、毎週改善。動くものを起点にした高速イテレーション</td>
+              </tr>
+              <tr>
+                <td data-ja="本番移行" data-en="Production Deployment">本番移行</td>
+                <td data-ja="PoCと本番の間に死の谷。移行だけで数ヶ月かかる" data-en="Valley of death between PoC and production. Months just to migrate.">PoCと本番の間に死の谷。移行だけで数ヶ月かかる</td>
+                <td class="zetax-col" data-ja="現場に入り、実際のデータと業務フローの上に構築する。だからPoCと本番の間で止まらない。" data-en="We work in the field with real data and workflows. PoC and production never stall.">現場に入り、実際のデータと業務フローの上に構築する。だからPoCと本番の間で止まらない。</td>
+              </tr>
+              <tr>
+                <td data-ja="納品後" data-en="After Delivery">納品後</td>
+                <td data-ja="納品して終了。問題が起きたら追加発注" data-en="Delivered and done. Problems mean more contracts.">納品して終了。問題が起きたら追加発注</td>
+                <td class="zetax-col" data-ja="現場に残り、使われるシステムになるまで改善を続ける" data-en="We stay until the system is genuinely used. Continuous improvement.">現場に残り、使われるシステムになるまで改善を続ける</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS -->
+  <section class="section" id="solutions">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">Solutions</span>
+        <h2 class="section-heading" data-ja="2つの戦略的事業" data-en="Two Strategic Businesses">2つの戦略的事業</h2>
+      </div>
+      <div class="solutions-grid reveal reveal-delay-1">
+        <a href="/ai-dx" class="solution-card solution-primary">
+          <p class="solution-number">01</p>
+          <h3 class="solution-title" data-ja="AI活用/DXソリューション" data-en="AI &amp; DX Solutions">AI活用/DXソリューション</h3>
+          <p class="solution-desc" data-ja="金融、医療、流通、建設など、様々な業界の課題をAIとDXで解決。徹底したヒアリングの上で開発を進めて行きます。" data-en="Finance, healthcare, retail, construction—we solve industry challenges with AI and DX. Deep listening, then development.">金融、医療、流通、建設など、様々な業界の課題をAIとDXで解決。徹底したヒアリングの上で開発を進めて行きます。</p>
+          <span class="solution-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
+        </a>
+        <a href="/anomaly-detection" class="solution-card solution-secondary">
+          <p class="solution-number">02</p>
+          <h3 class="solution-title" data-ja="製造業特化 異常検知システム" data-en="Manufacturing-Focused Anomaly Detection">製造業特化 異常検知システム</h3>
+          <p class="solution-desc" data-ja="東大・東工大の研究室と連携し、リザバーコンピューティングを活用した次世代の異常検知システムを提供。製造現場の微細な変化を見逃さない。" data-en="Partnering with Tokyo and Tokyo Tech research labs, we deliver next-generation anomaly detection powered by reservoir computing. We never miss subtle shifts on your factory floor.">東大・東工大の研究室と連携し、リザバーコンピューティングを活用した次世代の異常検知システムを提供。製造現場の微細な変化を見逃さない。</p>
+          <span class="solution-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
+        </a>
       </div>
     </div>
   </section>
@@ -2117,9 +2089,8 @@
             </tr>
             <tr>
               <th data-ja="事業内容" data-en="Business">事業内容</th>
-              <td data-ja="AI実装支援 / PQCコンサルティング / リザバーコンピューティング研究開発"
-                data-en="AI Implementation / PQC Consulting / Reservoir Computing R&amp;D">AI実装支援 / PQCコンサルティング /
-                リザバーコンピューティング研究開発</td>
+              <td data-ja="AI活用・DX化支援 / 製造業特化異常検知システム開発"
+                data-en="AI Implementation Support / Manufacturing-Focused Anomaly Detection System Development">AI活用・DX化支援 / 製造業特化異常検知システム開発</td>
             </tr>
           </table>
         </div>
@@ -2372,9 +2343,8 @@
             <label for="interest" data-ja="ご関心のある領域" data-en="Area of Interest">ご関心のある領域</label>
             <select id="interest" name="interest">
               <option value="" disabled selected data-ja="選択してください" data-en="Please select">選択してください</option>
-              <option value="AI Solution / DX支援" data-ja="AI Solution / DX支援" data-en="AI Solution / DX">AI Solution / DX支援</option>
-              <option value="耐量子暗号（PQC）" data-ja="耐量子暗号（PQC）" data-en="Post-Quantum Cryptography (PQC)">耐量子暗号（PQC）</option>
-              <option value="リザバーコンピューティング" data-ja="リザバーコンピューティング" data-en="Reservoir Computing">リザバーコンピューティング</option>
+              <option value="AI活用/DXソリューション" data-ja="AI活用/DXソリューション" data-en="AI &amp; DX Solutions">AI活用/DXソリューション</option>
+              <option value="製造業特化 異常検知システム" data-ja="製造業特化 異常検知システム" data-en="Manufacturing-Focused Anomaly Detection">製造業特化 異常検知システム</option>
               <option value="その他" data-ja="その他" data-en="Other">その他</option>
             </select>
           </div>

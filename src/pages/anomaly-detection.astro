@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>製造業特化 異常検知システム — ZetaX</title>
+  <meta name="description" content="東大・東工大発のリザバーコンピューティング技術による次世代異常検知システム。GPU不要・クラウド不要のエッジAIで製造現場に実装します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style is:global>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #ffffff;
+      --bg-subtle: #f5f5f7;
+      --bg-card: #f8f8f8;
+      --text-primary: #111111;
+      --text-secondary: #555555;
+      --text-dim: #999999;
+      --accent: #3B82F6;
+      --accent-bright: #2563EB;
+      --accent-glow: rgba(59,130,246,0.08);
+      --accent-cyan: #0891B2;
+      --silver: #888888;
+      --font-jp: 'Noto Sans JP', sans-serif;
+      --font-en: 'Noto Sans JP', sans-serif;
+      --font-display: 'Noto Sans JP', sans-serif;
+      --transition: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; background: var(--bg); overflow-x: hidden; }
+    body { font-family: var(--font-jp); background: var(--bg); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    .lang-toggle { display: flex; align-items: center; gap: 0; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 3px; margin-left: 1.5rem; border: 1px solid rgba(0,0,0,0.08); }
+    .lang-btn { font-family: var(--font-en); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; padding: 5px 14px; border-radius: 16px; border: none; cursor: pointer; background: transparent; color: var(--text-dim); transition: all 0.3s ease; }
+    .lang-btn.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(59,130,246,0.3); }
+    .lang-btn:hover:not(.active) { color: #111111; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.06); transition: box-shadow 0.3s; }
+    .nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .nav-logo { font-family: var(--font-en); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.12em; color: #111111; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--font-en); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; color: #666666; transition: color 0.2s; }
+    .nav-links a:hover { color: #111111; }
+
+    .page-hero { padding: 10rem 0 6rem; text-align: center; max-width: 760px; margin: 0 auto; }
+    .page-label { font-family: var(--font-en); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; color: var(--accent-cyan); text-transform: uppercase; margin-bottom: 1.5rem; display: block; }
+    .page-title { font-family: var(--font-jp); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--text-primary); line-height: 1.3; margin-bottom: 1.5rem; }
+    .page-desc { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.9; }
+
+    .section { padding: 6rem 0; }
+    .section-inner { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    .section-label { font-family: var(--font-en); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-cyan); text-transform: uppercase; display: block; margin-bottom: 1rem; }
+    .section-heading { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--text-primary); line-height: 1.3; margin-bottom: 2rem; }
+    .section-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 3rem; text-align: center; }
+    .alt-bg { background: var(--bg-subtle); }
+
+    /* CHALLENGE CARDS */
+    .challenge-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .challenge-card { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 2rem; }
+    .challenge-title { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; }
+    .challenge-desc { font-size: 0.93rem; color: var(--text-secondary); line-height: 1.85; }
+
+    /* STRENGTHS GRID */
+    .strengths-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .strength-card { background: var(--bg-card); border: 1px solid rgba(8,145,178,0.2); border-radius: 12px; padding: 2rem; }
+    .strength-title { font-size: 1.05rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 0.75rem; }
+    .strength-desc { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.85; }
+
+    /* TECH TAGS */
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 2rem; }
+    .tech-tag { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; padding: 0.5rem 1.2rem; font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* PLACEHOLDER */
+    .placeholder-box { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 4rem 2rem; text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+
+    /* CTA */
+    .cta-section { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 6rem 0; text-align: center; }
+    .cta-heading { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; color: var(--text-primary); margin-bottom: 2.5rem; line-height: 1.4; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-cyan); color: #0A0A0A; font-family: var(--font-en); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.06em; padding: 0.9rem 2.5rem; border-radius: 8px; transition: opacity 0.2s, transform 0.2s; }
+    .cta-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+    .cta-note { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; }
+
+    .footer { padding: 2rem; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); }
+    .footer-copy { font-family: var(--font-en); font-size: 0.78rem; color: var(--text-dim); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--transition), transform 0.7s var(--transition); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="/" class="nav-logo">ZETA<span>X</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#solutions">Solutions</a></li>
+      <li><a href="/#company">Company</a></li>
+      <li><a href="/#news">News</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="ja" onclick="switchLang('ja')">JP</button>
+      <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero section-inner reveal">
+    <span class="page-label">Anomaly Detection</span>
+    <h1 class="page-title" data-ja="その異常、人が気づく前に検知する。" data-en="Detect anomalies before humans notice them.">その異常、人が気づく前に検知する。</h1>
+    <p class="page-desc" data-ja="製造現場の「いつもと何か違う」を、リアルタイムで捉える。東大・東工大の研究から生まれた異常検知技術を、あなたの工場に実装します。" data-en="Capture the subtle shifts on your manufacturing floor in real time. We implement anomaly detection technology born from Tokyo and Tokyo Tech research.">製造現場の「いつもと何か違う」を、リアルタイムで捉える。東大・東工大の研究から生まれた異常検知技術を、あなたの工場に実装します。</p>
+  </div>
+
+  <!-- CHALLENGES -->
+  <section class="section alt-bg">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">Challenges</span>
+        <h2 class="section-heading" data-ja="こんなことありませんか？" data-en="Does this sound familiar?">こんなことありませんか？</h2>
+      </div>
+      <div class="challenge-list reveal reveal-delay-1">
+        <div class="challenge-card">
+          <h3 class="challenge-title" data-ja="壊れてから直す、の繰り返し。" data-en="Fix it after it breaks. Every time.">壊れてから直す、の繰り返し。</h3>
+          <p class="challenge-desc" data-ja="異常に気づくのはラインが止まってから。計画外のダウンタイムが利益を削り、修理コストが積み上がる。" data-en="You notice the problem when the line stops. Unplanned downtime erodes profit. Repair costs pile up.">異常に気づくのはラインが止まってから。計画外のダウンタイムが利益を削り、修理コストが積み上がる。</p>
+        </div>
+        <div class="challenge-card">
+          <h3 class="challenge-title" data-ja="AI検知を入れたが、使われていない。" data-en="We installed AI detection. But nobody uses it.">AI検知を入れたが、使われていない。</h3>
+          <p class="challenge-desc" data-ja="クラウド型のAI検知を導入したが、誤検知が多すぎて現場が信用しない。通信障害で止まることもある。結局、ベテランの巡回に戻っている。" data-en="Cloud-based AI detection had too many false alarms. The field doesn't trust it. Network failures cause outages. We're back to veteran inspections.">クラウド型のAI検知を導入したが、誤検知が多すぎて現場が信用しない。通信障害で止まることもある。結局、ベテランの巡回に戻っている。</p>
+        </div>
+        <div class="challenge-card">
+          <h3 class="challenge-title" data-ja="ベテランの「勘」が、引き継げない。" data-en="Veteran expertise can't be passed on.">ベテランの「勘」が、引き継げない。</h3>
+          <p class="challenge-desc" data-ja="熟練者は音や振動の微妙な変化に気づく。でもその感覚は言語化できない。人が変われば、検知力も消える。" data-en="Experienced operators sense subtle vibration and sound changes. But that intuition can't be explained. When they leave, the detection ability vanishes.">熟練者は音や振動の微妙な変化に気づく。でもその感覚は言語化できない。人が変われば、検知力も消える。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-label">Our Approach</span>
+        <h2 class="section-heading" data-ja="あなたの設備に最適化された、専用の検知モデルを作る。" data-en="We build a detection model optimized for your equipment.">あなたの設備に最適化された、専用の検知モデルを作る。</h2>
+        <p class="section-text" data-ja="同じモーターでも、設置環境・稼働パターン・経年度合いで「正常」の基準は全く違います。汎用モデルを押し付けても精度は出ない。だから我々は、あなたの設備の正常稼働データから、その現場だけの検知モデルを構築します。" data-en="The same motor has different normal baselines depending on installation, usage patterns, and age. Generic models don't work. We build a model from your equipment's normal operating data—unique to your factory.">同じモーターでも、設置環境・稼働パターン・経年度合いで「正常」の基準は全く違います。汎用モデルを押し付けても精度は出ない。だから我々は、あなたの設備の正常稼働データから、その現場だけの検知モデルを構築します。</p>
+      </div>
+      <div class="strengths-grid reveal reveal-delay-1">
+        <div class="strength-card">
+          <h3 class="strength-title" data-ja="GPU不要・クラウド不要" data-en="No GPU. No cloud.">GPU不要・クラウド不要</h3>
+          <p class="strength-desc" data-ja="すべてエッジデバイス上で完結。製造データを外部に出さないから、セキュリティリスクがない。ネットワーク環境のない現場にも導入可能。" data-en="Everything runs on edge devices. Your manufacturing data never leaves your facility—zero security risk. Works even offline.">すべてエッジデバイス上で完結。製造データを外部に出さないから、セキュリティリスクがない。ネットワーク環境のない現場にも導入可能。</p>
+        </div>
+        <div class="strength-card">
+          <h3 class="strength-title" data-ja="導入初日から検知開始" data-en="Detection starts on day one.">導入初日から検知開始</h3>
+          <p class="strength-desc" data-ja="正常データのみで短時間にモデルを構築。大量の学習データを集める必要がない。" data-en="We build the model from normal data alone. No need to collect massive training datasets.">正常データのみで短時間にモデルを構築。大量の学習データを集める必要がない。</p>
+        </div>
+        <div class="strength-card">
+          <h3 class="strength-title" data-ja="環境変化に自律追従" data-en="Adapts to environmental change">環境変化に自律追従</h3>
+          <p class="strength-desc" data-ja="季節変動、設備の経年劣化、生産条件の変更にも常時再学習で対応。誤報の増加やモデルの陳腐化を防ぐ。" data-en="Continuous relearning handles seasonal shifts, equipment aging, and production changes. Prevents false alarm creep and model decay.">季節変動、設備の経年劣化、生産条件の変更にも常時再学習で対応。誤報の増加やモデルの陳腐化を防ぐ。</p>
+        </div>
+        <div class="strength-card">
+          <h3 class="strength-title" data-ja="異常の理由が分かる" data-en="You understand why it alarmed">異常の理由が分かる</h3>
+          <p class="strength-desc" data-ja="どのセンサー値が異常を示したか明確に表示。現場が納得して動ける。" data-en="We show exactly which sensor values triggered the alert. Your team acts with confidence.">どのセンサー値が異常を示したか明確に表示。現場が納得して動ける。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section class="section alt-bg">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-label">Technology</span>
+        <h2 class="section-heading" data-ja="東大・東工大の研究が、工場で動いている。" data-en="Tokyo and Tokyo Tech research, working in your factory.">東大・東工大の研究が、工場で動いている。</h2>
+        <p class="section-text" data-ja="ZetaXの異常検知は、時系列データの特徴抽出に特化した独自の軽量AIアルゴリズムに基づいています。ディープラーニングとは異なるアプローチで、低消費電力・高速処理・少量データ学習を同時に実現。専用ハードウェアも開発・検証済みで、設備に直接組み込む形での導入が可能です。" data-en="ZetaX anomaly detection is based on a proprietary lightweight AI algorithm specialized in time-series feature extraction. Unlike deep learning, it achieves low power consumption, fast processing, and small-data learning simultaneously. We've developed and validated dedicated hardware—ready to embed directly into your equipment.">ZetaXの異常検知は、時系列データの特徴抽出に特化した独自の軽量AIアルゴリズムに基づいています。ディープラーニングとは異なるアプローチで、低消費電力・高速処理・少量データ学習を同時に実現。専用ハードウェアも開発・検証済みで、設備に直接組み込む形での導入が可能です。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACK RECORD -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-label">Track Record</span>
+        <h2 class="section-heading" data-ja="プライム上場企業から町工場まで。" data-en="From Tokyo Stock Exchange companies to small workshops.">プライム上場企業から町工場まで。</h2>
+        <p class="section-text" data-ja="東証プライム上場企業との実証実験を実施中。複数の町工場への導入が決定済み。大規模製造拠点から中小規模の工場まで、幅広い現場環境での実績があります。" data-en="We're running proof-of-concept with a TSE Prime-listed company. Multiple small factory deployments are confirmed. We have real-world experience across large manufacturing sites and small-scale operations.">東証プライム上場企業との実証実験を実施中。複数の町工場への導入が決定済み。大規模製造拠点から中小規模の工場まで、幅広い現場環境での実績があります。</p>
+      </div>
+      <div class="placeholder-box reveal reveal-delay-1">
+        <p data-ja="具体的な事例ストーリーは準備中です。" data-en="Specific case stories are being prepared.">具体的な事例ストーリーは準備中です。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="section alt-bg">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-label">Equipment Coverage</span>
+        <h2 class="section-heading" data-ja="あらゆる設備の「いつもと違う」に対応。" data-en="We handle the subtle shifts in any equipment.">あらゆる設備の「いつもと違う」に対応。</h2>
+        <p style="color:var(--text-secondary);margin-bottom:2rem;" data-ja="ZetaXが対応できる設備領域" data-en="Equipment domains ZetaX covers">ZetaXが対応できる設備領域</p>
+      </div>
+      <div class="tech-tags reveal reveal-delay-1">
+        <span class="tech-tag" data-ja="回転機器（モーター・ポンプ・コンプレッサー）" data-en="Rotating Equipment (Motors, Pumps, Compressors)">回転機器（モーター・ポンプ・コンプレッサー）</span>
+        <span class="tech-tag" data-ja="配管・バルブ" data-en="Piping &amp; Valves">配管・バルブ</span>
+        <span class="tech-tag" data-ja="コンベヤ・搬送機器" data-en="Conveyors &amp; Material Handling">コンベヤ・搬送機器</span>
+        <span class="tech-tag" data-ja="空調・環境設備" data-en="HVAC &amp; Environmental Systems">空調・環境設備</span>
+        <span class="tech-tag" data-ja="集塵機・排気設備" data-en="Dust Collection &amp; Exhaust">集塵機・排気設備</span>
+        <span class="tech-tag" data-ja="外観検査" data-en="Visual Inspection">外観検査</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="section-inner">
+      <h2 class="cta-heading reveal" data-ja="あなたの設備の「正常」を、科学的に定義する。" data-en="We define your equipment's normal scientifically.">あなたの設備の「正常」を、科学的に定義する。</h2>
+      <a href="/#contact" class="cta-btn reveal reveal-delay-1" data-ja="相談してみる" data-en="Let's talk">相談してみる</a>
+      <p class="cta-note reveal reveal-delay-2" data-ja="担当者からメールでご連絡させていただきます。" data-en="Our team will reach out via email.">担当者からメールでご連絡させていただきます。</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-copy">&copy; 2026 ZetaX Inc. All Rights Reserved.</p>
+  </footer>
+
+  <script is:inline>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(r => obs.observe(r));
+    setTimeout(() => reveals.forEach(r => { const rect = r.getBoundingClientRect(); if (rect.top < window.innerHeight) r.classList.add('visible'); }), 100);
+
+    function switchLang(lang) {
+      document.documentElement.dataset.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      document.querySelectorAll('[data-ja]').forEach(el => {
+        const txt = el.dataset[lang];
+        if (txt !== undefined) el.innerHTML = txt;
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI活用/DXソリューション — ZetaX</title>
+  <meta name="description" content="ZetaXのAI活用・DXソリューション。課題の特定から実装まで、FDEモデルで一気通貫で支援します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style is:global>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #ffffff;
+      --bg-subtle: #f5f5f7;
+      --bg-card: #f8f8f8;
+      --text-primary: #111111;
+      --text-secondary: #555555;
+      --text-dim: #999999;
+      --accent: #3B82F6;
+      --accent-bright: #2563EB;
+      --accent-glow: rgba(59,130,246,0.08);
+      --accent-cyan: #0891B2;
+      --silver: #888888;
+      --font-jp: 'Noto Sans JP', sans-serif;
+      --font-en: 'Noto Sans JP', sans-serif;
+      --font-display: 'Noto Sans JP', sans-serif;
+      --transition: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; background: var(--bg); overflow-x: hidden; }
+    body { font-family: var(--font-jp); background: var(--bg); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    /* LANG TOGGLE */
+    .lang-toggle { display: flex; align-items: center; gap: 0; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 3px; margin-left: 1.5rem; border: 1px solid rgba(0,0,0,0.08); }
+    .lang-btn { font-family: var(--font-en); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; padding: 5px 14px; border-radius: 16px; border: none; cursor: pointer; background: transparent; color: var(--text-dim); transition: all 0.3s ease; }
+    .lang-btn.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(59,130,246,0.3); }
+    .lang-btn:hover:not(.active) { color: #111111; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.06); transition: box-shadow 0.3s; }
+    .nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .nav-logo { font-family: var(--font-en); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.12em; color: #111111; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--font-en); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; color: #666666; transition: color 0.2s; }
+    .nav-links a:hover { color: #111111; }
+
+    /* PAGE HERO */
+    .page-hero { padding: 10rem 0 6rem; text-align: center; max-width: 760px; margin: 0 auto; }
+    .page-label { font-family: var(--font-en); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.5rem; display: block; }
+    .page-title { font-family: var(--font-jp); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--text-primary); line-height: 1.3; margin-bottom: 1.5rem; }
+    .page-desc { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.9; }
+
+    /* SECTIONS */
+    .section { padding: 6rem 0; }
+    .section-inner { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    .section-label { font-family: var(--font-en); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 1rem; }
+    .section-heading { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--text-primary); line-height: 1.3; margin-bottom: 3rem; }
+    .alt-bg { background: var(--bg-subtle); }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 3rem; }
+    .step { display: flex; gap: 2rem; }
+    .step-number { flex-shrink: 0; width: 3rem; height: 3rem; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-en); font-weight: 700; font-size: 1.1rem; color: #fff; }
+    .step-content {}
+    .step-title { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; }
+    .step-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.85; }
+
+    /* PLACEHOLDER */
+    .placeholder-box { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 4rem 2rem; text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+
+    /* TECH TAGS */
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 2rem; }
+    .tech-tag { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; padding: 0.5rem 1.2rem; font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* CTA */
+    .cta-section { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 6rem 0; text-align: center; }
+    .cta-heading { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; color: var(--text-primary); margin-bottom: 2.5rem; line-height: 1.4; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #fff; font-family: var(--font-en); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.06em; padding: 0.9rem 2.5rem; border-radius: 8px; transition: background 0.2s, transform 0.2s; }
+    .cta-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+    .cta-note { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; }
+
+    /* FOOTER */
+    .footer { padding: 2rem; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); }
+    .footer-copy { font-family: var(--font-en); font-size: 0.78rem; color: var(--text-dim); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--transition), transform 0.7s var(--transition); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="/" class="nav-logo">ZETA<span>X</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#solutions">Solutions</a></li>
+      <li><a href="/#company">Company</a></li>
+      <li><a href="/#news">News</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="ja" onclick="switchLang('ja')">JP</button>
+      <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero section-inner reveal">
+    <span class="page-label">AI &amp; DX Solutions</span>
+    <h1 class="page-title" data-ja="何を作るかは、<br>現場が教えてくれる。" data-en="What to build?<br>The field will tell you.">何を作るかは、<br>現場が教えてくれる。</h1>
+    <p class="page-desc" data-ja="ZetaXのエンジニアは、お客様の課題を自分の目で理解するところから始めます。初回のヒアリングでワークフローを視覚化し、何を解くべきかを一緒に決める。正しい問いが、正しいシステムを作ります。" data-en="ZetaX engineers start by understanding your challenges firsthand. In the initial consultation, we visualize your workflows and decide together what problems to solve. The right question builds the right system.">ZetaXのエンジニアは、お客様の課題を自分の目で理解するところから始めます。初回のヒアリングでワークフローを視覚化し、何を解くべきかを一緒に決める。正しい問いが、正しいシステムを作ります。</p>
+  </div>
+
+  <!-- APPROACH -->
+  <section class="section alt-bg">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">Our Approach</span>
+        <h2 class="section-heading" data-ja="初回ヒアリングで、課題が形になる。" data-en="In the first consultation, your challenges take shape.">初回ヒアリングで、課題が形になる。</h2>
+      </div>
+      <div class="steps reveal reveal-delay-1">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title" data-ja="課題を一緒に見つける" data-en="Find the real problem together">課題を一緒に見つける</h3>
+            <p class="step-desc" data-ja="エンジニア自身がヒアリングを行い、業務フローを把握。営業やPMを介さないから、課題がブレない。" data-en="Our engineers conduct the consultation directly, understanding your workflows. No sales or PM intermediaries—the problem stays clear.">エンジニア自身がヒアリングを行い、業務フローを把握。営業やPMを介さないから、課題がブレない。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title" data-ja="その場で形にする" data-en="Shape it on the spot">その場で形にする</h3>
+            <p class="step-desc" data-ja="ワークフローとUIを複数パターンで視覚化。目で見て選ぶから、認識のズレが初日に消える。" data-en="We visualize workflows and UI in multiple options. You see and choose—misalignment disappears on day one.">ワークフローとUIを複数パターンで視覚化。目で見て選ぶから、認識のズレが初日に消える。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title" data-ja="実環境を前提に構築する" data-en="Build for production from day one">実環境を前提に構築する</h3>
+            <p class="step-desc" data-ja="最初から本番データ・本番フローを想定して構築。PoCと本番の間で止まらない。" data-en="We design with real production data and workflows in mind. PoC and production never stall.">最初から本番データ・本番フローを想定して構築。PoCと本番の間で止まらない。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3 class="step-title" data-ja="動くシステムになるまで伴走する" data-en="We stay until the system is truly used">動くシステムになるまで伴走する</h3>
+            <p class="step-desc" data-ja="納品して終わりではない。使われるシステムになるまで、改善を続ける。" data-en="We don't deliver and leave. We keep improving until your system is genuinely adopted.">納品して終わりではない。使われるシステムになるまで、改善を続ける。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">Case Studies</span>
+        <h2 class="section-heading" data-ja="導入事例" data-en="Case Studies">導入事例</h2>
+      </div>
+      <div class="placeholder-box reveal reveal-delay-1">
+        <p data-ja="具体的な導入事例は準備中です。" data-en="Specific case studies are being prepared.">具体的な導入事例は準備中です。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="section alt-bg">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">Capabilities</span>
+        <h2 class="section-heading" data-ja="どの技術を使うかは、現場を見てから決める。" data-en="Which technology? We decide after seeing your operation.">どの技術を使うかは、現場を見てから決める。</h2>
+        <p style="color:var(--text-secondary);margin-bottom:2rem;" data-ja="ZetaXが対応できる技術領域" data-en="Technology domains ZetaX covers">ZetaXが対応できる技術領域</p>
+      </div>
+      <div class="tech-tags reveal reveal-delay-1">
+        <span class="tech-tag" data-ja="異常検知" data-en="Anomaly Detection">異常検知</span>
+        <span class="tech-tag" data-ja="需要予測" data-en="Demand Forecasting">需要予測</span>
+        <span class="tech-tag" data-ja="データ統合" data-en="Data Integration">データ統合</span>
+        <span class="tech-tag" data-ja="画像認識" data-en="Image Recognition">画像認識</span>
+        <span class="tech-tag" data-ja="業務自動化" data-en="Process Automation">業務自動化</span>
+        <span class="tech-tag" data-ja="LLM活用" data-en="LLM Applications">LLM活用</span>
+        <span class="tech-tag" data-ja="最適化" data-en="Optimization">最適化</span>
+        <span class="tech-tag" data-ja="レポート自動生成" data-en="Report Automation">レポート自動生成</span>
+        <span class="tech-tag" data-ja="ブロックチェーン" data-en="Blockchain">ブロックチェーン</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="section-inner">
+      <h2 class="cta-heading reveal" data-ja="20分のヒアリングで、あなたの本当の課題が見える。" data-en="In 20 minutes of consultation, we see your real challenge.">20分のヒアリングで、あなたの本当の課題が見える。</h2>
+      <a href="/#contact" class="cta-btn reveal reveal-delay-1" data-ja="相談してみる" data-en="Let's talk">相談してみる</a>
+      <p class="cta-note reveal reveal-delay-2" data-ja="担当者からメールでご連絡させていただきます。" data-en="Our team will reach out via email.">担当者からメールでご連絡させていただきます。</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-copy">&copy; 2026 ZetaX Inc. All Rights Reserved.</p>
+  </footer>
+
+  <script is:inline>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(r => obs.observe(r));
+    // Initial reveal for above-fold
+    setTimeout(() => reveals.forEach(r => { const rect = r.getBoundingClientRect(); if (rect.top < window.innerHeight) r.classList.add('visible'); }), 100);
+
+    function switchLang(lang) {
+      document.documentElement.dataset.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      document.querySelectorAll('[data-ja]').forEach(el => {
+        const txt = el.dataset[lang];
+        if (txt !== undefined) el.innerHTML = txt;
+      });
+      document.querySelectorAll('[data-ja-placeholder]').forEach(el => {
+        const ph = el.dataset[lang + 'Placeholder'];
+        if (ph) el.placeholder = ph;
+      });
+    }
+  </script>
+</body>
+</html>
