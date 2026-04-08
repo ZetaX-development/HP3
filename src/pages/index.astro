@@ -43,6 +43,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 6rem;
       font-size: 16px;
       background: var(--bg);
       overflow-x: hidden;
@@ -370,6 +371,7 @@
     .section {
       padding: 8rem 2rem;
       position: relative;
+      scroll-margin-top: 6rem;
     }
 
     .section-inner {
@@ -2478,12 +2480,16 @@
 
     // (Service visuals are now CSS/SVG-based, no canvas needed)
 
-    // SMOOTH SCROLL
+    // SMOOTH SCROLL (offset for fixed nav)
     document.querySelectorAll('.nav-links a').forEach(a => {
       a.addEventListener('click', (e) => {
         e.preventDefault();
         const t = document.querySelector(a.getAttribute('href'));
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!t) return;
+        const navEl = document.querySelector('.nav');
+        const offset = (navEl ? navEl.offsetHeight : 80) + 16;
+        const top = t.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
       });
     });
 

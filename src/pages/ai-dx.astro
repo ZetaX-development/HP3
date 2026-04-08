@@ -50,7 +50,8 @@
     .nav-links a:hover { color: #111111; }
 
     /* PAGE HERO */
-    .page-hero { padding: 10rem 0 6rem; text-align: center; max-width: 760px; margin: 0 auto; }
+    .page-hero { padding: 11rem 2rem 5rem; text-align: center; max-width: 760px; margin: 0 auto; }
+    @media (max-width: 768px) { .page-hero { padding: 9rem 1.5rem 3rem; } }
     .page-label { font-family: var(--font-en); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.5rem; display: block; }
     .page-title { font-family: var(--font-jp); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--text-primary); line-height: 1.3; margin-bottom: 1.5rem; }
     .page-desc { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.9; }
@@ -72,6 +73,18 @@
 
     /* PLACEHOLDER */
     .placeholder-box { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 4rem 2rem; text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+
+    /* CASE STUDIES */
+    .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    @media (max-width: 900px) { .case-grid { grid-template-columns: 1fr; } }
+    .case-card { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition), border-color 0.4s var(--transition); }
+    .case-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); border-color: rgba(59,130,246,0.3); }
+    .case-num { font-family: var(--font-en); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; }
+    .case-industry { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); line-height: 1.5; letter-spacing: -0.01em; }
+    .case-block { display: flex; flex-direction: column; gap: 0.4rem; }
+    .case-block-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--text-dim); text-transform: uppercase; }
+    .case-block-text { font-size: 0.86rem; line-height: 1.75; color: var(--text-secondary); }
+    .case-divider { height: 1px; background: rgba(0,0,0,0.06); }
 
     /* TECH TAGS */
     .tech-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 2rem; }
@@ -116,7 +129,7 @@
   </nav>
 
   <!-- PAGE HERO -->
-  <div class="page-hero section-inner reveal">
+  <div class="page-hero reveal">
     <span class="page-label">AI &amp; DX Solutions</span>
     <h1 class="page-title" data-ja="何を作るかは、<br>現場が教えてくれる。" data-en="What to build?<br>The field will tell you.">何を作るかは、<br>現場が教えてくれる。</h1>
     <p class="page-desc" data-ja="ZetaXのエンジニアは、お客様の課題を自分の目で理解するところから始めます。初回のヒアリングでワークフローを視覚化し、何を解くべきかを一緒に決める。正しい問いが、正しいシステムを作ります。" data-en="ZetaX engineers start by understanding your challenges firsthand. In the initial consultation, we visualize your workflows and decide together what problems to solve. The right question builds the right system.">ZetaXのエンジニアは、お客様の課題を自分の目で理解するところから始めます。初回のヒアリングでワークフローを視覚化し、何を解くべきかを一緒に決める。正しい問いが、正しいシステムを作ります。</p>
@@ -169,8 +182,57 @@
         <span class="section-label">Case Studies</span>
         <h2 class="section-heading" data-ja="導入事例" data-en="Case Studies">導入事例</h2>
       </div>
-      <div class="placeholder-box reveal reveal-delay-1">
-        <p data-ja="具体的な導入事例は準備中です。" data-en="Specific case studies are being prepared.">具体的な導入事例は準備中です。</p>
+      <div class="case-grid">
+        <!-- CASE 1 -->
+        <article class="case-card reveal reveal-delay-1">
+          <div>
+            <span class="case-num">Case 01</span>
+            <h3 class="case-industry" style="margin-top:0.5rem;" data-ja="大手製薬会社" data-en="Major Pharmaceutical Company">大手製薬会社</h3>
+          </div>
+          <div class="case-block">
+            <span class="case-block-label" data-ja="課題" data-en="Challenge">課題</span>
+            <p class="case-block-text" data-ja="過去の販売データが蓄積されているものの、抽出・参照のプロセスに課題があり、意思決定に十分活用できていない。結果として事業戦略の立案が属人化し、組織的な再現性や客観性が欠如していた。" data-en="Sales data had accumulated, but extraction and referencing was inefficient, preventing data-driven decisions. Strategy planning relied on individuals, lacking organizational reproducibility and objectivity.">過去の販売データが蓄積されているものの、抽出・参照のプロセスに課題があり、意思決定に十分活用できていない。結果として事業戦略の立案が属人化し、組織的な再現性や客観性が欠如していた。</p>
+          </div>
+          <div class="case-divider"></div>
+          <div class="case-block">
+            <span class="case-block-label" data-ja="ソリューション" data-en="Solution">ソリューション</span>
+            <p class="case-block-text" data-ja="チャットボット形式でデータベースへ自然言語アクセスできる仕組みを構築。過去販売データを基にした販売戦略提案を行い、データドリブンに売上を最大化するインサイトを提供。" data-en="Built a chatbot-style natural-language interface to the database. Generated sales strategy proposals from historical data and delivered insights to maximize revenue.">チャットボット形式でデータベースへ自然言語アクセスできる仕組みを構築。過去販売データを基にした販売戦略提案を行い、データドリブンに売上を最大化するインサイトを提供。</p>
+          </div>
+        </article>
+
+        <!-- CASE 2 -->
+        <article class="case-card reveal reveal-delay-2">
+          <div>
+            <span class="case-num">Case 02</span>
+            <h3 class="case-industry" style="margin-top:0.5rem;" data-ja="サブスクリプションEC事業者" data-en="Subscription E-Commerce">サブスクリプションEC事業者</h3>
+          </div>
+          <div class="case-block">
+            <span class="case-block-label" data-ja="課題" data-en="Challenge">課題</span>
+            <p class="case-block-text" data-ja="顧客ごとに商品を選定して提供するサブスクリプションサービスにおいて、顧客属性や過去データを基に人手で商品を選定しており、運用コストが大きな負担となっていた。" data-en="In a subscription service that curates products per customer, the selection was done manually based on customer attributes and history, creating a heavy operational cost burden.">顧客ごとに商品を選定して提供するサブスクリプションサービスにおいて、顧客属性や過去データを基に人手で商品を選定しており、運用コストが大きな負担となっていた。</p>
+          </div>
+          <div class="case-divider"></div>
+          <div class="case-block">
+            <span class="case-block-label" data-ja="ソリューション" data-en="Solution">ソリューション</span>
+            <p class="case-block-text" data-ja="蓄積データを活用し、顧客一人ひとりに最適な商品をアルゴリズムで自動提案。さらに従来は手作業だった顧客向け説明書も自動生成し、品質の均一化と劇的なコスト削減を両立。" data-en="Leveraged accumulated data to automatically recommend optimal products per customer via algorithms. Auto-generated customer-facing descriptions previously hand-written, achieving both quality consistency and dramatic cost reduction.">蓄積データを活用し、顧客一人ひとりに最適な商品をアルゴリズムで自動提案。さらに従来は手作業だった顧客向け説明書も自動生成し、品質の均一化と劇的なコスト削減を両立。</p>
+          </div>
+        </article>
+
+        <!-- CASE 3 -->
+        <article class="case-card reveal reveal-delay-3">
+          <div>
+            <span class="case-num">Case 03</span>
+            <h3 class="case-industry" style="margin-top:0.5rem;" data-ja="中堅企業のカスタマーサポート" data-en="Mid-Sized Enterprise Customer Support">中堅企業のカスタマーサポート</h3>
+          </div>
+          <div class="case-block">
+            <span class="case-block-label" data-ja="課題" data-en="Challenge">課題</span>
+            <p class="case-block-text" data-ja="電話対応で繰り返される定型業務やクレームによって現場の精神的負担が大きく、また顧客対応の記録が残らないため顧客の声を製品改善に活かせていなかった。" data-en="Repetitive phone-based tasks and complaint handling created significant mental strain on staff. Customer interactions weren't recorded, so customer feedback couldn't feed back into product improvement.">電話対応で繰り返される定型業務やクレームによって現場の精神的負担が大きく、また顧客対応の記録が残らないため顧客の声を製品改善に活かせていなかった。</p>
+          </div>
+          <div class="case-divider"></div>
+          <div class="case-block">
+            <span class="case-block-label" data-ja="ソリューション" data-en="Solution">ソリューション</span>
+            <p class="case-block-text" data-ja="チャットボットを導入し定型的な問い合わせを自動化。電話対応・クレーム対応による現場の疲弊を解消しつつ、対応ログを構造化データとして蓄積し、製品改善サイクルへとつなげる基盤を構築。" data-en="Deployed a chatbot to automate routine inquiries, relieving staff burnout from phone and complaint handling. Interaction logs are stored as structured data, building a foundation for the product improvement cycle.">チャットボットを導入し定型的な問い合わせを自動化。電話対応・クレーム対応による現場の疲弊を解消しつつ、対応ログを構造化データとして蓄積し、製品改善サイクルへとつなげる基盤を構築。</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
