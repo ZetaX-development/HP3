@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /keystatic/
+
+Sitemap: https://zetax.jp/sitemap.xml
 Sitemap: https://zetax.jp/sitemap-index.xml
