@@ -35,7 +35,10 @@
     a { color: inherit; text-decoration: none; }
 
     /* LANG TOGGLE */
-    .lang-toggle { display: flex; align-items: center; gap: 0; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 3px; margin-left: 1.5rem; border: 1px solid rgba(0,0,0,0.08); }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .nav-cta { display: inline-flex; align-items: center; font-family: var(--font-jp); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.6rem 1.2rem; background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%); color: #ffffff !important; border-radius: 8px; box-shadow: 0 4px 14px rgba(37,99,235,0.3); transition: transform 0.2s var(--transition), box-shadow 0.2s var(--transition); white-space: nowrap; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(37,99,235,0.4); }
+    .lang-toggle { display: flex; align-items: center; gap: 0; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 3px; margin-left: 0; border: 1px solid rgba(0,0,0,0.08); }
     .lang-btn { font-family: var(--font-en); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; padding: 5px 14px; border-radius: 16px; border: none; cursor: pointer; background: transparent; color: var(--text-dim); transition: all 0.3s ease; }
     .lang-btn.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(59,130,246,0.3); }
     .lang-btn:hover:not(.active) { color: #111111; }
@@ -75,27 +78,43 @@
     .placeholder-box { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 4rem 2rem; text-align: center; color: var(--text-dim); font-size: 0.9rem; }
 
     /* CASE STUDIES */
-    .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
-    @media (max-width: 900px) { .case-grid { grid-template-columns: 1fr; } }
-    .case-card { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition), border-color 0.4s var(--transition); }
-    .case-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); border-color: rgba(59,130,246,0.3); }
-    .case-num { font-family: var(--font-en); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; }
-    .case-industry { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); line-height: 1.5; letter-spacing: -0.01em; }
-    .case-block { display: flex; flex-direction: column; gap: 0.4rem; }
-    .case-block-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--text-dim); text-transform: uppercase; }
-    .case-block-text { font-size: 0.86rem; line-height: 1.75; color: var(--text-secondary); }
-    .case-divider { height: 1px; background: rgba(0,0,0,0.06); }
+    .case-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
+    .case-row { display: grid; grid-template-columns: 220px 1fr; gap: 2.5rem; padding: 2.5rem; background: #ffffff; border: 1px solid rgba(0,0,0,0.06); border-radius: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition), border-color 0.4s var(--transition); position: relative; overflow: hidden; }
+    .case-row::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--accent) 0%, var(--accent-bright) 100%); opacity: 0; transition: opacity 0.4s var(--transition); }
+    .case-row:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); border-color: rgba(59,130,246,0.2); }
+    .case-row:hover::before { opacity: 1; }
+
+    .case-meta { display: flex; flex-direction: column; gap: 0.5rem; }
+    .case-num { font-family: var(--font-en); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; }
+    .case-industry { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); line-height: 1.4; letter-spacing: -0.01em; }
+
+    .case-content { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.75rem; align-items: start; }
+    .case-block-label { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.65rem; border-radius: 4px; margin-bottom: 0.85rem; }
+    .case-challenge .case-block-label { background: rgba(148,163,184,0.15); color: #64748b; }
+    .case-solution .case-block-label { background: rgba(59,130,246,0.1); color: var(--accent); }
+    .case-block-text { font-size: 0.9rem; line-height: 1.85; color: var(--text-secondary); }
+    .case-arrow { display: flex; align-items: center; justify-content: center; padding-top: 1.75rem; color: var(--accent); font-size: 1.5rem; opacity: 0.5; }
+
+    @media (max-width: 900px) {
+      .case-row { grid-template-columns: 1fr !important; gap: 1.25rem; padding: 1.75rem 1.5rem; }
+      .case-content { grid-template-columns: 1fr; gap: 1.25rem; }
+      .case-arrow { display: none; }
+      .case-industry { font-size: 1.1rem; }
+    }
 
     /* TECH TAGS */
     .tech-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 2rem; }
     .tech-tag { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; padding: 0.5rem 1.2rem; font-size: 0.85rem; color: var(--text-secondary); }
 
     /* CTA */
-    .cta-section { background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08); padding: 6rem 0; text-align: center; }
-    .cta-heading { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; color: var(--text-primary); margin-bottom: 2.5rem; line-height: 1.4; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #fff; font-family: var(--font-en); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.06em; padding: 0.9rem 2.5rem; border-radius: 8px; transition: background 0.2s, transform 0.2s; }
-    .cta-btn:hover { opacity: 0.85; transform: translateY(-2px); }
-    .cta-note { font-size: 0.82rem; color: var(--text-dim); margin-top: 1rem; }
+    .cta-section { position: relative; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #2563eb 100%); padding: 7rem 0; text-align: center; overflow: hidden; }
+    .cta-section::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.12) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08) 0%, transparent 50%); pointer-events: none; }
+    .cta-section::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+    .cta-section .section-inner { position: relative; z-index: 1; }
+    .cta-heading { font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 700; color: #ffffff; margin-bottom: 2.5rem; line-height: 1.4; letter-spacing: -0.01em; text-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+    .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #ffffff; color: #1e3a8a; font-family: var(--font-en); font-weight: 700; font-size: 1rem; letter-spacing: 0.06em; padding: 1.05rem 2.8rem; border-radius: 10px; box-shadow: 0 12px 40px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.25s var(--transition), box-shadow 0.25s var(--transition); }
+    .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 18px 50px rgba(0,0,0,0.3), 0 6px 16px rgba(0,0,0,0.18); }
+    .cta-note { font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-top: 1.25rem; }
 
     /* FOOTER */
     .footer { padding: 2rem; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); }
@@ -107,6 +126,28 @@
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav { padding: 0.85rem 1rem; }
+      .nav-links { display: none; }
+      .nav-actions { gap: 0.5rem; }
+      .nav-cta { padding: 0.5rem 0.9rem; font-size: 0.72rem; }
+      .section { padding: 4rem 1.25rem; }
+      .section-inner { padding: 0; max-width: 100%; }
+      .section-heading { font-size: clamp(1.5rem, 5vw, 2rem); line-height: 1.4; }
+      .page-hero { padding: 10rem 1.25rem 3rem; }
+      .page-title { font-size: clamp(1.6rem, 6vw, 2.2rem); line-height: 1.4; }
+      .page-desc { font-size: 0.92rem; }
+      .case-grid { grid-template-columns: 1fr !important; gap: 1rem; }
+      .case-card { padding: 1.5rem 1.25rem; }
+      .steps { grid-template-columns: 1fr; gap: 1rem; }
+      .tech-tags { gap: 0.5rem; }
+      .tech-tag { font-size: 0.78rem; padding: 0.45rem 0.85rem; }
+      .cta-section { padding: 4.5rem 1.25rem; }
+      .cta-heading { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+      .cta-btn { padding: 0.95rem 2rem; font-size: 0.92rem; }
+    }
   </style>
 </head>
 
@@ -120,11 +161,13 @@
       <li><a href="/#solutions">Solutions</a></li>
       <li><a href="/#company">Company</a></li>
       <li><a href="/#news">News</a></li>
-      <li><a href="/#contact">Contact</a></li>
     </ul>
-    <div class="lang-toggle">
-      <button class="lang-btn active" data-lang="ja" onclick="switchLang('ja')">JP</button>
-      <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+    <div class="nav-actions">
+      <a href="/#contact" class="nav-cta" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ja" onclick="switchLang('ja')">JP</button>
+        <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+      </div>
     </div>
   </nav>
 
@@ -182,55 +225,61 @@
         <span class="section-label">Case Studies</span>
         <h2 class="section-heading" data-ja="導入事例" data-en="Case Studies">導入事例</h2>
       </div>
-      <div class="case-grid">
+      <div class="case-list">
         <!-- CASE 1 -->
-        <article class="case-card reveal reveal-delay-1">
-          <div>
+        <article class="case-row reveal reveal-delay-1">
+          <div class="case-meta">
             <span class="case-num">Case 01</span>
-            <h3 class="case-industry" style="margin-top:0.5rem;" data-ja="大手製薬会社" data-en="Major Pharmaceutical Company">大手製薬会社</h3>
+            <h3 class="case-industry" data-ja="大手製薬会社" data-en="Major Pharmaceutical Company">大手製薬会社</h3>
           </div>
-          <div class="case-block">
-            <span class="case-block-label" data-ja="課題" data-en="Challenge">課題</span>
-            <p class="case-block-text" data-ja="過去の販売データが蓄積されているものの、抽出・参照のプロセスに課題があり、意思決定に十分活用できていない。結果として事業戦略の立案が属人化し、組織的な再現性や客観性が欠如していた。" data-en="Sales data had accumulated, but extraction and referencing was inefficient, preventing data-driven decisions. Strategy planning relied on individuals, lacking organizational reproducibility and objectivity.">過去の販売データが蓄積されているものの、抽出・参照のプロセスに課題があり、意思決定に十分活用できていない。結果として事業戦略の立案が属人化し、組織的な再現性や客観性が欠如していた。</p>
-          </div>
-          <div class="case-divider"></div>
-          <div class="case-block">
-            <span class="case-block-label" data-ja="ソリューション" data-en="Solution">ソリューション</span>
-            <p class="case-block-text" data-ja="チャットボット形式でデータベースへ自然言語アクセスできる仕組みを構築。過去販売データを基にした販売戦略提案を行い、データドリブンに売上を最大化するインサイトを提供。" data-en="Built a chatbot-style natural-language interface to the database. Generated sales strategy proposals from historical data and delivered insights to maximize revenue.">チャットボット形式でデータベースへ自然言語アクセスできる仕組みを構築。過去販売データを基にした販売戦略提案を行い、データドリブンに売上を最大化するインサイトを提供。</p>
+          <div class="case-content">
+            <div class="case-challenge">
+              <span class="case-block-label" data-ja="課題" data-en="Challenge">課題</span>
+              <p class="case-block-text" data-ja="蓄積された販売データが意思決定に活かせず、戦略立案が属人化。組織的な再現性と客観性を欠いていた。" data-en="Accumulated sales data wasn't usable for decisions, leaving strategy reliant on individuals and lacking organizational reproducibility.">蓄積された販売データが意思決定に活かせず、戦略立案が属人化。組織的な再現性と客観性を欠いていた。</p>
+            </div>
+            <div class="case-arrow" aria-hidden="true">→</div>
+            <div class="case-solution">
+              <span class="case-block-label" data-ja="ソリューション" data-en="Solution">ソリューション</span>
+              <p class="case-block-text" data-ja="チャットボットでDBへ自然言語アクセスする仕組みを構築。販売データから戦略提案を行い、データドリブンに売上最大化のインサイトを提供。" data-en="Built a chatbot for natural-language access to the database. Generated strategy proposals from sales data and delivered data-driven insights to maximize revenue.">チャットボットでDBへ自然言語アクセスする仕組みを構築。販売データから戦略提案を行い、データドリブンに売上最大化のインサイトを提供。</p>
+            </div>
           </div>
         </article>
 
         <!-- CASE 2 -->
-        <article class="case-card reveal reveal-delay-2">
-          <div>
+        <article class="case-row reveal reveal-delay-2">
+          <div class="case-meta">
             <span class="case-num">Case 02</span>
-            <h3 class="case-industry" style="margin-top:0.5rem;" data-ja="サブスクリプションEC事業者" data-en="Subscription E-Commerce">サブスクリプションEC事業者</h3>
+            <h3 class="case-industry" data-ja="サブスクリプションEC事業者" data-en="Subscription E-Commerce">サブスクリプションEC事業者</h3>
           </div>
-          <div class="case-block">
-            <span class="case-block-label" data-ja="課題" data-en="Challenge">課題</span>
-            <p class="case-block-text" data-ja="顧客ごとに商品を選定して提供するサブスクリプションサービスにおいて、顧客属性や過去データを基に人手で商品を選定しており、運用コストが大きな負担となっていた。" data-en="In a subscription service that curates products per customer, the selection was done manually based on customer attributes and history, creating a heavy operational cost burden.">顧客ごとに商品を選定して提供するサブスクリプションサービスにおいて、顧客属性や過去データを基に人手で商品を選定しており、運用コストが大きな負担となっていた。</p>
-          </div>
-          <div class="case-divider"></div>
-          <div class="case-block">
-            <span class="case-block-label" data-ja="ソリューション" data-en="Solution">ソリューション</span>
-            <p class="case-block-text" data-ja="蓄積データを活用し、顧客一人ひとりに最適な商品をアルゴリズムで自動提案。さらに従来は手作業だった顧客向け説明書も自動生成し、品質の均一化と劇的なコスト削減を両立。" data-en="Leveraged accumulated data to automatically recommend optimal products per customer via algorithms. Auto-generated customer-facing descriptions previously hand-written, achieving both quality consistency and dramatic cost reduction.">蓄積データを活用し、顧客一人ひとりに最適な商品をアルゴリズムで自動提案。さらに従来は手作業だった顧客向け説明書も自動生成し、品質の均一化と劇的なコスト削減を両立。</p>
+          <div class="case-content">
+            <div class="case-challenge">
+              <span class="case-block-label" data-ja="課題" data-en="Challenge">課題</span>
+              <p class="case-block-text" data-ja="顧客ごとに商品を選定するサービスで、属性や履歴をもとに人手で選定しており、運用コストが大きな負担となっていた。" data-en="A subscription service curated products per customer manually using attributes and history, creating a heavy operational cost burden.">顧客ごとに商品を選定するサービスで、属性や履歴をもとに人手で選定しており、運用コストが大きな負担となっていた。</p>
+            </div>
+            <div class="case-arrow" aria-hidden="true">→</div>
+            <div class="case-solution">
+              <span class="case-block-label" data-ja="ソリューション" data-en="Solution">ソリューション</span>
+              <p class="case-block-text" data-ja="顧客一人ひとりに最適な商品をアルゴリズムで自動提案。説明書も自動生成し、品質の均一化と劇的なコスト削減を両立。" data-en="Algorithmically recommended optimal products per customer. Auto-generated descriptions, achieving both quality consistency and dramatic cost reduction.">顧客一人ひとりに最適な商品をアルゴリズムで自動提案。説明書も自動生成し、品質の均一化と劇的なコスト削減を両立。</p>
+            </div>
           </div>
         </article>
 
         <!-- CASE 3 -->
-        <article class="case-card reveal reveal-delay-3">
-          <div>
+        <article class="case-row reveal reveal-delay-3">
+          <div class="case-meta">
             <span class="case-num">Case 03</span>
-            <h3 class="case-industry" style="margin-top:0.5rem;" data-ja="中堅企業のカスタマーサポート" data-en="Mid-Sized Enterprise Customer Support">中堅企業のカスタマーサポート</h3>
+            <h3 class="case-industry" data-ja="中堅企業のカスタマーサポート" data-en="Mid-Sized Enterprise Customer Support">中堅企業のカスタマーサポート</h3>
           </div>
-          <div class="case-block">
-            <span class="case-block-label" data-ja="課題" data-en="Challenge">課題</span>
-            <p class="case-block-text" data-ja="電話対応で繰り返される定型業務やクレームによって現場の精神的負担が大きく、また顧客対応の記録が残らないため顧客の声を製品改善に活かせていなかった。" data-en="Repetitive phone-based tasks and complaint handling created significant mental strain on staff. Customer interactions weren't recorded, so customer feedback couldn't feed back into product improvement.">電話対応で繰り返される定型業務やクレームによって現場の精神的負担が大きく、また顧客対応の記録が残らないため顧客の声を製品改善に活かせていなかった。</p>
-          </div>
-          <div class="case-divider"></div>
-          <div class="case-block">
-            <span class="case-block-label" data-ja="ソリューション" data-en="Solution">ソリューション</span>
-            <p class="case-block-text" data-ja="チャットボットを導入し定型的な問い合わせを自動化。電話対応・クレーム対応による現場の疲弊を解消しつつ、対応ログを構造化データとして蓄積し、製品改善サイクルへとつなげる基盤を構築。" data-en="Deployed a chatbot to automate routine inquiries, relieving staff burnout from phone and complaint handling. Interaction logs are stored as structured data, building a foundation for the product improvement cycle.">チャットボットを導入し定型的な問い合わせを自動化。電話対応・クレーム対応による現場の疲弊を解消しつつ、対応ログを構造化データとして蓄積し、製品改善サイクルへとつなげる基盤を構築。</p>
+          <div class="case-content">
+            <div class="case-challenge">
+              <span class="case-block-label" data-ja="課題" data-en="Challenge">課題</span>
+              <p class="case-block-text" data-ja="電話対応の定型業務やクレームで現場が疲弊。対応ログも残らず、顧客の声を製品改善に活かせていなかった。" data-en="Repetitive phone tasks and complaints exhausted staff. Interactions weren't recorded, so customer feedback couldn't reach product improvement.">電話対応の定型業務やクレームで現場が疲弊。対応ログも残らず、顧客の声を製品改善に活かせていなかった。</p>
+            </div>
+            <div class="case-arrow" aria-hidden="true">→</div>
+            <div class="case-solution">
+              <span class="case-block-label" data-ja="ソリューション" data-en="Solution">ソリューション</span>
+              <p class="case-block-text" data-ja="チャットボットで定型問い合わせを自動化し現場負担を解消。対応ログを構造化データで蓄積し、製品改善サイクルへとつなげる基盤を構築。" data-en="Automated routine inquiries via chatbot to relieve staff. Stored interaction logs as structured data, building a foundation for the product improvement cycle.">チャットボットで定型問い合わせを自動化し現場負担を解消。対応ログを構造化データで蓄積し、製品改善サイクルへとつなげる基盤を構築。</p>
+            </div>
           </div>
         </article>
       </div>

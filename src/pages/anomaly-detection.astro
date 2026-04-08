@@ -34,7 +34,10 @@
     body { font-family: var(--font-jp); background: var(--bg); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
 
-    .lang-toggle { display: flex; align-items: center; gap: 0; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 3px; margin-left: 1.5rem; border: 1px solid rgba(0,0,0,0.08); }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .nav-cta { display: inline-flex; align-items: center; font-family: var(--font-jp); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.6rem 1.2rem; background: linear-gradient(135deg, #0e7490 0%, #0891b2 50%, #06b6d4 100%); color: #ffffff !important; border-radius: 8px; box-shadow: 0 4px 14px rgba(8,145,178,0.3); transition: transform 0.2s var(--transition), box-shadow 0.2s var(--transition); white-space: nowrap; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(8,145,178,0.4); }
+    .lang-toggle { display: flex; align-items: center; gap: 0; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 3px; margin-left: 0; border: 1px solid rgba(0,0,0,0.08); }
     .lang-btn { font-family: var(--font-en); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; padding: 5px 14px; border-radius: 16px; border: none; cursor: pointer; background: transparent; color: var(--text-dim); transition: all 0.3s ease; }
     .lang-btn.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(59,130,246,0.3); }
     .lang-btn:hover:not(.active) { color: #111111; }
@@ -132,8 +135,10 @@
     /* RESPONSIVE */
     @media (max-width: 900px) {
       body { padding-bottom: 5rem; }
-      .nav { padding: 1rem 1.25rem; }
+      .nav { padding: 0.85rem 1rem; }
       .nav-links { display: none; }
+      .nav-actions { gap: 0.5rem; }
+      .nav-cta { padding: 0.5rem 0.9rem; font-size: 0.72rem; }
       .section { padding: 4rem 1.25rem; }
       .section-inner { padding: 0; max-width: 100%; }
       .section-heading { font-size: clamp(1.5rem, 5vw, 2rem); line-height: 1.4; }
@@ -168,11 +173,13 @@
       <li><a href="/#solutions">Solutions</a></li>
       <li><a href="/#company">Company</a></li>
       <li><a href="/#news">News</a></li>
-      <li><a href="/#contact">Contact</a></li>
     </ul>
-    <div class="lang-toggle">
-      <button class="lang-btn active" data-lang="ja" onclick="switchLang('ja')">JP</button>
-      <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+    <div class="nav-actions">
+      <a href="/#contact" class="nav-cta" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ja" onclick="switchLang('ja')">JP</button>
+        <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+      </div>
     </div>
   </nav>
 

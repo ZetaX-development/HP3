@@ -162,6 +162,21 @@
       text-transform: uppercase;
     }
 
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .nav-cta {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-jp);
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em;
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+      color: #ffffff !important;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+      transition: transform 0.2s var(--transition), box-shadow 0.2s var(--transition);
+      white-space: nowrap;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(37,99,235,0.4); }
+
     .nav-links a {
       color: var(--text-secondary);
       transition: color 0.3s ease;
@@ -1970,8 +1985,10 @@
        RESPONSIVE OVERRIDES (must be last to win)
        ============================================ */
     @media (max-width: 900px) {
-      .nav { padding: 1rem 1.25rem; }
+      .nav { padding: 0.85rem 1rem; }
       .nav-links { display: none; }
+      .nav-actions { gap: 0.5rem; }
+      .nav-cta { padding: 0.5rem 0.9rem; font-size: 0.72rem; }
       .section { padding: 5rem 1.25rem; }
       .section-heading { font-size: clamp(1.6rem, 5vw, 2.2rem); line-height: 1.4; }
       .section-inner { padding: 0; }
@@ -2040,6 +2057,34 @@
       .compare-table { min-width: 480px; }
     }
 
+    /* HERO MOBILE FEATURE BUTTON */
+    .hero-mobile-feature { display: none; }
+    @media (max-width: 900px) {
+      .hero-mobile-feature {
+        display: flex; flex-direction: column; gap: 0.4rem;
+        margin-top: 1.75rem; padding: 1.1rem 1.4rem;
+        background: linear-gradient(135deg, #0e7490 0%, #0891b2 50%, #06b6d4 100%);
+        border-radius: 14px;
+        box-shadow: 0 12px 32px rgba(8,145,178,0.35), 0 4px 12px rgba(0,0,0,0.1);
+        text-align: left;
+        position: relative; overflow: hidden;
+        transition: transform 0.3s var(--transition);
+      }
+      .hero-mobile-feature::after {
+        content: "→"; position: absolute; right: 1.2rem; top: 50%;
+        transform: translateY(-50%); color: #ffffff; font-size: 1.4rem; font-weight: 300;
+      }
+      .hero-mobile-feature:active { transform: scale(0.98); }
+      .hero-mobile-feature-label {
+        font-family: var(--font-en); font-size: 0.65rem; font-weight: 700;
+        letter-spacing: 0.2em; color: rgba(255,255,255,0.85); text-transform: uppercase;
+      }
+      .hero-mobile-feature-title {
+        font-size: 0.95rem; font-weight: 700; color: #ffffff;
+        line-height: 1.45; padding-right: 1.5rem;
+      }
+    }
+
     /* MOBILE FLOATING CONTACT BAR */
     .mobile-cta-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0)); background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-top: 1px solid rgba(0,0,0,0.08); box-shadow: 0 -4px 24px rgba(0,0,0,0.06); }
     .mobile-cta-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%); color: #ffffff; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.95rem 1.25rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(37,99,235,0.3); }
@@ -2062,11 +2107,13 @@
       <li><a href="#solutions">Solutions</a></li>
       <li><a href="#company">Company</a></li>
       <li><a href="#news">News</a></li>
-      <li><a href="#contact">Contact</a></li>
     </ul>
-    <div class="lang-toggle">
-      <button class="lang-btn active" data-lang="ja" onclick="switchLang('ja')">JP</button>
-      <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+    <div class="nav-actions">
+      <a href="#contact" class="nav-cta" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ja" onclick="switchLang('ja')">JP</button>
+        <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+      </div>
     </div>
   </nav>
 
@@ -2083,6 +2130,10 @@
         <span class="hero-pill">AI活用 / DX</span>
         <span class="hero-pill">異常検知</span>
       </div>
+      <a href="/anomaly-detection" class="hero-mobile-feature">
+        <span class="hero-mobile-feature-label" data-ja="MAIN BUSINESS" data-en="MAIN BUSINESS">MAIN BUSINESS</span>
+        <span class="hero-mobile-feature-title" data-ja="製造業向け 異常検知システムはこちら" data-en="Manufacturing Anomaly Detection ›">製造業向け 異常検知システムはこちら</span>
+      </a>
     </div>
     <div class="hero-scroll">Scroll</div>
   </section>
