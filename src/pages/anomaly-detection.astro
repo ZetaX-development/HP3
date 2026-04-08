@@ -82,6 +82,34 @@
     /* PLACEHOLDER */
     .placeholder-box { background: var(--bg-card); border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 4rem 2rem; text-align: center; color: var(--text-dim); font-size: 0.9rem; }
 
+    /* KEY VALUES */
+    .key-values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 760px; margin: 0 auto 4rem; }
+    .key-value { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; padding: 1.5rem 1rem; background: #ffffff; border: 1px solid rgba(8,145,178,0.18); border-radius: 12px; text-align: center; }
+    .key-value-icon { font-size: 1.5rem; color: var(--accent-cyan); }
+    .key-value-text { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); line-height: 1.5; }
+
+    /* ACCORDION */
+    .accordion { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.85rem; }
+    .acc-item { background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; overflow: hidden; transition: box-shadow 0.3s var(--transition), border-color 0.3s var(--transition); }
+    .acc-item[open] { border-color: rgba(8,145,178,0.3); box-shadow: 0 8px 28px rgba(8,145,178,0.08); }
+    .acc-summary { display: flex; align-items: center; gap: 1rem; padding: 1.4rem 1.6rem; cursor: pointer; list-style: none; transition: background 0.2s; }
+    .acc-summary::-webkit-details-marker { display: none; }
+    .acc-summary:hover { background: rgba(8,145,178,0.03); }
+    .acc-label { font-family: var(--font-en); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; color: var(--accent-cyan); text-transform: uppercase; min-width: 90px; }
+    .acc-title { flex: 1; font-size: 1.02rem; font-weight: 700; color: var(--text-primary); }
+    .acc-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(8,145,178,0.1); color: var(--accent-cyan); font-size: 1.1rem; font-weight: 300; transition: transform 0.3s var(--transition), background 0.3s; line-height: 1; }
+    .acc-item[open] .acc-icon { transform: rotate(45deg); background: var(--accent-cyan); color: #ffffff; }
+    .acc-body { padding: 0 1.6rem 1.6rem; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1.4rem; }
+    .acc-lead { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.25rem; }
+    .acc-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .acc-list li { display: flex; flex-direction: column; gap: 0.3rem; padding: 0.95rem 1.1rem; background: rgba(8,145,178,0.04); border-left: 3px solid var(--accent-cyan); border-radius: 0 8px 8px 0; }
+    .acc-list strong { font-size: 0.92rem; font-weight: 700; color: var(--text-primary); }
+    .acc-list span { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.75; }
+    .acc-formula { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; padding: 1.5rem 1rem; margin: 0 0 1.25rem; background: linear-gradient(135deg, rgba(8,145,178,0.06), rgba(6,182,212,0.04)); border-radius: 10px; font-size: 1.15rem; font-weight: 700; }
+    .acc-formula span { background: linear-gradient(135deg, var(--accent-cyan), #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .acc-formula em { font-style: normal; color: var(--text-dim); font-weight: 300; }
+    .acc-foot { font-size: 0.82rem; color: var(--text-dim); line-height: 1.75; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed rgba(0,0,0,0.08); }
+
     /* RC PILLARS */
     .rc-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
     .rc-pillar { background: #ffffff; border: 1px solid rgba(8,145,178,0.18); border-radius: 14px; padding: 2.25rem 1.75rem; position: relative; overflow: hidden; transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition); }
@@ -147,6 +175,16 @@
       .page-desc { font-size: 0.92rem; }
       .feature-grid, .equipment-grid, .case-grid { grid-template-columns: 1fr !important; gap: 1rem; }
       .strengths-grid { grid-template-columns: 1fr !important; gap: 1rem; }
+      .key-values { grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 2.5rem; }
+      .key-value { flex-direction: row; padding: 1rem 1.25rem; gap: 0.85rem; text-align: left; }
+      .key-value-icon { font-size: 1.25rem; }
+      .key-value-text { font-size: 0.88rem; }
+      .acc-summary { padding: 1.1rem 1.1rem; gap: 0.75rem; flex-wrap: wrap; }
+      .acc-label { min-width: auto; font-size: 0.6rem; flex-basis: 100%; }
+      .acc-title { font-size: 0.92rem; }
+      .acc-body { padding: 1.1rem 1.1rem 1.4rem; }
+      .acc-list li { padding: 0.85rem 0.95rem; }
+      .acc-formula { font-size: 1rem; padding: 1.1rem 0.75rem; gap: 0.6rem; }
       .rc-pillars { grid-template-columns: 1fr !important; gap: 1rem; margin-top: 2.5rem; }
       .rc-pillar { padding: 1.75rem 1.5rem; }
       .rc-uses { grid-template-columns: 1fr !important; gap: 0.85rem; }
@@ -190,139 +228,104 @@
     <p class="page-desc" data-ja="製造現場の「いつもと何か違う」を、リアルタイムで捉える。東大・東工大の研究から生まれた異常検知技術を、あなたの工場に実装します。" data-en="Capture the subtle shifts on your manufacturing floor in real time. We implement anomaly detection technology born from Tokyo and Tokyo Tech research.">製造現場の「いつもと何か違う」を、リアルタイムで捉える。東大・東工大の研究から生まれた異常検知技術を、あなたの工場に実装します。</p>
   </div>
 
-  <!-- CHALLENGES -->
-  <section class="section alt-bg">
-    <div class="section-inner">
-      <div class="reveal">
-        <span class="section-label">Challenges</span>
-        <h2 class="section-heading" data-ja="こんなことありませんか？" data-en="Does this sound familiar?">こんなことありませんか？</h2>
-      </div>
-      <div class="challenge-list reveal reveal-delay-1">
-        <div class="challenge-card">
-          <h3 class="challenge-title" data-ja="壊れてから直す、の繰り返し。" data-en="Fix it after it breaks. Every time.">壊れてから直す、の繰り返し。</h3>
-          <p class="challenge-desc" data-ja="異常に気づくのはラインが止まってから。計画外のダウンタイムが利益を削り、修理コストが積み上がる。" data-en="You notice the problem when the line stops. Unplanned downtime erodes profit. Repair costs pile up.">異常に気づくのはラインが止まってから。計画外のダウンタイムが利益を削り、修理コストが積み上がる。</p>
-        </div>
-        <div class="challenge-card">
-          <h3 class="challenge-title" data-ja="AI検知を入れたが、使われていない。" data-en="We installed AI detection. But nobody uses it.">AI検知を入れたが、使われていない。</h3>
-          <p class="challenge-desc" data-ja="クラウド型のAI検知を導入したが、誤検知が多すぎて現場が信用しない。通信障害で止まることもある。結局、ベテランの巡回に戻っている。" data-en="Cloud-based AI detection had too many false alarms. The field doesn't trust it. Network failures cause outages. We're back to veteran inspections.">クラウド型のAI検知を導入したが、誤検知が多すぎて現場が信用しない。通信障害で止まることもある。結局、ベテランの巡回に戻っている。</p>
-        </div>
-        <div class="challenge-card">
-          <h3 class="challenge-title" data-ja="ベテランの「勘」が、引き継げない。" data-en="Veteran expertise can't be passed on.">ベテランの「勘」が、引き継げない。</h3>
-          <p class="challenge-desc" data-ja="熟練者は音や振動の微妙な変化に気づく。でもその感覚は言語化できない。人が変われば、検知力も消える。" data-en="Experienced operators sense subtle vibration and sound changes. But that intuition can't be explained. When they leave, the detection ability vanishes.">熟練者は音や振動の微妙な変化に気づく。でもその感覚は言語化できない。人が変われば、検知力も消える。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- APPROACH -->
+  <!-- KEY VALUES -->
   <section class="section">
     <div class="section-inner">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label">Our Approach</span>
-        <h2 class="section-heading" data-ja="あなたの設備に最適化された、専用の検知モデルを作る。" data-en="We build a detection model optimized for your equipment.">あなたの設備に最適化された、専用の検知モデルを作る。</h2>
-        <p class="section-text" data-ja="同じモーターでも、設置環境・稼働パターン・経年度合いで「正常」の基準は全く違います。汎用モデルを押し付けても精度は出ない。だから我々は、あなたの設備の正常稼働データから、その現場だけの検知モデルを構築します。" data-en="The same motor has different normal baselines depending on installation, usage patterns, and age. Generic models don't work. We build a model from your equipment's normal operating data—unique to your factory.">同じモーターでも、設置環境・稼働パターン・経年度合いで「正常」の基準は全く違います。汎用モデルを押し付けても精度は出ない。だから我々は、あなたの設備の正常稼働データから、その現場だけの検知モデルを構築します。</p>
-      </div>
-      <div class="strengths-grid reveal reveal-delay-1">
-        <div class="strength-card">
-          <h3 class="strength-title" data-ja="GPU不要・クラウド不要" data-en="No GPU. No cloud.">GPU不要・クラウド不要</h3>
-          <p class="strength-desc" data-ja="すべてエッジデバイス上で完結。製造データを外部に出さないから、セキュリティリスクがない。ネットワーク環境のない現場にも導入可能。" data-en="Everything runs on edge devices. Your manufacturing data never leaves your facility—zero security risk. Works even offline.">すべてエッジデバイス上で完結。製造データを外部に出さないから、セキュリティリスクがない。ネットワーク環境のない現場にも導入可能。</p>
+      <div class="key-values reveal">
+        <div class="key-value">
+          <span class="key-value-icon">⚡</span>
+          <p class="key-value-text" data-ja="GPU不要・クラウド不要" data-en="No GPU. No cloud.">GPU不要・クラウド不要</p>
         </div>
-        <div class="strength-card">
-          <h3 class="strength-title" data-ja="導入初日から検知開始" data-en="Detection starts on day one.">導入初日から検知開始</h3>
-          <p class="strength-desc" data-ja="正常データのみで短時間にモデルを構築。大量の学習データを集める必要がない。" data-en="We build the model from normal data alone. No need to collect massive training datasets.">正常データのみで短時間にモデルを構築。大量の学習データを集める必要がない。</p>
+        <div class="key-value">
+          <span class="key-value-icon">⚙</span>
+          <p class="key-value-text" data-ja="導入初日から検知開始" data-en="Detection from day one.">導入初日から検知開始</p>
         </div>
-        <div class="strength-card">
-          <h3 class="strength-title" data-ja="環境変化に自律追従" data-en="Adapts to environmental change">環境変化に自律追従</h3>
-          <p class="strength-desc" data-ja="季節変動、設備の経年劣化、生産条件の変更にも常時再学習で対応。誤報の増加やモデルの陳腐化を防ぐ。" data-en="Continuous relearning handles seasonal shifts, equipment aging, and production changes. Prevents false alarm creep and model decay.">季節変動、設備の経年劣化、生産条件の変更にも常時再学習で対応。誤報の増加やモデルの陳腐化を防ぐ。</p>
-        </div>
-        <div class="strength-card">
-          <h3 class="strength-title" data-ja="異常の理由が分かる" data-en="You understand why it alarmed">異常の理由が分かる</h3>
-          <p class="strength-desc" data-ja="どのセンサー値が異常を示したか明確に表示。現場が納得して動ける。" data-en="We show exactly which sensor values triggered the alert. Your team acts with confidence.">どのセンサー値が異常を示したか明確に表示。現場が納得して動ける。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TECHNOLOGY -->
-  <section class="section alt-bg">
-    <div class="section-inner">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label">Core Technology</span>
-        <h2 class="section-heading" data-ja="リザバーコンピューティング ― 工場で動く、新しいAI。" data-en="Reservoir Computing — a new kind of AI, running on your factory floor.">リザバーコンピューティング ― 工場で動く、新しいAI。</h2>
-        <p class="section-text" data-ja="ZetaXの異常検知は、東京科学大学の研究室との共創から生まれた「リザバーコンピューティング（RC）」を中核技術としています。再帰ニューラルネットワーク（RNN）の一種でありながら、中間層の重みを固定し出力層のみを学習する独自のアーキテクチャ。LLMと同じく未来を予測しながら、AIとは全く異なる原理で動きます。" data-en="ZetaX anomaly detection is built on Reservoir Computing (RC), developed in partnership with Institute of Science Tokyo research labs. A variant of recurrent neural networks where the reservoir layer's weights stay fixed and only the output layer learns. It predicts the future like an LLM, but runs on a fundamentally different principle.">ZetaXの異常検知は、東京科学大学の研究室との共創から生まれた「リザバーコンピューティング（RC）」を中核技術としています。再帰ニューラルネットワーク（RNN）の一種でありながら、中間層の重みを固定し出力層のみを学習する独自のアーキテクチャ。LLMと同じく未来を予測しながら、AIとは全く異なる原理で動きます。</p>
-      </div>
-
-      <div class="rc-pillars reveal reveal-delay-1">
-        <div class="rc-pillar">
-          <span class="rc-pillar-num">01</span>
-          <h3 class="rc-pillar-title" data-ja="少ないデータで動く" data-en="Works with minimal data">少ないデータで動く</h3>
-          <p class="rc-pillar-desc" data-ja="従来のAIと比べて圧倒的に少ない学習データで稼働。数年単位のデータが揃わない現場でも、初日から検知が始められる。" data-en="Runs on dramatically less training data than conventional AI. Detection starts on day one—even when years of historical data don't exist.">従来のAIと比べて圧倒的に少ない学習データで稼働。数年単位のデータが揃わない現場でも、初日から検知が始められる。</p>
-        </div>
-        <div class="rc-pillar">
-          <span class="rc-pillar-num">02</span>
-          <h3 class="rc-pillar-title" data-ja="圧倒的な低消費電力" data-en="Radically low power">圧倒的な低消費電力</h3>
-          <p class="rc-pillar-desc" data-ja="中間層の学習が不要なため、ほぼ電力を消費せず動作。GPUの発熱問題やクラウド通信のコストから解放される。" data-en="No mid-layer training means almost zero power draw. Free from GPU heat issues and cloud bandwidth costs.">中間層の学習が不要なため、ほぼ電力を消費せず動作。GPUの発熱問題やクラウド通信のコストから解放される。</p>
-        </div>
-        <div class="rc-pillar">
-          <span class="rc-pillar-num">03</span>
-          <h3 class="rc-pillar-title" data-ja="時系列データに、桁違いに強い" data-en="Built for time-series">時系列データに、桁違いに強い</h3>
-          <p class="rc-pillar-desc" data-ja="振動・電流・温度・音響など、波形データの特徴抽出が本領。従来のAIが苦手としていた時系列領域で性能を発揮する。" data-en="Vibration, current, temperature, acoustics—waveform feature extraction is its native strength. Excels exactly where traditional AI struggles.">振動・電流・温度・音響など、波形データの特徴抽出が本領。従来のAIが苦手としていた時系列領域で性能を発揮する。</p>
+        <div class="key-value">
+          <span class="key-value-icon">◎</span>
+          <p class="key-value-text" data-ja="東大・東工大発の独自技術" data-en="Tokyo / Tokyo Tech tech.">東大・東工大発の独自技術</p>
         </div>
       </div>
 
-      <div class="rc-formula reveal reveal-delay-2">
-        <p class="rc-formula-label" data-ja="リザバーのコア特性" data-en="Core characteristics">リザバーのコア特性</p>
-        <p class="rc-formula-text"><span>非線形</span><em>×</em><span data-ja="記憶" data-en="Memory">記憶</span><em>×</em><span data-ja="時系列" data-en="Time-series">時系列</span></p>
-      </div>
+      <!-- ACCORDION DETAILS -->
+      <div class="accordion reveal reveal-delay-1">
+        <details class="acc-item">
+          <summary class="acc-summary">
+            <span class="acc-label">Challenges</span>
+            <span class="acc-title" data-ja="こんな課題、ありませんか？" data-en="Sound familiar?">こんな課題、ありませんか？</span>
+            <span class="acc-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="acc-body">
+            <ul class="acc-list">
+              <li><strong data-ja="壊れてから直す、の繰り返し。" data-en="Fix it after it breaks.">壊れてから直す、の繰り返し。</strong><span data-ja="計画外のダウンタイムが利益を削り、修理コストが積み上がる。" data-en="Unplanned downtime erodes profit. Repair costs pile up.">計画外のダウンタイムが利益を削り、修理コストが積み上がる。</span></li>
+              <li><strong data-ja="AI検知を入れたが、使われていない。" data-en="AI detection installed, but unused.">AI検知を入れたが、使われていない。</strong><span data-ja="クラウド型は誤検知が多く、現場が信用しない。結局ベテラン巡回に戻っている。" data-en="Cloud-based had too many false alarms. Back to veteran inspections.">クラウド型は誤検知が多く、現場が信用しない。結局ベテラン巡回に戻っている。</span></li>
+              <li><strong data-ja="ベテランの「勘」が引き継げない。" data-en="Veteran intuition can't be passed on.">ベテランの「勘」が引き継げない。</strong><span data-ja="熟練者の感覚は言語化できず、人が変われば検知力も消える。" data-en="Experts sense subtle shifts but can't explain them. The skill leaves with them.">熟練者の感覚は言語化できず、人が変われば検知力も消える。</span></li>
+            </ul>
+          </div>
+        </details>
 
-      <div class="rc-uses reveal reveal-delay-3">
-        <div class="rc-use">
-          <h4 class="rc-use-title" data-ja="予兆・劣化保全" data-en="Predictive Maintenance">予兆・劣化保全</h4>
-          <p class="rc-use-desc" data-ja="設備が壊れる前のわずかな兆候を捕捉し、計画外停止をゼロに近づける。" data-en="Catch subtle pre-failure signals and drive unplanned downtime toward zero.">設備が壊れる前のわずかな兆候を捕捉し、計画外停止をゼロに近づける。</p>
-        </div>
-        <div class="rc-use rc-use-highlight">
-          <h4 class="rc-use-title" data-ja="異常検知" data-en="Anomaly Detection">異常検知</h4>
-          <p class="rc-use-desc" data-ja="正常稼働の波形から学習し、現場固有の「いつもと違う」を即座に判定する。" data-en="Learn from normal operating waveforms and instantly flag site-specific deviations.">正常稼働の波形から学習し、現場固有の「いつもと違う」を即座に判定する。</p>
-        </div>
-        <div class="rc-use">
-          <h4 class="rc-use-title" data-ja="需要予測" data-en="Demand Forecasting">需要予測</h4>
-          <p class="rc-use-desc" data-ja="生産量・エネルギー消費・出荷量など、時系列の未来をリアルタイムで予測する。" data-en="Forecast production, energy use, and shipment volumes in real time.">生産量・エネルギー消費・出荷量など、時系列の未来をリアルタイムで予測する。</p>
-        </div>
-      </div>
+        <details class="acc-item">
+          <summary class="acc-summary">
+            <span class="acc-label">Approach</span>
+            <span class="acc-title" data-ja="現場専用の検知モデルを作る。" data-en="A model built for your site.">現場専用の検知モデルを作る。</span>
+            <span class="acc-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="acc-body">
+            <p class="acc-lead" data-ja="同じモーターでも、設置環境・稼働パターン・経年度合いで「正常」の基準は違う。汎用モデルでは精度が出ない。だから現場の正常稼働データから専用モデルを構築します。" data-en="Even the same motor has different normal baselines depending on installation, usage, and age. Generic models fail. We build from your normal operating data.">同じモーターでも、設置環境・稼働パターン・経年度合いで「正常」の基準は違う。汎用モデルでは精度が出ない。だから現場の正常稼働データから専用モデルを構築します。</p>
+            <ul class="acc-list">
+              <li><strong data-ja="エッジ完結" data-en="Edge-only">エッジ完結</strong><span data-ja="製造データが外に出ず、ネットワークなしの現場にも導入可能。" data-en="Data never leaves your facility. Works offline.">製造データが外に出ず、ネットワークなしの現場にも導入可能。</span></li>
+              <li><strong data-ja="少データ学習" data-en="Small-data learning">少データ学習</strong><span data-ja="正常データだけで短時間にモデル構築。大量の学習データは不要。" data-en="Build from normal data alone. No massive datasets needed.">正常データだけで短時間にモデル構築。大量の学習データは不要。</span></li>
+              <li><strong data-ja="自律追従" data-en="Self-adapting">自律追従</strong><span data-ja="季節変動・経年劣化・条件変更にも常時再学習で対応。" data-en="Continuously relearns through seasonal shifts and aging.">季節変動・経年劣化・条件変更にも常時再学習で対応。</span></li>
+              <li><strong data-ja="理由が分かる" data-en="Explainable">理由が分かる</strong><span data-ja="どのセンサー値が異常を示したか明確に表示し、現場が動ける。" data-en="Shows exactly which sensors triggered the alert.">どのセンサー値が異常を示したか明確に表示し、現場が動ける。</span></li>
+            </ul>
+          </div>
+        </details>
 
-      <p class="rc-footnote reveal reveal-delay-3" data-ja="弱点である長期記憶や大規模画像認識は、既存AIと組み合わせることで補完。RCの強みを最大限に引き出します。" data-en="We complement RC's weaknesses (long-term memory, large-scale image recognition) by combining it with conventional AI—maximizing what RC does best.">弱点である長期記憶や大規模画像認識は、既存AIと組み合わせることで補完。RCの強みを最大限に引き出します。</p>
-    </div>
-  </section>
+        <details class="acc-item">
+          <summary class="acc-summary">
+            <span class="acc-label">Core Tech</span>
+            <span class="acc-title" data-ja="リザバーコンピューティングとは" data-en="What is Reservoir Computing?">リザバーコンピューティングとは</span>
+            <span class="acc-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="acc-body">
+            <p class="acc-lead" data-ja="東京科学大学の研究室との共創から生まれた中核技術。RNNの一種でありながら中間層の重みを固定し、出力層のみを学習する独自アーキテクチャ。LLMと同じく未来を予測しつつ、全く異なる原理で動きます。" data-en="A core technology developed with Institute of Science Tokyo labs. A variant of RNN where the reservoir layer stays fixed and only the output layer learns. Predicts the future like an LLM, but on a fundamentally different principle.">東京科学大学の研究室との共創から生まれた中核技術。RNNの一種でありながら中間層の重みを固定し、出力層のみを学習する独自アーキテクチャ。LLMと同じく未来を予測しつつ、全く異なる原理で動きます。</p>
+            <div class="acc-formula"><span>非線形</span><em>×</em><span data-ja="記憶" data-en="Memory">記憶</span><em>×</em><span data-ja="時系列" data-en="Time-series">時系列</span></div>
+            <ul class="acc-list">
+              <li><strong data-ja="少ないデータで動く" data-en="Minimal data">少ないデータで動く</strong><span data-ja="数年分のデータが揃わない現場でも初日から検知可能。" data-en="Detection starts day one—no historical data required.">数年分のデータが揃わない現場でも初日から検知可能。</span></li>
+              <li><strong data-ja="圧倒的な低消費電力" data-en="Ultra-low power">圧倒的な低消費電力</strong><span data-ja="中間層の学習が不要でほぼ電力を消費しない。発熱問題から解放。" data-en="No mid-layer training. Almost zero power. No GPU heat.">中間層の学習が不要でほぼ電力を消費しない。発熱問題から解放。</span></li>
+              <li><strong data-ja="時系列データに桁違いに強い" data-en="Built for time-series">時系列データに桁違いに強い</strong><span data-ja="振動・電流・温度・音響など、波形データの特徴抽出が本領。" data-en="Vibration, current, temperature, acoustics—native strength.">振動・電流・温度・音響など、波形データの特徴抽出が本領。</span></li>
+            </ul>
+            <p class="acc-foot" data-ja="弱点（長期記憶・大規模画像認識）は既存AIで補完し、RCの強みを最大化します。" data-en="We complement RC's weaknesses with conventional AI to maximize its strengths.">弱点（長期記憶・大規模画像認識）は既存AIで補完し、RCの強みを最大化します。</p>
+          </div>
+        </details>
 
-  <!-- TRACK RECORD -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label">Track Record</span>
-        <h2 class="section-heading" data-ja="プライム上場企業から町工場まで。" data-en="From Tokyo Stock Exchange companies to small workshops.">プライム上場企業から町工場まで。</h2>
-        <p class="section-text" data-ja="東証プライム上場企業との実証実験を実施中。複数の町工場への導入が決定済み。大規模製造拠点から中小規模の工場まで、幅広い現場環境での実績があります。" data-en="We're running proof-of-concept with a TSE Prime-listed company. Multiple small factory deployments are confirmed. We have real-world experience across large manufacturing sites and small-scale operations.">東証プライム上場企業との実証実験を実施中。複数の町工場への導入が決定済み。大規模製造拠点から中小規模の工場まで、幅広い現場環境での実績があります。</p>
-      </div>
-      <div class="placeholder-box reveal reveal-delay-1">
-        <p data-ja="具体的な事例ストーリーは準備中です。" data-en="Specific case stories are being prepared.">具体的な事例ストーリーは準備中です。</p>
-      </div>
-    </div>
-  </section>
+        <details class="acc-item">
+          <summary class="acc-summary">
+            <span class="acc-label">Coverage</span>
+            <span class="acc-title" data-ja="対応できる設備領域" data-en="Equipment we handle">対応できる設備領域</span>
+            <span class="acc-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="acc-body">
+            <div class="tech-tags">
+              <span class="tech-tag" data-ja="回転機器（モーター・ポンプ・コンプレッサー）" data-en="Rotating Equipment">回転機器（モーター・ポンプ・コンプレッサー）</span>
+              <span class="tech-tag" data-ja="配管・バルブ" data-en="Piping &amp; Valves">配管・バルブ</span>
+              <span class="tech-tag" data-ja="コンベヤ・搬送機器" data-en="Conveyors">コンベヤ・搬送機器</span>
+              <span class="tech-tag" data-ja="空調・環境設備" data-en="HVAC">空調・環境設備</span>
+              <span class="tech-tag" data-ja="集塵機・排気設備" data-en="Exhaust">集塵機・排気設備</span>
+              <span class="tech-tag" data-ja="外観検査" data-en="Visual Inspection">外観検査</span>
+            </div>
+          </div>
+        </details>
 
-  <!-- CAPABILITIES -->
-  <section class="section alt-bg">
-    <div class="section-inner">
-      <div class="reveal" style="text-align:center;">
-        <span class="section-label">Equipment Coverage</span>
-        <h2 class="section-heading" data-ja="あらゆる設備の「いつもと違う」に対応。" data-en="We handle the subtle shifts in any equipment.">あらゆる設備の「いつもと違う」に対応。</h2>
-        <p style="color:var(--text-secondary);margin-bottom:2rem;" data-ja="ZetaXが対応できる設備領域" data-en="Equipment domains ZetaX covers">ZetaXが対応できる設備領域</p>
-      </div>
-      <div class="tech-tags reveal reveal-delay-1">
-        <span class="tech-tag" data-ja="回転機器（モーター・ポンプ・コンプレッサー）" data-en="Rotating Equipment (Motors, Pumps, Compressors)">回転機器（モーター・ポンプ・コンプレッサー）</span>
-        <span class="tech-tag" data-ja="配管・バルブ" data-en="Piping &amp; Valves">配管・バルブ</span>
-        <span class="tech-tag" data-ja="コンベヤ・搬送機器" data-en="Conveyors &amp; Material Handling">コンベヤ・搬送機器</span>
-        <span class="tech-tag" data-ja="空調・環境設備" data-en="HVAC &amp; Environmental Systems">空調・環境設備</span>
-        <span class="tech-tag" data-ja="集塵機・排気設備" data-en="Dust Collection &amp; Exhaust">集塵機・排気設備</span>
-        <span class="tech-tag" data-ja="外観検査" data-en="Visual Inspection">外観検査</span>
+        <details class="acc-item">
+          <summary class="acc-summary">
+            <span class="acc-label">Track Record</span>
+            <span class="acc-title" data-ja="プライム上場企業から町工場まで" data-en="From listed firms to small workshops">プライム上場企業から町工場まで</span>
+            <span class="acc-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="acc-body">
+            <p class="acc-lead" data-ja="東証プライム上場企業との実証実験を実施中。複数の町工場への導入が決定済み。大規模製造拠点から中小規模の工場まで、幅広い現場で実績があります。" data-en="Running PoC with a TSE Prime-listed company. Multiple small factory deployments confirmed. From large sites to small operations.">東証プライム上場企業との実証実験を実施中。複数の町工場への導入が決定済み。大規模製造拠点から中小規模の工場まで、幅広い現場で実績があります。</p>
+          </div>
+        </details>
       </div>
     </div>
   </section>
