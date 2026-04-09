@@ -4,9 +4,9 @@ import { type SiteDataProps } from "../types/configDataTypes";
 const siteData: SiteDataProps = {
   name: "ZetaX",
   // Your website's title and description (meta fields)
-  title: "ZetaX - UTokyo Deep Tech Startup | Photonics Reservoir Computing",
+  title: "ZetaX | Manufacturing Anomaly Detection — Let AI Watch. Let Humans Create.",
   description:
-    "ZetaX, a Deep Tech Startup from The University of Tokyo. Creating next-generation innovation with Photonics Reservoir Computing and AI technology.",
+    "ZetaX, a deep-tech startup from the University of Tokyo. A manufacturing-focused anomaly detection system powered by a proprietary algorithm — GPU-free, cloud-free edge AI for predictive maintenance.",
 
   // used on contact page and footer
   contact: {

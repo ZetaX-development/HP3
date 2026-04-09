@@ -4,9 +4,9 @@ import { type SiteDataProps } from "../types/configDataTypes";
 const siteData: SiteDataProps = {
   name: "ZetaX",
   // Your website's title and description (meta fields)
-  title: "ZetaX - 東大発 DeepTechスタートアップ | Photonics Reservoir Computing",
+  title: "ZetaX | 製造業向け 異常検知システム ― 「見張る」はAIに。「創る」は人に。",
   description:
-    "東大発DeepTechスタートアップZetaX。Photonics Reservoir ComputingとAI技術で次世代のイノベーションを創出。",
+    "東大発ディープテックスタートアップZetaX。製造業に特化した独自アルゴリズムの異常検知システムで、GPU不要・クラウド不要のエッジAIによる予兆保全を実現します。",
 
   // used on contact page and footer
   contact: {
