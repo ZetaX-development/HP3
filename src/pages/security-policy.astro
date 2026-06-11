@@ -1,0 +1,405 @@
+---
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セキュリティポリシー — ZetaX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #ffffff; --bg-subtle: #f7f8fa; --text-primary: #0d0d14;
+      --text-secondary: #52606d; --text-dim: #9da5b4; --accent: #1a3fbf;
+      --accent-pale: #eef1fd; --border: #e4e7ef; --border-light: #f0f2f6;
+      --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { font-size: 16px; background: var(--bg); }
+    body { font-family: var(--font-jp); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 68px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-en); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.12em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { font-family: var(--font-en); font-size: 0.8rem; color: var(--text-secondary); transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+
+    /* PAGE HERO */
+    .page-hero { padding-top: 68px; background: var(--text-primary); padding-bottom: 4rem; }
+    .page-hero-inner { max-width: 880px; margin: 0 auto; padding: 4rem 3rem 0; }
+    .page-eyebrow { font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #7b96ff; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem; }
+    .page-eyebrow::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #7b96ff; }
+    .page-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 1.2rem; }
+    .page-subtitle { font-size: 0.95rem; color: rgba(255,255,255,0.52); line-height: 1.9; max-width: 600px; }
+    .page-meta { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 3rem; flex-wrap: wrap; }
+    .page-meta-item { }
+    .page-meta-label { font-family: var(--font-en); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.3rem; }
+    .page-meta-value { font-size: 0.84rem; color: rgba(255,255,255,0.65); }
+
+    /* SUMMARY CARDS */
+    .summary-band { background: var(--accent-pale); border-bottom: 1px solid var(--border); }
+    .summary-grid { max-width: 880px; margin: 0 auto; padding: 2.5rem 3rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .summary-card { background: var(--accent-pale); padding: 1.4rem 1.6rem; }
+    .summary-card-icon { font-family: var(--font-en); font-size: 1.4rem; font-weight: 700; color: var(--accent); margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+    .summary-card-label { font-size: 0.78rem; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+    .summary-card-sub { font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.2rem; }
+
+    /* MAIN CONTENT */
+    .content-wrap { max-width: 880px; margin: 0 auto; padding: 0 3rem; }
+    .policy-section { padding: 4rem 0; border-bottom: 1px solid var(--border-light); }
+    .policy-section:last-child { border-bottom: none; }
+    .policy-section-header { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 2rem; }
+    .policy-section-num { font-family: var(--font-en); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); white-space: nowrap; }
+    .policy-section-title { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
+    .policy-body p { font-size: 0.92rem; color: var(--text-secondary); line-height: 2.05; margin-bottom: 1.2rem; }
+    .policy-body p:last-child { margin-bottom: 0; }
+    .policy-sub { margin-top: 2rem; }
+    .policy-sub-title { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.6rem; margin-top: 1.8rem; }
+    .policy-sub-title:first-child { margin-top: 0; }
+    .policy-list { margin: 0.6rem 0 1rem 0; list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .policy-list li { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.9; display: flex; align-items: flex-start; gap: 0.8rem; }
+    .policy-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.65rem; }
+    .policy-highlight { background: var(--bg-subtle); border-left: 3px solid var(--accent); padding: 1.2rem 1.6rem; margin: 1.6rem 0; border-radius: 0 4px 4px 0; }
+    .policy-highlight p { font-size: 0.88rem; color: var(--text-primary); line-height: 1.9; margin-bottom: 0; font-weight: 500; }
+
+    /* TABLE */
+    .policy-table { width: 100%; border-collapse: collapse; margin: 1.4rem 0; font-size: 0.88rem; }
+    .policy-table th { background: var(--bg-subtle); padding: 0.9rem 1.2rem; text-align: left; font-weight: 600; color: var(--text-primary); border: 1px solid var(--border); font-size: 0.82rem; }
+    .policy-table td { padding: 0.9rem 1.2rem; color: var(--text-secondary); border: 1px solid var(--border); vertical-align: top; line-height: 1.8; }
+
+    /* FOOTER */
+    .page-footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .page-footer-copy { font-family: var(--font-en); font-size: 0.74rem; color: var(--text-dim); }
+    .page-footer-links { display: flex; gap: 1.5rem; }
+    .page-footer-links a { font-family: var(--font-en); font-size: 0.74rem; color: var(--text-secondary); transition: color 0.2s; }
+    .page-footer-links a:hover { color: var(--accent); }
+    .page-footer-links a.current { color: var(--accent); font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 1.5rem; }
+      .page-hero-inner, .content-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem; }
+      .page-meta { gap: 1.5rem; }
+      .page-footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">ZETA<span>X</span></a>
+    <a href="/" class="nav-back">← ホームに戻る</a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-eyebrow">Security Policy</p>
+      <h1 class="page-title">セキュリティポリシー</h1>
+      <p class="page-subtitle">株式会社ZetaXは、都内大手銀行のセキュリティコンサルティングを手がけてきた専門家集団として、情報セキュリティを事業運営の根幹に置いています。本ポリシーは、社内の全メンバーが遵守すべき基本方針を定めたものです。</p>
+      <div class="page-meta">
+        <div class="page-meta-item">
+          <p class="page-meta-label">制定日</p>
+          <p class="page-meta-value">2024年9月1日</p>
+        </div>
+        <div class="page-meta-item">
+          <p class="page-meta-label">最終改定</p>
+          <p class="page-meta-value">2024年9月1日</p>
+        </div>
+        <div class="page-meta-item">
+          <p class="page-meta-label">適用対象</p>
+          <p class="page-meta-value">全社員・業務委託者・インターン</p>
+        </div>
+        <div class="page-meta-item">
+          <p class="page-meta-label">責任者</p>
+          <p class="page-meta-value">代表取締役 / セキュリティ統括</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-band">
+    <div class="summary-grid">
+      <div class="summary-card">
+        <p class="summary-card-icon">銀行</p>
+        <p class="summary-card-label">都内大手銀行2社との<br>実績に基づく水準</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card-icon">PQC</p>
+        <p class="summary-card-label">次世代暗号（耐量子暗号）<br>への対応体制</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card-icon">0</p>
+        <p class="summary-card-label">外部委託ゼロ<br>情報の社外流出経路なし</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card-icon">CTF</p>
+        <p class="summary-card-label">全国大会入賞者が<br>セキュリティ設計を担当</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第1条</span>
+        <h2 class="policy-section-title">基本方針</h2>
+      </div>
+      <div class="policy-body">
+        <p>株式会社ZetaX（以下「当社」）は、情報セキュリティをすべての事業活動の基盤と位置づけ、お客様・取引先・社員に関わる情報資産を適切に保護することを経営上の最重要課題の一つとして取り組みます。</p>
+        <p>当社のセキュリティ責任者は、都内大手銀行2社のセキュリティコンサルティングおよび次世代暗号（耐量子暗号・PQC）の導入支援を行ってきた実務家であり、サイバーセキュリティ全国大会入賞の経歴を持ちます。この専門知識を自社のセキュリティ体制にも直接反映しています。</p>
+        <div class="policy-highlight">
+          <p>当社の全業務は完全内製です。外部への業務委託は一切行いません。これはセキュリティ観点からも最も重要な方針であり、お客様の機密情報が当社エンジニア以外の手に渡ることはありません。</p>
+        </div>
+        <p>本ポリシーは、技術的安全管理措置・組織的安全管理措置・人的安全管理措置・物理的安全管理措置の4つの観点から体系的に定められており、全社員が遵守する義務を負います。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第2条</span>
+        <h2 class="policy-section-title">情報資産の分類と管理</h2>
+      </div>
+      <div class="policy-body">
+        <p>当社が取り扱う情報資産は、機密性・完全性・可用性の観点から以下のとおり分類し、それぞれに応じた取り扱い基準を定めます。</p>
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>分類</th>
+              <th>定義</th>
+              <th>取り扱い基準</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>極秘（Confidential）</strong></td>
+              <td>お客様の個人情報・契約内容・システム設計情報</td>
+              <td>暗号化必須・アクセス者を担当者のみに限定・持ち出し禁止</td>
+            </tr>
+            <tr>
+              <td><strong>社外秘（Internal）</strong></td>
+              <td>社内資料・提案書・開発仕様書</td>
+              <td>社内のみ共有可。外部共有は責任者承認が必要</td>
+            </tr>
+            <tr>
+              <td><strong>公開（Public）</strong></td>
+              <td>ウェブサイト掲載情報・プレスリリース</td>
+              <td>制限なし</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>すべての情報資産には管理責任者を定め、定期的な棚卸しを実施します。不要になった情報資産は、復元不可能な方法で確実に廃棄します。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第3条</span>
+        <h2 class="policy-section-title">技術的安全管理措置</h2>
+      </div>
+      <div class="policy-body">
+        <div class="policy-sub">
+          <p class="policy-sub-title">3-1. 通信・データの暗号化</p>
+          <ul class="policy-list">
+            <li>すべての外部通信はTLS 1.2以上による暗号化を必須とする</li>
+            <li>機密性の高いデータの保存にはAES-256以上の暗号化を適用する</li>
+            <li>次世代暗号（Post-Quantum Cryptography / PQC）への移行計画を策定し、段階的に導入を進める</li>
+            <li>メール送受信における機密情報は、エンドツーエンド暗号化または代替の安全な通信手段を使用する</li>
+          </ul>
+
+          <p class="policy-sub-title">3-2. アクセス制御・認証</p>
+          <ul class="policy-list">
+            <li>すべてのシステムアクセスは多要素認証（MFA）を原則とする</li>
+            <li>情報へのアクセス権限は最小権限の原則（Principle of Least Privilege）に従い付与する</li>
+            <li>退職・プロジェクト終了時には即日アクセス権限を失効させる</li>
+            <li>パスワードはパスワードマネージャーを使用し、再利用禁止・定期変更を義務付ける</li>
+          </ul>
+
+          <p class="policy-sub-title">3-3. 脆弱性管理</p>
+          <ul class="policy-list">
+            <li>開発するすべてのシステムに対し、リリース前に脆弱性診断を実施する</li>
+            <li>OWASP Top 10をはじめとする既知の脆弱性カテゴリを設計段階からチェックする</li>
+            <li>使用するOSS・ライブラリの脆弱性情報を継続的にモニタリングし、重要なパッチは発表後72時間以内に適用する</li>
+            <li>ペネトレーションテストを定期的に実施し、実環境に近い条件での安全確認を行う</li>
+          </ul>
+
+          <p class="policy-sub-title">3-4. ログ・監視</p>
+          <ul class="policy-list">
+            <li>本番環境への重要操作はすべてログに記録し、改ざんを防止する仕組みを設ける</li>
+            <li>異常アクセス・不審な操作パターンを検知する監視体制を整備する</li>
+            <li>ログは最低180日間保持し、インシデント調査に備える</li>
+          </ul>
+
+          <p class="policy-sub-title">3-5. Security by Design（設計段階からのセキュリティ）</p>
+          <p>当社では、セキュリティを後付けで追加するのではなく、設計の最初の段階から組み込みます。システムアーキテクチャのレビュー時に脅威モデリングを実施し、攻撃者の視点でリスクを洗い出した上で設計を進めます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第4条</span>
+        <h2 class="policy-section-title">組織的安全管理措置</h2>
+      </div>
+      <div class="policy-body">
+        <div class="policy-sub">
+          <p class="policy-sub-title">4-1. セキュリティ体制</p>
+          <p>代表取締役がセキュリティ統括責任者を兼任し、情報セキュリティに関する最終意思決定を行います。各プロジェクトにはセキュリティ担当を定め、開発工程全体を通じたセキュリティチェックを実施します。</p>
+
+          <p class="policy-sub-title">4-2. セキュリティ審査プロセス</p>
+          <ul class="policy-list">
+            <li>新規システムの設計・開発開始前に、セキュリティ要件の定義を必須とする</li>
+            <li>リリース前にセキュリティチェックリストによる確認を義務付ける</li>
+            <li>お客様に納品するシステムに対しては、第三者視点でのレビューを実施する</li>
+          </ul>
+
+          <p class="policy-sub-title">4-3. 委託先管理</p>
+          <p>当社は完全内製を原則とし、外部への業務委託を行いません。万が一、外部サービス（クラウドサービス等）を利用する場合は、当該サービスのセキュリティポリシー・認証取得状況を事前に審査し、適切な水準を満たすことを確認した上で利用します。</p>
+
+          <p class="policy-sub-title">4-4. 契約・守秘義務</p>
+          <p>お客様との契約には、守秘義務条項を必ず含め、情報の取り扱い範囲・責任・違反時の対応を明確にします。社員・インターン・外部協力者（利用する場合）はすべて守秘義務契約を締結します。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第5条</span>
+        <h2 class="policy-section-title">人的安全管理措置</h2>
+      </div>
+      <div class="policy-body">
+        <div class="policy-sub">
+          <p class="policy-sub-title">5-1. セキュリティ教育・訓練</p>
+          <ul class="policy-list">
+            <li>全社員に対して、情報セキュリティ研修を入社時および年1回以上実施する</li>
+            <li>フィッシング攻撃・ソーシャルエンジニアリングへの対応訓練を定期的に行う</li>
+            <li>セキュリティ担当者は、最新の脅威動向・技術をキャッチアップするための専門研修を受ける</li>
+          </ul>
+
+          <p class="policy-sub-title">5-2. インシデント報告義務</p>
+          <p>セキュリティインシデントの疑いや異常を発見した場合、すべての社員は直ちに責任者に報告する義務を負います。報告を遅延させることは、いかなる理由があっても認めません。</p>
+
+          <p class="policy-sub-title">5-3. 違反時の対応</p>
+          <p>本ポリシーに違反した場合は、違反の内容・影響に応じて適切な措置を講じます。意図的な情報漏洩や重大な違反に対しては、法的措置を含む厳格な対応を取ります。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第6条</span>
+        <h2 class="policy-section-title">物理的安全管理措置</h2>
+      </div>
+      <div class="policy-body">
+        <ul class="policy-list">
+          <li>機密情報を取り扱う作業は、第三者が画面を閲覧できない環境で行う</li>
+          <li>作業端末の画面には、席を離れる際に必ずロックをかける（離席ロックの徹底）</li>
+          <li>機密情報を含む書類は、施錠可能な場所に保管し、不要になった場合はシュレッダー処理する</li>
+          <li>業務端末（PC・スマートフォン等）の紛失・盗難に備え、遠隔ワイプの設定を義務付ける</li>
+          <li>公共の場（カフェ・電車内等）での機密情報の閲覧・入力を禁止する</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第7条</span>
+        <h2 class="policy-section-title">インシデント対応</h2>
+      </div>
+      <div class="policy-body">
+        <p>セキュリティインシデントが発生した場合、または発生の疑いがある場合は、以下のプロセスに従い迅速かつ適切に対応します。</p>
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>フェーズ</th>
+              <th>実施事項</th>
+              <th>目標時間</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>検知・報告</strong></td>
+              <td>インシデントの発見者は直ちに責任者へ報告。影響範囲の初期評価を行う</td>
+              <td>発見後30分以内</td>
+            </tr>
+            <tr>
+              <td><strong>初動封じ込め</strong></td>
+              <td>被害拡大を防ぐための緊急措置（システム遮断・アクセス無効化等）を実施</td>
+              <td>報告後2時間以内</td>
+            </tr>
+            <tr>
+              <td><strong>顧客通知</strong></td>
+              <td>お客様の情報に影響がある場合、速やかに通知し状況を説明する</td>
+              <td>確認後24時間以内</td>
+            </tr>
+            <tr>
+              <td><strong>原因究明</strong></td>
+              <td>フォレンジック調査により根本原因を特定する</td>
+              <td>インシデント収束後72時間以内</td>
+            </tr>
+            <tr>
+              <td><strong>再発防止</strong></td>
+              <td>再発防止策を策定・実施し、ポリシーに反映する</td>
+              <td>原因究明後2週間以内</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>個人情報保護法に基づく報告義務が生じる場合は、法令に定める期限内に個人情報保護委員会および本人への通知を行います。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第8条</span>
+        <h2 class="policy-section-title">次世代暗号（PQC）への対応</h2>
+      </div>
+      <div class="policy-body">
+        <p>量子コンピュータの実用化によって、現在広く使われているRSAやECDSAなどの公開鍵暗号が将来的に解読されるリスクが指摘されています。当社は、都内大手銀行に対するPQC導入支援の実績を持つ専門家を有しており、自社の暗号化体制についても次世代暗号への移行計画を策定しています。</p>
+        <div class="policy-highlight">
+          <p>NIST（米国国立標準技術研究所）が標準化したPQCアルゴリズム（CRYSTALS-Kyber、CRYSTALS-Dilithium等）への段階的移行を推進しており、お客様が開発を依頼されるシステムについても、長期的な暗号安全性の観点からのアドバイスが可能です。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第9条</span>
+        <h2 class="policy-section-title">継続的改善</h2>
+      </div>
+      <div class="policy-body">
+        <p>本ポリシーは、技術環境の変化・新たな脅威・法令の改正等を踏まえ、定期的に見直しを行います。年1回以上の定期レビューを実施し、必要に応じて随時改定します。</p>
+        <p>セキュリティ水準の継続的な向上のため、外部の脅威情報（JPCERT/CCの注意喚起・IPAのセキュリティ情報等）を定期的に参照し、新たなリスクへの対応を迅速に行います。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第10条</span>
+        <h2 class="policy-section-title">お問い合わせ</h2>
+      </div>
+      <div class="policy-body">
+        <p>本ポリシーに関するご質問・セキュリティに関するご報告・脆弱性情報の開示等は、以下の連絡先にご連絡ください。責任者が直接対応いたします。</p>
+        <p>株式会社ZetaX　セキュリティ統括責任者<br>
+        所在地：東京都渋谷区神南1丁目11−4 FPGリンクス神南 5階<br>
+        Email：contact@zetax.co.jp</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <p class="page-footer-copy">&copy; 2024 ZetaX Inc. All rights reserved.</p>
+    <div class="page-footer-links">
+      <a href="/security-policy" class="current">Security Policy</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms">Terms</a>
+      <a href="/">Home</a>
+    </div>
+  </div>
+
+</body>
+</html>

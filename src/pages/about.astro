@@ -1,0 +1,419 @@
+---
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会社紹介 — ZetaX</title>
+  <meta name="description" content="株式会社ZetaXについて。東京大学・東京工業大学出身エンジニアを中心とした、AI Nativeコンサルエンジニア集団。お客様に徹底的に寄り添うことを第一に。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #ffffff;
+      --bg-subtle: #f7f8fa;
+      --text-primary: #0d0d14;
+      --text-secondary: #52606d;
+      --text-dim: #9da5b4;
+      --accent: #1a3fbf;
+      --accent-light: #3b5fdf;
+      --accent-pale: #eef1fd;
+      --border: #e4e7ef;
+      --border-light: #f0f2f6;
+      --font-jp: 'Noto Sans JP', sans-serif;
+      --font-en: 'Inter', 'Noto Sans JP', sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { font-size: 16px; background: var(--bg); overflow-x: hidden; }
+    body { font-family: var(--font-jp); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 68px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-en); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.12em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 0; }
+    .nav-cta { font-family: var(--font-jp); font-size: 0.82rem; font-weight: 600; padding: 9px 22px; border-radius: 6px; background: var(--accent); color: #fff; margin-left: 1.2rem; transition: background 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: #3b5fdf; }
+    .nav-dropdown-trigger { display: flex; align-items: center; gap: 4px; height: 68px; padding: 0 1.1rem; color: var(--text-secondary); font-family: var(--font-jp); font-size: 0.82rem; font-weight: 500; border: none; background: none; cursor: pointer; transition: color 0.2s; white-space: nowrap; }
+    .nav-dropdown-trigger:hover { color: var(--text-primary); }
+    .nav-has-drop { position: relative; }
+    .nav-dropdown { position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%) translateY(-6px); background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); padding: 0.6rem 0; min-width: 200px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s, transform 0.18s; }
+    .nav-has-drop:hover .nav-dropdown { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown a { display: block; padding: 0.6rem 1.4rem; font-family: var(--font-jp); font-size: 0.82rem; color: var(--text-secondary); transition: background 0.15s, color 0.15s; white-space: nowrap; }
+    .nav-dropdown a:hover { background: var(--bg-subtle); color: var(--accent); }
+    .nav-dropdown-divider { height: 1px; background: var(--border-light); margin: 0.4rem 0; }
+    .nav-dropdown-label { padding: 0.5rem 1.4rem 0.2rem; font-family: var(--font-en); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* LAYOUT */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+    .section { padding: 96px 0; }
+    .section-alt { background: var(--bg-subtle); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+
+    /* SECTION LABEL */
+    .section-label { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+    .section-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .section-heading { font-family: var(--font-jp); font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; line-height: 1.3; }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      padding-top: 68px;
+      min-height: 52vh;
+      display: flex; align-items: center;
+      background: #ffffff;
+      position: relative; overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(to right, rgba(26,63,191,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,63,191,0.04) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 10%, transparent 80%);
+    }
+    .page-hero-blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.18; pointer-events: none; }
+    .page-hero-blob-1 { width: 600px; height: 600px; top: -200px; right: -100px; background: radial-gradient(circle, #c4d0ff, transparent 70%); }
+    .page-hero-content { position: relative; z-index: 2; padding: 5rem 0 4rem; }
+    .page-hero-eyebrow { font-family: var(--font-en); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.6rem; }
+    .page-hero-title { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; line-height: 1.3; color: var(--text-primary); margin-bottom: 2rem; }
+    .page-hero-title .accent { color: var(--accent); }
+    .page-hero-sub { font-size: 1rem; color: var(--text-secondary); line-height: 2; max-width: 560px; }
+
+    /* ─── PHILOSOPHY ─── */
+    .philosophy-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: start; }
+    .philosophy-sticky { position: sticky; top: 100px; }
+    .philosophy-heading { font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 700; line-height: 1.45; margin-bottom: 1.6rem; }
+    .philosophy-heading .accent { color: var(--accent); }
+    .philosophy-lead { font-size: 1rem; color: var(--text-secondary); line-height: 2.1; }
+    .philosophy-blocks { display: flex; flex-direction: column; gap: 3.5rem; }
+    .philosophy-block { border-left: 2px solid var(--accent); padding-left: 1.8rem; }
+    .philosophy-block-num { font-family: var(--font-en); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 0.6rem; }
+    .philosophy-block-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.8rem; line-height: 1.5; }
+    .philosophy-block-body { font-size: 0.9rem; color: var(--text-secondary); line-height: 2.1; }
+
+    /* ─── FOUNDERS ─── */
+    .founders-intro { max-width: 680px; margin-bottom: 5rem; }
+    .founders-intro p { font-size: 0.95rem; color: var(--text-secondary); line-height: 2.1; margin-bottom: 1rem; }
+    .founders-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .founder-card { background: var(--bg); padding: 3.5rem; }
+    .founder-photo-wrap { margin-bottom: 2rem; }
+    .founder-photo { width: 160px; height: 200px; object-fit: cover; object-position: top center; display: block; border: 1px solid var(--border); }
+    .founder-name { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem; letter-spacing: 0.04em; }
+    .founder-name-en { font-family: var(--font-en); font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+    .founder-role { font-family: var(--font-en); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.4rem; }
+    .founder-affil { font-size: 0.78rem; color: var(--text-dim); margin-bottom: 1.6rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--border-light); }
+    .founder-bio { font-size: 0.9rem; color: var(--text-secondary); line-height: 2.1; }
+    .founder-highlights { margin-top: 1.6rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .founder-highlight { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.82rem; color: var(--text-secondary); line-height: 1.7; }
+    .founder-highlight::before { content: '—'; color: var(--accent); font-family: var(--font-en); flex-shrink: 0; margin-top: 0.1rem; }
+
+    /* ─── VALUES GRID ─── */
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
+    .value-card { background: var(--bg); padding: 2.8rem; }
+    .value-num { font-family: var(--font-en); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 1rem; }
+    .value-title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.8rem; line-height: 1.5; }
+    .value-body { font-size: 0.86rem; color: var(--text-secondary); line-height: 2; }
+
+    /* ─── COMPANY TABLE ─── */
+    .company-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .company-table tr { border-bottom: 1px solid var(--border-light); }
+    .company-table th { padding: 1.3rem 2rem 1.3rem 0; text-align: left; font-weight: 600; color: var(--text-primary); font-size: 0.82rem; white-space: nowrap; width: 180px; vertical-align: top; }
+    .company-table td { padding: 1.3rem 1rem; color: var(--text-secondary); line-height: 1.9; }
+
+    /* ─── CTA ─── */
+    .cta-band { background: var(--text-primary); padding: 72px 0; }
+    .cta-inner { display: flex; justify-content: space-between; align-items: center; gap: 3rem; }
+    .cta-text h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 0.6rem; line-height: 1.4; }
+    .cta-text p { font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+    .btn-primary-lg { font-family: var(--font-jp); font-size: 0.92rem; font-weight: 600; padding: 15px 40px; border-radius: 6px; background: var(--accent); color: #fff; white-space: nowrap; transition: background 0.2s, transform 0.2s; display: inline-block; }
+    .btn-primary-lg:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+    /* FOOTER */
+    .footer-mini { background: var(--text-primary); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.07); }
+    .footer-copy { font-family: var(--font-en); font-size: 0.74rem; color: rgba(255,255,255,0.25); }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a { font-family: var(--font-en); font-size: 0.74rem; color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.65); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .philosophy-wrap { grid-template-columns: 1fr; gap: 3.5rem; }
+      .philosophy-sticky { position: static; }
+      .founders-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .cta-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0 1.5rem; }
+      .container { padding: 0 1.5rem; }
+      .section { padding: 64px 0; }
+      .values-grid { grid-template-columns: 1fr; }
+      .footer-mini { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">ZETA<span>X</span></a>
+    <div class="nav-right">
+      <ul class="nav-links" style="list-style:none;display:flex;gap:0;font-size:0.82rem;">
+        <li style="position:relative;">
+          <a href="/#why" style="display:flex;align-items:center;height:68px;padding:0 1.1rem;color:var(--text-secondary);font-size:0.82rem;transition:color .2s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">強み</a>
+        </li>
+        <li style="position:relative;" class="nav-has-drop">
+          <button class="nav-dropdown-trigger">サービス <span style="font-size:.55rem;opacity:.5;">▼</span></button>
+          <div class="nav-dropdown">
+            <p class="nav-dropdown-label">Services</p>
+            <a href="/#services">AI/ITコンサル・開発</a>
+            <a href="/#services">セキュリティコンサル</a>
+            <a href="/#services">AI研修</a>
+            <a href="/#services">ハードウェア開発</a>
+            <div class="nav-dropdown-divider"></div>
+            <a href="/#products">自社プロダクト</a>
+          </div>
+        </li>
+        <li style="position:relative;" class="nav-has-drop">
+          <button class="nav-dropdown-trigger">実績 <span style="font-size:.55rem;opacity:.5;">▼</span></button>
+          <div class="nav-dropdown">
+            <a href="/#cases">業種別支援事例</a>
+            <a href="/#testimonials">お客様の声</a>
+          </div>
+        </li>
+        <li style="position:relative;" class="nav-has-drop">
+          <button class="nav-dropdown-trigger">会社 <span style="font-size:.55rem;opacity:.5;">▼</span></button>
+          <div class="nav-dropdown">
+            <a href="/about" style="color:var(--accent);font-weight:600;">会社紹介（詳細）</a>
+            <a href="/#company">会社概要</a>
+            <a href="/about#founders">代表紹介</a>
+            <div class="nav-dropdown-divider"></div>
+            <a href="/#news">ニュース</a>
+          </div>
+        </li>
+      </ul>
+      <a href="/#contact" class="nav-cta">お問い合わせ</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-blob page-hero-blob-1"></div>
+    <div class="container">
+      <div class="page-hero-content">
+        <p class="page-hero-eyebrow">About ZetaX</p>
+        <h1 class="page-hero-title">お客様に、<br><span class="accent">徹底的に寄り添う。</span></h1>
+        <p class="page-hero-sub">東京大学・東京工業大学出身エンジニアを中心とした、AI Nativeコンサルエンジニアの集団です。スピード感と丁寧さを兼ね備え、超上流から下流まで完全内製で一気通貫でサポートします。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <section class="section">
+    <div class="container">
+      <div class="philosophy-wrap">
+        <div class="philosophy-sticky reveal">
+          <span class="section-label">Our Philosophy</span>
+          <h2 class="philosophy-heading">私たちが大切にしていること</h2>
+          <p class="philosophy-lead">ZetaXは、「お客様に徹底的に寄り添うこと」を創業の原点にしています。IT・AI分野の開発会社は世の中に数多くあります。しかし、本当に現場に入り込み、現場の言葉で話し、一緒に考え、最後まで責任を持って伴走する会社は、まだ少ない。そのギャップを埋めるために、私たちは存在しています。</p>
+        </div>
+        <div class="philosophy-blocks">
+
+          <div class="philosophy-block reveal d1">
+            <p class="philosophy-block-num">01</p>
+            <h3 class="philosophy-block-title">現場に入ることを、惜しまない</h3>
+            <p class="philosophy-block-body">私たちのヒアリングは、会議室だけでは終わりません。必要であれば、お客様の現場に出勤し、実際の業務を共にします。倉庫、工場、士業事務所、医療機関——どこでも出向きます。現場の作業員の方から経営層まで幅広くお話を聞き、本当の課題を見つけることを大切にしています。オンライン・対面ともに対応しており、北は青森、南は福岡まで、全国での対面支援の実績があります。<br><br>よくある開発会社のように、画面の前だけで仕様を固めることはしません。「使う人が、どう使うか」を直接見て、初めて良いものが作れると信じています。</p>
+          </div>
+
+          <div class="philosophy-block reveal d2">
+            <p class="philosophy-block-num">02</p>
+            <h3 class="philosophy-block-title">初日にプロトタイプを見せる</h3>
+            <p class="philosophy-block-body">従来の開発では、要件定義に3ヶ月、開発に6ヶ月かけることも珍しくありません。その結果、「作ってみたら違った」という失敗が生まれます。<br><br>ZetaXは違います。初回のヒアリング後、できる限り早い段階で動くプロトタイプをお見せします。画面を触ってもらい、フィードバックをもらい、すぐに直す。この繰り返しが、認識のずれを最小化し、結果的に最も速く、最も良いものを届けます。<br><br>「何を作るべきか分からない」という状態でご相談いただいても構いません。その定義から一緒に考えることが、私たちの仕事です。</p>
+          </div>
+
+          <div class="philosophy-block reveal d3">
+            <p class="philosophy-block-num">03</p>
+            <h3 class="philosophy-block-title">納品後こそ、本番だと思っている</h3>
+            <p class="philosophy-block-body">システムは、納品した日から本当に使われ始めます。想定外のトラブルが起きる。使い方が変わる。新しい要件が出てくる。そのたびに新しい発注が必要な会社では、現場はどんどん疲弊していきます。<br><br>ZetaXは、導入研修から保守・点検まで継続して対応します。「ちょっとここが使いにくい」という小さな声も、しっかり受け取ります。システムが現場に根付き、本当に使われ続けるまで、責任を持って伴走し続けます。これが私たちの「一気通貫」の意味です。</p>
+          </div>
+
+          <div class="philosophy-block reveal">
+            <p class="philosophy-block-num">04</p>
+            <h3 class="philosophy-block-title">完全内製だから、信頼できる</h3>
+            <p class="philosophy-block-body">私たちのすべての業務は、自社エンジニアだけで完結します。外部への委託は一切行いません。<br><br>これは単なる方針ではなく、お客様への約束です。機密情報が外に出ない。品質が担保される。何か問題があれば、すぐに対応できる人間が社内にいる。「誰が、何を、どこまで知っているか」が常に明確な体制を維持しています。<br><br>都内大手銀行とのセキュリティコンサル実績を持つエンジニアが開発にも関わるため、セキュリティを後付けでなく設計の段階から組み込むことができます。</p>
+          </div>
+
+          <div class="philosophy-block reveal d1">
+            <p class="philosophy-block-num">05</p>
+            <h3 class="philosophy-block-title">東大・東工大出身であることの意味</h3>
+            <p class="philosophy-block-body">私たちのコアメンバーは、東京大学・東京工業大学出身のエンジニア・コンサルタントです。これは学歴の話ではありません。複雑な問題を構造化し、本質的な解を見つけ、それを実装まで落とし込む能力のことです。<br><br>AIがただのバズワードだった時代ではなく、実際にAIを使い、AIとともに育ってきた世代です。最新の技術を素早くキャッチアップし、実務に適用する力を持つ——これが「AI Native」という言葉に込めた意味です。単に技術があるだけでなく、その技術でお客様の課題を解決することに喜びを感じている集団です。</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Values</span>
+        <h2 class="section-heading">ZetaXが大切にする3つのこと</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal d1">
+          <p class="value-num">VALUE 01</p>
+          <h3 class="value-title">誠実さ</h3>
+          <p class="value-body">できないことは「できない」と言います。分からないことは「分からない」と言います。それでも、解決策を一緒に考えます。お客様との信頼は、小さな誠実さの積み重ねでしか築けないと信じています。契約関係の外でも、お客様の利益を最優先に考えて行動します。</p>
+        </div>
+        <div class="value-card reveal d2">
+          <p class="value-num">VALUE 02</p>
+          <h3 class="value-title">スピードと丁寧さの両立</h3>
+          <p class="value-body">速さと丁寧さは、トレードオフではありません。初日にプロトタイプを出すことも、現場の細かい声に耳を傾けることも、同じチームが同時にやります。スピードは「雑さ」ではなく、「無駄を省いた丁寧さ」から生まれると考えています。</p>
+        </div>
+        <div class="value-card reveal d3">
+          <p class="value-num">VALUE 03</p>
+          <h3 class="value-title">技術への真剣さ</h3>
+          <p class="value-body">AIや最新技術を「すごそうに見せる道具」として使うことはしません。お客様の課題に対して、本当に有効な技術を選びます。ときには「AIより、シンプルなシステムの方がいい」と言う判断もします。技術に対して真剣だからこそ、正直な提案ができると思っています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDERS -->
+  <section class="section" id="founders">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Representatives</span>
+        <h2 class="section-heading" style="margin-bottom:1.6rem;">代表紹介</h2>
+      </div>
+      <div class="founders-intro reveal d1">
+        <p>ZetaXは、東京大学工学部出身の2名によって2024年に創業しました。2人はともに、AIスタートアップで数億円規模の上場企業案件を経験したプロジェクトマネージャーです。現場に入り込むことの大切さと、技術と経営の両方を分かる人間がいることの価値を、身をもって知っています。</p>
+        <p>「本当にお客様の役に立てる会社を作りたい」——その想いが、ZetaX創業の出発点です。</p>
+      </div>
+      <div class="founders-grid">
+
+        <div class="founder-card reveal">
+          <div class="founder-photo-wrap">
+            <img src="/people/team1.png" alt="柳澤京佐" class="founder-photo">
+          </div>
+          <p class="founder-name">柳澤 京佐</p>
+          <p class="founder-name-en">Kyosuke Yanagisawa</p>
+          <p class="founder-role">CEO / Co-Founder</p>
+          <p class="founder-affil">東京大学 工学部</p>
+          <p class="founder-bio">東京大学工学部出身。AIスタートアップにおいて、数億円規模に及ぶ上場企業案件をはじめとする数多くのプロジェクトをプロジェクトマネージャーとして統括し、成功へと導く。<br><br>都内大手銀行をはじめとした金融機関に対するセキュリティコンサルティングにおいても豊富な実績を有する。次世代暗号（耐量子暗号・PQC）の導入支援や脆弱性診断など、高度なセキュリティ領域を専門とする。<br><br>単に要件を満たすシステムを作るだけでなく、現場に入り込んでお客様の業務を深く理解し、真に価値あるものを届けることを信念としている。</p>
+          <div class="founder-highlights">
+            <div class="founder-highlight">東京大学工学部卒業</div>
+            <div class="founder-highlight">AIスタートアップにて上場企業案件のPM統括</div>
+            <div class="founder-highlight">都内大手銀行2社へのセキュリティコンサルティング</div>
+            <div class="founder-highlight">サイバーセキュリティ全国大会 第3位</div>
+          </div>
+        </div>
+
+        <div class="founder-card reveal d1">
+          <div class="founder-photo-wrap">
+            <img src="/people/team2.jpg" alt="佐藤陽" class="founder-photo">
+          </div>
+          <p class="founder-name">佐藤 陽</p>
+          <p class="founder-name-en">Yo Sato</p>
+          <p class="founder-role">COO / Co-Founder</p>
+          <p class="founder-affil">東京大学 工学部</p>
+          <p class="founder-bio">東京大学工学部出身。ベンチャーキャピタルにて数多くのスタートアップへの投資審査・支援に携わり、事業の見極め方と成長の本質を学ぶ。その後、東京大学発のAIスタートアップにプロジェクトマネージャーとして参画し、東証プライム上場企業の案件をはじめとする数々のプロジェクトを手がける。<br><br>VC出身ならではの事業視点と、エンジニアとしての実装力を兼ね備えており、お客様の課題を経営・事業・技術の三層で捉えることができる。日本語・英語・スペイン語・ポルトガル語の4カ国語を操り、グローバルな視野を持つ。</p>
+          <div class="founder-highlights">
+            <div class="founder-highlight">東京大学工学部卒業</div>
+            <div class="founder-highlight">ベンチャーキャピタルにてスタートアップ投資・支援</div>
+            <div class="founder-highlight">東証プライム上場企業案件のPM担当</div>
+            <div class="founder-highlight">日本語・英語・スペイン語・ポルトガル語 対応可</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPANY INFO -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Company Info</span>
+        <h2 class="section-heading" style="margin-bottom: 3rem;">会社概要</h2>
+      </div>
+      <div class="reveal d1">
+        <table class="company-table">
+          <tr>
+            <th>会社名</th>
+            <td>株式会社ZetaX</td>
+          </tr>
+          <tr>
+            <th>設立</th>
+            <td>2024年</td>
+          </tr>
+          <tr>
+            <th>代表取締役</th>
+            <td>柳澤 京佐 / 佐藤 陽</td>
+          </tr>
+          <tr>
+            <th>所在地</th>
+            <td>〒150-0041<br>東京都渋谷区神南1丁目11−4 FPGリンクス神南 5階</td>
+          </tr>
+          <tr>
+            <th>事業内容</th>
+            <td>AI/ITコンサルティングおよびシステム開発<br>セキュリティコンサルティング<br>AI研修・リテラシー教育<br>ハードウェア開発</td>
+          </tr>
+          <tr>
+            <th>特徴</th>
+            <td>完全内製（下請けゼロ）<br>東京大学・東京工業大学出身エンジニアが中心メンバー<br>超上流から下流まで一気通貫対応</td>
+          </tr>
+          <tr>
+            <th>支援実績</th>
+            <td>累計25社以上（うち上場企業6社）<br>対応エリア: 全国対応（対面実績 青森〜福岡）</td>
+          </tr>
+          <tr>
+            <th>メディア掲載</th>
+            <td>日本経済新聞、毎日新聞</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h2>まず30分、話しましょう。</h2>
+          <p>何をすべきか分からない段階でも構いません。課題の整理から一緒に考えます。初回は無料です。</p>
+        </div>
+        <a href="/#contact" class="btn-primary-lg">30分の相談を申し込む（無料）</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-mini">
+    <p class="footer-copy">&copy; 2024 ZetaX Inc. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="/security-policy">Security Policy</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms">Terms</a>
+    </div>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

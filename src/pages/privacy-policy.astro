@@ -1,0 +1,399 @@
+---
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー — ZetaX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #ffffff; --bg-subtle: #f7f8fa; --text-primary: #0d0d14;
+      --text-secondary: #52606d; --text-dim: #9da5b4; --accent: #1a3fbf;
+      --accent-pale: #eef1fd; --border: #e4e7ef; --border-light: #f0f2f6;
+      --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { font-size: 16px; background: var(--bg); }
+    body { font-family: var(--font-jp); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 68px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-en); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.12em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { font-family: var(--font-en); font-size: 0.8rem; color: var(--text-secondary); transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+
+    .page-hero { padding-top: 68px; background: var(--text-primary); }
+    .page-hero-inner { max-width: 880px; margin: 0 auto; padding: 4rem 3rem; }
+    .page-eyebrow { font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #7b96ff; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem; }
+    .page-eyebrow::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #7b96ff; }
+    .page-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 1.2rem; }
+    .page-subtitle { font-size: 0.95rem; color: rgba(255,255,255,0.52); line-height: 1.9; max-width: 600px; }
+    .page-meta { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 3rem; flex-wrap: wrap; }
+    .page-meta-label { font-family: var(--font-en); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.3rem; }
+    .page-meta-value { font-size: 0.84rem; color: rgba(255,255,255,0.65); }
+
+    .summary-band { background: var(--accent-pale); border-bottom: 1px solid var(--border); }
+    .summary-grid { max-width: 880px; margin: 0 auto; padding: 2.5rem 3rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .summary-card { background: var(--accent-pale); padding: 1.4rem 1.6rem; }
+    .summary-card-icon { font-family: var(--font-en); font-size: 1.4rem; font-weight: 700; color: var(--accent); margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+    .summary-card-label { font-size: 0.78rem; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+    .summary-card-sub { font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.2rem; }
+
+    .content-wrap { max-width: 880px; margin: 0 auto; padding: 0 3rem; }
+    .policy-section { padding: 4rem 0; border-bottom: 1px solid var(--border-light); }
+    .policy-section:last-child { border-bottom: none; }
+    .policy-section-header { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 2rem; }
+    .policy-section-num { font-family: var(--font-en); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); white-space: nowrap; }
+    .policy-section-title { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
+    .policy-body p { font-size: 0.92rem; color: var(--text-secondary); line-height: 2.05; margin-bottom: 1.2rem; }
+    .policy-body p:last-child { margin-bottom: 0; }
+    .policy-sub-title { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.6rem; margin-top: 1.8rem; }
+    .policy-sub-title:first-child { margin-top: 0; }
+    .policy-list { margin: 0.6rem 0 1rem 0; list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .policy-list li { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.9; display: flex; align-items: flex-start; gap: 0.8rem; }
+    .policy-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.65rem; }
+    .policy-highlight { background: var(--bg-subtle); border-left: 3px solid var(--accent); padding: 1.2rem 1.6rem; margin: 1.6rem 0; border-radius: 0 4px 4px 0; }
+    .policy-highlight p { font-size: 0.88rem; color: var(--text-primary); line-height: 1.9; margin-bottom: 0; font-weight: 500; }
+    .policy-table { width: 100%; border-collapse: collapse; margin: 1.4rem 0; font-size: 0.88rem; }
+    .policy-table th { background: var(--bg-subtle); padding: 0.9rem 1.2rem; text-align: left; font-weight: 600; color: var(--text-primary); border: 1px solid var(--border); font-size: 0.82rem; }
+    .policy-table td { padding: 0.9rem 1.2rem; color: var(--text-secondary); border: 1px solid var(--border); vertical-align: top; line-height: 1.8; }
+
+    .page-footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .page-footer-copy { font-family: var(--font-en); font-size: 0.74rem; color: var(--text-dim); }
+    .page-footer-links { display: flex; gap: 1.5rem; }
+    .page-footer-links a { font-family: var(--font-en); font-size: 0.74rem; color: var(--text-secondary); transition: color 0.2s; }
+    .page-footer-links a:hover { color: var(--accent); }
+    .page-footer-links a.current { color: var(--accent); font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 1.5rem; }
+      .page-hero-inner, .content-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem; }
+      .page-footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">ZETA<span>X</span></a>
+    <a href="/" class="nav-back">← ホームに戻る</a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-eyebrow">Privacy Policy</p>
+      <h1 class="page-title">プライバシーポリシー</h1>
+      <p class="page-subtitle">株式会社ZetaXは、お客様からお預かりする個人情報を適切に保護することを、事業の根幹にある責務と捉えています。個人情報保護法をはじめとする関連法令を遵守し、透明性の高い情報管理を実施します。</p>
+      <div class="page-meta">
+        <div class="page-meta-item">
+          <p class="page-meta-label">制定日</p>
+          <p class="page-meta-value">2024年9月1日</p>
+        </div>
+        <div class="page-meta-item">
+          <p class="page-meta-label">最終改定</p>
+          <p class="page-meta-value">2024年9月1日</p>
+        </div>
+        <div class="page-meta-item">
+          <p class="page-meta-label">事業者名</p>
+          <p class="page-meta-value">株式会社ZetaX</p>
+        </div>
+        <div class="page-meta-item">
+          <p class="page-meta-label">個人情報管理責任者</p>
+          <p class="page-meta-value">代表取締役</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-band">
+    <div class="summary-grid">
+      <div class="summary-card">
+        <p class="summary-card-icon">0</p>
+        <p class="summary-card-label">第三者提供ゼロ<br>（法令例外を除く）</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card-icon">内製</p>
+        <p class="summary-card-label">完全内製のため<br>外部委託による流出なし</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card-icon">暗号</p>
+        <p class="summary-card-label">AES-256 + TLS 1.2以上<br>の暗号化を適用</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card-icon">即時</p>
+        <p class="summary-card-label">開示・削除請求に<br>2週間以内に対応</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第1条</span>
+        <h2 class="policy-section-title">事業者情報および基本方針</h2>
+      </div>
+      <div class="policy-body">
+        <p>株式会社ZetaX（以下「当社」）は、東京都渋谷区神南1丁目11−4 FPGリンクス神南5階を所在地とする、AI/ITコンサルティング・セキュリティ・ハードウェア開発を行う会社です。</p>
+        <p>当社は、個人情報の保護に関する法律（個人情報保護法）をはじめとする関連法令・ガイドラインを遵守し、お客様の個人情報を適切に取り扱います。当社の全業務は完全内製であり、個人情報を含む情報が外部委託先へ提供されることはありません。</p>
+        <div class="policy-highlight">
+          <p>当社は「完全内製・下請けゼロ」を事業方針としています。これは品質管理だけでなく、情報セキュリティ観点でも重要な意味を持ちます。お客様の個人情報は、当社の社員のみが取り扱います。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第2条</span>
+        <h2 class="policy-section-title">収集する個人情報の種類と収集方法</h2>
+      </div>
+      <div class="policy-body">
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>収集場面</th>
+              <th>収集する情報</th>
+              <th>収集方法</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>お問い合わせフォーム</td>
+              <td>氏名、会社名、メールアドレス、電話番号、お問い合わせ内容</td>
+              <td>ウェブフォームへの入力</td>
+            </tr>
+            <tr>
+              <td>サービス契約時</td>
+              <td>氏名、役職、会社情報、請求先情報、担当者の連絡先</td>
+              <td>契約書・申込書への記入</td>
+            </tr>
+            <tr>
+              <td>業務遂行中</td>
+              <td>業務上必要な社員情報・顧客情報（お客様からご提供いただく場合）</td>
+              <td>直接ご提供またはシステム連携</td>
+            </tr>
+            <tr>
+              <td>ウェブサイト閲覧</td>
+              <td>アクセスログ、IPアドレス、Cookieを通じた閲覧情報</td>
+              <td>自動取得（解析ツール経由）</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>当社は、利用目的の達成に必要な最小限の個人情報のみを収集します（データ最小化の原則）。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第3条</span>
+        <h2 class="policy-section-title">利用目的</h2>
+      </div>
+      <div class="policy-body">
+        <p>収集した個人情報は、以下の目的のためにのみ利用します。目的外利用は行いません。</p>
+        <ul class="policy-list">
+          <li>お問い合わせへの回答および関連するサポート対応</li>
+          <li>サービス提供に必要な連絡・情報の送付</li>
+          <li>契約の締結・履行および請求・支払い処理</li>
+          <li>当社サービスの品質改善・新サービスの開発（個人を特定しない統計情報として利用する場合を含む）</li>
+          <li>法令に基づく義務の履行（税務・会計処理等）</li>
+          <li>セキュリティインシデント発生時の対応および記録</li>
+        </ul>
+        <p>利用目的を変更する場合は、ご本人に事前にお知らせし、必要に応じて同意を取得します。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第4条</span>
+        <h2 class="policy-section-title">個人情報の第三者提供</h2>
+      </div>
+      <div class="policy-body">
+        <p>当社は、以下の場合を除き、ご本人の事前の同意なく個人情報を第三者に提供しません。</p>
+        <ul class="policy-list">
+          <li>法令に基づく場合（裁判所・警察等の公的機関からの適法な要請）</li>
+          <li>人の生命・身体・財産の保護のために必要があり、ご本人の同意を得ることが困難な場合</li>
+          <li>公衆衛生の向上・児童の健全育成のために必要があり、ご本人の同意を得ることが困難な場合</li>
+        </ul>
+        <div class="policy-highlight">
+          <p>繰り返しになりますが、当社は完全内製を原則とし、業務を外部委託しません。したがって、業務委託を理由とした個人情報の第三者提供（第三者提供の例外）は発生しません。</p>
+        </div>
+        <p>ただし、クラウドサービス（Google Workspace等）を利用してデータを管理する場合があります。この場合、当該サービスのプライバシーポリシーに従い処理されますが、当社が設定したアクセス制御の下で管理します。利用しているサービスについては、ご要望に応じて開示します。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第5条</span>
+        <h2 class="policy-section-title">個人情報の安全管理措置</h2>
+      </div>
+      <div class="policy-body">
+        <p>当社は、個人情報の漏洩・滅失・毀損を防止するため、以下の安全管理措置を講じています。</p>
+
+        <p class="policy-sub-title">技術的措置</p>
+        <ul class="policy-list">
+          <li>個人情報を含むデータの保存にAES-256以上の暗号化を適用</li>
+          <li>通信はTLS 1.2以上による暗号化を必須とする</li>
+          <li>個人情報へのアクセスは多要素認証（MFA）により制御</li>
+          <li>アクセスログを記録・保持し、不審なアクセスを検知する</li>
+          <li>業務端末には遠隔ワイプ設定を義務付け、紛失時の漏洩リスクを最小化</li>
+        </ul>
+
+        <p class="policy-sub-title">組織的措置</p>
+        <ul class="policy-list">
+          <li>個人情報保護管理責任者を設置し、情報管理の統括を行う</li>
+          <li>個人情報へのアクセス権限を業務上必要な担当者のみに限定（最小権限の原則）</li>
+          <li>全社員に対して個人情報保護研修を実施（入社時＋年1回以上）</li>
+          <li>個人情報の取り扱い状況について定期的な内部監査を実施</li>
+        </ul>
+
+        <p class="policy-sub-title">物理的措置</p>
+        <ul class="policy-list">
+          <li>個人情報を含む書類は施錠可能な場所に保管</li>
+          <li>不要になった書類はシュレッダー処理を徹底</li>
+          <li>公共の場での個人情報の閲覧・入力を禁止</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第6条</span>
+        <h2 class="policy-section-title">個人情報の保持期間</h2>
+      </div>
+      <div class="policy-body">
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>情報の種類</th>
+              <th>保持期間</th>
+              <th>理由</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>お問い合わせ情報</td>
+              <td>対応完了後1年間</td>
+              <td>問い合わせ内容の参照・再問い合わせへの対応</td>
+            </tr>
+            <tr>
+              <td>契約関連情報</td>
+              <td>契約終了後10年間</td>
+              <td>法令上の保存義務（商法・税法等）</td>
+            </tr>
+            <tr>
+              <td>請求・支払情報</td>
+              <td>発生後10年間</td>
+              <td>税務上の保存義務</td>
+            </tr>
+            <tr>
+              <td>ウェブアクセスログ</td>
+              <td>取得後180日間</td>
+              <td>セキュリティ調査への対応</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>保持期間を経過した個人情報は、復元不可能な方法で速やかに廃棄します。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第7条</span>
+        <h2 class="policy-section-title">ご本人の権利</h2>
+      </div>
+      <div class="policy-body">
+        <p>個人情報保護法に基づき、ご本人は以下の権利を行使することができます。</p>
+        <ul class="policy-list">
+          <li><strong>開示請求：</strong>当社が保有するご自身の個人情報の開示を求めることができます</li>
+          <li><strong>訂正・追加・削除請求：</strong>内容が事実と異なる場合に訂正・追加・削除を求めることができます</li>
+          <li><strong>利用停止・消去請求：</strong>目的外利用や不正取得が認められる場合に利用停止・消去を求めることができます</li>
+          <li><strong>第三者提供停止請求：</strong>第三者提供の停止を求めることができます</li>
+        </ul>
+        <p>これらの請求を希望される場合は、本人確認の上、2週間以内に対応します。下記お問い合わせ先までご連絡ください。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第8条</span>
+        <h2 class="policy-section-title">Cookieおよびアクセス解析</h2>
+      </div>
+      <div class="policy-body">
+        <p>当社ウェブサイトでは、サービス改善を目的としてCookieおよびアクセス解析ツールを使用する場合があります。これらのツールは、訪問者数・閲覧ページ・滞在時間等の統計情報を収集しますが、個人を特定する情報は収集しません。</p>
+        <p>Cookieはブラウザの設定により無効にすることができます。ただし、無効にした場合、一部のサービスが正常に動作しない場合があります。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第9条</span>
+        <h2 class="policy-section-title">未成年者の個人情報</h2>
+      </div>
+      <div class="policy-body">
+        <p>当社のサービスは、主に法人および成人個人を対象としています。18歳未満の方からの個人情報は、保護者の同意がある場合を除き収集しません。18歳未満の方が誤って個人情報を送信した場合は、速やかに削除します。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第10条</span>
+        <h2 class="policy-section-title">個人情報漏洩時の対応</h2>
+      </div>
+      <div class="policy-body">
+        <p>個人情報の漏洩・滅失・毀損等の事態が発生した場合、または発生した可能性がある場合は、以下の対応を行います。</p>
+        <ul class="policy-list">
+          <li>速やかに被害拡大を防止するための措置を講じる</li>
+          <li>個人情報保護委員会への報告（法令上の報告義務が生じる場合）</li>
+          <li>影響を受けた可能性のある本人への通知（24時間以内を目標）</li>
+          <li>原因究明および再発防止策の策定・実施</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第11条</span>
+        <h2 class="policy-section-title">本ポリシーの改定</h2>
+      </div>
+      <div class="policy-body">
+        <p>本ポリシーは、法令の改正・事業内容の変更・サービスの追加等に応じて、随時改定することがあります。重要な変更がある場合は、ウェブサイト上でお知らせします。最新のポリシーは常に本ページに掲載します。</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="policy-section-header">
+        <span class="policy-section-num">第12条</span>
+        <h2 class="policy-section-title">お問い合わせ窓口</h2>
+      </div>
+      <div class="policy-body">
+        <p>個人情報の取り扱いに関するご質問・ご要望・苦情等は、以下の個人情報取り扱い窓口までご連絡ください。</p>
+        <p>
+          株式会社ZetaX　個人情報保護管理責任者<br>
+          所在地：東京都渋谷区神南1丁目11−4 FPGリンクス神南 5階<br>
+          Email：contact@zetax.co.jp<br>
+          受付時間：平日10:00〜18:00（土日祝・年末年始を除く）
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <p class="page-footer-copy">&copy; 2024 ZetaX Inc. All rights reserved.</p>
+    <div class="page-footer-links">
+      <a href="/security-policy">Security Policy</a>
+      <a href="/privacy-policy" class="current">Privacy Policy</a>
+      <a href="/terms">Terms</a>
+      <a href="/">Home</a>
+    </div>
+  </div>
+
+</body>
+</html>

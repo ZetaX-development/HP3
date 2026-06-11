@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node_modules/.bin/astro dev:*)",
+      "mcp__claude_ai_Vercel__list_teams",
+      "Bash(npm run:*)",
+      "Bash(npx vercel:*)",
+      "Bash(cat /Users/yosato/HP3/wrangler.toml 2>/dev/null || echo \"no wrangler.toml\" && ls /Users/yosato/HP3/*.toml 2>/dev/null)",
+      "Bash(npx wrangler:*)"
+    ]
+  }
+}
