@@ -1,0 +1,431 @@
+---
+---
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セキュリティコンサルティング — ZetaX</title>
+  <meta name="description" content="ZetaXのセキュリティコンサルティング。都内大手銀行2社との実績。サイバーセキュリティ全国大会3位。脆弱性診断・PQC導入・セキュリティポリシー策定まで完全内製で対応。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style is:global>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #ffffff; --bg-subtle: #f7f8fa; --bg-card: #f9fafb;
+      --text-primary: #0d0d14; --text-secondary: #52606d; --text-dim: #9da5b4;
+      --accent: #1a3fbf; --accent-light: #3b5fdf; --accent-pale: #eef1fd;
+      --border: #e4e7ef; --border-light: #f0f2f6;
+      --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', 'Noto Sans JP', sans-serif;
+      --ease: cubic-bezier(0.22,1,0.36,1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    body { font-family: var(--font-jp); background: var(--bg); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 3rem; height: 68px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+    .nav.elevated { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .nav-logo { font-family: var(--font-en); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.12em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; }
+    .nav-links { display: flex; list-style: none; font-size: 0.82rem; font-weight: 500; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a, .nav-links > li > .nav-dropdown-trigger { display: flex; align-items: center; gap: 4px; height: 68px; padding: 0 1.1rem; color: var(--text-secondary); font-size: 0.82rem; font-weight: 500; border: none; background: none; cursor: pointer; transition: color 0.2s; white-space: nowrap; }
+    .nav-links > li > a:hover, .nav-links > li > .nav-dropdown-trigger:hover { color: var(--text-primary); }
+    .nav-dropdown-arrow { font-size: 0.55rem; opacity: 0.5; transition: transform 0.2s; }
+    .nav-links > li:hover .nav-dropdown-arrow { transform: rotate(180deg); }
+    .nav-dropdown { position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%) translateY(-6px); background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); padding: 0.6rem 0; min-width: 200px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s var(--ease), transform 0.18s var(--ease); }
+    .nav-links > li:hover .nav-dropdown { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown a { display: block; padding: 0.6rem 1.4rem; font-size: 0.82rem; color: var(--text-secondary); transition: background 0.15s, color 0.15s; white-space: nowrap; }
+    .nav-dropdown a:hover { background: var(--bg-subtle); color: var(--accent); }
+    .nav-dropdown-divider { height: 1px; background: var(--border-light); margin: 0.4rem 0; }
+    .nav-dropdown-label { padding: 0.5rem 1.4rem 0.2rem; font-family: var(--font-en); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
+    .lang-toggle { display: flex; align-items: center; background: var(--bg-card); border-radius: 20px; padding: 3px; margin-left: 1.4rem; border: 1px solid var(--border); }
+    .lang-btn { font-family: var(--font-en); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; padding: 5px 13px; border-radius: 16px; border: none; cursor: pointer; background: transparent; color: var(--text-dim); transition: all 0.2s; }
+    .lang-btn.active { background: var(--accent); color: #fff; }
+    .nav-cta { font-family: var(--font-jp); font-size: 0.82rem; font-weight: 600; padding: 9px 22px; border-radius: 6px; background: var(--accent); color: #fff; margin-left: 1.2rem; transition: background 0.2s, transform 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+    @media (max-width: 768px) { .nav-links, .nav-cta, .lang-toggle { display: none; } .nav { padding: 0 1.5rem; } }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 3rem; }
+    .section { padding: 100px 0; }
+    .section-alt { background: var(--bg-subtle); }
+    .section-label { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+    .section-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    .section-heading { font-family: var(--font-jp); font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.3; color: var(--text-primary); }
+    .section-sub { font-size: 0.95rem; color: var(--text-secondary); line-height: 2; margin-top: 1rem; max-width: 640px; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+    @media (max-width: 1024px) { .container { padding: 0 2rem; } }
+    @media (max-width: 768px) { .section { padding: 70px 0; } }
+
+    /* HERO — very dark */
+    .hero { min-height: 82vh; display: flex; align-items: center; background: #070710; padding-top: 68px; position: relative; overflow: hidden; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(26,63,191,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,63,191,0.08) 1px, transparent 1px); background-size: 52px 52px; mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 75%); }
+    .hero-glow { position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(26,63,191,0.25) 0%, transparent 65%); top: -200px; right: -150px; pointer-events: none; }
+    .hero-content { position: relative; z-index: 1; padding: 5rem 0; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #7b96ff; margin-bottom: 2rem; }
+    .hero-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #7b96ff; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+    .hero-title { font-family: var(--font-jp); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.25; color: #fff; margin-bottom: 1.6rem; }
+    .hero-title .accent { color: #7b96ff; }
+    .hero-sub { font-size: clamp(0.9rem, 1.4vw, 1.05rem); color: rgba(255,255,255,0.5); line-height: 1.9; max-width: 600px; margin-bottom: 2.8rem; }
+    .hero-cred { display: flex; gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.07); margin-bottom: 2.8rem; }
+    .hero-cred-item { padding: 1.2rem 2rem; flex: 1; }
+    .hero-cred-num { font-family: var(--font-en); font-size: 1.5rem; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 0.3rem; }
+    .hero-cred-num em { font-style: normal; color: #7b96ff; font-size: 0.6em; }
+    .hero-cred-label { font-size: 0.74rem; color: rgba(255,255,255,0.38); line-height: 1.5; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { font-family: var(--font-jp); font-size: 0.9rem; font-weight: 600; padding: 13px 34px; border-radius: 6px; background: #fff; color: var(--text-primary); border: none; cursor: pointer; display: inline-block; transition: background 0.2s, transform 0.2s; }
+    .btn-primary:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
+    .btn-outline { font-family: var(--font-jp); font-size: 0.9rem; font-weight: 500; padding: 13px 34px; border-radius: 6px; background: transparent; color: rgba(255,255,255,0.65); border: 1.5px solid rgba(255,255,255,0.22); cursor: pointer; display: inline-block; transition: border-color 0.2s, color 0.2s, transform 0.2s; }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.55); color: #fff; transform: translateY(-2px); }
+
+    /* BREADCRUMB */
+    .breadcrumb { padding: 1.4rem 0; border-bottom: 1px solid var(--border); }
+    .breadcrumb-inner { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-en); font-size: 0.72rem; color: var(--text-dim); }
+    .breadcrumb-inner a { color: var(--text-dim); transition: color 0.2s; }
+    .breadcrumb-inner a:hover { color: var(--accent); }
+
+    /* SERVICES LIST */
+    .service-list { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
+    .service-item { background: var(--bg); padding: 2.8rem; transition: background 0.2s; }
+    .service-item:hover { background: #fafbff; }
+    .service-item-num { font-family: var(--font-en); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 1rem; }
+    .service-item-title { font-weight: 700; font-size: 1rem; color: var(--text-primary); margin-bottom: 0.7rem; line-height: 1.5; }
+    .service-item-desc { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1.2rem; }
+    .service-item-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .service-item-tag { font-size: 0.68rem; font-weight: 600; padding: 3px 10px; border-radius: 2px; background: var(--accent-pale); color: var(--accent); }
+    @media (max-width: 768px) { .service-list { grid-template-columns: 1fr; } }
+
+    /* HIGHLIGHT — dark */
+    .highlight-section { background: var(--text-primary); padding: 80px 0; }
+    .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .hl-label { font-family: var(--font-en); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #7b96ff; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+    .hl-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #7b96ff; }
+    .hl-heading { font-family: var(--font-jp); font-size: clamp(1.3rem, 2.2vw, 1.9rem); font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: 1.2rem; }
+    .hl-desc { font-size: 0.9rem; color: rgba(255,255,255,0.52); line-height: 2; }
+    .hl-items { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+    .hl-item { background: rgba(255,255,255,0.02); padding: 1.4rem 1.8rem; transition: background 0.2s; }
+    .hl-item:hover { background: rgba(255,255,255,0.05); }
+    .hl-item-title { font-size: 0.9rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; }
+    .hl-item-desc { font-size: 0.78rem; color: rgba(255,255,255,0.42); line-height: 1.7; }
+    @media (max-width: 1024px) { .highlight-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    /* FAQ */
+    .faq-list { margin-top: 3rem; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { width: 100%; text-align: left; padding: 1.6rem 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; cursor: pointer; font-family: var(--font-jp); font-size: 0.96rem; font-weight: 600; color: var(--text-primary); gap: 1rem; }
+    .faq-icon { width: 22px; height: 22px; flex-shrink: 0; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--text-dim); transition: transform 0.2s, background 0.2s, color 0.2s; }
+    .faq-item.open .faq-icon { background: var(--accent); border-color: var(--accent); color: #fff; transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 0 1.6rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 2; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* CTA */
+    .cta-section { background: var(--text-primary); padding: 80px 0; position: relative; overflow: hidden; }
+    .cta-mesh { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 15% 50%, rgba(26,63,191,0.3) 0%, transparent 60%), radial-gradient(ellipse 50% 70% at 85% 40%, rgba(123,150,255,0.2) 0%, transparent 55%); pointer-events: none; }
+    .cta-inner { position: relative; z-index: 1; text-align: center; }
+    .cta-label { font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #7b96ff; margin-bottom: 1.4rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .cta-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #7b96ff; }
+    .cta-title { font-family: var(--font-jp); font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: 1.2rem; }
+    .cta-sub { font-size: 0.92rem; color: rgba(255,255,255,0.5); line-height: 1.9; margin-bottom: 2.8rem; }
+    .cta-btn { font-family: var(--font-jp); font-size: 0.96rem; font-weight: 700; padding: 15px 44px; border-radius: 6px; background: #fff; color: var(--text-primary); border: none; cursor: pointer; display: inline-block; transition: background 0.2s, transform 0.2s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
+
+    .footer { background: var(--text-primary); padding: 48px 0 32px; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo { font-family: var(--font-en); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; color: #fff; }
+    .footer-logo span { color: #7b96ff; }
+    .footer-nav { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+    .footer-nav a { font-size: 0.8rem; color: rgba(255,255,255,0.38); transition: color 0.2s; }
+    .footer-nav a:hover { color: rgba(255,255,255,0.7); }
+    .footer-copy { font-family: var(--font-en); font-size: 0.72rem; color: rgba(255,255,255,0.2); margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="/" class="nav-logo">ZETA<span>X</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/#why">強み</a></li>
+        <li>
+          <button class="nav-dropdown-trigger">サービス <span class="nav-dropdown-arrow">▼</span></button>
+          <div class="nav-dropdown">
+            <p class="nav-dropdown-label">Services</p>
+            <a href="/ai-dx">AI/ITコンサル・開発</a>
+            <a href="/security">セキュリティコンサル</a>
+            <a href="/ai-training">AI研修</a>
+            <a href="/hardware">ハードウェア開発</a>
+            <div class="nav-dropdown-divider"></div>
+            <p class="nav-dropdown-label">Products</p>
+            <a href="/#products">自社プロダクト</a>
+          </div>
+        </li>
+        <li>
+          <button class="nav-dropdown-trigger">実績 <span class="nav-dropdown-arrow">▼</span></button>
+          <div class="nav-dropdown">
+            <a href="/#cases">業種別支援事例</a>
+            <a href="/#testimonials">お客様の声</a>
+          </div>
+        </li>
+        <li>
+          <button class="nav-dropdown-trigger">会社 <span class="nav-dropdown-arrow">▼</span></button>
+          <div class="nav-dropdown">
+            <a href="/about">会社紹介（詳細）</a>
+            <a href="/#company">会社概要</a>
+            <a href="/about#founders">代表紹介</a>
+          </div>
+        </li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ja">JP</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="/#contact" class="nav-cta">お問い合わせ</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb" style="margin-top:68px;">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <a href="/">Home</a><span>›</span>
+        <a href="/#services">Services</a><span>›</span>
+        <span>セキュリティコンサルティング</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-badge">Service 02 — Security Consulting</p>
+        <h1 class="hero-title">見えないリスクに、<br>先手を打つ。<br><span class="accent">銀行水準のセキュリティを、</span><br><span class="accent">すべての組織に。</span></h1>
+        <p class="hero-sub">都内大手銀行2社とのセキュリティコンサル実績。サイバーセキュリティ全国大会3位のメンバーが、脆弱性診断からPQC導入まで完全内製で対応します。</p>
+        <div class="hero-cred">
+          <div class="hero-cred-item">
+            <div class="hero-cred-num">2<em>社</em></div>
+            <div class="hero-cred-label">都内大手銀行との<br>コンサル実績</div>
+          </div>
+          <div class="hero-cred-item">
+            <div class="hero-cred-num">3<em>位</em></div>
+            <div class="hero-cred-label">サイバーセキュリティ<br>全国大会</div>
+          </div>
+          <div class="hero-cred-item">
+            <div class="hero-cred-num">0<em>社</em></div>
+            <div class="hero-cred-label">外部委託<br>（完全内製）</div>
+          </div>
+          <div class="hero-cred-item">
+            <div class="hero-cred-num">PQC</div>
+            <div class="hero-cred-label">耐量子暗号<br>導入支援対応</div>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="/#contact" class="btn-primary">セキュリティ診断を相談する（無料）</a>
+          <a href="#services" class="btn-outline">サービス内容を見る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Services</span>
+        <h2 class="section-heading">セキュリティサービス一覧</h2>
+        <p class="section-sub">脆弱性診断から次世代暗号導入まで、セキュリティに関わるすべての領域を完全内製でカバーします。</p>
+      </div>
+      <div class="service-list">
+        <div class="service-item reveal d1">
+          <div class="service-item-num">01</div>
+          <h3 class="service-item-title">脆弱性診断・ペネトレーションテスト</h3>
+          <p class="service-item-desc">Webアプリケーション・ネットワーク・クラウド環境の脆弱性を体系的に洗い出します。発見した脆弱性は重大度別に分類し、具体的な対策方法とともにレポートします。定期的な診断プログラムの設計・実施にも対応。</p>
+          <div class="service-item-tags">
+            <span class="service-item-tag">Webアプリ診断</span>
+            <span class="service-item-tag">ネットワーク診断</span>
+            <span class="service-item-tag">クラウド診断</span>
+            <span class="service-item-tag">ペネトレーションテスト</span>
+          </div>
+        </div>
+        <div class="service-item reveal d2">
+          <div class="service-item-num">02</div>
+          <h3 class="service-item-title">セキュリティポリシー策定・ISMS支援</h3>
+          <p class="service-item-desc">組織の実態に合ったセキュリティポリシー・規程を策定します。形式的なポリシー作成ではなく、実際に機能する体制づくりを支援します。ISMS（情報セキュリティマネジメントシステム）構築・認証取得支援にも対応。</p>
+          <div class="service-item-tags">
+            <span class="service-item-tag">ポリシー策定</span>
+            <span class="service-item-tag">規程整備</span>
+            <span class="service-item-tag">ISMS構築</span>
+            <span class="service-item-tag">リスク評価</span>
+          </div>
+        </div>
+        <div class="service-item reveal d1">
+          <div class="service-item-num">03</div>
+          <h3 class="service-item-title">耐量子暗号（PQC）導入支援</h3>
+          <p class="service-item-desc">量子コンピュータの実用化により、現行の公開鍵暗号（RSA・ECCなど）が将来的に解読されるリスクがあります。ZetaXはNISTが標準化した耐量子暗号アルゴリズムへの移行計画策定から段階的な実装まで支援します。金融機関での導入実績あり。</p>
+          <div class="service-item-tags">
+            <span class="service-item-tag">PQC移行計画</span>
+            <span class="service-item-tag">NIST標準対応</span>
+            <span class="service-item-tag">暗号資産棚卸し</span>
+            <span class="service-item-tag">金融機関実績</span>
+          </div>
+        </div>
+        <div class="service-item reveal d2">
+          <div class="service-item-num">04</div>
+          <h3 class="service-item-title">インシデント対応・CSIRT構築支援</h3>
+          <p class="service-item-desc">セキュリティインシデント発生時の対応手順策定・CSIRT（インシデント対応チーム）の構築・訓練を支援します。インシデント発生時には緊急対応支援も行います。事後の原因分析・再発防止策の立案まで一貫してサポート。</p>
+          <div class="service-item-tags">
+            <span class="service-item-tag">CSIRT構築</span>
+            <span class="service-item-tag">対応手順策定</span>
+            <span class="service-item-tag">緊急対応支援</span>
+            <span class="service-item-tag">原因分析</span>
+          </div>
+        </div>
+        <div class="service-item reveal d1">
+          <div class="service-item-num">05</div>
+          <h3 class="service-item-title">セキュリティ設計レビュー（開発案件）</h3>
+          <p class="service-item-desc">新規システム開発・既存システム改修のタイミングで、設計段階からセキュリティ観点のレビューを実施します。脆弱性を後から修正するコストは、設計段階で対処するコストの数十倍になります。ZetaXの自社開発案件はすべてこのプロセスを経ています。</p>
+          <div class="service-item-tags">
+            <span class="service-item-tag">設計レビュー</span>
+            <span class="service-item-tag">SecureByDesign</span>
+            <span class="service-item-tag">コードレビュー</span>
+            <span class="service-item-tag">脅威モデリング</span>
+          </div>
+        </div>
+        <div class="service-item reveal d2">
+          <div class="service-item-num">06</div>
+          <h3 class="service-item-title">セキュリティ教育・意識向上プログラム</h3>
+          <p class="service-item-desc">技術的対策と同様に重要なのが、人的セキュリティの強化です。フィッシング訓練・社員向けセキュリティ研修・経営層向けリスクブリーフィングなど、組織全体のセキュリティ意識を底上げするプログラムを設計・実施します。</p>
+          <div class="service-item-tags">
+            <span class="service-item-tag">社員研修</span>
+            <span class="service-item-tag">フィッシング訓練</span>
+            <span class="service-item-tag">経営層向け</span>
+            <span class="service-item-tag">カスタム設計</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PQC HIGHLIGHT -->
+  <div class="highlight-section">
+    <div class="container">
+      <div class="highlight-grid">
+        <div class="reveal">
+          <p class="hl-label">Post-Quantum Cryptography</p>
+          <h2 class="hl-heading">量子コンピュータ時代に<br>備える、今。</h2>
+          <p class="hl-desc">2030年代には量子コンピュータにより現行の暗号が解読されるリスクがあると言われています。今から計画的に耐量子暗号（PQC）へ移行することが重要です。ZetaXは金融機関での導入支援実績を持つ、日本でも希少なPQC対応チームです。</p>
+        </div>
+        <div class="hl-items reveal d1">
+          <div class="hl-item">
+            <p class="hl-item-title">暗号資産の棚卸し・リスク評価</p>
+            <p class="hl-item-desc">現在使用している暗号アルゴリズムをすべて洗い出し、量子脅威に対する脆弱性を評価します。</p>
+          </div>
+          <div class="hl-item">
+            <p class="hl-item-title">NIST標準PQCアルゴリズムへの移行計画</p>
+            <p class="hl-item-desc">ML-KEM (Kyber)・ML-DSA (Dilithium) など、NIST標準化済みアルゴリズムへの段階的移行計画を策定します。</p>
+          </div>
+          <div class="hl-item">
+            <p class="hl-item-title">ハイブリッド暗号化による段階移行</p>
+            <p class="hl-item-desc">既存システムへの影響を最小化しながら、古典暗号とPQCを併用するハイブリッドアプローチで安全に移行します。</p>
+          </div>
+          <div class="hl-item">
+            <p class="hl-item-title">金融機関での導入実績</p>
+            <p class="hl-item-desc">都内大手銀行でのPQC導入支援実績があります。厳しいコンプライアンス要件のもとでの実装ノウハウを持っています。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-heading">よくあるご質問</h2>
+      </div>
+      <div class="faq-list reveal d1">
+        <div class="faq-item">
+          <button class="faq-q">中小企業でもセキュリティ診断は必要ですか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">はい。サイバー攻撃の標的は大企業だけではありません。むしろセキュリティ対策が手薄な中小企業は狙われやすい傾向があります。特にECサイト・顧客情報を扱うシステム・基幹システムを持つ企業は、早期の診断を推奨します。ZetaXは規模を問わず対応しています。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">脆弱性診断はどのくらいの期間・費用がかかりますか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">診断の範囲・規模によりますが、小〜中規模のWebアプリケーション診断であれば1〜2週間程度です。費用は内容をヒアリングした上でお見積もりします。まずは無料でのヒアリング・スコープ定義から始めさせていただきます。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">PQCへの移行は今すぐ必要ですか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">今すぐ緊急という状況ではありませんが、「今取得・送受信されたデータが将来解読される」リスク（Harvest Now, Decrypt Later）があります。特に機密性の高いデータを扱う金融・医療・政府機関は早期対応が推奨されています。まずは現状の暗号資産棚卸しから始めることを推奨します。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">開発中のシステムにセキュリティレビューを組み込めますか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">はい、開発プロセスへのセキュリティ組み込みは最も費用対効果の高いアプローチです。ZetaXが開発も担当する場合は、設計段階から自動的にセキュリティ視点が入ります。他社が開発するシステムのセキュリティレビューも承ります。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">セキュリティインシデントが発生した際、緊急で対応してもらえますか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">はい、インシデント緊急対応にも対応します。まずはお電話またはメールでご連絡ください。状況に応じて迅速に初動対応を行います。事前にインシデント対応契約を結んでいただくことで、より素早い対応が可能になります。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-mesh"></div>
+    <div class="container">
+      <div class="cta-inner reveal">
+        <p class="cta-label">Contact</p>
+        <h2 class="cta-title">まずは無料で<br>セキュリティ状況を診断します。</h2>
+        <p class="cta-sub">現状のリスクを把握するところから始めましょう。<br>初回ヒアリングは無料です。</p>
+        <a href="/#contact" class="cta-btn">無料診断を申し込む →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="/" class="footer-logo">ZETA<span>X</span></a>
+        <nav class="footer-nav">
+          <a href="/ai-dx">AI/ITコンサル・開発</a>
+          <a href="/security">セキュリティコンサル</a>
+          <a href="/ai-training">AI研修</a>
+          <a href="/hardware">ハードウェア開発</a>
+          <a href="/about">会社紹介</a>
+          <a href="/#contact">お問い合わせ</a>
+        </nav>
+      </div>
+      <div class="footer-copy">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+          <span>&copy; 2025 ZetaX Inc. All rights reserved.</span>
+          <div style="display:flex;gap:1.5rem;">
+            <a href="/security-policy" style="color:rgba(255,255,255,0.25)">Security Policy</a>
+            <a href="/privacy-policy" style="color:rgba(255,255,255,0.25)">Privacy Policy</a>
+            <a href="/terms" style="color:rgba(255,255,255,0.25)">Terms</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('elevated', scrollY > 10), { passive: true });
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

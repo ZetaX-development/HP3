@@ -109,7 +109,7 @@
     .hero {
       position: relative; min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      overflow: hidden; background: #ffffff; padding-top: 68px;
+      overflow: hidden; background: #ffffff; padding-top: 68px; padding-bottom: 80px;
     }
     .hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
     /* teamLab-inspired kinetic-typography canvas — drawn on white, behind content */
@@ -149,8 +149,9 @@
     .btn-outline { font-family: var(--font-jp); font-size: 0.9rem; font-weight: 500; padding: 14px 36px; border-radius: 6px; background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); cursor: pointer; display: inline-block; transition: border-color 0.2s, color 0.2s, transform 0.2s; }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    .hero-badges { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s 0.8s var(--ease) forwards; }
-    .hero-badge { font-family: var(--font-jp); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.04em; padding: 6px 16px; border-radius: 3px; border: 1px solid var(--border); color: var(--text-secondary); background: var(--bg); }
+    .hero-badges { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2.6rem; opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s 0.8s var(--ease) forwards; }
+    .hero-badge { font-family: var(--font-jp); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.04em; padding: 5px 14px; border-radius: 2px; border: 1px solid var(--border); color: var(--text-secondary); background: var(--bg); transition: border-color 0.2s, color 0.2s; cursor: default; }
+    .hero-badge:hover { border-color: var(--accent); color: var(--accent); }
 
     .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-family: var(--font-en); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); opacity: 0; animation: fadeUp 1s 1.2s ease forwards; }
     .hero-scroll::after { content: ''; width: 1px; height: 36px; background: linear-gradient(to bottom, var(--accent), transparent); animation: pulse 2s ease-in-out infinite; }
@@ -193,23 +194,46 @@
     .d4 { transition-delay: 0.4s; }
 
     /* ─── WHY ZETAX ─── */
-    .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 4rem; background: var(--border); border: 1px solid var(--border); }
+    .why-achieve-bar { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2.8rem 0 4rem; }
+    .why-achieve-item { background: var(--bg-subtle); padding: 1.8rem 2rem; }
+    .why-achieve-num { font-family: var(--font-en); font-size: 2rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; margin-bottom: 0.3rem; line-height: 1; }
+    .why-achieve-num em { font-style: normal; font-size: 0.55em; vertical-align: 0.1em; }
+    .why-achieve-label { font-size: 0.76rem; color: var(--text-secondary); line-height: 1.7; }
+    @media (max-width: 768px) { .why-achieve-bar { grid-template-columns: repeat(2,1fr); } }
+
+    .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
     .why-card { background: var(--bg); padding: 3rem; transition: background 0.2s; }
     .why-card:hover { background: #fafbff; }
     .why-card-number { font-family: var(--font-en); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 1.2rem; }
     .why-card-title { font-weight: 700; font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.8rem; line-height: 1.5; }
     .why-card-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 2; }
+    .why-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
+    .why-card-tag { font-family: var(--font-jp); font-size: 0.68rem; font-weight: 600; padding: 3px 10px; border-radius: 2px; background: var(--accent-pale); color: var(--accent); }
+    .why-card-stat { display: flex; align-items: baseline; gap: 0.35rem; margin-top: 1.6rem; }
+    .why-card-stat-num { font-family: var(--font-en); font-size: 1.6rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; line-height: 1; }
+    .why-card-stat-num em { font-style: normal; font-size: 0.6em; }
+    .why-card-stat-label { font-size: 0.74rem; color: var(--text-dim); }
+    .why-card-features { list-style: none; padding: 0; margin: 1.2rem 0 0; display: flex; flex-direction: column; gap: 0.4rem; }
+    .why-card-features li { font-family: var(--font-jp); font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.45rem; line-height: 1.5; }
+    .why-card-features li::before { content: '—'; color: var(--accent); font-size: 0.75rem; flex-shrink: 0; margin-top: 0.05rem; }
+
 
     /* ─── HERO COMPARISON (E) ─── */
-    .hero-compare { display: flex; gap: 0; justify-content: center; margin-top: 2.8rem; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s 0.9s var(--ease) forwards; }
-    .hero-compare-col { padding: 1.2rem 2rem; flex: 1; }
-    .hero-compare-col:first-child { background: var(--bg-subtle); border-right: 1px solid var(--border); }
-    .hero-compare-col:last-child { background: var(--accent-pale); }
-    .hero-compare-label { font-family: var(--font-en); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .hero-compare { display: flex; gap: 0.8rem; justify-content: center; align-items: stretch; margin-top: 2.8rem; opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s 0.9s var(--ease) forwards; }
+    .hero-compare-col { padding: 1.4rem 1.8rem; flex: 1; border-radius: 6px; }
+    .hero-compare-col:first-child { background: var(--bg-subtle); border: 1px solid var(--border); }
+    .hero-compare-col:last-child { background: var(--accent-pale); border: 1.5px solid var(--accent); }
+    .hero-compare-vs { display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-en); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; color: var(--text-dim); }
+    .hero-compare-label { font-family: var(--font-en); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; }
     .hero-compare-col:first-child .hero-compare-label { color: var(--text-dim); }
     .hero-compare-col:last-child .hero-compare-label { color: var(--accent); }
-    .hero-compare-text { font-family: var(--font-jp); font-size: 0.84rem; color: var(--text-secondary); line-height: 1.8; }
-    .hero-compare-col:last-child .hero-compare-text { color: var(--accent); font-weight: 600; }
+    .hero-compare-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+    .hero-compare-item { font-family: var(--font-jp); font-size: 0.82rem; line-height: 1.55; display: flex; align-items: flex-start; gap: 0.45rem; }
+    .hero-compare-item::before { flex-shrink: 0; font-size: 0.7rem; margin-top: 0.1rem; }
+    .hero-compare-item.bad { color: var(--text-secondary); }
+    .hero-compare-item.bad::before { content: '✕'; color: var(--text-dim); }
+    .hero-compare-item.good { color: var(--accent); font-weight: 600; }
+    .hero-compare-item.good::before { content: '✓'; color: var(--accent); }
 
     /* ─── PROCESS (B) ─── */
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
@@ -250,55 +274,26 @@
     .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 4rem; background: var(--border); border: 1px solid var(--border); }
     .service-card { background: var(--bg); padding: 3rem; position: relative; display: block; transition: background 0.2s; }
     .service-card:hover { background: #fafbff; }
-    .service-card-dark { background: var(--text-primary) !important; }
-    .service-card-dark:hover { background: #141420 !important; }
-
-    .service-num { font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 1.6rem; }
-    .service-card-dark .service-num { color: rgba(255,255,255,0.25); }
-    .service-card:not(.service-card-dark) .service-num { color: var(--accent); }
-
-    .service-title { font-size: 1.05rem; font-weight: 700; line-height: 1.45; margin-bottom: 1rem; }
-    .service-card-dark .service-title { color: #fff; }
-    .service-card:not(.service-card-dark) .service-title { color: var(--text-primary); }
-
+    .service-num { font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 1.6rem; color: var(--accent); }
+    .service-title { font-size: 1.05rem; font-weight: 700; line-height: 1.45; margin-bottom: 1rem; color: var(--text-primary); }
     .service-badge-label { display: inline-block; font-family: var(--font-jp); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; padding: 4px 12px; border-radius: 2px; margin-bottom: 1.4rem; background: rgba(123,150,255,0.12); color: #7b96ff; }
-
-    .service-desc { font-size: 0.88rem; line-height: 2; margin-bottom: 2rem; }
-    .service-card-dark .service-desc { color: rgba(255,255,255,0.55); }
-    .service-card:not(.service-card-dark) .service-desc { color: var(--text-secondary); }
-
+    .service-desc { font-size: 0.88rem; line-height: 2; margin-bottom: 2rem; color: var(--text-secondary); }
     .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
-    .service-tag { font-family: var(--font-jp); font-size: 0.7rem; padding: 4px 12px; border-radius: 2px; }
-    .service-card-dark .service-tag { border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.5); }
-    .service-card:not(.service-card-dark) .service-tag { border: 1px solid var(--border); color: var(--text-secondary); }
-
-    .service-link { font-family: var(--font-en); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; }
-    .service-card-dark .service-link { color: #7b96ff; }
-    .service-card:not(.service-card-dark) .service-link { color: var(--accent); }
+    .service-tag { font-family: var(--font-jp); font-size: 0.7rem; padding: 4px 12px; border-radius: 2px; border: 1px solid var(--border); color: var(--text-secondary); }
+    .service-link { font-family: var(--font-en); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; color: var(--accent); }
 
     /* ─── PRODUCTS ─── */
     .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
     .product-card { background: var(--bg); padding: 2.8rem; transition: background 0.2s; }
     .product-card:hover { background: #fafbff; }
-    .product-card-featured { background: var(--text-primary) !important; }
-    .product-card-featured:hover { background: #141420 !important; }
-    .product-type { font-family: var(--font-en); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.4rem; }
-    .product-card:not(.product-card-featured) .product-type { color: var(--accent); }
-    .product-card-featured .product-type { color: rgba(255,255,255,0.35); }
-    .product-name { font-family: var(--font-jp); font-size: 1.1rem; font-weight: 700; line-height: 1.4; margin-bottom: 0.5rem; }
-    .product-card:not(.product-card-featured) .product-name { color: var(--text-primary); }
-    .product-card-featured .product-name { color: #fff; }
-    .product-name-en { font-family: var(--font-en); font-size: 0.72rem; letter-spacing: 0.06em; margin-bottom: 1.2rem; }
-    .product-card:not(.product-card-featured) .product-name-en { color: var(--text-dim); }
-    .product-card-featured .product-name-en { color: rgba(255,255,255,0.3); }
-    .product-desc { font-size: 0.88rem; line-height: 2; margin-bottom: 1.8rem; }
-    .product-card:not(.product-card-featured) .product-desc { color: var(--text-secondary); }
-    .product-card-featured .product-desc { color: rgba(255,255,255,0.58); }
-    .product-achievement { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-jp); font-size: 0.75rem; font-weight: 600; padding: 6px 14px; border-radius: 2px; }
-    .product-card:not(.product-card-featured) .product-achievement { background: var(--accent-pale); color: var(--accent); }
-    .product-card-featured .product-achievement { background: rgba(123,150,255,0.15); color: #7b96ff; }
+    .product-type { font-family: var(--font-en); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.4rem; color: var(--accent); }
+    .product-name { font-family: var(--font-jp); font-size: 1.1rem; font-weight: 700; line-height: 1.4; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .product-name-en { font-family: var(--font-en); font-size: 0.72rem; letter-spacing: 0.06em; margin-bottom: 1.2rem; color: var(--text-dim); }
+    .product-desc { font-size: 0.88rem; line-height: 2; margin-bottom: 1.8rem; color: var(--text-secondary); }
+    .product-achievement { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-jp); font-size: 0.75rem; font-weight: 600; padding: 6px 14px; border-radius: 2px; background: var(--accent-pale); color: var(--accent); }
     .product-achievement::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
     .product-hw-label { font-size: 0.82rem; color: var(--text-dim); font-style: italic; margin-top: 1rem; }
+    .product-creators { font-family: var(--font-jp); font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 1rem; letter-spacing: 0.04em; }
     @media (max-width: 1024px) { .products-grid { grid-template-columns: 1fr; } }
 
     /* ─── CASES ─── */
@@ -396,8 +391,397 @@
     .footer-legal a { font-family: var(--font-en); font-size: 0.74rem; color: rgba(255,255,255,0.3); transition: color 0.2s; }
     .footer-legal a:hover { color: rgba(255,255,255,0.65); }
 
+    /* ─── CURSOR ─── */
+    * { cursor: none !important; }
+    .cursor-dot {
+      position: fixed; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); pointer-events: none; z-index: 99999;
+      transform: translate(-50%,-50%); transition: transform 0.08s, background 0.2s, width 0.2s, height 0.2s;
+      will-change: left, top;
+    }
+    .cursor-ring {
+      position: fixed; width: 38px; height: 38px; border-radius: 50%;
+      border: 1.5px solid rgba(26,63,191,0.35); pointer-events: none; z-index: 99998;
+      transform: translate(-50%,-50%); transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s, opacity 0.3s;
+      will-change: left, top;
+    }
+    body:has(a:hover, button:hover) .cursor-dot { width: 12px; height: 12px; background: var(--accent-light); }
+    body:has(a:hover, button:hover) .cursor-ring { width: 56px; height: 56px; border-color: rgba(26,63,191,0.2); }
+    @media (hover: none) { * { cursor: auto !important; } .cursor-dot, .cursor-ring { display: none; } }
+
+    /* ─── SCROLL PROGRESS ─── */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), #7b96ff);
+      z-index: 1002; transition: width 0.05s linear; pointer-events: none;
+    }
+
+    /* ─── GRAIN / NOISE ─── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9990; pointer-events: none;
+      opacity: 0.032;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+      background-size: 180px 180px;
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-strip {
+      overflow: hidden; background: var(--text-primary); padding: 14px 0; border: none;
+    }
+    .marquee-track {
+      display: flex; width: max-content; gap: 0;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .marquee-item {
+      font-family: var(--font-en); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.28);
+      padding: 0 2.5rem; white-space: nowrap;
+    }
+    .marquee-item em {
+      color: #7b96ff; font-style: normal; margin: 0 0.3em;
+    }
+    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── FLOAT CTA ─── */
+    .float-cta {
+      position: fixed; bottom: 2.4rem; right: 2.4rem; z-index: 800;
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--accent); color: #fff;
+      font-family: var(--font-jp); font-size: 0.82rem; font-weight: 700;
+      padding: 13px 22px; border-radius: 50px;
+      box-shadow: 0 8px 30px rgba(26,63,191,0.35);
+      opacity: 0; transform: translateY(16px) scale(0.95); pointer-events: none;
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), background 0.2s, box-shadow 0.2s;
+    }
+    .float-cta.visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .float-cta:hover { background: var(--accent-light); box-shadow: 0 12px 36px rgba(26,63,191,0.45); transform: translateY(-2px) scale(1); }
+    .float-cta-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.6); animation: pulse 2s ease-in-out infinite; }
+    @media (max-width: 768px) { .float-cta { bottom: 1.4rem; right: 1.4rem; font-size: 0.76rem; padding: 11px 18px; } }
+
+    /* ─── 3D TILT CARDS ─── */
+    .tilt-card { transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); will-change: transform; }
+    .tilt-card:hover { box-shadow: 0 20px 60px rgba(26,63,191,0.1); }
+
+    /* ─── GRADIENT ACCENT TEXT ─── */
+    .grad-text {
+      background: linear-gradient(135deg, var(--accent) 0%, #7b96ff 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── PROCESS SVG LINE ─── */
+    .process-connector { position: absolute; top: 50%; left: 0; right: 0; height: 2px; pointer-events: none; overflow: visible; }
+    .process-connector-path { stroke-dasharray: 800; stroke-dashoffset: 800; transition: stroke-dashoffset 1.4s var(--ease); }
+    .process-grid { position: relative; }
+    .process-step { z-index: 1; }
+    .process-grid.visible .process-connector-path { stroke-dashoffset: 0; }
+
+    /* ─── FOOTER ZETAX WATERMARK ─── */
+    .footer-watermark {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-en); font-size: clamp(5rem, 18vw, 16rem);
+      font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase;
+      color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+      white-space: nowrap; pointer-events: none; user-select: none;
+      line-height: 0.85; bottom: -0.1em;
+    }
+    .footer { position: relative; overflow: hidden; }
+
+    /* ─── G: SECTION DECO TEXT ─── */
+    .section-deco-wrap { position: relative; overflow: visible; }
+    .section-deco-text {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      font-family: var(--font-en); font-size: clamp(5rem, 14vw, 12rem);
+      font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase;
+      color: transparent; -webkit-text-stroke: 1px rgba(26,63,191,0.06);
+      white-space: nowrap; pointer-events: none; user-select: none; z-index: 0;
+      line-height: 1;
+    }
+
+    /* ─── C: SERVICE CARD DECO NUMBER ─── */
+    .service-card { overflow: hidden; }
+    .service-card-deco {
+      position: absolute; top: -0.15em; right: -0.05em;
+      font-family: var(--font-en); font-size: clamp(5rem, 11vw, 10rem);
+      font-weight: 900; line-height: 1; pointer-events: none; user-select: none;
+      transition: transform 0.5s var(--ease), opacity 0.5s;
+    }
+    .service-card-deco { color: rgba(26,63,191,0.05); }
+    .service-card:hover .service-card-deco { transform: scale(1.1) translateY(-6px); }
+
+    /* ─── D: CASES HORIZONTAL SCROLL ─── */
+    .cases-scroll-outer {
+      overflow-x: auto; overflow-y: hidden; cursor: grab; user-select: none;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      padding-bottom: 1.2rem; margin-top: 3rem;
+    }
+    .cases-scroll-outer:active { cursor: grabbing; }
+    .cases-scroll-outer::-webkit-scrollbar { height: 3px; }
+    .cases-scroll-outer::-webkit-scrollbar-track { background: var(--border-light); }
+    .cases-scroll-outer::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+    .cases-scroll-wrap {
+      display: flex; gap: 1px; width: max-content;
+      background: var(--border); border: 1px solid var(--border);
+    }
+    .cases-card {
+      background: var(--bg); width: 260px; flex-shrink: 0; padding: 2.2rem 1.8rem;
+      scroll-snap-align: start; transition: background 0.2s;
+    }
+    .cases-card:hover { background: #fafbff; }
+    .cases-card-industry { font-family: var(--font-jp); font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.2rem; }
+    .cases-card-industry-en { font-family: var(--font-en); font-size: 0.62rem; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 1.2rem; }
+    .cases-card-items { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .cases-card-items li { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; padding-left: 1rem; position: relative; }
+    .cases-card-items li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.68rem; }
+    .cases-scroll-hint { font-family: var(--font-en); font-size: 0.66rem; letter-spacing: 0.14em; color: var(--text-dim); text-transform: uppercase; margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .cases-scroll-hint::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ─── E: SECURITY MATRIX CANVAS ─── */
+    .security-highlight { position: relative; overflow: hidden; }
+    #sec-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; opacity: 0.14; z-index: 0;
+    }
+    .security-inner { position: relative; z-index: 1; }
+
+    /* ─── F: CONTACT GRADIENT MESH ─── */
+    .contact-section-dark {
+      background: var(--text-primary);
+      position: relative; overflow: hidden;
+    }
+    .contact-mesh {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 10% 50%, rgba(26,63,191,0.28) 0%, transparent 62%),
+        radial-gradient(ellipse 50% 70% at 88% 30%, rgba(123,150,255,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 60% at 55% 88%, rgba(26,63,191,0.16) 0%, transparent 52%);
+      animation: meshDrift 14s ease-in-out infinite alternate;
+    }
+    @keyframes meshDrift {
+      0%   { transform: scale(1)    translate(0, 0); }
+      33%  { transform: scale(1.07) translate(-2%, 1.5%); }
+      66%  { transform: scale(0.96) translate(2.5%, -1%); }
+      100% { transform: scale(1.05) translate(-1%, 2%); }
+    }
+    .contact-section-dark .section-label { color: #7b96ff; }
+    .contact-section-dark .section-label::before { background: #7b96ff; }
+    .contact-section-dark .contact-title { color: #fff; }
+    .contact-section-dark .contact-desc { color: rgba(255,255,255,0.55); }
+    .contact-section-dark .contact-meta-text { color: rgba(255,255,255,0.45); }
+    .contact-section-dark .contact-meta-icon { color: #7b96ff; }
+    .contact-section-dark .contact-form {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.1);
+    }
+    .contact-section-dark .form-label { color: rgba(255,255,255,0.78); }
+    .contact-section-dark .form-input,
+    .contact-section-dark .form-select,
+    .contact-section-dark .form-textarea {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+    .contact-section-dark .form-select option { color: var(--text-primary); background: #fff; }
+    .contact-section-dark .form-input::placeholder,
+    .contact-section-dark .form-textarea::placeholder { color: rgba(255,255,255,0.22); }
+    .contact-section-dark .form-input:focus,
+    .contact-section-dark .form-select:focus,
+    .contact-section-dark .form-textarea:focus {
+      border-color: #7b96ff;
+      box-shadow: 0 0 0 3px rgba(123,150,255,0.14);
+    }
+    .contact-section-dark .form-submit {
+      background: #fff; color: var(--text-primary);
+    }
+    .contact-section-dark .form-submit:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
+    .contact-section-dark .form-success p { color: #7b96ff; }
+    .contact-wrap { position: relative; z-index: 1; }
+
+    /* ─── A: CHAR STAGGER ─── */
+    .char-stagger { overflow: hidden; }
+    .char-stagger .char {
+      display: inline-block; opacity: 0; transform: translateY(60%) rotate(4deg);
+      transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+    }
+    .char-stagger.visible .char { opacity: 1; transform: translateY(0) rotate(0deg); }
+
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* ══════════════════════════════════════════════
+       DESIGN UPGRADE — Engineering Aesthetic
+    ══════════════════════════════════════════════ */
+
+    /* ─── MONO FONT ─── */
+    .mono { font-family: 'SF Mono','Fira Code','JetBrains Mono','Consolas',monospace; }
+
+    /* ─── SECTION LABEL: code-comment style ─── */
+    .section-label {
+      font-family: 'SF Mono','Fira Code','Consolas',monospace;
+      font-size: 0.64rem; letter-spacing: 0.14em;
+      text-transform: none;
+    }
+    .section-label::before {
+      content: '//'; width: auto; height: auto; border-radius: 0;
+      background: none; font-weight: 400; opacity: 0.5; margin-right: 0.45rem;
+      font-family: 'SF Mono','Fira Code','Consolas',monospace;
+      font-size: inherit; line-height: 1;
+    }
+
+    /* ─── HERO 2-COLUMN SPLIT ─── */
+    .hero-content {
+      max-width: 1140px; text-align: left; padding: 0 3rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3.5rem; align-items: center;
+    }
+    .hero-split-left { display: flex; flex-direction: column; gap: 0; }
+    .hero-split-left .hero-actions { justify-content: flex-start; }
+    .hero-split-left .hero-badges { justify-content: flex-start; }
+    .hero-split-right { display: flex; flex-direction: column; gap: 1.4rem; }
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; padding: 0 1.5rem; }
+      .hero-split-left .hero-actions, .hero-split-left .hero-badges { justify-content: center; }
+      .hero-split-right { display: none; }
+    }
+
+    /* ─── HERO EYEBROW: terminal prompt ─── */
+    .hero-eyebrow {
+      font-family: 'SF Mono','Fira Code','Consolas',monospace;
+      font-size: 0.72rem; letter-spacing: 0.04em;
+      text-transform: none; font-weight: 400;
+      color: var(--text-secondary);
+    }
+    .hero-eyebrow-prompt { color: #7b96ff; font-weight: 700; margin-right: 0.5rem; }
+    .hero-eyebrow-cursor {
+      display: inline-block; width: 7px; height: 0.9em;
+      background: var(--accent); vertical-align: text-bottom; margin-left: 3px;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ─── ANIMATED GRADIENT: hero accent text ─── */
+    .hero-title .accent {
+      background: linear-gradient(270deg, #1a3fbf 0%, #5577ff 35%, #8aa4ff 60%, #1a3fbf 100%);
+      background-size: 300% 100%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: accentFlow 6s linear infinite;
+    }
+    @keyframes accentFlow { 0%{background-position:0% center} 100%{background-position:300% center} }
+
+    /* ─── TERMINAL WINDOW ─── */
+    .terminal-window {
+      background: #0d0d18;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.09);
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.04),
+                  inset 0 1px 0 rgba(255,255,255,0.06);
+      font-family: 'SF Mono','Fira Code','Consolas',monospace;
+      font-size: 0.76rem; line-height: 1.9;
+    }
+    .terminal-bar {
+      background: rgba(255,255,255,0.06);
+      padding: 10px 16px; display: flex; align-items: center; gap: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .term-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+    .term-dot-r { background: #ff5f57; } .term-dot-y { background: #febc2e; } .term-dot-g { background: #28c840; }
+    .terminal-title { flex: 1; text-align: center; font-size: 0.62rem; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; }
+    .terminal-body { padding: 18px 22px; min-height: 180px; }
+    .term-line { color: rgba(255,255,255,0.7); display: block; min-height: 1.9em; }
+    .term-prompt { color: #7b96ff; }
+    .term-cmd { color: #fff; font-weight: 500; }
+    .term-key { color: #febc2e; }
+    .term-ok { color: #28c840; }
+    .term-dim { color: rgba(255,255,255,0.28); }
+    .term-blink {
+      display: inline-block; width: 7px; height: 0.85em;
+      background: #7b96ff; vertical-align: text-bottom;
+      animation: blink 1s step-end infinite; margin-left: 2px;
+    }
+
+    /* ─── SHIMMER on primary button ─── */
+    .btn-primary { position: relative; overflow: hidden; isolation: isolate; }
+    .btn-primary::after {
+      content: '';
+      position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent);
+      transform: skewX(-15deg);
+      animation: btnShimmer 4s ease-in-out infinite;
+    }
+    @keyframes btnShimmer {
+      0%,20%{left:-100%;opacity:0} 28%{opacity:1} 65%,100%{left:150%;opacity:0}
+    }
+
+    /* ─── CARD SPOTLIGHT (via JS) — overlay div injected ─── */
+    .tilt-card { position: relative; }
+
+    /* ─── CARD HOVER UPGRADE ─── */
+    .why-card:hover, .product-card:hover {
+      box-shadow: 0 8px 40px rgba(26,63,191,0.09), 0 1px 4px rgba(0,0,0,0.04);
+      background: #f9faff;
+    }
+    .service-card:hover { background: #f9faff; }
+
+    /* ─── TAGS: monospace code style ─── */
+    .why-card-tag {
+      font-family: 'SF Mono','Fira Code','Consolas',monospace !important;
+      font-size: 0.64rem !important; letter-spacing: 0;
+    }
+    .service-tag {
+      font-family: 'SF Mono','Fira Code','Consolas',monospace !important;
+      font-size: 0.65rem !important;
+    }
+    .product-type {
+      font-family: 'SF Mono','Fira Code','Consolas',monospace !important;
+    }
+
+    /* ─── NAV glass upgrade ─── */
+    .nav {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+    }
+
+    /* ─── AURORA: blob animations ─── */
+    .hero-bg-blob-1 { animation: blobFloat1 14s ease-in-out infinite alternate; }
+    .hero-bg-blob-2 { animation: blobFloat2 20s ease-in-out infinite alternate; }
+    @keyframes blobFloat1 { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(-6%,10%) scale(1.12)} }
+    @keyframes blobFloat2 { 0%{transform:translate(0,0) scale(1.05)} 100%{transform:translate(8%,-8%) scale(0.9)} }
+
+    /* ─── HERO MOUSE GLOW ─── */
+    .hero-mouse-glow {
+      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      background: radial-gradient(700px circle at var(--hmx,50%) var(--hmy,50%),rgba(26,63,191,0.04),transparent 55%);
+    }
+
+    /* ─── MARQUEE: pause on hover ─── */
+    .marquee-strip:hover .marquee-track { animation-play-state: paused; }
+
+    /* ─── FLOAT CTA pulse ring ─── */
+    .float-cta { position: relative; }
+    .float-cta::before {
+      content: ''; position: absolute; inset: -3px;
+      border-radius: 50px; background: var(--accent); opacity: 0;
+      animation: ctaPulse 3s ease-out infinite; z-index: -1;
+    }
+    @keyframes ctaPulse { 0%{transform:scale(1);opacity:0.3} 100%{transform:scale(1.5);opacity:0} }
+
+    /* ─── GRADIENT BORDER on hero-compare ZetaX col ─── */
+    .hero-compare-col:last-child {
+      background: linear-gradient(var(--bg),var(--bg)) padding-box,
+                  linear-gradient(135deg,var(--accent),#7b96ff) border-box;
+      border: 1.5px solid transparent !important;
+    }
+
+    /* ─── PROCESS STEP ─── */
+    .process-step { transition: background 0.2s; }
+    .process-step:hover { background: #f9faff; }
+
+    /* ─── TRUST NUM subtle glow ─── */
+    .trust-number { text-shadow: 0 0 40px rgba(123,150,255,0.25); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
@@ -425,6 +809,19 @@
 
 <body>
 
+  <!-- CURSOR -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- FLOAT CTA -->
+  <a href="#contact" class="float-cta" id="float-cta">
+    <span class="float-cta-dot"></span>
+    <span data-ja="まず30分、話しましょう" data-en="Book a Free Call">まず30分、話しましょう</span>
+  </a>
+
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a href="/" class="nav-logo">ZETA<span>X</span></a>
@@ -441,10 +838,10 @@
           </button>
           <div class="nav-dropdown">
             <p class="nav-dropdown-label">Services</p>
-            <a href="#services" data-ja="AI/ITコンサル・開発" data-en="AI/IT Consulting & Dev">AI/ITコンサル・開発</a>
-            <a href="#services" data-ja="セキュリティコンサル" data-en="Security Consulting">セキュリティコンサル</a>
-            <a href="#services" data-ja="AI研修" data-en="AI Training">AI研修</a>
-            <a href="#services" data-ja="ハードウェア開発" data-en="Hardware Dev">ハードウェア開発</a>
+            <a href="/ai-dx" data-ja="AI/ITコンサル・開発" data-en="AI/IT Consulting & Dev">AI/ITコンサル・開発</a>
+            <a href="/security" data-ja="セキュリティコンサル" data-en="Security Consulting">セキュリティコンサル</a>
+            <a href="/ai-training" data-ja="AI研修" data-en="AI Training">AI研修</a>
+            <a href="/hardware" data-ja="ハードウェア開発" data-en="Hardware Dev">ハードウェア開発</a>
             <div class="nav-dropdown-divider"></div>
             <p class="nav-dropdown-label">Products</p>
             <a href="#products" data-ja="自社プロダクト" data-en="Our Products">自社プロダクト</a>
@@ -494,38 +891,84 @@
       <div class="hero-bg-blob hero-bg-blob-2"></div>
       <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
     </div>
+    <div class="hero-mouse-glow" id="hero-mouse-glow"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">東大・東工大出身エンジニアによる AI Native Consulting</p>
-      <h1 class="hero-title">
-        <span data-ja="スピード感と丁寧さを兼ね備えた、<br><span class='accent'>AI Nativeコンサルエンジニアの集団。</span>" data-en="Speed and thoroughness, united.<br><span class='accent'>AI Native Consulting Engineers.</span>">スピード感と丁寧さを兼ね備えた、<br><span class="accent">AI Nativeコンサルエンジニアの集団。</span></span>
-      </h1>
-      <p class="hero-title-sub" data-ja="東京大学・東京工業大学出身エンジニアが完全内製で、超上流から下流まで一気通貫でサポートします。" data-en="Engineers from the University of Tokyo and Tokyo Tech. 100% in-house, end-to-end.">東京大学・東京工業大学出身エンジニアが完全内製で、超上流から下流まで<span class="accent">一気通貫</span>でサポートします。</p>
-      <div class="hero-actions">
-        <a href="#services" class="btn-primary" data-ja="サービスを見る" data-en="Our Services">サービスを見る</a>
-        <a href="#contact" class="btn-outline" data-ja="無料相談する" data-en="Free Consultation">無料相談する</a>
-      </div>
-      <div class="hero-compare">
-        <div class="hero-compare-col">
-          <p class="hero-compare-label" data-ja="従来の開発会社" data-en="Traditional Firms">従来の開発会社</p>
-          <p class="hero-compare-text" data-ja="要件定義3ヶ月 → 開発6ヶ月<br>納品後は追加発注" data-en="3 months requirements → 6 months dev<br>New contract for every fix">要件定義3ヶ月 → 開発6ヶ月<br>納品後は追加発注</p>
+
+      <!-- LEFT: text -->
+      <div class="hero-split-left">
+        <p class="hero-eyebrow"><span class="hero-eyebrow-prompt">$</span> zetax --mode ai-native<span class="hero-eyebrow-cursor"></span></p>
+        <h1 class="hero-title">
+          <span data-ja="スピード感と丁寧さを<br>兼ね備えた、<br><span class='accent'>AI Nativeコンサル<br>エンジニアの集団。</span>" data-en="Speed and thoroughness,<br>united.<br><span class='accent'>AI Native<br>Consulting Engineers.</span>">スピード感と丁寧さを<br>兼ね備えた、<br><span class="accent">AI Nativeコンサル<br>エンジニアの集団。</span></span>
+        </h1>
+        <p class="hero-title-sub" data-ja="東京大学・東京工業大学出身エンジニアが完全内製で、超上流から下流まで一気通貫でサポートします。地方の中小企業から東証プライム上場企業まで、幅広い規模・業種の支援実績があります。" data-en="Engineers from the University of Tokyo and Tokyo Tech. 100% in-house, end-to-end. Proven track record from local SMEs to TSE Prime-listed companies.">東京大学・東京工業大学出身エンジニアが完全内製で、超上流から下流まで<span class="grad-text">一気通貫</span>でサポートします。地方の中小企業から東証プライム上場企業まで、幅広い規模・業種の支援実績があります。</p>
+        <div class="hero-actions">
+          <a href="#services" class="btn-primary" data-ja="サービスを見る" data-en="Our Services">サービスを見る</a>
+          <a href="#contact" class="btn-outline" data-ja="無料相談する" data-en="Free Consultation">無料相談する</a>
         </div>
-        <div class="hero-compare-col">
-          <p class="hero-compare-label">ZetaX</p>
-          <p class="hero-compare-text" data-ja="初日にプロトタイプ提示<br>納品後も継続サポート" data-en="Prototype on Day 1<br>Continuous support after launch">初日にプロトタイプ提示<br>納品後も継続サポート</p>
+        <div class="hero-badges">
+          <span class="hero-badge" data-ja="東京大学・東京工業大学出身" data-en="UTokyo / Tokyo Tech Alumni">東京大学・東京工業大学出身</span>
+          <span class="hero-badge" data-ja="完全内製" data-en="100% In-House">完全内製</span>
+          <span class="hero-badge" data-ja="AI / ITコンサル・開発" data-en="AI / IT Consulting & Dev">AI / ITコンサル・開発</span>
+          <span class="hero-badge" data-ja="セキュリティ" data-en="Security">セキュリティ</span>
+          <span class="hero-badge" data-ja="AI研修" data-en="AI Training">AI研修</span>
+          <span class="hero-badge" data-ja="ハードウェア" data-en="Hardware">ハードウェア</span>
         </div>
       </div>
 
-      <div class="hero-badges">
-        <span class="hero-badge" data-ja="東京大学・東京工業大学出身" data-en="UTokyo / Tokyo Tech Alumni">東京大学・東京工業大学出身</span>
-        <span class="hero-badge" data-ja="完全内製" data-en="100% In-House">完全内製</span>
-        <span class="hero-badge" data-ja="AI / ITコンサル・開発" data-en="AI / IT Consulting & Dev">AI / ITコンサル・開発</span>
-        <span class="hero-badge" data-ja="セキュリティ" data-en="Security">セキュリティ</span>
-        <span class="hero-badge" data-ja="AI研修" data-en="AI Training">AI研修</span>
-        <span class="hero-badge" data-ja="ハードウェア" data-en="Hardware">ハードウェア</span>
+      <!-- RIGHT: terminal + compare -->
+      <div class="hero-split-right">
+        <div class="terminal-window" id="hero-terminal" aria-hidden="true">
+          <div class="terminal-bar">
+            <span class="term-dot term-dot-r"></span>
+            <span class="term-dot term-dot-y"></span>
+            <span class="term-dot term-dot-g"></span>
+            <span class="terminal-title">zetax@production ~ </span>
+          </div>
+          <div class="terminal-body" id="terminal-body"></div>
+        </div>
+
+        <div class="hero-compare">
+          <div class="hero-compare-col">
+            <p class="hero-compare-label" data-ja="従来の開発会社" data-en="Traditional Firms">従来の開発会社</p>
+            <ul class="hero-compare-list">
+              <li class="hero-compare-item bad" data-ja="要件定義3ヶ月 → 開発6ヶ月" data-en="3 months requirements → 6 months dev">要件定義3ヶ月 → 開発6ヶ月</li>
+              <li class="hero-compare-item bad" data-ja="納品後は追加発注" data-en="New contract for every fix">納品後は追加発注</li>
+            </ul>
+          </div>
+          <div class="hero-compare-vs">VS</div>
+          <div class="hero-compare-col">
+            <p class="hero-compare-label">ZetaX</p>
+            <ul class="hero-compare-list">
+              <li class="hero-compare-item good" data-ja="初日にプロトタイプ提示" data-en="Prototype on Day 1">初日にプロトタイプ提示</li>
+              <li class="hero-compare-item good" data-ja="納品後も継続サポート" data-en="Continuous support after launch">納品後も継続サポート</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
     </div>
     <div class="hero-scroll">Scroll</div>
   </section>
+
+  <!-- MARQUEE STRIP -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">完全内製 <em>·</em> 下請けゼロ</span>
+      <span class="marquee-item">東京大学 <em>·</em> 東京工業大学</span>
+      <span class="marquee-item">AI Native <em>·</em> Consulting</span>
+      <span class="marquee-item">超上流から下流まで <em>·</em> 一気通貫</span>
+      <span class="marquee-item">Security <em>·</em> Built-In</span>
+      <span class="marquee-item">地方中小 <em>·</em> 東証プライム上場まで</span>
+      <span class="marquee-item">スピード感 <em>·</em> 丁寧さ</span>
+      <span class="marquee-item">完全内製 <em>·</em> 下請けゼロ</span>
+      <span class="marquee-item">東京大学 <em>·</em> 東京工業大学</span>
+      <span class="marquee-item">AI Native <em>·</em> Consulting</span>
+      <span class="marquee-item">超上流から下流まで <em>·</em> 一気通貫</span>
+      <span class="marquee-item">Security <em>·</em> Built-In</span>
+      <span class="marquee-item">地方中小 <em>·</em> 東証プライム上場まで</span>
+      <span class="marquee-item">スピード感 <em>·</em> 丁寧さ</span>
+    </div>
+  </div>
 
   <!-- MEDIA BAR -->
   <div class="media-bar">
@@ -549,6 +992,22 @@
             <text x="44" y="20" font-family="'Noto Sans JP', sans-serif" font-weight="700" font-size="13" fill="#1a1a1a" letter-spacing="1">毎日新聞</text>
           </svg>
         </div>
+        <div class="media-logo-divider"></div>
+        <!-- VOIX life -->
+        <div class="media-logo-item">
+          <svg height="28" viewBox="0 0 130 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="VOIX life">
+            <text x="0" y="20" font-family="'Montserrat', 'Inter', sans-serif" font-weight="700" font-size="16" fill="#1a1a1a" letter-spacing="2">VOIX</text>
+            <text x="62" y="20" font-family="'Montserrat', 'Inter', sans-serif" font-weight="400" font-size="14" fill="#888888" letter-spacing="1">life</text>
+          </svg>
+        </div>
+        <div class="media-logo-divider"></div>
+        <!-- SushiTech Tokyo -->
+        <div class="media-logo-item">
+          <svg height="28" viewBox="0 0 170 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SushiTech Tokyo">
+            <text x="0" y="20" font-family="'Montserrat', 'Inter', sans-serif" font-weight="700" font-size="14" fill="#1a1a1a" letter-spacing="0.5">SushiTech</text>
+            <text x="98" y="20" font-family="'Montserrat', 'Inter', sans-serif" font-weight="400" font-size="14" fill="#888888" letter-spacing="0.5">Tokyo</text>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -558,7 +1017,7 @@
     <div class="container">
       <div class="trust-grid">
         <div class="trust-item reveal">
-          <div class="trust-number">100<em>%</em></div>
+          <div class="trust-number" data-count="100" data-suffix="%"><span class="count-val">100</span><em>%</em></div>
           <div class="trust-label" data-ja="完全内製・下請けゼロ" data-en="100% In-House, Zero Outsourcing">完全内製・下請けゼロ</div>
         </div>
         <div class="trust-item reveal d1">
@@ -566,7 +1025,7 @@
           <div class="trust-label" data-ja="戦略立案から一気通貫で対応" data-en="From strategy to delivery, end-to-end">戦略立案から一気通貫で対応</div>
         </div>
         <div class="trust-item reveal d2">
-          <div class="trust-number">2<em>社+</em></div>
+          <div class="trust-number" data-count="2" data-suffix="社+"><span class="count-val">2</span><em>社+</em></div>
           <div class="trust-label" data-ja="大手銀行とのセキュリティ実績" data-en="Security track record with major banks">大手銀行とのセキュリティ実績</div>
         </div>
         <div class="trust-item reveal d3">
@@ -574,7 +1033,7 @@
           <div class="trust-label" data-ja="出身エンジニアが中心メンバー" data-en="Core team from UTokyo & Tokyo Tech">出身エンジニアが中心メンバー</div>
         </div>
         <div class="trust-item reveal d4">
-          <div class="trust-number">25<em>社+</em></div>
+          <div class="trust-number" data-count="25" data-suffix="社+"><span class="count-val">25</span><em>社+</em></div>
           <div class="trust-label" data-ja="支援実績　うち上場企業6社" data-en="Clients served, incl. 6 listed companies">支援実績　うち上場企業6社</div>
         </div>
       </div>
@@ -587,28 +1046,114 @@
       <div class="reveal">
         <span class="section-label">Why ZetaX</span>
         <h2 class="section-heading" data-ja="お客様に、<br>徹底的に寄り添う。" data-en="We Stand By Our Clients,<br>Every Step of the Way.">お客様に、<br>徹底的に寄り添う。</h2>
-        <p class="section-sub" data-ja="東京大学・東京工業大学出身エンジニアを中心とした完全内製チームが、超上流から下流まで一気通貫でサポートします。スピード感と丁寧さを両立させた、AI Nativeなコンサルエンジニア集団です。" data-en="A fully in-house team centered on engineers from the University of Tokyo and Tokyo Tech. End-to-end support from strategy to delivery. AI Native consulting engineers who combine speed with thoroughness.">東京大学・東京工業大学出身エンジニアを中心とした完全内製チームが、超上流から下流まで一気通貫でサポートします。スピード感と丁寧さを両立させた、AI Nativeなコンサルエンジニア集団です。</p>
+        <p class="section-sub" data-ja="東京大学・東京工業大学出身エンジニアを中心に、AI開発・セキュリティ・ハードウェアまでを完全内製で担うチームです。戦略立案から保守まで、すべてのフェーズで同じエンジニアが責任を持って関わります。" data-en="A fully in-house team of engineers from the University of Tokyo and Tokyo Tech, covering AI development, security, and hardware. The same engineers take responsibility across every phase — from strategy through maintenance.">東京大学・東京工業大学出身エンジニアを中心に、AI開発・セキュリティ・ハードウェアまでを完全内製で担うチームです。戦略立案から保守まで、すべてのフェーズで同じエンジニアが責任を持って関わります。</p>
       </div>
+
+      <!-- 実績ハイライト -->
+      <div class="why-achieve-bar reveal d1">
+        <div class="why-achieve-item">
+          <div class="why-achieve-num">25<em>社+</em></div>
+          <div class="why-achieve-label" data-ja="AI・IT支援実績<br>うち上場企業6社" data-en="Clients served<br>incl. 6 listed companies">AI・IT支援実績<br>うち上場企業6社</div>
+        </div>
+        <div class="why-achieve-item">
+          <div class="why-achieve-num">2<em>社</em></div>
+          <div class="why-achieve-label" data-ja="都内大手銀行へのセキュリティ<br>コンサル実績" data-en="Security consulting at<br>major Tokyo banks">都内大手銀行へのセキュリティ<br>コンサル実績</div>
+        </div>
+        <div class="why-achieve-item">
+          <div class="why-achieve-num">10<em>+</em></div>
+          <div class="why-achieve-label" data-ja="対応業種<br>製造・金融・医療・建設ほか" data-en="Industries served<br>Manufacturing, Finance, Healthcare…">対応業種<br>製造・金融・医療・建設ほか</div>
+        </div>
+        <div class="why-achieve-item">
+          <div class="why-achieve-num">日本<em>トップ</em></div>
+          <div class="why-achieve-label" data-ja="エンジニア人材<br>日本最高水準" data-en="Japan's Top-Tier<br>Engineering Talent">エンジニア人材<br>日本最高水準</div>
+        </div>
+      </div>
+
       <div class="why-grid">
-        <div class="why-card reveal d1">
+        <div class="why-card tilt-card reveal d1">
           <p class="why-card-number">01</p>
           <h3 class="why-card-title" data-ja="完全内製 — 下請けゼロ" data-en="100% In-House, Zero Outsourcing">完全内製 — 下請けゼロ</h3>
-          <p class="why-card-desc" data-ja="すべての作業を自社エンジニアが担当します。外部への委託は一切行いません。品質・スピード・機密保持の3点を同時に確保します。" data-en="All work is handled by our own engineers. No outsourcing, period. Quality, speed, and confidentiality — all three, simultaneously.">すべての作業を自社エンジニアが担当します。外部への委託は一切行いません。品質・スピード・機密保持の3点を同時に確保します。</p>
+          <p class="why-card-desc" data-ja="すべての作業を自社エンジニアが担当します。外部委託を一切行わないため、品質・スピード・機密保持の3つを同時に確保できます。お客様の情報が外部に出ることはありません。" data-en="Every task is handled by our own engineers. No outsourcing, ever. Quality, speed, and confidentiality — all three, simultaneously. Your information never leaves our team.">すべての作業を自社エンジニアが担当します。外部委託を一切行わないため、品質・スピード・機密保持の3つを同時に確保できます。お客様の情報が外部に出ることはありません。</p>
+          <div class="why-card-tags">
+            <span class="why-card-tag">外部委託ゼロ</span>
+            <span class="why-card-tag">情報漏洩リスク最小</span>
+            <span class="why-card-tag">品質管理徹底</span>
+          </div>
         </div>
-        <div class="why-card reveal d2">
+        <div class="why-card tilt-card reveal d2">
           <p class="why-card-number">02</p>
           <h3 class="why-card-title" data-ja="超上流から下流まで一気通貫" data-en="End-to-End, From Strategy to Delivery">超上流から下流まで一気通貫</h3>
-          <p class="why-card-desc" data-ja="何を作るべきか分からない段階でも対応できます。課題定義・戦略立案・設計・開発・保守を、一つのチームが一気に担います。" data-en="Even when you're unsure what to build, we're ready. One team handles everything: problem definition, strategy, design, development, and maintenance.">何を作るべきか分からない段階でも対応できます。課題定義・戦略立案・設計・開発・保守を、一つのチームが一気に担います。</p>
+          <p class="why-card-desc" data-ja="「何を作るべきか分からない」段階でもご相談ください。課題の定義から戦略立案・設計・開発・保守運用まで、引き継ぎなしで一つのチームが一気に担います。担当が変わるたびに意図が薄れる、という問題がありません。" data-en="Come to us even when you're not sure what to build. One team takes full ownership — problem definition, strategy, design, development, and operations — with no handoffs. No information is lost in translation.">「何を作るべきか分からない」段階でもご相談ください。課題の定義から戦略立案・設計・開発・保守運用まで、引き継ぎなしで一つのチームが一気に担います。担当が変わるたびに意図が薄れる、という問題がありません。</p>
+          <div class="why-card-tags">
+            <span class="why-card-tag">戦略〜保守まで</span>
+            <span class="why-card-tag">担当変更なし</span>
+            <span class="why-card-tag">初日プロトタイプ</span>
+          </div>
         </div>
-        <div class="why-card reveal d1">
+        <div class="why-card tilt-card reveal d1">
           <p class="why-card-number">03</p>
-          <h3 class="why-card-title" data-ja="スピード感と丁寧さ、両立するAI Native集団" data-en="Speed and Thoroughness — AI Native by Design">スピード感と丁寧さ、両立するAI Native集団</h3>
-          <p class="why-card-desc" data-ja="私たちはAIが当たり前の時代に育ったAI Nativeなエンジニア・コンサルタントです。最新ツールを使いこなす速度と、お客様の課題に正面から向き合う丁寧さを同時に持ち合わせています。速いだけでも、丁寧なだけでもない。その両立が私たちの強みです。" data-en="We are AI Native engineers and consultants who grew up in the age of AI. We combine the speed of leveraging the latest tools with the thoroughness of genuinely engaging with your challenges. Not just fast. Not just careful. Both, at once.">私たちはAIが当たり前の時代に育ったAI Nativeなエンジニア・コンサルタントです。最新ツールを使いこなす速度と、お客様の課題に正面から向き合う丁寧さを同時に持ち合わせています。速いだけでも、丁寧なだけでもない。その両立が私たちの強みです。</p>
+          <h3 class="why-card-title" data-ja="東大・東工大出身、AI Native集団" data-en="UTokyo / Tokyo Tech Alumni — AI Native by Design">東大・東工大出身、AI Native集団</h3>
+          <p class="why-card-desc" data-ja="中心メンバーは東京大学・東京工業大学工学部出身のエンジニアです。AIが当たり前の時代に育ったAI Nativeとして、最新技術を即戦力で活用します。スタートアップでの数億円規模プロジェクト経験から、ベンチャーキャピタルでの投資経験まで、多様なビジネス知見も持ち合わせています。" data-en="Our core members are engineers from the Faculty of Engineering at UTokyo and Tokyo Tech. As AI Natives who grew up in the age of AI, we deploy the latest tools as first-class instruments. Combined with startup experience on projects worth hundreds of millions and VC investment track records.">中心メンバーは東京大学・東京工業大学工学部出身のエンジニアです。AIが当たり前の時代に育ったAI Nativeとして、最新技術を即戦力で活用します。スタートアップでの数億円規模プロジェクト経験から、ベンチャーキャピタルでの投資経験まで、多様なビジネス知見も持ち合わせています。</p>
+          <div class="why-card-tags">
+            <span class="why-card-tag">東京大学</span>
+            <span class="why-card-tag">東京工業大学</span>
+            <span class="why-card-tag">数億円規模PM経験</span>
+          </div>
         </div>
-        <div class="why-card reveal d2">
+        <div class="why-card tilt-card reveal d2">
           <p class="why-card-number">04</p>
-          <h3 class="why-card-title" data-ja="導入から保守まで、ずっと伴走する" data-en="With You From Launch to Long-Term">導入から保守まで、ずっと伴走する</h3>
-          <p class="why-card-desc" data-ja="納品して終わりではありません。導入研修・保守・点検まで継続して対応します。現場の作業員から上長まで幅広くヒアリングし、必要があれば現場に出勤して業務を共にします。オンライン・対面ともに対応し、北は青森から南は福岡まで全国で対面支援の実績があります。" data-en="Delivery is just the beginning. We provide ongoing training, maintenance, and inspection. We interview everyone from floor workers to management, and when needed, we work side by side on-site. Available online or in person — we've delivered face-to-face support from Aomori to Fukuoka.">納品して終わりではありません。導入研修・保守・点検まで継続して対応します。現場の作業員から上長まで幅広くヒアリングし、必要があれば現場に出勤して業務を共にします。オンライン・対面ともに対応し、北は青森から南は福岡まで全国で対面支援の実績があります。</p>
+          <h3 class="why-card-title" data-ja="納品後も、ずっと伴走する" data-en="We Stay With You After Launch">納品後も、ずっと伴走する</h3>
+          <p class="why-card-desc" data-ja="納品して終わりではありません。導入研修・保守・点検まで継続して対応します。現場の作業員から経営層まで幅広くヒアリングし、必要があれば現場に出勤して業務を共にします。北は青森から南は福岡まで、全国どこでも対面支援の実績があります。" data-en="Delivery is just the beginning. We continue with onboarding, maintenance, and inspection. We talk to everyone from floor workers to executives, and show up on-site when needed. We've delivered in-person support everywhere from Aomori to Fukuoka.">納品して終わりではありません。導入研修・保守・点検まで継続して対応します。現場の作業員から経営層まで幅広くヒアリングし、必要があれば現場に出勤して業務を共にします。北は青森から南は福岡まで、全国どこでも対面支援の実績があります。</p>
+          <div class="why-card-tags">
+            <span class="why-card-tag">導入研修対応</span>
+            <span class="why-card-tag">全国対面支援</span>
+            <span class="why-card-tag">青森〜福岡</span>
+          </div>
+        </div>
+
+        <!-- 05: SECURITY -->
+        <div class="why-card tilt-card reveal d1">
+          <p class="why-card-number">05</p>
+          <h3 class="why-card-title" data-ja="セキュリティが、設計に最初から入っている" data-en="Security Built Into Every Design">セキュリティが、設計に最初から入っている</h3>
+          <p class="why-card-desc" data-ja="外部に発注すると、セキュリティへの対応が後回しになりがちです。ZetaXでは、設計の段階からセキュリティを組み込みます。都内大手銀行2社とのセキュリティコンサル実績を持つエンジニアが、システム開発にも携わるため、脆弱性の見落としや情報漏洩リスクを最小化した状態でお届けします。" data-en="Security is often an afterthought when outsourcing. At ZetaX, it's built in from the design phase. Our engineers with bank-level security track records are directly involved in every build.">外部に発注すると、セキュリティへの対応が後回しになりがちです。ZetaXでは、設計の段階からセキュリティを組み込みます。都内大手銀行2社とのセキュリティコンサル実績を持つエンジニアが、システム開発にも携わるため、脆弱性の見落としや情報漏洩リスクを最小化した状態でお届けします。</p>
+          <ul class="why-card-features">
+            <li data-ja="設計段階からのセキュリティ設計" data-en="Security-by-Design from Day One">設計段階からのセキュリティ設計</li>
+            <li data-ja="銀行レベルのセキュリティ水準" data-en="Bank-Grade Security Standards">銀行レベルのセキュリティ水準</li>
+            <li data-ja="完全内製だから情報漏洩リスクが低い" data-en="No Outsourcing = Fewer Leak Vectors">完全内製だから情報漏洩リスクが低い</li>
+            <li data-ja="全国大会入賞レベルの専門知識" data-en="National Competition Award-Level Expertise">全国大会入賞レベルの専門知識</li>
+          </ul>
+          <div class="why-card-tags">
+            <span class="why-card-tag">銀行実績2社</span>
+            <span class="why-card-tag">全国大会3位</span>
+            <span class="why-card-tag">PQC対応</span>
+            <span class="why-card-tag">脆弱性診断</span>
+          </div>
+        </div>
+
+        <!-- 06: TRACK RECORD -->
+        <div class="why-card tilt-card reveal d2">
+          <p class="why-card-number">06</p>
+          <h3 class="why-card-title" data-ja="地方中小から東証プライム上場まで。実績が語る。" data-en="From Local SMEs to TSE Prime. Results Speak.">地方中小から東証プライム上場まで。実績が語る。</h3>
+          <p class="why-card-desc" data-ja="製造業・士業・金融・医療・物流・建設・農業など10以上の業種で25社以上の支援実績。東証プライム上場企業6社、都内大手銀行2社、大手税理士法人5社への導入実績があります。スタートアップ期の企業から売上数百億規模の上場企業まで、規模を問わず対応してきた実績があります。" data-en="25+ clients across 10+ industries including manufacturing, professional services, finance, healthcare, and logistics. Track record includes 6 TSE Prime-listed companies, 2 major Tokyo banks, and 5 major tax corporations. We've served companies from seed-stage startups to listed enterprises with revenues in the billions.">製造業・士業・金融・医療・物流・建設・農業など10以上の業種で25社以上の支援実績。東証プライム上場企業6社、都内大手銀行2社、大手税理士法人5社への導入実績があります。スタートアップ期の企業から売上数百億規模の上場企業まで、規模を問わず対応してきた実績があります。</p>
+          <div class="why-card-tags">
+            <span class="why-card-tag">東証プライム6社</span>
+            <span class="why-card-tag">都内大手銀行2社</span>
+            <span class="why-card-tag">税理士法人5社</span>
+            <span class="why-card-tag">10業種以上</span>
+          </div>
+        </div>
+
+        <!-- 07: HW × SW -->
+        <div class="why-card tilt-card reveal d1" style="grid-column: span 2;">
+          <p class="why-card-number">07</p>
+          <h3 class="why-card-title" data-ja="ハードウェアとソフトウェアを、同じチームで。" data-en="Hardware and Software. One Team.">ハードウェアとソフトウェアを、同じチームで。</h3>
+          <p class="why-card-desc" data-ja="PCB基板設計・組み込み開発からクラウド・AIまで、ハードとソフトを横断できるエンジニアが社内に揃っています。「センサーで取ったデータをAIで分析してクラウドに送る」といった要件を、外部との調整なしに一気通貫で実装できます。ベンダーをまたぐたびに生まれる仕様の齟齬・責任の曖昧さ・コストの増大を、そもそも発生させません。製造業向け予兆保全デバイスはその象徴です。" data-en="Our team spans PCB design and embedded development all the way to cloud and AI. Requirements like 'collect sensor data, analyze it with AI, and send it to the cloud' are handled entirely in-house — no cross-vendor coordination. The ambiguity, blame gaps, and cost overruns that come from stitching together multiple vendors simply don't exist for us. Our predictive maintenance device for manufacturing is proof.">PCB基板設計・組み込み開発からクラウド・AIまで、ハードとソフトを横断できるエンジニアが社内に揃っています。「センサーで取ったデータをAIで分析してクラウドに送る」といった要件を、外部との調整なしに一気通貫で実装できます。ベンダーをまたぐたびに生まれる仕様の齟齬・責任の曖昧さ・コストの増大を、そもそも発生させません。製造業向け予兆保全デバイスはその象徴です。</p>
+          <div class="why-card-tags">
+            <span class="why-card-tag">PCB設計 × AI開発</span>
+            <span class="why-card-tag">組み込み × クラウド</span>
+            <span class="why-card-tag">ベンダー調整ゼロ</span>
+            <span class="why-card-tag">予兆保全デバイス実績</span>
+          </div>
         </div>
       </div>
     </div>
@@ -622,7 +1167,7 @@
         <h2 class="section-heading" data-ja="私たちの進め方" data-en="Our Process">私たちの進め方</h2>
         <p class="section-sub" data-ja="初日から現場に入り、納品後も改善を続けます。すべてのフェーズで担当エンジニアが直接関わります。" data-en="We're in the field from day one and keep improving after launch. Our engineers are directly involved at every phase.">初日から現場に入り、納品後も改善を続けます。すべてのフェーズで担当エンジニアが直接関わります。</p>
       </div>
-      <div class="process-grid">
+      <div class="process-grid reveal" id="process-grid">
         <div class="process-step reveal d1">
           <p class="process-num">STEP 01</p>
           <p class="process-timing" data-ja="初日" data-en="Day 1">初日</p>
@@ -653,15 +1198,17 @@
 
   <!-- SERVICES -->
   <section class="section section-alt" id="services">
-    <div class="container">
+    <div class="container" style="position:relative;">
+      <span class="section-deco-text" aria-hidden="true">SERVICES</span>
       <div class="reveal">
-        <span class="section-label">Services</span>
-        <h2 class="section-heading" data-ja="4つのサービス" data-en="Four Services">4つのサービス</h2>
+        <span class="section-label">Services &amp; Products</span>
+        <h2 class="section-heading" data-ja="サービスとプロダクト" data-en="Services &amp; Products">サービスとプロダクト</h2>
         <p class="section-sub" data-ja="AI/ITのコンサルから開発、セキュリティ、ハードウェアまで。すべて自社チームが完全内製でお届けします。" data-en="From AI/IT consulting and development to security and hardware. All delivered in-house by our own team.">AI/ITのコンサルから開発、セキュリティ、ハードウェアまで。すべて自社チームが完全内製でお届けします。</p>
       </div>
       <div class="services-grid">
 
-        <a href="/ai-dx" class="service-card service-card-dark reveal d1">
+        <a href="/ai-dx" class="service-card reveal d1">
+          <span class="service-card-deco" aria-hidden="true">01</span>
           <div class="service-badge-label" data-ja="超上流から下流まで一気通貫" data-en="Strategy to Delivery, End-to-End">超上流から下流まで一気通貫</div>
           <p class="service-num">01</p>
           <h3 class="service-title" data-ja="AI/ITコンサルティング<br>およびシステム開発" data-en="AI/IT Consulting<br>and System Development">AI/ITコンサルティング<br>およびシステム開発</h3>
@@ -676,7 +1223,8 @@
           <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
         </a>
 
-        <div class="service-card reveal d2">
+        <a href="/security" class="service-card reveal d2">
+          <span class="service-card-deco" aria-hidden="true">02</span>
           <p class="service-num">02</p>
           <h3 class="service-title" data-ja="セキュリティ<br>コンサルティング" data-en="Security<br>Consulting">セキュリティ<br>コンサルティング</h3>
           <p class="service-desc" data-ja="都内大手銀行をはじめとする金融機関との支援実績を持つセキュリティコンサルチームです。脆弱性診断・セキュリティポリシー策定にとどまらず、量子コンピュータ時代に対応した次世代暗号（耐量子暗号）の導入支援まで対応します。" data-en="A security consulting team with a proven track record at major Tokyo banks and financial institutions. We go beyond vulnerability assessments and policy development — we also support the implementation of post-quantum cryptography (PQC) to prepare for the quantum computing era.">都内大手銀行をはじめとする金融機関との支援実績を持つセキュリティコンサルチームです。脆弱性診断・セキュリティポリシー策定にとどまらず、量子コンピュータ時代に対応した次世代暗号（耐量子暗号）の導入支援まで対応します。</p>
@@ -687,9 +1235,10 @@
             <span class="service-tag" data-ja="都内大手銀行実績" data-en="Major Tokyo Bank Track Record">都内大手銀行実績</span>
           </div>
           <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
-        </div>
+        </a>
 
-        <div class="service-card reveal d1">
+        <a href="/ai-training" class="service-card reveal d1">
+          <span class="service-card-deco" aria-hidden="true">03</span>
           <p class="service-num">03</p>
           <h3 class="service-title" data-ja="AI研修・<br>リテラシー教育" data-en="AI Training &amp;<br>Literacy Education">AI研修・<br>リテラシー教育</h3>
           <p class="service-desc" data-ja="上場企業・士業事務所・製造業など、幅広い組織でのAI研修実績があります。経営層から現場社員まで対象に合わせてプログラムを設計し、AIを実務で使いこなせる人材の育成をサポートします。ツールの操作研修にとどまらず、業務への応用・活用戦略まで一貫して対応します。" data-en="We have a track record of AI training at listed companies, professional service firms, and manufacturing businesses. We design programs tailored to each audience — from executives to frontline staff — and support the development of people who can actually apply AI in their daily work. We cover not just tool operation, but practical application and adoption strategy.">上場企業・士業事務所・製造業など、幅広い組織でのAI研修実績があります。経営層から現場社員まで対象に合わせてプログラムを設計し、AIを実務で使いこなせる人材の育成をサポートします。ツールの操作研修にとどまらず、業務への応用・活用戦略まで一貫して対応します。</p>
@@ -700,9 +1249,10 @@
             <span class="service-tag" data-ja="カスタマイズ設計" data-en="Custom Programs">カスタマイズ設計</span>
           </div>
           <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
-        </div>
+        </a>
 
-        <div class="service-card reveal d2">
+        <a href="/hardware" class="service-card reveal d2">
+          <span class="service-card-deco" aria-hidden="true">04</span>
           <p class="service-num">04</p>
           <h3 class="service-title" data-ja="ハードウェア<br>開発" data-en="Hardware<br>Development">ハードウェア<br>開発</h3>
           <p class="service-desc" data-ja="PCB基板の設計から組み込みソフトウェアの実装まで、ハードウェア開発を完全内製で行います。主力プロダクトは製造業向け予兆保全システム。工場の機械が壊れる前に異常を検知し、突発的な設備停止を未然に防ぎます。クラウド・Wi-Fi不要で動作するため、ネットワーク環境が整っていない工場でも即日導入が可能です。" data-en="We handle all hardware development fully in-house — from PCB design to embedded software implementation. Our flagship product is a predictive maintenance system for manufacturing. It detects signs of machine failure before breakdowns occur, preventing unexpected downtime. Operates without cloud or Wi-Fi, enabling same-day deployment even in factories without network infrastructure.">PCB基板の設計から組み込みソフトウェアの実装まで、ハードウェア開発を完全内製で行います。主力プロダクトは製造業向け予兆保全システム。工場の機械が壊れる前に異常を検知し、突発的な設備停止を未然に防ぎます。クラウド・Wi-Fi不要で動作するため、ネットワーク環境が整っていない工場でも即日導入が可能です。</p>
@@ -714,84 +1264,53 @@
             <span class="service-tag" data-ja="3工場導入済み" data-en="3 Factories Deployed">3工場導入済み</span>
           </div>
           <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
-        </div>
+        </a>
 
       </div>
-    </div>
-  </section>
 
-  <!-- SECURITY HIGHLIGHT -->
-  <div class="security-highlight">
-    <div class="container">
-      <div class="security-inner">
+      <!-- PRODUCTS sub-section -->
+      <div id="products" style="margin-top: 4rem;">
         <div class="reveal">
-          <p class="security-label">Security Built-In</p>
-          <h2 class="security-heading" data-ja="開発の中に、<br>セキュリティがある。" data-en="Security is built into<br>everything we build.">開発の中に、<br>セキュリティがある。</h2>
-          <p class="security-desc" data-ja="外部に発注すると、セキュリティへの対応が後回しになりがちです。ZetaXでは、設計の段階からセキュリティを組み込みます。都内大手銀行2社とのセキュリティコンサル実績を持つエンジニアが、システム開発にも携わるため、脆弱性の見落としや情報漏洩リスクを最小化した状態でお届けします。" data-en="Security is often an afterthought when outsourcing. At ZetaX, it's built in from the design phase. Our engineers, who have security consulting track records with two major Tokyo banks, are directly involved in every system we build — minimizing vulnerability oversights and data leak risk from day one.">外部に発注すると、セキュリティへの対応が後回しになりがちです。ZetaXでは、設計の段階からセキュリティを組み込みます。都内大手銀行2社とのセキュリティコンサル実績を持つエンジニアが、システム開発にも携わるため、脆弱性の見落としや情報漏洩リスクを最小化した状態でお届けします。</p>
+          <span class="section-label">Products</span>
+          <h3 class="section-heading" style="font-size:1.5rem;" data-ja="自社プロダクト" data-en="Our Products">自社プロダクト</h3>
+          <p class="section-sub" data-ja="コンサル・開発で培った知見をもとに、自社プロダクトも展開しています。" data-en="Drawing on our consulting and development expertise, we also build and ship our own products.">コンサル・開発で培った知見をもとに、自社プロダクトも展開しています。</p>
         </div>
-        <div class="security-items reveal d1">
-          <div class="security-item">
-            <p class="security-item-title" data-ja="設計段階からのセキュリティ設計" data-en="Security-by-Design from Day One">設計段階からのセキュリティ設計</p>
-            <p class="security-item-desc" data-ja="後付けでなく、最初からセキュリティを考慮した設計を行います。" data-en="We design with security in mind from the start, not as an afterthought.">後付けでなく、最初からセキュリティを考慮した設計を行います。</p>
+        <div class="products-grid">
+
+          <div class="product-card tilt-card reveal d1" style="grid-column: span 1;">
+            <p class="product-type">SaaS / AI Agent</p>
+            <p class="product-name">経理丸投げAI</p>
+            <p class="product-name-en">AI-Powered Accounting &amp; Client Management</p>
+            <p class="product-desc" data-ja="税理士法人向けの顧客管理と経理業務を一体化したAI Nativeプロダクト。既存の会計ソフトの上に乗るかたちで導入でき、顧客情報・案件進捗の管理から、仕訳入力・請求書処理・月次レポート作成まで、AIエージェントが日々の業務を自動化します。" data-en="An AI Native product combining client management and accounting automation for tax corporations. Sits on top of existing accounting software. AI agents handle everything from customer and case management to journal entries, invoice processing, and monthly reporting.">税理士法人向けの顧客管理と経理業務を一体化したAI Nativeプロダクト。既存の会計ソフトの上に乗るかたちで導入でき、顧客情報・案件進捗の管理から、仕訳入力・請求書処理・月次レポート作成まで、AIエージェントが日々の業務を自動化します。</p>
+            <span class="product-achievement" data-ja="大手税理士法人をはじめ5社に導入決定" data-en="Adopted by 5 firms including major tax corporations">大手税理士法人をはじめ5社に導入決定</span>
+            <p class="product-creators" data-ja="Product Lead: 柳澤 京佐 · 佐藤 陽" data-en="Product Lead: Kyosuke Yanagisawa · Yo Sato">Product Lead: 柳澤 京佐 · 佐藤 陽</p>
           </div>
-          <div class="security-item">
-            <p class="security-item-title" data-ja="銀行レベルのセキュリティ水準" data-en="Bank-Grade Security Standards">銀行レベルのセキュリティ水準</p>
-            <p class="security-item-desc" data-ja="都内大手銀行2社とのコンサル実績を持つメンバーが、同じ目線で開発品質を担保します。" data-en="Members with consulting track records at two major Tokyo banks apply that same standard to your systems.">都内大手銀行2社とのコンサル実績を持つメンバーが、同じ目線で開発品質を担保します。</p>
+
+          <div class="product-card tilt-card reveal d2">
+            <p class="product-type">SaaS / AI Agent</p>
+            <p class="product-name" data-ja="デモ生成<br>チャットボット" data-en="Demo Generation<br>Chatbot">デモ生成<br>チャットボット</p>
+            <p class="product-name-en">for System Development Companies</p>
+            <p class="product-desc" data-ja="システム開発会社向けの、デモ自動生成チャットボット。顧客との商談時に、要件をヒアリングしながらリアルタイムでデモ画面を生成します。提案精度の向上と商談時間の短縮を同時に実現します。" data-en="An automated demo generation chatbot for system development companies. During client meetings, it listens to requirements and generates demo screens in real time — improving proposal quality and shortening sales cycles simultaneously.">システム開発会社向けの、デモ自動生成チャットボット。顧客との商談時に、要件をヒアリングしながらリアルタイムでデモ画面を生成します。提案精度の向上と商談時間の短縮を同時に実現します。</p>
+            <span class="product-achievement" data-ja="詳細・資料請求はこちら →" data-en="Request details →">詳細・資料請求はこちら →</span>
           </div>
-          <div class="security-item">
-            <p class="security-item-title" data-ja="完全内製だから情報漏洩リスクが低い" data-en="No Outsourcing = Fewer Leak Vectors">完全内製だから情報漏洩リスクが低い</p>
-            <p class="security-item-desc" data-ja="外部委託ゼロ。お客様の情報は社内のエンジニアだけが扱います。" data-en="Zero outsourcing. Your data is handled only by our in-house engineers.">外部委託ゼロ。お客様の情報は社内のエンジニアだけが扱います。</p>
+
+          <div class="product-card tilt-card reveal d3">
+            <p class="product-type">Hardware</p>
+            <p class="product-name" data-ja="製造業向け<br>予兆保全デバイス" data-en="Predictive Maintenance<br>Device for Manufacturing">製造業向け<br>予兆保全デバイス</p>
+            <p class="product-name-en">Standalone. No Cloud. No Wi-Fi Required.</p>
+            <p class="product-desc" data-ja="クラウド接続・Wi-Fi不要で動作する、製造現場向けの自律型予兆保全デバイス。機器の異常を早期に検知し、突発的な設備停止を未然に防ぎます。ネットワーク環境に依存しないため、インターネット環境が整っていない工場でも即日導入が可能です。" data-en="An autonomous predictive maintenance device for manufacturing plants that operates without cloud or Wi-Fi connectivity. Detects early signs of equipment anomalies to prevent unplanned downtime. No network dependency — deployable even in factories without internet access.">クラウド接続・Wi-Fi不要で動作する、製造現場向けの自律型予兆保全デバイス。機器の異常を早期に検知し、突発的な設備停止を未然に防ぎます。ネットワーク環境に依存しないため、インターネット環境が整っていない工場でも即日導入が可能です。</p>
+            <span class="product-achievement" data-ja="3工場に導入済み" data-en="Deployed in 3 factories">3工場に導入済み</span>
           </div>
-          <div class="security-item">
-            <p class="security-item-title" data-ja="全国大会入賞レベルの専門知識" data-en="National Competition Award-Level Expertise">全国大会入賞レベルの専門知識</p>
-            <p class="security-item-desc" data-ja="コアメンバーはサイバーセキュリティ全国大会入賞者。高い専門性をそのまま開発に活かします。" data-en="Our core members are national cybersecurity competition award winners. That expertise directly improves what we build.">コアメンバーはサイバーセキュリティ全国大会入賞者。高い専門性をそのまま開発に活かします。</p>
-          </div>
+
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PRODUCTS -->
-  <section class="section" id="products">
-    <div class="container">
-      <div class="reveal">
-        <span class="section-label">Products</span>
-        <h2 class="section-heading" data-ja="自社プロダクト" data-en="Our Products">自社プロダクト</h2>
-        <p class="section-sub" data-ja="コンサル・開発で培った知見をもとに、自社プロダクトも展開しています。" data-en="Drawing on our consulting and development expertise, we also build and ship our own products.">コンサル・開発で培った知見をもとに、自社プロダクトも展開しています。</p>
-      </div>
-      <div class="products-grid">
-
-        <div class="product-card product-card-featured reveal d1" style="grid-column: span 1;">
-          <p class="product-type">SaaS / AI Agent</p>
-          <p class="product-name">経理丸投げAI</p>
-          <p class="product-name-en">AI-Powered Accounting &amp; Client Management</p>
-          <p class="product-desc" data-ja="税理士法人向けの顧客管理と経理業務を一体化したAI Nativeプロダクト。既存の会計ソフトの上に乗るかたちで導入でき、顧客情報・案件進捗の管理から、仕訳入力・請求書処理・月次レポート作成まで、AIエージェントが日々の業務を自動化します。" data-en="An AI Native product combining client management and accounting automation for tax corporations. Sits on top of existing accounting software. AI agents handle everything from customer and case management to journal entries, invoice processing, and monthly reporting.">税理士法人向けの顧客管理と経理業務を一体化したAI Nativeプロダクト。既存の会計ソフトの上に乗るかたちで導入でき、顧客情報・案件進捗の管理から、仕訳入力・請求書処理・月次レポート作成まで、AIエージェントが日々の業務を自動化します。</p>
-          <span class="product-achievement" data-ja="大手税理士法人をはじめ5社に導入決定" data-en="Adopted by 5 firms including major tax corporations">大手税理士法人をはじめ5社に導入決定</span>
-        </div>
-
-        <div class="product-card reveal d2">
-          <p class="product-type">SaaS / AI Agent</p>
-          <p class="product-name" data-ja="デモ生成<br>チャットボット" data-en="Demo Generation<br>Chatbot">デモ生成<br>チャットボット</p>
-          <p class="product-name-en">for System Development Companies</p>
-          <p class="product-desc" data-ja="システム開発会社向けの、デモ自動生成チャットボット。顧客との商談時に、要件をヒアリングしながらリアルタイムでデモ画面を生成します。提案精度の向上と商談時間の短縮を同時に実現します。" data-en="An automated demo generation chatbot for system development companies. During client meetings, it listens to requirements and generates demo screens in real time — improving proposal quality and shortening sales cycles simultaneously.">システム開発会社向けの、デモ自動生成チャットボット。顧客との商談時に、要件をヒアリングしながらリアルタイムでデモ画面を生成します。提案精度の向上と商談時間の短縮を同時に実現します。</p>
-          <span class="product-achievement" data-ja="詳細・資料請求はこちら →" data-en="Request details →">詳細・資料請求はこちら →</span>
-        </div>
-
-        <div class="product-card reveal d3">
-          <p class="product-type">Hardware</p>
-          <p class="product-name" data-ja="製造業向け<br>予兆保全デバイス" data-en="Predictive Maintenance<br>Device for Manufacturing">製造業向け<br>予兆保全デバイス</p>
-          <p class="product-name-en">Standalone. No Cloud. No Wi-Fi Required.</p>
-          <p class="product-desc" data-ja="クラウド接続・Wi-Fi不要で動作する、製造現場向けの自律型予兆保全デバイス。機器の異常を早期に検知し、突発的な設備停止を未然に防ぎます。ネットワーク環境に依存しないため、インターネット環境が整っていない工場でも即日導入が可能です。" data-en="An autonomous predictive maintenance device for manufacturing plants that operates without cloud or Wi-Fi connectivity. Detects early signs of equipment anomalies to prevent unplanned downtime. No network dependency — deployable even in factories without internet access.">クラウド接続・Wi-Fi不要で動作する、製造現場向けの自律型予兆保全デバイス。機器の異常を早期に検知し、突発的な設備停止を未然に防ぎます。ネットワーク環境に依存しないため、インターネット環境が整っていない工場でも即日導入が可能です。</p>
-          <span class="product-achievement" data-ja="3工場に導入済み" data-en="Deployed in 3 factories">3工場に導入済み</span>
-        </div>
-
       </div>
     </div>
   </section>
 
   <!-- CASES -->
   <section class="section" id="cases">
-    <div class="container">
+    <div class="container" style="position:relative;">
+      <span class="section-deco-text" aria-hidden="true">CASES</span>
       <div class="cases-header">
         <div class="reveal">
           <span class="section-label">Cases</span>
@@ -802,158 +1321,131 @@
         </div>
       </div>
 
-      <div class="cases-list">
+      <p class="cases-scroll-hint reveal d2">← drag to explore →</p>
+      <div class="cases-scroll-outer reveal" id="cases-scroll">
+        <div class="cases-scroll-wrap">
 
-        <!-- 製造業 -->
-        <div class="case-row reveal">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="製造業" data-en="Manufacturing">製造業</span>
-            <span class="case-industry-en">Manufacturing</span>
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="製造業" data-en="Manufacturing">製造業</p>
+            <p class="cases-card-industry-en">Manufacturing</p>
+            <ul class="cases-card-items">
+              <li data-ja="受注〜顧客システム間のデータ連携AI" data-en="Order-to-CRM Data Integration AI">受注〜顧客システム間のデータ連携AI</li>
+              <li data-ja="注文書 AI-OCR" data-en="Purchase Order AI-OCR">注文書 AI-OCR</li>
+              <li data-ja="見積もり自動算出システム" data-en="Automated Quotation System">見積もり自動算出システム</li>
+              <li data-ja="営業支援ツール" data-en="Sales Support Tool">営業支援ツール</li>
+              <li data-ja="資料自動生成AI" data-en="Document Auto-Generation AI">資料自動生成AI</li>
+            </ul>
           </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="受注〜顧客システム間のデータ連携AI" data-en="Order-to-CRM Data Integration AI">受注〜顧客システム間のデータ連携AI</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="注文書 AI-OCR" data-en="Purchase Order AI-OCR">注文書 AI-OCR</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="見積もり自動算出システム" data-en="Automated Quotation System">見積もり自動算出システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="営業支援ツール" data-en="Sales Support Tool">営業支援ツール</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="資料自動生成AI" data-en="Document Auto-Generation AI">資料自動生成AI</p></div>
+
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="士業" data-en="Professional Services">士業</p>
+            <p class="cases-card-industry-en">Professional Services</p>
+            <ul class="cases-card-items">
+              <li data-ja="メール自動返信ボット" data-en="Automated Email Reply Bot">メール自動返信ボット</li>
+              <li data-ja="顧客DBを活用したチャットボット" data-en="Customer DB Chatbot">顧客DBを活用したチャットボット</li>
+              <li data-ja="契約書レビュー支援AI" data-en="Contract Review AI">契約書レビュー支援AI</li>
+              <li data-ja="申告書類の自動仕分けシステム" data-en="Automated Document Classification">申告書類の自動仕分けシステム</li>
+              <li data-ja="案件進捗管理ダッシュボード" data-en="Case Progress Dashboard">案件進捗管理ダッシュボード</li>
+            </ul>
           </div>
+
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="物流業" data-en="Logistics">物流業</p>
+            <p class="cases-card-industry-en">Logistics</p>
+            <ul class="cases-card-items">
+              <li data-ja="倉庫一元管理システム" data-en="Unified Warehouse Management">倉庫一元管理システム</li>
+              <li data-ja="発注自動化システム" data-en="Automated Order Placement">発注自動化システム</li>
+              <li data-ja="レポート自動作成" data-en="Automated Report Generation">レポート自動作成</li>
+              <li data-ja="配送ルート最適化AI" data-en="Delivery Route Optimization AI">配送ルート最適化AI</li>
+              <li data-ja="在庫予測・補充自動化" data-en="Inventory Forecasting & Auto-Replenishment">在庫予測・補充自動化</li>
+            </ul>
+          </div>
+
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="金融・銀行" data-en="Finance & Banking">金融・銀行</p>
+            <p class="cases-card-industry-en">Finance &amp; Banking</p>
+            <ul class="cases-card-items">
+              <li data-ja="不正検知システム" data-en="Fraud Detection System">不正検知システム</li>
+              <li data-ja="金融機関向けチャットボット" data-en="Financial Institution Chatbot">金融機関向けチャットボット</li>
+              <li data-ja="次世代暗号（PQC）導入支援" data-en="Post-Quantum Cryptography Implementation">次世代暗号（PQC）導入支援</li>
+              <li data-ja="セキュリティポリシー策定・監査" data-en="Security Policy Design & Audit">セキュリティポリシー策定・監査</li>
+              <li data-ja="審査業務の自動化システム" data-en="Automated Screening System">審査業務の自動化システム</li>
+            </ul>
+          </div>
+
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="医療・ヘルスケア" data-en="Healthcare">医療・ヘルスケア</p>
+            <p class="cases-card-industry-en">Healthcare</p>
+            <ul class="cases-card-items">
+              <li data-ja="電子カルテ連携システム" data-en="EMR Integration System">電子カルテ連携システム</li>
+              <li data-ja="問診票の自動要約AI" data-en="Medical Questionnaire Summarization AI">問診票の自動要約AI</li>
+              <li data-ja="患者対応チャットボット" data-en="Patient Support Chatbot">患者対応チャットボット</li>
+              <li data-ja="シフト最適化システム" data-en="Staff Scheduling Optimization">シフト最適化システム</li>
+              <li data-ja="請求・レセプト処理自動化" data-en="Billing & Claims Automation">請求・レセプト処理自動化</li>
+            </ul>
+          </div>
+
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="建設・不動産" data-en="Construction & Real Estate">建設・不動産</p>
+            <p class="cases-card-industry-en">Construction &amp; Real Estate</p>
+            <ul class="cases-card-items">
+              <li data-ja="現場進捗管理アプリ" data-en="Site Progress Management App">現場進捗管理アプリ</li>
+              <li data-ja="施工記録の自動レポート生成" data-en="Automated Construction Record Reporting">施工記録の自動レポート生成</li>
+              <li data-ja="設備点検・異常検知システム" data-en="Equipment Inspection & Anomaly Detection">設備点検・異常検知システム</li>
+              <li data-ja="物件情報管理ダッシュボード" data-en="Property Information Dashboard">物件情報管理ダッシュボード</li>
+              <li data-ja="図面・仕様書の自動解析AI" data-en="Blueprint & Spec Auto-Analysis AI">図面・仕様書の自動解析AI</li>
+            </ul>
+          </div>
+
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="小売・EC" data-en="Retail & E-Commerce">小売・EC</p>
+            <p class="cases-card-industry-en">Retail &amp; E-Commerce</p>
+            <ul class="cases-card-items">
+              <li data-ja="需要予測・自動発注システム" data-en="Demand Forecasting & Auto-Ordering">需要予測・自動発注システム</li>
+              <li data-ja="顧客行動分析ダッシュボード" data-en="Customer Behavior Analytics Dashboard">顧客行動分析ダッシュボード</li>
+              <li data-ja="レコメンドエンジン構築" data-en="Recommendation Engine">レコメンドエンジン構築</li>
+              <li data-ja="問い合わせ対応チャットボット" data-en="Customer Support Chatbot">問い合わせ対応チャットボット</li>
+              <li data-ja="在庫・売上の統合レポート自動化" data-en="Integrated Inventory & Sales Reporting">在庫・売上の統合レポート自動化</li>
+            </ul>
+          </div>
+
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="人材・HR" data-en="HR & Recruitment">人材・HR</p>
+            <p class="cases-card-industry-en">HR &amp; Recruitment</p>
+            <ul class="cases-card-items">
+              <li data-ja="履歴書・職務経歴書の自動スクリーニング" data-en="Automated Resume Screening">履歴書・職務経歴書の自動スクリーニング</li>
+              <li data-ja="面接評価サポートツール" data-en="Interview Evaluation Support Tool">面接評価サポートツール</li>
+              <li data-ja="社内FAQ・規程チャットボット" data-en="Internal FAQ & Policy Chatbot">社内FAQ・規程チャットボット</li>
+              <li data-ja="勤怠・労務データ分析システム" data-en="Attendance & Labor Data Analytics">勤怠・労務データ分析システム</li>
+              <li data-ja="オンボーディング支援ボット" data-en="Onboarding Support Bot">オンボーディング支援ボット</li>
+            </ul>
+          </div>
+
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="教育" data-en="Education">教育</p>
+            <p class="cases-card-industry-en">Education</p>
+            <ul class="cases-card-items">
+              <li data-ja="学習進捗管理システム" data-en="Learning Progress Management System">学習進捗管理システム</li>
+              <li data-ja="AIによる個別最適化教材生成" data-en="AI-Powered Personalized Learning Content">AIによる個別最適化教材生成</li>
+              <li data-ja="保護者・生徒向けお知らせ自動配信" data-en="Automated Parent & Student Notifications">保護者・生徒向けお知らせ自動配信</li>
+              <li data-ja="採点・フィードバック自動化" data-en="Automated Grading & Feedback">採点・フィードバック自動化</li>
+              <li data-ja="問い合わせ対応チャットボット" data-en="Inquiry Response Chatbot">問い合わせ対応チャットボット</li>
+            </ul>
+          </div>
+
+          <div class="cases-card">
+            <p class="cases-card-industry" data-ja="農業・食品" data-en="Agriculture & Food">農業・食品</p>
+            <p class="cases-card-industry-en">Agriculture &amp; Food</p>
+            <ul class="cases-card-items">
+              <li data-ja="収穫量予測AIモデル" data-en="Crop Yield Prediction AI">収穫量予測AIモデル</li>
+              <li data-ja="病害虫検知システム（画像解析）" data-en="Pest Detection System (Image Analysis)">病害虫検知システム（画像解析）</li>
+              <li data-ja="食品品質検査の自動化" data-en="Automated Food Quality Inspection">食品品質検査の自動化</li>
+              <li data-ja="生産・出荷管理システム" data-en="Production & Shipping Management">生産・出荷管理システム</li>
+              <li data-ja="トレーサビリティ管理基盤" data-en="Traceability Management Platform">トレーサビリティ管理基盤</li>
+            </ul>
+          </div>
+
         </div>
-
-        <!-- 士業 -->
-        <div class="case-row reveal d1">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="士業" data-en="Professional Services">士業</span>
-            <span class="case-industry-en">Professional Services</span>
-          </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="メール自動返信ボット" data-en="Automated Email Reply Bot">メール自動返信ボット</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="顧客DBを活用したチャットボット" data-en="Customer DB Chatbot">顧客DBを活用したチャットボット</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="契約書レビュー支援AI" data-en="Contract Review AI">契約書レビュー支援AI</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="申告書類の自動仕分けシステム" data-en="Automated Document Classification">申告書類の自動仕分けシステム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="案件進捗管理ダッシュボード" data-en="Case Progress Dashboard">案件進捗管理ダッシュボード</p></div>
-          </div>
-        </div>
-
-        <!-- 物流業 -->
-        <div class="case-row reveal d1">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="物流業" data-en="Logistics">物流業</span>
-            <span class="case-industry-en">Logistics</span>
-          </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="倉庫一元管理システム" data-en="Unified Warehouse Management">倉庫一元管理システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="発注自動化システム" data-en="Automated Order Placement">発注自動化システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="レポート自動作成" data-en="Automated Report Generation">レポート自動作成</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="配送ルート最適化AI" data-en="Delivery Route Optimization AI">配送ルート最適化AI</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="在庫予測・補充自動化" data-en="Inventory Forecasting & Auto-Replenishment">在庫予測・補充自動化</p></div>
-          </div>
-        </div>
-
-        <!-- 金融・銀行 -->
-        <div class="case-row reveal d2">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="金融・銀行" data-en="Finance & Banking">金融・銀行</span>
-            <span class="case-industry-en">Finance &amp; Banking</span>
-          </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="不正検知システム" data-en="Fraud Detection System">不正検知システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="金融機関向けチャットボット" data-en="Financial Institution Chatbot">金融機関向けチャットボット</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="次世代暗号（PQC）導入支援" data-en="Post-Quantum Cryptography Implementation">次世代暗号（PQC）導入支援</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="セキュリティポリシー策定・監査" data-en="Security Policy Design & Audit">セキュリティポリシー策定・監査</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="審査業務の自動化システム" data-en="Automated Screening System">審査業務の自動化システム</p></div>
-          </div>
-        </div>
-
-        <!-- 医療・ヘルスケア -->
-        <div class="case-row reveal d1">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="医療・ヘルスケア" data-en="Healthcare">医療・ヘルスケア</span>
-            <span class="case-industry-en">Healthcare</span>
-          </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="電子カルテ連携システム" data-en="EMR Integration System">電子カルテ連携システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="問診票の自動要約AI" data-en="Medical Questionnaire Summarization AI">問診票の自動要約AI</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="患者対応チャットボット" data-en="Patient Support Chatbot">患者対応チャットボット</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="シフト最適化システム" data-en="Staff Scheduling Optimization">シフト最適化システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="請求・レセプト処理自動化" data-en="Billing & Claims Automation">請求・レセプト処理自動化</p></div>
-          </div>
-        </div>
-
-        <!-- 建設・不動産 -->
-        <div class="case-row reveal d2">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="建設・不動産" data-en="Construction & Real Estate">建設・不動産</span>
-            <span class="case-industry-en">Construction &amp; Real Estate</span>
-          </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="現場進捗管理アプリ" data-en="Site Progress Management App">現場進捗管理アプリ</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="施工記録の自動レポート生成" data-en="Automated Construction Record Reporting">施工記録の自動レポート生成</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="設備点検・異常検知システム" data-en="Equipment Inspection & Anomaly Detection">設備点検・異常検知システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="物件情報管理ダッシュボード" data-en="Property Information Dashboard">物件情報管理ダッシュボード</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="図面・仕様書の自動解析AI" data-en="Blueprint & Spec Auto-Analysis AI">図面・仕様書の自動解析AI</p></div>
-          </div>
-        </div>
-
-        <!-- 小売・EC -->
-        <div class="case-row reveal d1">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="小売・EC" data-en="Retail & E-Commerce">小売・EC</span>
-            <span class="case-industry-en">Retail &amp; E-Commerce</span>
-          </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="需要予測・自動発注システム" data-en="Demand Forecasting & Auto-Ordering">需要予測・自動発注システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="顧客行動分析ダッシュボード" data-en="Customer Behavior Analytics Dashboard">顧客行動分析ダッシュボード</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="レコメンドエンジン構築" data-en="Recommendation Engine">レコメンドエンジン構築</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="問い合わせ対応チャットボット" data-en="Customer Support Chatbot">問い合わせ対応チャットボット</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="在庫・売上の統合レポート自動化" data-en="Integrated Inventory & Sales Reporting">在庫・売上の統合レポート自動化</p></div>
-          </div>
-        </div>
-
-        <!-- 人材・HR -->
-        <div class="case-row reveal d2">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="人材・HR" data-en="HR & Recruitment">人材・HR</span>
-            <span class="case-industry-en">HR &amp; Recruitment</span>
-          </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="履歴書・職務経歴書の自動スクリーニング" data-en="Automated Resume Screening">履歴書・職務経歴書の自動スクリーニング</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="面接評価サポートツール" data-en="Interview Evaluation Support Tool">面接評価サポートツール</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="社内FAQ・規程チャットボット" data-en="Internal FAQ & Policy Chatbot">社内FAQ・規程チャットボット</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="勤怠・労務データ分析システム" data-en="Attendance & Labor Data Analytics">勤怠・労務データ分析システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="オンボーディング支援ボット" data-en="Onboarding Support Bot">オンボーディング支援ボット</p></div>
-          </div>
-        </div>
-
-        <!-- 教育 -->
-        <div class="case-row reveal d1">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="教育" data-en="Education">教育</span>
-            <span class="case-industry-en">Education</span>
-          </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="学習進捗管理システム" data-en="Learning Progress Management System">学習進捗管理システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="AIによる個別最適化教材生成" data-en="AI-Powered Personalized Learning Content">AIによる個別最適化教材生成</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="保護者・生徒向けお知らせ自動配信" data-en="Automated Parent & Student Notifications">保護者・生徒向けお知らせ自動配信</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="採点・フィードバック自動化" data-en="Automated Grading & Feedback">採点・フィードバック自動化</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="問い合わせ対応チャットボット" data-en="Inquiry Response Chatbot">問い合わせ対応チャットボット</p></div>
-          </div>
-        </div>
-
-        <!-- 農業・食品 -->
-        <div class="case-row reveal d2">
-          <div class="case-industry">
-            <span class="case-industry-label" data-ja="農業・食品" data-en="Agriculture & Food">農業・食品</span>
-            <span class="case-industry-en">Agriculture &amp; Food</span>
-          </div>
-          <div class="case-projects">
-            <div class="case-project"><p class="case-project-name" data-ja="収穫量予測AIモデル" data-en="Crop Yield Prediction AI">収穫量予測AIモデル</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="病害虫検知システム（画像解析）" data-en="Pest Detection System (Image Analysis)">病害虫検知システム（画像解析）</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="食品品質検査の自動化" data-en="Automated Food Quality Inspection">食品品質検査の自動化</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="生産・出荷管理システム" data-en="Production & Shipping Management">生産・出荷管理システム</p></div>
-            <div class="case-project"><p class="case-project-name" data-ja="トレーサビリティ管理基盤" data-en="Traceability Management Platform">トレーサビリティ管理基盤</p></div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -983,10 +1475,7 @@
               <th data-ja="所在地" data-en="Location">所在地</th>
               <td data-ja="〒150-0041<br>東京都渋谷区神南1丁目11−4<br>FPGリンクス神南 5階" data-en="FPG Links Jinnan 5F,<br>1-11-4 Jinnan, Shibuya-ku, Tokyo 150-0041">〒150-0041<br>東京都渋谷区神南1丁目11−4<br>FPGリンクス神南 5階</td>
             </tr>
-            <tr>
-              <th data-ja="設立" data-en="Founded">設立</th>
-              <td data-ja="2024年" data-en="2024">2024年</td>
-            </tr>
+
             <tr>
               <th data-ja="代表取締役" data-en="CEOs">代表取締役</th>
               <td data-ja="柳澤 京佐 / 佐藤 陽" data-en="Kyosuke Yanagisawa / Yo Sato">柳澤 京佐 / 佐藤 陽</td>
@@ -1009,7 +1498,7 @@
             <img src="/people/team1.png" alt="柳澤京佐" class="founder-photo">
             <div class="founder-info">
               <p class="founder-name">柳澤 京佐</p>
-              <p class="founder-role">CEO / Co-Founder</p>
+              <p class="founder-role">Co-CEO / Co-Founder</p>
               <p class="founder-affil" data-ja="東京大学工学部" data-en="UTokyo, Faculty of Engineering">東京大学工学部</p>
               <p class="founder-bio" data-ja="東京大学工学部出身。AIスタートアップにおいて、数億円規模に及ぶ上場企業案件をはじめとする数多くのプロジェクトをプロジェクトマネージャーとして統括し、成功へと導く。都内大手銀行をはじめとした金融機関に対するセキュリティコンサルティングにおいても豊富な実績を有する。サイバーセキュリティ全国大会第3位。" data-en="Graduated from the Faculty of Engineering, University of Tokyo. As a project manager at an AI startup, led numerous projects including listed company engagements worth hundreds of millions of yen. Extensive experience in security consulting for major Tokyo banks and other financial institutions. Ranked 3rd in the National Cybersecurity Competition.">東京大学工学部出身。AIスタートアップにおいて、数億円規模に及ぶ上場企業案件をはじめとする数多くのプロジェクトをプロジェクトマネージャーとして統括し、成功へと導く。都内大手銀行をはじめとした金融機関に対するセキュリティコンサルティングにおいても豊富な実績を有する。サイバーセキュリティ全国大会第3位。</p>
             </div>
@@ -1018,7 +1507,7 @@
             <img src="/people/team2.jpg" alt="佐藤陽" class="founder-photo">
             <div class="founder-info">
               <p class="founder-name">佐藤 陽</p>
-              <p class="founder-role">COO / Co-Founder</p>
+              <p class="founder-role">Co-CEO / Co-Founder</p>
               <p class="founder-affil" data-ja="東京大学工学部" data-en="UTokyo, Faculty of Engineering">東京大学工学部</p>
               <p class="founder-bio" data-ja="東京大学工学部出身。ベンチャーキャピタルにて数多くのスタートアップへの投資に携わったのち、東京大学発のAIスタートアップにプロジェクトマネージャーとして参画。東証プライム上場企業の案件をはじめ、数々のプロジェクトを手がける。日本語・英語・スペイン語・ポルトガル語の4カ国語を自在に操る。" data-en="Graduated from the Faculty of Engineering, University of Tokyo. After working at a venture capital firm investing in numerous startups, joined a University of Tokyo-founded AI startup as project manager. Has handled projects for TSE Prime-listed companies and beyond. Fluent in Japanese, English, Spanish, and Portuguese.">東京大学工学部出身。ベンチャーキャピタルにて数多くのスタートアップへの投資に携わったのち、東京大学発のAIスタートアップにプロジェクトマネージャーとして参画。東証プライム上場企業の案件をはじめ、数々のプロジェクトを手がける。日本語・英語・スペイン語・ポルトガル語の4カ国語を自在に操る。</p>
             </div>
@@ -1039,12 +1528,7 @@
         <a href="#" class="btn-sm" data-ja="すべて見る" data-en="View all">すべて見る</a>
       </div>
       <div class="news-list reveal d1">
-        <div class="news-item">
-          <span class="news-date">2025.06.01</span>
-          <span class="news-cat" data-ja="お知らせ" data-en="Notice">お知らせ</span>
-          <span class="news-title" data-ja="株式会社ZetaXを設立しました" data-en="ZetaX Inc. has been established">株式会社ZetaXを設立しました</span>
-        </div>
-        <div class="news-item">
+<div class="news-item">
           <span class="news-date">2025.05.20</span>
           <span class="news-cat" data-ja="実績" data-en="Track Record">実績</span>
           <span class="news-title" data-ja="大手銀行2社へのセキュリティコンサルティングを開始しました" data-en="Launched security consulting engagements with two major banks">大手銀行2社へのセキュリティコンサルティングを開始しました</span>
@@ -1097,7 +1581,8 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section section-alt" id="contact">
+  <section class="section contact-section-dark" id="contact">
+    <div class="contact-mesh" aria-hidden="true"></div>
     <div class="container">
       <div class="contact-wrap">
         <div class="reveal">
@@ -1164,6 +1649,7 @@
 
   <!-- FOOTER -->
   <footer class="footer">
+    <span class="footer-watermark" aria-hidden="true">ZETAX</span>
     <div class="container">
       <div class="footer-grid">
         <div>
@@ -1173,10 +1659,10 @@
         <div>
           <p class="footer-col-label">Services</p>
           <ul class="footer-links">
-            <li><a href="#services" data-ja="AI/ITコンサル・開発" data-en="AI/IT Consulting & Dev">AI/ITコンサル・開発</a></li>
-            <li><a href="#services" data-ja="セキュリティコンサル" data-en="Security Consulting">セキュリティコンサル</a></li>
-            <li><a href="#services" data-ja="AI研修" data-en="AI Training">AI研修</a></li>
-            <li><a href="#services" data-ja="ハードウェア開発" data-en="Hardware Dev">ハードウェア開発</a></li>
+            <li><a href="/ai-dx" data-ja="AI/ITコンサル・開発" data-en="AI/IT Consulting & Dev">AI/ITコンサル・開発</a></li>
+            <li><a href="/security" data-ja="セキュリティコンサル" data-en="Security Consulting">セキュリティコンサル</a></li>
+            <li><a href="/ai-training" data-ja="AI研修" data-en="AI Training">AI研修</a></li>
+            <li><a href="/hardware" data-ja="ハードウェア開発" data-en="Hardware Dev">ハードウェア開発</a></li>
           </ul>
         </div>
         <div>
@@ -1269,6 +1755,244 @@
         if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
     });
+
+    // ─── CURSOR ───
+    (function () {
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      if (!dot || !ring) return;
+      let rx = 0, ry = 0, mx = 0, my = 0, raf2;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
+      function animateRing() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        raf2 = requestAnimationFrame(animateRing);
+      }
+      animateRing();
+      document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+      document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
+    })();
+
+    // ─── SCROLL PROGRESS + FLOAT CTA ───
+    (function () {
+      const bar = document.getElementById('scroll-progress');
+      const cta = document.getElementById('float-cta');
+      const hero = document.getElementById('hero');
+      function onScroll() {
+        const total = document.body.scrollHeight - innerHeight;
+        if (bar) bar.style.width = (total > 0 ? (scrollY / total) * 100 : 0) + '%';
+        if (cta && hero) {
+          const heroBot = hero.getBoundingClientRect().bottom;
+          cta.classList.toggle('visible', heroBot < 0);
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    // ─── 3D TILT ───
+    (function () {
+      const TILT = 7;
+      document.querySelectorAll('.tilt-card').forEach(el => {
+        el.addEventListener('mousemove', e => {
+          const r = el.getBoundingClientRect();
+          const dx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+          const dy = ((e.clientY - r.top) / r.height - 0.5) * 2;
+          el.style.transform = `perspective(900px) rotateY(${dx * TILT}deg) rotateX(${-dy * TILT}deg) translateZ(6px)`;
+        });
+        el.addEventListener('mouseleave', () => { el.style.transform = 'perspective(900px) rotateY(0) rotateX(0) translateZ(0)'; });
+      });
+    })();
+
+    // ─── B: COUNT-UP ───
+    function animateCount(el, target, duration) {
+      const valEl = el.querySelector('.count-val');
+      if (!valEl) return;
+      const start = performance.now();
+      function step(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        valEl.textContent = Math.round(ease * target);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    const countObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          animateCount(el, parseInt(el.dataset.count, 10), 1400);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+    // ─── D: DRAG SCROLL ───
+    (function () {
+      const el = document.getElementById('cases-scroll');
+      if (!el) return;
+      let down = false, startX = 0, scrollLeft = 0;
+      el.addEventListener('mousedown', e => { down = true; startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
+      el.addEventListener('mouseleave', () => { down = false; });
+      el.addEventListener('mouseup', () => { down = false; });
+      el.addEventListener('mousemove', e => {
+        if (!down) return;
+        e.preventDefault();
+        const x = e.pageX - el.offsetLeft;
+        el.scrollLeft = scrollLeft - (x - startX) * 1.4;
+      });
+    })();
+
+    // ─── F: MAGNETIC CTA ───
+    (function () {
+      const btn = document.querySelector('.form-submit');
+      if (!btn) return;
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        btn.style.transform = `translate(${dx * 0.22}px, ${dy * 0.22}px) translateY(-2px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    })();
+
+    // ─── A: CHAR STAGGER for section headings ───
+    document.querySelectorAll('.section-heading').forEach(el => {
+      if (el.querySelector('br') || el.children.length > 0) return; // skip complex headings
+      const text = el.textContent;
+      el.innerHTML = text.split('').map(c => `<span class="char" style="transition-delay:${(Math.random()*0.18).toFixed(2)}s">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+      el.classList.add('char-stagger');
+    });
+    const charObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); charObserver.unobserve(e.target); } });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.char-stagger').forEach(el => charObserver.observe(el));
+
+    // ─── TERMINAL TYPEWRITER ───
+    (function () {
+      const body = document.getElementById('terminal-body');
+      if (!body) return;
+      const lines = [
+        { html: '<span class="term-prompt">$</span> <span class="term-cmd">zetax deploy</span> <span class="term-key">--stack</span> ai-native', pause: 700 },
+        { html: '<span class="term-dim">›</span> Loading team <span class="term-dim">UTokyo / Tokyo Tech</span>... <span class="term-ok">✓</span>', pause: 500 },
+        { html: '<span class="term-dim">›</span> Prototype ready <span class="term-dim">Day 1</span>... <span class="term-ok">✓</span>', pause: 500 },
+        { html: '<span class="term-dim">›</span> Security-by-design <span class="term-dim">enabled</span>... <span class="term-ok">✓</span>', pause: 500 },
+        { html: '<span class="term-dim">›</span> HW <span class="term-key">×</span> SW stack <span class="term-dim">initialized</span>... <span class="term-ok">✓</span>', pause: 500 },
+        { html: '<span class="term-dim">›</span> 25+ clients deployed <span class="term-dim">across 10 industries</span>... <span class="term-ok">✓</span>', pause: 700 },
+        { html: '<span class="term-prompt">$</span> <span class="term-blink"></span>', pause: 0 },
+      ];
+      let li = 0;
+      function showLine() {
+        if (li >= lines.length) return;
+        const div = document.createElement('p');
+        div.className = 'term-line';
+        div.innerHTML = lines[li].html;
+        div.style.opacity = '0';
+        div.style.transform = 'translateY(4px)';
+        div.style.transition = 'opacity 0.3s, transform 0.3s';
+        body.appendChild(div);
+        requestAnimationFrame(() => { div.style.opacity = '1'; div.style.transform = 'none'; });
+        li++;
+        if (li < lines.length) setTimeout(showLine, lines[li - 1].pause);
+      }
+      // Start when in view
+      const io = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) { io.disconnect(); setTimeout(showLine, 600); }
+      }, { threshold: 0.3 });
+      io.observe(body);
+    })();
+
+    // ─── SPOTLIGHT on tilt-cards ───
+    (function () {
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        const spot = document.createElement('div');
+        spot.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:3;border-radius:inherit;opacity:0;transition:opacity 0.4s;';
+        card.appendChild(spot);
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = e.clientX - r.left, y = e.clientY - r.top;
+          spot.style.background = `radial-gradient(500px circle at ${x}px ${y}px, rgba(26,63,191,0.06), transparent 55%)`;
+          spot.style.opacity = '1';
+        });
+        card.addEventListener('mouseleave', () => { spot.style.opacity = '0'; });
+      });
+    })();
+
+    // ─── HERO MOUSE GRADIENT ───
+    (function () {
+      const hero = document.getElementById('hero');
+      const glow = document.getElementById('hero-mouse-glow');
+      if (!hero || !glow) return;
+      hero.addEventListener('mousemove', e => {
+        const r = hero.getBoundingClientRect();
+        glow.style.setProperty('--hmx', (e.clientX - r.left) + 'px');
+        glow.style.setProperty('--hmy', (e.clientY - r.top) + 'px');
+      }, { passive: true });
+    })();
+
+    // ─── MAGNETIC all CTAs ───
+    (function () {
+      document.querySelectorAll('.btn-primary, .btn-outline, .nav-cta').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          const dx = e.clientX - (r.left + r.width / 2);
+          const dy = e.clientY - (r.top + r.height / 2);
+          btn.style.transform = `translate(${dx * 0.18}px, ${dy * 0.18}px) translateY(-2px)`;
+        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+      });
+    })();
+  </script>
+
+  <!-- E: MATRIX CANVAS (security section) -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('sec-canvas');
+      if (!canvas) return;
+      const sec = canvas.parentElement;
+      const ctx = canvas.getContext('2d');
+      const CHARS = '01アイウエオZetaX∀∂∇λσπ';
+      let cols = [], w = 0, h = 0, dpr = 1, raf = null;
+
+      function resize() {
+        const r = sec.getBoundingClientRect();
+        if (r.width < 2) return;
+        dpr = Math.min(devicePixelRatio || 1, 2);
+        w = r.width; h = r.height;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const fontSize = 13;
+        const count = Math.floor(w / fontSize);
+        cols = Array.from({ length: count }, () => Math.random() * -50);
+      }
+
+      function draw() {
+        ctx.fillStyle = 'rgba(13,13,20,0.1)';
+        ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = '#4a7aff';
+        ctx.font = '13px monospace';
+        const step = 13;
+        cols.forEach((y, i) => {
+          const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
+          ctx.fillText(ch, i * step, y * step);
+          if (y * step > h && Math.random() > 0.975) cols[i] = 0;
+          else cols[i] = y + 1;
+        });
+        raf = requestAnimationFrame(draw);
+      }
+
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { if (!raf) { resize(); draw(); } }
+          else { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+        });
+      }, { threshold: 0.1 });
+      io.observe(sec);
+      window.addEventListener('resize', () => { resize(); }, { passive: true });
+    })();
   </script>
 
   <!-- HERO KINETIC TYPOGRAPHY (teamLab-inspired, white base) -->
@@ -1287,7 +2011,7 @@
       const PALETTE = ['26,63,191', '40,86,214', '78,116,235', '120,150,247'];
       const WORD = 'ZetaX';
 
-      let textP = [], flowP = [], blooms = [];
+      let textP = [], flowP = [];
 
       // ── 擬似ノイズの流れ場（粒子に“息づき”を与える）──
       function field(x, y, time, layer) {
@@ -1379,40 +2103,6 @@
         canvas.classList.add('ready');
       }
 
-      // クリック/タップで光の花が咲く
-      function bloom(x, y) {
-        if (blooms.length > 36) return;
-        blooms.push({
-          x, y, age: 0, max: 46 + Math.random() * 26,
-          petals: 6 + ((Math.random() * 4) | 0),
-          rot: Math.random() * 6.283,
-          color: PALETTE[(Math.random() * PALETTE.length) | 0],
-          r: 16 + Math.random() * 22,
-        });
-      }
-
-      function drawBloom(b) {
-        b.age++;
-        const p = b.age / b.max;
-        const ease = p < 0.6 ? (p / 0.6) : 1;
-        const fade = p < 0.6 ? 1 : (1 - (p - 0.6) / 0.4);
-        const rad = b.r * ease * (1 + p * 0.5);
-        ctx.save();
-        ctx.translate(b.x, b.y);
-        ctx.rotate(b.rot + p * 0.7);
-        for (let i = 0; i < b.petals; i++) {
-          ctx.rotate((Math.PI * 2) / b.petals);
-          ctx.beginPath();
-          ctx.ellipse(rad * 0.55, 0, rad * 0.5, rad * 0.22, 0, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(' + b.color + ',' + (0.10 * fade) + ')';
-          ctx.fill();
-        }
-        ctx.beginPath();
-        ctx.arc(0, 0, rad * 0.16, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + b.color + ',' + (0.20 * fade) + ')';
-        ctx.fill();
-        ctx.restore();
-      }
 
       function step() {
         // 柔らかいクリア（わずかな残光で生命感、文字はほぼ鮮明に保つ）
@@ -1462,11 +2152,6 @@
           ctx.fillRect(p.x, p.y, p.size, p.size);
         }
 
-        // 光の花
-        for (let i = blooms.length - 1; i >= 0; i--) {
-          drawBloom(blooms[i]);
-          if (blooms[i].age > blooms[i].max) blooms.splice(i, 1);
-        }
 
         raf = requestAnimationFrame(step);
       }
@@ -1498,10 +2183,6 @@
         mouse.active = true;
       }, { passive: true });
       hero.addEventListener('pointerleave', () => { mouse.active = false; });
-      hero.addEventListener('pointerdown', (e) => {
-        const r = hero.getBoundingClientRect();
-        bloom(e.clientX - r.left, e.clientY - r.top);
-      }, { passive: true });
 
       if (reduce) {
         // モーション抑制時は文字を静的に一度だけ描く

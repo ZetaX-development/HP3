@@ -1,0 +1,491 @@
+---
+---
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI研修・リテラシー教育 — ZetaX</title>
+  <meta name="description" content="ZetaXのAI研修・リテラシー教育。上場企業・士業事務所・製造業での実績。経営層から現場社員まで、実務で使えるAI人材を育成。カスタマイズ設計対応。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style is:global>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #ffffff; --bg-subtle: #f7f8fa; --bg-card: #f9fafb;
+      --text-primary: #0d0d14; --text-secondary: #52606d; --text-dim: #9da5b4;
+      --accent: #1a3fbf; --accent-light: #3b5fdf; --accent-pale: #eef1fd;
+      --border: #e4e7ef; --border-light: #f0f2f6;
+      --font-jp: 'Noto Sans JP', sans-serif; --font-en: 'Inter', 'Noto Sans JP', sans-serif;
+      --ease: cubic-bezier(0.22,1,0.36,1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    body { font-family: var(--font-jp); background: var(--bg); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 3rem; height: 68px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+    .nav.elevated { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .nav-logo { font-family: var(--font-en); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.12em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; }
+    .nav-links { display: flex; list-style: none; font-size: 0.82rem; font-weight: 500; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a, .nav-links > li > .nav-dropdown-trigger { display: flex; align-items: center; gap: 4px; height: 68px; padding: 0 1.1rem; color: var(--text-secondary); font-size: 0.82rem; font-weight: 500; border: none; background: none; cursor: pointer; transition: color 0.2s; white-space: nowrap; }
+    .nav-links > li > a:hover, .nav-links > li > .nav-dropdown-trigger:hover { color: var(--text-primary); }
+    .nav-dropdown-arrow { font-size: 0.55rem; opacity: 0.5; transition: transform 0.2s; }
+    .nav-links > li:hover .nav-dropdown-arrow { transform: rotate(180deg); }
+    .nav-dropdown { position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%) translateY(-6px); background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); padding: 0.6rem 0; min-width: 200px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s var(--ease), transform 0.18s var(--ease); }
+    .nav-links > li:hover .nav-dropdown { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown a { display: block; padding: 0.6rem 1.4rem; font-size: 0.82rem; color: var(--text-secondary); transition: background 0.15s, color 0.15s; white-space: nowrap; }
+    .nav-dropdown a:hover { background: var(--bg-subtle); color: var(--accent); }
+    .nav-dropdown-divider { height: 1px; background: var(--border-light); margin: 0.4rem 0; }
+    .nav-dropdown-label { padding: 0.5rem 1.4rem 0.2rem; font-family: var(--font-en); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
+    .lang-toggle { display: flex; align-items: center; background: var(--bg-card); border-radius: 20px; padding: 3px; margin-left: 1.4rem; border: 1px solid var(--border); }
+    .lang-btn { font-family: var(--font-en); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; padding: 5px 13px; border-radius: 16px; border: none; cursor: pointer; background: transparent; color: var(--text-dim); transition: all 0.2s; }
+    .lang-btn.active { background: var(--accent); color: #fff; }
+    .nav-cta { font-family: var(--font-jp); font-size: 0.82rem; font-weight: 600; padding: 9px 22px; border-radius: 6px; background: var(--accent); color: #fff; margin-left: 1.2rem; transition: background 0.2s, transform 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+    @media (max-width: 768px) { .nav-links, .nav-cta, .lang-toggle { display: none; } .nav { padding: 0 1.5rem; } }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 3rem; }
+    .section { padding: 100px 0; }
+    .section-alt { background: var(--bg-subtle); }
+    .section-label { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+    .section-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    .section-heading { font-family: var(--font-jp); font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.3; color: var(--text-primary); }
+    .section-sub { font-size: 0.95rem; color: var(--text-secondary); line-height: 2; margin-top: 1rem; max-width: 640px; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+    @media (max-width: 1024px) { .container { padding: 0 2rem; } }
+    @media (max-width: 768px) { .section { padding: 70px 0; } }
+
+    /* HERO — clean white with accent */
+    .hero { min-height: 76vh; display: flex; align-items: center; background: var(--bg); padding-top: 68px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(26,63,191,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(26,63,191,0.04) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 75%); }
+    .hero-blob { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(26,63,191,0.06) 0%, transparent 70%); top: -150px; right: -150px; pointer-events: none; }
+    .hero-content { position: relative; z-index: 1; padding: 5rem 0; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+    .hero-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    .hero-title { font-family: var(--font-jp); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.25; color: var(--text-primary); margin-bottom: 1.6rem; }
+    .hero-title .accent { color: var(--accent); }
+    .hero-sub { font-size: clamp(0.9rem, 1.4vw, 1.05rem); color: var(--text-secondary); line-height: 1.9; max-width: 580px; margin-bottom: 2.8rem; }
+    .hero-stats { display: flex; gap: 0; border: 1px solid var(--border); margin-bottom: 2.8rem; }
+    .hero-stat { padding: 1.2rem 2rem; flex: 1; border-right: 1px solid var(--border); }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num { font-family: var(--font-en); font-size: 1.7rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; letter-spacing: -0.02em; }
+    .hero-stat-num em { font-style: normal; font-size: 0.58em; }
+    .hero-stat-label { font-size: 0.74rem; color: var(--text-dim); line-height: 1.5; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { font-family: var(--font-jp); font-size: 0.9rem; font-weight: 600; padding: 13px 34px; border-radius: 6px; background: var(--accent); color: #fff; border: none; cursor: pointer; display: inline-block; transition: background 0.2s, transform 0.2s; }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+    .btn-outline { font-family: var(--font-jp); font-size: 0.9rem; font-weight: 500; padding: 13px 34px; border-radius: 6px; background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); cursor: pointer; display: inline-block; transition: border-color 0.2s, color 0.2s, transform 0.2s; }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .breadcrumb { padding: 1.4rem 0; border-bottom: 1px solid var(--border); }
+    .breadcrumb-inner { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-en); font-size: 0.72rem; color: var(--text-dim); }
+    .breadcrumb-inner a { color: var(--text-dim); transition: color 0.2s; }
+    .breadcrumb-inner a:hover { color: var(--accent); }
+
+    /* PROGRAMS */
+    .programs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
+    .program-card { background: var(--bg); padding: 2.8rem 2.4rem; transition: background 0.2s; }
+    .program-card:hover { background: #fafbff; }
+    .program-level { font-family: var(--font-en); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .program-name { font-weight: 700; font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.6rem; line-height: 1.4; }
+    .program-target { font-size: 0.76rem; color: var(--accent); background: var(--accent-pale); padding: 3px 10px; border-radius: 2px; display: inline-block; margin-bottom: 1rem; font-weight: 600; }
+    .program-desc { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 1.4rem; }
+    .program-items { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .program-items li { font-size: 0.8rem; color: var(--text-secondary); padding-left: 1rem; position: relative; }
+    .program-items li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; }
+    @media (max-width: 1024px) { .programs-grid { grid-template-columns: 1fr; } }
+
+    /* TARGETS */
+    .targets-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 3rem; }
+    .target-card { background: var(--bg-subtle); padding: 2rem 1.8rem; text-align: center; }
+    .target-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+    .target-name { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 0.4rem; }
+    .target-desc { font-size: 0.76rem; color: var(--text-secondary); line-height: 1.7; }
+    @media (max-width: 768px) { .targets-grid { grid-template-columns: repeat(2,1fr); } }
+
+    /* FLOW */
+    .flow-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
+    .flow-step { background: var(--bg); padding: 2.4rem 2rem; position: relative; }
+    .flow-num { font-family: var(--font-en); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 0.8rem; }
+    .flow-title { font-weight: 700; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.6rem; }
+    .flow-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.9; }
+    @media (max-width: 768px) { .flow-grid { grid-template-columns: repeat(2,1fr); } }
+
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
+    .feature-card { background: var(--bg); padding: 2.6rem 2.2rem; transition: background 0.2s; }
+    .feature-card:hover { background: #fafbff; }
+    .feature-title { font-weight: 700; font-size: 0.96rem; color: var(--text-primary); margin-bottom: 0.8rem; line-height: 1.5; }
+    .feature-desc { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.9; }
+    @media (max-width: 768px) { .features-grid { grid-template-columns: 1fr; } }
+
+    /* FAQ */
+    .faq-list { margin-top: 3rem; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { width: 100%; text-align: left; padding: 1.6rem 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; cursor: pointer; font-family: var(--font-jp); font-size: 0.96rem; font-weight: 600; color: var(--text-primary); gap: 1rem; }
+    .faq-icon { width: 22px; height: 22px; flex-shrink: 0; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--text-dim); transition: transform 0.2s, background 0.2s, color 0.2s; }
+    .faq-item.open .faq-icon { background: var(--accent); border-color: var(--accent); color: #fff; transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 0 1.6rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 2; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* CTA */
+    .cta-section { background: var(--text-primary); padding: 80px 0; position: relative; overflow: hidden; }
+    .cta-mesh { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 15% 50%, rgba(26,63,191,0.3) 0%, transparent 60%), radial-gradient(ellipse 50% 70% at 85% 40%, rgba(123,150,255,0.2) 0%, transparent 55%); pointer-events: none; }
+    .cta-inner { position: relative; z-index: 1; text-align: center; }
+    .cta-label { font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #7b96ff; margin-bottom: 1.4rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .cta-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #7b96ff; }
+    .cta-title { font-family: var(--font-jp); font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: 1.2rem; }
+    .cta-sub { font-size: 0.92rem; color: rgba(255,255,255,0.5); line-height: 1.9; margin-bottom: 2.8rem; }
+    .cta-btn { font-family: var(--font-jp); font-size: 0.96rem; font-weight: 700; padding: 15px 44px; border-radius: 6px; background: #fff; color: var(--text-primary); border: none; cursor: pointer; display: inline-block; transition: background 0.2s, transform 0.2s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
+
+    .footer { background: var(--text-primary); padding: 48px 0 32px; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo { font-family: var(--font-en); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; color: #fff; }
+    .footer-logo span { color: #7b96ff; }
+    .footer-nav { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+    .footer-nav a { font-size: 0.8rem; color: rgba(255,255,255,0.38); transition: color 0.2s; }
+    .footer-nav a:hover { color: rgba(255,255,255,0.7); }
+    .footer-copy { font-family: var(--font-en); font-size: 0.72rem; color: rgba(255,255,255,0.2); margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="/" class="nav-logo">ZETA<span>X</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/#why">強み</a></li>
+        <li>
+          <button class="nav-dropdown-trigger">サービス <span class="nav-dropdown-arrow">▼</span></button>
+          <div class="nav-dropdown">
+            <p class="nav-dropdown-label">Services</p>
+            <a href="/ai-dx">AI/ITコンサル・開発</a>
+            <a href="/security">セキュリティコンサル</a>
+            <a href="/ai-training">AI研修</a>
+            <a href="/hardware">ハードウェア開発</a>
+            <div class="nav-dropdown-divider"></div>
+            <p class="nav-dropdown-label">Products</p>
+            <a href="/#products">自社プロダクト</a>
+          </div>
+        </li>
+        <li>
+          <button class="nav-dropdown-trigger">実績 <span class="nav-dropdown-arrow">▼</span></button>
+          <div class="nav-dropdown">
+            <a href="/#cases">業種別支援事例</a>
+            <a href="/#testimonials">お客様の声</a>
+          </div>
+        </li>
+        <li>
+          <button class="nav-dropdown-trigger">会社 <span class="nav-dropdown-arrow">▼</span></button>
+          <div class="nav-dropdown">
+            <a href="/about">会社紹介（詳細）</a>
+            <a href="/#company">会社概要</a>
+            <a href="/about#founders">代表紹介</a>
+          </div>
+        </li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ja">JP</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="/#contact" class="nav-cta">お問い合わせ</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb" style="margin-top:68px;">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <a href="/">Home</a><span>›</span>
+        <a href="/#services">Services</a><span>›</span>
+        <span>AI研修・リテラシー教育</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-blob"></div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-badge">Service 03 — AI Training & Literacy Education</p>
+        <h1 class="hero-title">AIを使いこなす<br>組織をつくる。<br><span class="accent">ツール操作から、</span><br><span class="accent">実務活用戦略まで。</span></h1>
+        <p class="hero-sub">上場企業・士業事務所・製造業での研修実績。経営層から現場社員まで対象に応じてプログラムを設計し、AIを実際の業務で使える人材を育成します。</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">上場<em>企業</em></div>
+            <div class="hero-stat-label">複数社での研修実績</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">士業<em>事務所</em></div>
+            <div class="hero-stat-label">税理士・弁護士事務所など</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">製造<em>業</em></div>
+            <div class="hero-stat-label">現場〜経営層まで対応</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">100<em>%</em></div>
+            <div class="hero-stat-label">カスタム設計（既製品なし）</div>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="/#contact" class="btn-primary">研修内容を相談する（無料）</a>
+          <a href="#programs" class="btn-outline">プログラム一覧を見る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section" id="programs">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Programs</span>
+        <h2 class="section-heading">研修プログラム</h2>
+        <p class="section-sub">既製品のプログラムはありません。お客様の業種・組織規模・参加者のAIリテラシーに合わせて、すべてカスタム設計します。</p>
+      </div>
+      <div class="programs-grid">
+        <div class="program-card reveal d1">
+          <div class="program-level">Program 01</div>
+          <div class="program-name">AIリテラシー基礎研修</div>
+          <div class="program-target">経営層・管理職向け</div>
+          <p class="program-desc">AIの基本的な仕組みと現在地を理解し、自社ビジネスへの活用可能性を判断できるようになることを目的とした研修です。技術的な詳細ではなく、意思決定に必要な知識の習得にフォーカスします。</p>
+          <ul class="program-items">
+            <li>生成AIの仕組みと現在の限界</li>
+            <li>自社業務への適用可能性の見極め方</li>
+            <li>AI導入時のリスクと倫理的考慮点</li>
+            <li>競合他社のAI活用事例</li>
+          </ul>
+        </div>
+        <div class="program-card reveal d2">
+          <div class="program-level">Program 02</div>
+          <div class="program-name">AI実務活用研修</div>
+          <div class="program-target">一般社員・現場スタッフ向け</div>
+          <p class="program-desc">ChatGPT・Copilot・Claude などのAIツールを実際の業務で使いこなすためのハンズオン研修です。単なるツール操作の説明にとどまらず、業務への応用方法と効果的なプロンプト設計を中心に学びます。</p>
+          <ul class="program-items">
+            <li>各種AIツールの特徴と使い分け</li>
+            <li>業務別プロンプト設計（文書作成・分析・要約など）</li>
+            <li>AIの出力を検証・活用する方法</li>
+            <li>情報セキュリティとAI利用ルール</li>
+          </ul>
+        </div>
+        <div class="program-card reveal d3">
+          <div class="program-level">Program 03</div>
+          <div class="program-name">AI活用戦略・推進者育成</div>
+          <div class="program-target">DX推進担当・情報システム部門向け</div>
+          <p class="program-desc">社内のAI活用を推進するリーダー人材の育成プログラムです。AI導入の計画立案・ベンダー選定・社内普及・効果測定まで、推進者として必要なスキルを実践的に習得します。</p>
+          <ul class="program-items">
+            <li>AI導入計画の立案と優先順位付け</li>
+            <li>PoC（概念実証）の設計と評価</li>
+            <li>社内変革マネジメント</li>
+            <li>AI活用KPIの設定と効果測定</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARGET AUDIENCES -->
+  <section class="section section-alt" id="targets">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Track Record</span>
+        <h2 class="section-heading">研修実績のある業種・組織</h2>
+        <p class="section-sub">業種ごとに固有の業務フロー・ツール・課題があります。ZetaXはその業界の文脈を理解した上でプログラムを設計します。</p>
+      </div>
+      <div class="targets-grid">
+        <div class="target-card reveal d1">
+          <div class="target-icon">🏭</div>
+          <div class="target-name">製造業</div>
+          <div class="target-desc">生産管理・品質管理・設備保全の現場でのAI活用。IoTデータ活用・予兆保全・報告書自動化など。</div>
+        </div>
+        <div class="target-card reveal d2">
+          <div class="target-icon">⚖️</div>
+          <div class="target-name">士業事務所</div>
+          <div class="target-desc">税理士・弁護士・社労士向け。契約書レビュー・申告書類処理・顧客対応の効率化に特化した内容。</div>
+        </div>
+        <div class="target-card reveal d3">
+          <div class="target-icon">🏢</div>
+          <div class="target-name">上場企業</div>
+          <div class="target-desc">全社展開を想定した段階的導入プログラム。部門別のユースケース開発から社内普及推進まで。</div>
+        </div>
+        <div class="target-card reveal d1">
+          <div class="target-icon">🏦</div>
+          <div class="target-name">金融・保険</div>
+          <div class="target-desc">コンプライアンスを意識したAI活用。審査・分析・レポーティング業務の効率化。セキュリティ知識との統合。</div>
+        </div>
+        <div class="target-card reveal d2">
+          <div class="target-icon">🏥</div>
+          <div class="target-name">医療・介護</div>
+          <div class="target-desc">医師・看護師・事務スタッフ向け。患者コミュニケーション・カルテ記録・シフト管理の効率化。</div>
+        </div>
+        <div class="target-card reveal d3">
+          <div class="target-icon">🏗️</div>
+          <div class="target-name">建設・不動産</div>
+          <div class="target-desc">現場管理・施工報告・図面解析でのAI活用。デジタル化が進んでいない現場でも使いやすい内容。</div>
+        </div>
+        <div class="target-card reveal d1">
+          <div class="target-icon">🛒</div>
+          <div class="target-name">小売・EC</div>
+          <div class="target-desc">需要予測・商品説明文生成・カスタマーサポートの自動化。マーケティング活用まで幅広くカバー。</div>
+        </div>
+        <div class="target-card reveal d2">
+          <div class="target-icon">🎓</div>
+          <div class="target-name">教育・研究機関</div>
+          <div class="target-desc">教職員・研究者向け。教材作成・採点・研究補助でのAI活用。学術倫理とAI利用の考え方も含む。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section class="section" id="flow">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">How We Design</span>
+        <h2 class="section-heading">プログラム設計の流れ</h2>
+        <p class="section-sub">既製品を押し付けるのではなく、お客様の状況に合わせてゼロから設計します。</p>
+      </div>
+      <div class="flow-grid">
+        <div class="flow-step reveal d1">
+          <div class="flow-num">STEP 01</div>
+          <div class="flow-title">現状ヒアリング</div>
+          <div class="flow-desc">参加者のAIリテラシー・業務内容・課題・目標をヒアリングします。経営層と現場それぞれの期待値を把握します。</div>
+        </div>
+        <div class="flow-step reveal d2">
+          <div class="flow-num">STEP 02</div>
+          <div class="flow-title">カリキュラム設計</div>
+          <div class="flow-desc">ヒアリング内容をもとに、業務に直結するカリキュラムを設計します。実際の業務事例を教材として使用します。</div>
+        </div>
+        <div class="flow-step reveal d3">
+          <div class="flow-num">STEP 03</div>
+          <div class="flow-title">研修実施</div>
+          <div class="flow-desc">オンライン・対面ともに対応。ハンズオン中心で、研修中に実際に業務で使える成果物を作ります。</div>
+        </div>
+        <div class="flow-step reveal d1">
+          <div class="flow-num">STEP 04</div>
+          <div class="flow-title">フォローアップ</div>
+          <div class="flow-desc">研修後の実務での活用状況をモニタリングし、必要に応じて追加サポート・コンテンツ提供を行います。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Why ZetaX</span>
+        <h2 class="section-heading">ZetaXのAI研修が選ばれる理由</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal d1">
+          <h3 class="feature-title">実務経験者が教える</h3>
+          <p class="feature-desc">AIの研究者ではなく、実際にAIシステムを開発・導入してきたエンジニアが講師を務めます。「理論上はこうだが現場ではこうなる」という実践的な知見を共有します。</p>
+        </div>
+        <div class="feature-card reveal d2">
+          <h3 class="feature-title">業務に直結する内容のみ</h3>
+          <p class="feature-desc">技術的な原理説明に時間をかけません。参加者が翌日から業務で使えるスキルの習得にフォーカスします。研修後にすぐ実践できる具体的なプロンプトやワークフローをお渡しします。</p>
+        </div>
+        <div class="feature-card reveal d3">
+          <h3 class="feature-title">開発もできるから、深く教えられる</h3>
+          <p class="feature-desc">ZetaXはAI研修だけでなく、AIシステムの開発・実装も行っています。「この業務を自動化したい」という相談があれば、研修と開発を組み合わせて、より大きな効果を生み出せます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-heading">よくあるご質問</h2>
+      </div>
+      <div class="faq-list reveal d1">
+        <div class="faq-item">
+          <button class="faq-q">AIについて全く知識がない社員でも参加できますか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">はい、ゼロから始められるプログラムをご用意できます。参加者の現状のリテラシーに合わせてカリキュラムを調整しますので、事前知識は不要です。「スマートフォンを使えれば十分」というレベルから始められます。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">何人から研修を受けられますか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">1名からの個別コーチングから、数百名規模の全社研修まで対応しています。少人数のハンズオンから大規模な講演形式まで、目的に合わせた形式をご提案します。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">オンラインと対面、どちらで実施できますか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">両方に対応しています。ハンズオン研修は対面が効果的ですが、オンラインでも十分な成果が出ます。全国どこでも対面での出張研修が可能です（北は青森から南は福岡まで実績あり）。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">研修費用の目安はいくらですか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">内容・規模・時間数によって異なります。単発のセミナーから継続的なプログラムまで、予算に合わせてご提案します。まずは無料でのヒアリングにてご要望をお聞かせください。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">研修後のフォローアップはありますか？<span class="faq-icon">+</span></button>
+          <div class="faq-a">あります。研修後のQ&Aサポート・追加コンテンツ提供・定期的なフォローアップ研修など、継続的なサポートプランをご用意しています。「研修したけど現場で使われていない」という事態を防ぎます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-mesh"></div>
+    <div class="container">
+      <div class="cta-inner reveal">
+        <p class="cta-label">Contact</p>
+        <h2 class="cta-title">まずは無料で<br>研修内容をご相談ください。</h2>
+        <p class="cta-sub">お客様の業種・参加人数・目標をお聞きした上で、<br>最適なプログラムをご提案します。</p>
+        <a href="/#contact" class="cta-btn">研修を相談する（無料） →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="/" class="footer-logo">ZETA<span>X</span></a>
+        <nav class="footer-nav">
+          <a href="/ai-dx">AI/ITコンサル・開発</a>
+          <a href="/security">セキュリティコンサル</a>
+          <a href="/ai-training">AI研修</a>
+          <a href="/hardware">ハードウェア開発</a>
+          <a href="/about">会社紹介</a>
+          <a href="/#contact">お問い合わせ</a>
+        </nav>
+      </div>
+      <div class="footer-copy">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+          <span>&copy; 2025 ZetaX Inc. All rights reserved.</span>
+          <div style="display:flex;gap:1.5rem;">
+            <a href="/security-policy" style="color:rgba(255,255,255,0.25)">Security Policy</a>
+            <a href="/privacy-policy" style="color:rgba(255,255,255,0.25)">Privacy Policy</a>
+            <a href="/terms" style="color:rgba(255,255,255,0.25)">Terms</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('elevated', scrollY > 10), { passive: true });
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
