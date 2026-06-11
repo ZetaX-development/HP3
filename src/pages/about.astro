@@ -113,6 +113,33 @@
     .founder-highlight { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.82rem; color: var(--text-secondary); line-height: 1.7; }
     .founder-highlight::before { content: '—'; color: var(--accent); font-family: var(--font-en); flex-shrink: 0; margin-top: 0.1rem; }
 
+    /* ─── TEAM MEMBERS ─── */
+    .team-intro { max-width: 640px; margin-bottom: 4rem; }
+    .team-intro p { font-size: 0.95rem; color: var(--text-secondary); line-height: 2.1; }
+    .team-group { margin-bottom: 4rem; }
+    .team-group-label { font-family: var(--font-en); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+    .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .team-grid-sm { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .team-card { background: var(--bg); padding: 2.4rem 2.8rem; }
+    .team-card-sm { background: var(--bg); padding: 2rem 2.2rem; }
+    .team-name { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.2rem; letter-spacing: 0.04em; }
+    .team-name-sm { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.2rem; }
+    .team-name-en { font-family: var(--font-en); font-size: 0.74rem; color: var(--text-dim); letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+    .team-role { font-family: var(--font-en); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.3rem; }
+    .team-affil { font-size: 0.76rem; color: var(--text-dim); margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-light); }
+    .team-bio { font-size: 0.86rem; color: var(--text-secondary); line-height: 2; }
+    .team-bio-sm { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.9; }
+    .team-highlights { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .team-highlight { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.79rem; color: var(--text-secondary); line-height: 1.6; }
+    .team-highlight::before { content: '—'; color: var(--accent); font-family: var(--font-en); flex-shrink: 0; }
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .team-grid-sm { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .team-grid-sm { grid-template-columns: 1fr; }
+    }
+
     /* ─── VALUES GRID ─── */
     .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
     .value-card { background: var(--bg); padding: 2.8rem; }
@@ -193,6 +220,7 @@
             <a href="/about" style="color:var(--accent);font-weight:600;">会社紹介（詳細）</a>
             <a href="/#company">会社概要</a>
             <a href="/about#founders">代表紹介</a>
+            <a href="/about#team">メンバー紹介</a>
             <div class="nav-dropdown-divider"></div>
             <a href="/#news">ニュース</a>
           </div>
@@ -296,7 +324,7 @@
         <h2 class="section-heading" style="margin-bottom:1.6rem;">代表紹介</h2>
       </div>
       <div class="founders-intro reveal d1">
-        <p>ZetaXは、東京大学工学部出身の2名によって2024年に創業しました。2人はともに、AIスタートアップで数億円規模の上場企業案件を経験したプロジェクトマネージャーです。現場に入り込むことの大切さと、技術と経営の両方を分かる人間がいることの価値を、身をもって知っています。</p>
+        <p>ZetaXは、東京大学工学部出身の2名によって創業しました。2人はともに、AIスタートアップで数億円規模の上場企業案件を経験したプロジェクトマネージャーです。現場に入り込むことの大切さと、技術と経営の両方を分かる人間がいることの価値を、身をもって知っています。</p>
         <p>「本当にお客様の役に立てる会社を作りたい」——その想いが、ZetaX創業の出発点です。</p>
       </div>
       <div class="founders-grid">
@@ -336,6 +364,137 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- TEAM MEMBERS -->
+  <section class="section section-alt" id="team">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Our Team</span>
+        <h2 class="section-heading" style="margin-bottom:1.6rem;">メンバー紹介</h2>
+      </div>
+      <div class="team-intro reveal d1">
+        <p>東京大学・東京工業大学・東京都立大学出身を中心とする、研究レベルの技術力と実務経験を兼ね備えたエンジニア集団です。学術と現場の両方を知るメンバーが、お客様の課題に最前線で向き合います。</p>
+      </div>
+
+      <!-- Co-CEOs -->
+      <div class="team-group reveal">
+        <p class="team-group-label">Co-Founders & CEOs</p>
+        <div class="team-grid">
+          <div class="team-card">
+            <p class="team-name">柳澤 京佐</p>
+            <p class="team-name-en">Kyosuke Yanagisawa</p>
+            <p class="team-role">Co-CEO / Co-Founder</p>
+            <p class="team-affil">東京大学 工学部</p>
+            <p class="team-bio">AIスタートアップにて数億円規模の上場企業案件をPMとして統括。超上流の要件定義から実装・運用まで一気通貫で担う。都内大手銀行2社へのセキュリティコンサルティング実績を持ち、次世代暗号（PQC）導入支援や脆弱性診断など高度なセキュリティ領域を専門とする。</p>
+            <div class="team-highlights">
+              <div class="team-highlight">上場企業案件の超上流コンサル〜PM統括</div>
+              <div class="team-highlight">都内大手銀行2社へのセキュリティコンサル</div>
+              <div class="team-highlight">耐量子暗号（PQC）導入支援</div>
+            </div>
+          </div>
+          <div class="team-card">
+            <p class="team-name">佐藤 陽</p>
+            <p class="team-name-en">Yo Sato</p>
+            <p class="team-role">Co-CEO / Co-Founder</p>
+            <p class="team-affil">東京大学 工学部</p>
+            <p class="team-bio">ベンチャーキャピタルにてスタートアップへの投資審査・支援に従事後、東大発AIスタートアップにPMとして参画し東証プライム上場企業案件を担当。VC出身の事業視点とエンジニアの実装力を兼ね備え、ビジネスモデル変革から技術実装まで一手に対応。日・英・西・葡の4カ国語対応。</p>
+            <div class="team-highlights">
+              <div class="team-highlight">VC出身の経営・事業コンサル視点</div>
+              <div class="team-highlight">東証プライム上場企業案件のPM</div>
+              <div class="team-highlight">4カ国語対応・グローバル案件実績</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advisors -->
+      <div class="team-group reveal d1">
+        <p class="team-group-label">Advisors</p>
+        <div class="team-grid">
+          <div class="team-card">
+            <p class="team-name">森田 洋平</p>
+            <p class="team-role">顧問</p>
+            <p class="team-affil">顧問（事業戦略）</p>
+            <p class="team-bio">事業戦略・経営管理領域を中心とした豊富な実績を持つ顧問。ZetaXの事業開発・パートナーシップ戦略を支援。</p>
+          </div>
+          <div class="team-card">
+            <p class="team-name">大塚 雄介</p>
+            <p class="team-role">顧問</p>
+            <p class="team-affil">顧問（技術）</p>
+            <p class="team-bio">技術領域における深い専門知識と業界ネットワークを持つ顧問。ZetaXの技術戦略・製品開発を支援。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Engineers -->
+      <div class="team-group reveal d2">
+        <p class="team-group-label">Engineers</p>
+        <div class="team-grid-sm">
+          <div class="team-card-sm">
+            <p class="team-name-sm">塚本 一稀</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京大学</p>
+            <p class="team-bio-sm">AIシステム開発・バックエンドエンジニアリングを担当。</p>
+          </div>
+          <div class="team-card-sm">
+            <p class="team-name-sm">坂口 太朗</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京大学</p>
+            <p class="team-bio-sm">フルスタック開発・クラウドインフラ構築を担当。</p>
+          </div>
+          <div class="team-card-sm">
+            <p class="team-name-sm">杉浦 雛姫</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京大学</p>
+            <p class="team-bio-sm">UI/UX設計・フロントエンド開発を担当。</p>
+          </div>
+          <div class="team-card-sm">
+            <p class="team-name-sm">松本 佳晟</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京工業大学</p>
+            <p class="team-bio-sm">機械学習・データエンジニアリングを担当。</p>
+          </div>
+          <div class="team-card-sm">
+            <p class="team-name-sm">鈴木 崇博</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京工業大学</p>
+            <p class="team-bio-sm">組み込み・ハードウェア連携システム開発を担当。</p>
+          </div>
+          <div class="team-card-sm">
+            <p class="team-name-sm">郷 由紀斗</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京大学</p>
+            <p class="team-bio-sm">AIプロダクト開発・システム設計を担当。</p>
+          </div>
+          <div class="team-card-sm">
+            <p class="team-name-sm">沼田 一楓</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京大学</p>
+            <p class="team-bio-sm">バックエンド開発・API設計を担当。</p>
+          </div>
+          <div class="team-card-sm">
+            <p class="team-name-sm">石川 潮早</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京工業大学</p>
+            <p class="team-bio-sm">セキュリティエンジニアリング・インフラ設計を担当。</p>
+          </div>
+          <div class="team-card-sm">
+            <p class="team-name-sm">井上 雅斗</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京大学</p>
+            <p class="team-bio-sm">機械学習モデル開発・データ分析基盤構築を担当。</p>
+          </div>
+          <div class="team-card-sm">
+            <p class="team-name-sm">菅野 洸太</p>
+            <p class="team-role">Engineer</p>
+            <p class="team-affil">東京都立大学 情報科学研究科</p>
+            <p class="team-bio-sm">音声AIプロジェクト採択実績を持つ音声・自然言語処理の専門家。CRM開発4年のキャリアを持ち、業務システムとAI統合を担当。</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
