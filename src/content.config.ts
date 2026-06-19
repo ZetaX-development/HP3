@@ -54,6 +54,38 @@ const otherPagesCollection = defineCollection({
     }),
 });
 
+// ZetaX news / owned-media articles (Japanese only)
+const newsCollection = defineCollection({
+  loader: glob({ pattern: "**/[^_]*{md,mdx}", base: "./src/data/news" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      // SEO meta description limit
+      description: z.string().max(160),
+      pubDate: z
+        .string()
+        .or(z.date())
+        .transform((val) => new Date(val)),
+      updatedDate: z
+        .string()
+        .optional()
+        .transform((str) => (str ? new Date(str) : undefined)),
+      category: z.enum(["お知らせ", "実績", "サービス", "技術コラム", "事例"]),
+      heroImage: image(),
+      // inline author (not from authorsCollection — news uses one-off bylines)
+      author: z.string(),
+      authorRole: z.string(),
+      authorAvatar: image().optional(),
+      featured: z.boolean().optional(),
+      summary: z.string().optional(),
+      // structured FAQ for rich-result (FAQPage) eligibility
+      faq: z
+        .array(z.object({ question: z.string(), answer: z.string() }))
+        .optional(),
+      draft: z.boolean().optional(),
+    }),
+});
+
 // each code toggle section is it's own content file
 const codeToggleCollection = defineCollection({
   loader: glob({ pattern: "**/[^_]*{md,mdx}", base: "./src/data/codeToggles" }),
@@ -71,4 +103,5 @@ export const collections = {
   authors: authorsCollection,
   otherPages: otherPagesCollection,
   codeToggles: codeToggleCollection,
+  news: newsCollection,
 };
