@@ -236,8 +236,105 @@ const OtherPages = (locale: (typeof locales)[number]) =>
     },
   });
 
+/**
+ * * News / owned-media collection (Japanese only)
+ * Keep this in sync with the `news` schema in src/content.config.ts
+ */
+const News = () =>
+  collection({
+    label: "News",
+    slugField: "title",
+    path: "src/data/news/*/",
+    columns: ["title", "pubDate"],
+    entryLayout: "content",
+    format: { contentField: "content" },
+    schema: {
+      title: fields.slug({
+        name: { label: "タイトル" },
+        slug: {
+          label: "SEO用スラッグ",
+          description: "公開後はスラッグを変更しないこと",
+        },
+      }),
+      description: fields.text({
+        label: "説明（一覧・OGP・meta description用）",
+        multiline: true,
+        validation: { isRequired: true, length: { min: 1, max: 160 } },
+      }),
+      pubDate: fields.date({ label: "公開日", validation: { isRequired: true } }),
+      updatedDate: fields.date({ label: "更新日" }),
+      category: fields.select({
+        label: "カテゴリ",
+        options: [
+          { label: "お知らせ", value: "お知らせ" },
+          { label: "実績", value: "実績" },
+          { label: "サービス", value: "サービス" },
+          { label: "技術コラム", value: "技術コラム" },
+          { label: "事例", value: "事例" },
+        ],
+        defaultValue: "お知らせ",
+      }),
+      heroImage: fields.image({
+        label: "ヒーロー画像",
+        publicPath: "../",
+        validation: { isRequired: true },
+      }),
+      author: fields.text({ label: "著者名", validation: { isRequired: true } }),
+      authorRole: fields.text({
+        label: "著者の肩書き",
+        validation: { isRequired: true },
+      }),
+      authorAvatar: fields.image({
+        label: "著者の顔写真（任意）",
+        publicPath: "../",
+      }),
+      featured: fields.checkbox({
+        label: "特集（ポータル先頭に固定）",
+        defaultValue: false,
+      }),
+      summary: fields.text({
+        label: "要点 / TL;DR（任意・AEO用）",
+        multiline: true,
+      }),
+      faq: fields.array(
+        fields.object({
+          question: fields.text({ label: "質問" }),
+          answer: fields.text({ label: "回答", multiline: true }),
+        }),
+        {
+          label: "FAQ（任意・FAQ構造化データを出力）",
+          itemLabel: (props) => props.fields.question.value || "FAQ項目",
+        },
+      ),
+      draft: fields.checkbox({
+        label: "下書き（ON で非公開）",
+        description: "ON にすると公開（ビルド）から除外されます。",
+        defaultValue: false,
+      }),
+      content: fields.mdx({
+        label: "本文",
+        options: {
+          bold: true,
+          italic: true,
+          strikethrough: true,
+          code: true,
+          codeBlock: true,
+          heading: [2, 3, 4],
+          blockquote: true,
+          orderedList: true,
+          unorderedList: true,
+          table: true,
+          link: true,
+          divider: true,
+          image: { directory: "src/data/news/", publicPath: "../" },
+        },
+      }),
+    },
+  });
+
 export default {
   Blog,
   Authors,
   OtherPages,
+  News,
 };

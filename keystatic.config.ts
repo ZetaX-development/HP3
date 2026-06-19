@@ -32,5 +32,6 @@ export default config({
     authors: Collections.Authors(""),
 
     otherPagesEN: Collections.OtherPages("en"),
+    news: Collections.News(),
   },
 });
