@@ -31,3 +31,6 @@ pnpm-debug.log*
 #*.pdf
 # Visual brainstorm companion
 .superpowers/
+
+# Cloudflare local secrets
+.dev.vars

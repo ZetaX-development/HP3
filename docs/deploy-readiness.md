@@ -7,30 +7,20 @@ ZetaX サイトを `https://zetax.jp` に本番公開するまでに必要な作
 
 ---
 
-## 1. 🔴 Keystatic の保存先（本番でCMSを使うなら必須）
+## 1. ✅ Keystatic の保存先 → GitHub ストレージ（設定済み）
 
-現状 `keystatic.config.ts` は本番で `storage: { kind: "cloud" }`、`cloud.project: "cosmic-themes/amplify"`（＝**他人のプロジェクト**）。このままだと本番で記事を保存できない／他者プロジェクトを指す。3つの選択肢から決める。
+`keystatic.config.ts` を **GitHub ストレージ**に変更済み（dev=local、prod=github、`repo: ZetaX-development/HP3`）。CMSの保存＝**リポジトリへ直接コミット**。Keystatic Cloud アカウント不要。
 
-### 選択肢A（推奨・最小手数）: GitHub ストレージ
-CMSの保存＝**リポジトリへ直接コミット**。Keystatic Cloud アカウント不要。
+**残りの一回だけの設定（本番デプロイ前に必要）:**
+- 本番で `/keystatic` を開くと GitHub App 連携を案内されるので承認。
+- 連携で発行される以下を **Cloudflare の環境変数/シークレット**に登録:
+  - `KEYSTATIC_GITHUB_CLIENT_ID`
+  - `KEYSTATIC_GITHUB_CLIENT_SECRET`
+  - `KEYSTATIC_SECRET`（任意の十分長いランダム文字列）
+- ローカル開発はこれらなしでOK（`kind:"local"`）。
+- 編集者は対象リポジトリへの権限を持つGitHubアカウントが必要（少人数運用向き）。
 
-`keystatic.config.ts` を変更:
-```ts
-storage: {
-  kind: "github",
-  repo: { owner: "ZetaX-development", name: "HP3" },
-},
-```
-- GitHub App 連携（Keystatic が案内するOAuth）を初回に許可。
-- 編集者はGitHubアカウントが必要。少人数運用に最適。
-
-### 選択肢B: Keystatic Cloud
-[keystatic.cloud](https://keystatic.cloud/) でZetaX用プロジェクトを作成（無料・最大3名）し、`cloud.project` をそのIDに差し替え。非エンジニアでも使いやすいダッシュボード。
-
-### 選択肢C: ローカルのみ（CMSは本番で使わない）
-本番ではCMS編集せず、記事追加はローカルdev（`kind:"local"`）→ git push → 自動デプロイ、で運用。`/keystatic` は本番で無効化してよい。最もシンプルで安全。
-
-> 決まったら設定変更＋ビルド確認します。どれにするか教えてください（迷えばA推奨）。
+> 非エンジニアが多用するなら Keystatic Cloud（[keystatic.cloud](https://keystatic.cloud/) でZetaX用プロジェクト作成 → `storage:{kind:"cloud"}`＋`cloud.project`）に切り替える選択肢もあり。今はGitHubストレージで確定。
 
 ---
 
@@ -53,49 +43,20 @@ npx wrangler kv namespace create SESSION
 
 ---
 
-## 3. 🔴 問い合わせフォームが未送信（本番で問い合わせが消失）
+## 3. ✅ 問い合わせフォーム → `/api/contact`（実装済み）
 
-`src/pages/index.astro` の `submitForm()` は1秒待って「送信完了」を表示するだけで**実際には送信していない**。本番前に実装が必要。選択肢:
+以前は「送信完了」を出すだけの偽実装だった。**実装済み**:
+- `src/pages/api/contact.ts`（SSR, `prerender=false`）でフォームを受信し、[Resend](https://resend.com) で `info@zetax.jp` へメール送信（`reply_to` は送信者）。
+- `src/pages/index.astro` の `submitForm()` を実 `POST /api/contact` に変更。成功時のみ完了表示、失敗時は「info@zetax.jp へ直接連絡」を案内してボタン復帰。
+- APIキー未設定時は `503 not_configured` を返し、フォールバック案内を表示（問い合わせを黙って失う事故を防止）。
 
-### 選択肢A（推奨・Cloudflareと相性◎）: Pages/Worker のサーバ関数
-`src/pages/api/contact.ts`（SSR）を作り、フォームを `POST /api/contact` に送信。メール送信は [Resend](https://resend.com) 等のAPIを利用。雛形:
+**残りの一回だけの設定（本番で実際にメールを送るため）:**
+1. [Resend](https://resend.com) で無料アカウント作成。
+2. **`zetax.jp` ドメインを Resend で検証**（DNSにSPF/DKIMレコードを追加）。検証後 `noreply@zetax.jp` から送信可能に。
+3. APIキーを発行し、**Cloudflare のシークレット**に `RESEND_API_KEY` として登録。
+4. ローカルで試すなら、リポジトリ直下に `.dev.vars`（gitignore対象）を作り `RESEND_API_KEY=xxxxx` を記載。
 
-```ts
-// src/pages/api/contact.ts
-export const prerender = false;
-import type { APIRoute } from "astro";
-
-export const POST: APIRoute = async ({ request }) => {
-  const form = await request.formData();
-  const name = String(form.get("name") ?? "");
-  const email = String(form.get("email") ?? "");
-  const message = String(form.get("message") ?? "");
-  if (!name || !email) {
-    return new Response(JSON.stringify({ ok: false }), { status: 400 });
-  }
-  // 例: Resend API（要 RESEND_API_KEY を環境変数/CFシークレットに設定）
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${import.meta.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: "noreply@zetax.jp",
-      to: "info@zetax.jp",
-      subject: `お問い合わせ: ${name}`,
-      text: `From: ${name} <${email}>\n\n${message}`,
-    }),
-  });
-  return new Response(JSON.stringify({ ok: true }), { status: 200 });
-};
-```
-クライアント側 `submitForm()` を `fetch("/api/contact", { method:"POST", body: new FormData(form) })` に置き換え、成功時のみ完了表示に。
-
-### 選択肢B（最小実装）: フォームサービス
-[Formspree](https://formspree.io/) / [Web3Forms](https://web3forms.com/) 等のエンドポイントに `<form action="...">` をPOSTするだけ。サーバコード不要。最短で動く。
-
-> どちらにするか決めてもらえれば実装します（メール送信先・サービス選定が必要）。
+> 送信先(`info@zetax.jp`)や送信元(`noreply@zetax.jp`)を変える場合は `src/pages/api/contact.ts` の `TO`/`FROM` を編集。Resendのドメイン検証が面倒なら、フォームサービス（Formspree / Web3Forms）に切り替える手もある（その場合フォームの送信先だけ差し替え）。
 
 ---
 

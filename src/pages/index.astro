@@ -1906,12 +1906,27 @@ const fmtDate = (d: Date) =>
     // FORM
     async function submitForm(e) {
       e.preventDefault();
+      const form = document.getElementById('contactForm');
       const btn = document.getElementById('contact-submit-btn');
+      const originalLabel = btn.textContent;
       btn.textContent = currentLang === 'ja' ? '送信中...' : 'Sending...';
       btn.disabled = true;
-      await new Promise(r => setTimeout(r, 1000));
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
+      try {
+        const res = await fetch('/api/contact', { method: 'POST', body: new FormData(form) });
+        const data = await res.json().catch(() => ({ ok: false }));
+        if (res.ok && data.ok) {
+          form.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+          return;
+        }
+        throw new Error(data.error || 'send_failed');
+      } catch (err) {
+        alert(currentLang === 'ja'
+          ? '送信に失敗しました。お手数ですが info@zetax.jp まで直接ご連絡ください。'
+          : 'Sending failed. Please email us directly at info@zetax.jp.');
+        btn.textContent = originalLabel;
+        btn.disabled = false;
+      }
     }
 
     // ANCHOR SCROLL

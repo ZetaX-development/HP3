@@ -14,12 +14,14 @@ import Collections from "@components/KeystaticComponents/Collections";
 import { config } from "@keystatic/core";
 
 export default config({
-  // works in local mode in dev, then cloud mode in prod
-  storage: import.meta.env.DEV === true ? { kind: "local" } : { kind: "cloud" },
-  // cloud deployment is free to sign up (up to 3 users per team)
-  // docs: https://keystatic.com/docs/cloud
-  // create a Keystatic Cloud account here: https://keystatic.cloud/
-  cloud: { project: "cosmic-themes/amplify" },
+  // local mode in dev, GitHub storage in prod (saves commit directly to this repo)
+  // prod requires a connected GitHub App + env vars:
+  //   KEYSTATIC_GITHUB_CLIENT_ID / KEYSTATIC_GITHUB_CLIENT_SECRET / KEYSTATIC_SECRET
+  // (Keystatic guides the one-time setup at /keystatic when first connecting)
+  storage:
+    import.meta.env.DEV === true
+      ? { kind: "local" }
+      : { kind: "github", repo: { owner: "ZetaX-development", name: "HP3" } },
   ui: {
     brand: { name: "ZetaX" },
   },
