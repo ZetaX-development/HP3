@@ -804,6 +804,160 @@
       .news-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .media-bar .container { flex-direction: column; align-items: flex-start; gap: 1rem; }
     }
+
+    /* ══════════════════════════════════════════
+       PRO UPGRADE v2 — Typography & Interaction
+    ══════════════════════════════════════════ */
+
+    /* 1. Hero headline: dramatically larger, editorial weight */
+    .hero-title {
+      font-size: clamp(2.6rem, 4.4vw, 4.6rem) !important;
+      letter-spacing: -0.03em;
+      line-height: 1.14 !important;
+      font-weight: 700;
+    }
+    .hero-title-sub {
+      font-size: clamp(0.88rem, 1.1vw, 1rem) !important;
+      line-height: 1.9 !important;
+      max-width: 460px;
+      margin-bottom: 2.4rem;
+    }
+
+    /* 2. Section headings: bigger, tighter */
+    .section-heading {
+      font-size: clamp(2rem, 3.2vw, 3.4rem) !important;
+      letter-spacing: -0.022em;
+      line-height: 1.18;
+    }
+
+    /* 3. Card titles: more presence */
+    .why-card-title { font-size: 1.12rem !important; letter-spacing: -0.01em; }
+    .service-title { font-size: 1.12rem !important; letter-spacing: -0.01em; }
+    .product-name { font-size: 1.15rem !important; letter-spacing: -0.01em; }
+
+    /* 4. Card hover: crisp inset border + depth */
+    .why-card:hover {
+      background: #f9faff !important;
+      box-shadow: inset 0 0 0 1.5px rgba(26,63,191,0.22), 0 24px 64px rgba(26,63,191,0.09) !important;
+    }
+    .service-card:hover {
+      background: #f9faff !important;
+      box-shadow: inset 0 0 0 1.5px rgba(26,63,191,0.22), 0 24px 64px rgba(26,63,191,0.09) !important;
+    }
+    .product-card:hover {
+      background: #f9faff !important;
+      box-shadow: inset 0 0 0 1.5px rgba(26,63,191,0.22), 0 24px 64px rgba(26,63,191,0.09) !important;
+    }
+    .process-step:hover {
+      background: #f9faff !important;
+      box-shadow: inset 0 0 0 1.5px rgba(26,63,191,0.15) !important;
+    }
+
+    /* 5. Trust bar: bigger, more impact */
+    .trust-number { font-size: 2.6rem !important; }
+    .trust-label { font-size: 0.78rem !important; opacity: 0.55; }
+
+    /* 6. Why achieve bar: bigger */
+    .why-achieve-num { font-size: 2.6rem !important; }
+    .why-achieve-label { font-size: 0.78rem !important; }
+
+    /* 7. Terminal: deeper shadow + ambient glow */
+    .terminal-window {
+      box-shadow: 0 40px 100px rgba(0,0,0,0.28),
+                  0 0 0 1px rgba(255,255,255,0.06),
+                  inset 0 1px 0 rgba(255,255,255,0.08),
+                  0 0 120px rgba(26,63,191,0.08) !important;
+    }
+
+    /* 8. Hero compare: ZetaX col more dramatic */
+    .hero-compare-col:last-child {
+      box-shadow: 0 8px 48px rgba(26,63,191,0.18) !important;
+    }
+
+    /* 9. Section sub: slightly bigger */
+    .section-sub { font-size: 0.98rem !important; max-width: 600px !important; }
+
+    /* 10. CTA heading: bigger */
+    .cta-text h2 { font-size: clamp(1.8rem, 2.8vw, 2.6rem) !important; letter-spacing: -0.015em; }
+
+    /* 11. Security heading: bigger */
+    .security-heading {
+      font-size: clamp(1.6rem, 2.8vw, 2.4rem) !important;
+      letter-spacing: -0.015em;
+    }
+
+    /* 12. Page hero title (about page link ref) */
+    .page-hero-title { letter-spacing: -0.02em; }
+
+    /* 13. Testimonial quote mark: bigger, more editorial */
+    .testimonial-quote::before {
+      font-size: 4rem !important;
+      opacity: 0.4;
+      line-height: 0.9;
+    }
+
+    /* 14. Hero badge: sharper tag feel */
+    .hero-badge {
+      font-size: 0.72rem !important;
+      padding: 5px 14px !important;
+      border-radius: 3px !important;
+      letter-spacing: 0.06em !important;
+      background: rgba(255,255,255,0.85) !important;
+      backdrop-filter: blur(8px);
+    }
+
+    /* 15. Process timing: bigger */
+    .process-timing { font-size: 1.35rem !important; }
+
+    /* 16. Marquee: slightly bigger, more presence */
+    .marquee-item { font-size: 0.72rem !important; letter-spacing: 0.26em !important; }
+
+    /* 17. Case card hover */
+    .cases-card:hover {
+      background: #f9faff !important;
+      box-shadow: inset 0 0 0 1px rgba(26,63,191,0.18) !important;
+    }
+
+    /* 18. Nav logo: more defined */
+    .nav-logo { font-size: 1.18rem !important; letter-spacing: 0.14em !important; }
+
+    /* 19. Hero scroll indicator: more visible */
+    .hero-scroll { font-size: 0.62rem !important; letter-spacing: 0.28em !important; }
+
+    /* 20. Why-card number: code line-number aesthetic */
+    .why-card-number {
+      font-family: 'SF Mono','Fira Code','Consolas',monospace !important;
+      font-size: 0.6rem !important;
+      letter-spacing: 0.3em;
+      opacity: 0.6;
+    }
+
+    /* 21. Nav status indicator */
+    .nav-status {
+      display: flex; align-items: center; gap: 5px;
+      font-family: var(--font-en); font-size: 0.66rem; font-weight: 500;
+      color: var(--text-dim); margin-left: 1rem; white-space: nowrap;
+    }
+    .nav-status-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: #22c55e;
+      animation: pulse 2s ease-in-out infinite; flex-shrink: 0;
+    }
+
+    /* 22. Footer watermark: stronger */
+    .footer-watermark { -webkit-text-stroke: 1px rgba(255,255,255,0.05) !important; }
+
+    /* 23. Section label: slightly larger */
+    .section-label { font-size: 0.68rem !important; }
+
+    /* 24. Hero actions gap */
+    .hero-actions { gap: 0.9rem !important; }
+
+    /* 25. btn-outline: stronger border on hover */
+    .btn-outline:hover {
+      border-color: var(--accent) !important;
+      color: var(--accent) !important;
+      background: rgba(26,63,191,0.04) !important;
+    }
   </style>
 </head>
 
@@ -875,6 +1029,7 @@
         </li>
 
       </ul>
+      <span class="nav-status"><span class="nav-status-dot"></span>相談受付中</span>
       <div class="lang-toggle">
         <button class="lang-btn active" data-lang="ja">JP</button>
         <button class="lang-btn" data-lang="en">EN</button>
@@ -1033,8 +1188,8 @@
           <div class="trust-label" data-ja="出身エンジニアが中心メンバー" data-en="Core team from UTokyo & Tokyo Tech">出身エンジニアが中心メンバー</div>
         </div>
         <div class="trust-item reveal d4">
-          <div class="trust-number" data-count="25" data-suffix="社+"><span class="count-val">25</span><em>社+</em></div>
-          <div class="trust-label" data-ja="支援実績　うち上場企業6社" data-en="Clients served, incl. 6 listed companies">支援実績　うち上場企業6社</div>
+          <div class="trust-number" style="font-size:1.4rem;letter-spacing:-0.01em;">上場企業<em>含む</em></div>
+          <div class="trust-label" data-ja="多数の支援実績" data-en="Clients served incl. listed companies">多数の支援実績</div>
         </div>
       </div>
     </div>
@@ -1052,8 +1207,8 @@
       <!-- 実績ハイライト -->
       <div class="why-achieve-bar reveal d1">
         <div class="why-achieve-item">
-          <div class="why-achieve-num">25<em>社+</em></div>
-          <div class="why-achieve-label" data-ja="AI・IT支援実績<br>うち上場企業6社" data-en="Clients served<br>incl. 6 listed companies">AI・IT支援実績<br>うち上場企業6社</div>
+          <div class="why-achieve-num" style="font-size:1.2rem;">上場企業<em>含む</em></div>
+          <div class="why-achieve-label" data-ja="多数のAI・IT支援実績" data-en="AI & IT clients served incl. listed companies">多数のAI・IT支援実績</div>
         </div>
         <div class="why-achieve-item">
           <div class="why-achieve-num">2<em>社</em></div>
@@ -1134,12 +1289,12 @@
         <div class="why-card tilt-card reveal d2">
           <p class="why-card-number">06</p>
           <h3 class="why-card-title" data-ja="地方中小から東証プライム上場まで。実績が語る。" data-en="From Local SMEs to TSE Prime. Results Speak.">地方中小から東証プライム上場まで。実績が語る。</h3>
-          <p class="why-card-desc" data-ja="製造業・士業・金融・医療・物流・建設・農業など10以上の業種で25社以上の支援実績。東証プライム上場企業6社、都内大手銀行2社、大手税理士法人5社への導入実績があります。スタートアップ期の企業から売上数百億規模の上場企業まで、規模を問わず対応してきた実績があります。" data-en="25+ clients across 10+ industries including manufacturing, professional services, finance, healthcare, and logistics. Track record includes 6 TSE Prime-listed companies, 2 major Tokyo banks, and 5 major tax corporations. We've served companies from seed-stage startups to listed enterprises with revenues in the billions.">製造業・士業・金融・医療・物流・建設・農業など10以上の業種で25社以上の支援実績。東証プライム上場企業6社、都内大手銀行2社、大手税理士法人5社への導入実績があります。スタートアップ期の企業から売上数百億規模の上場企業まで、規模を問わず対応してきた実績があります。</p>
+          <p class="why-card-desc" data-ja="製造業・士業・金融・医療・物流・建設・農業など多岐にわたる業種で支援実績あり。東証プライム上場企業・都内大手銀行・大手税理士法人など、幅広い規模・業種への導入実績があります。スタートアップ期の企業から売上数百億規模の上場企業まで、規模を問わず対応してきました。" data-en="Track record across manufacturing, professional services, finance, healthcare, logistics, and more. Clients include TSE Prime-listed companies, major Tokyo banks, and large tax corporations. We've served companies from seed-stage startups to listed enterprises with revenues in the billions.">製造業・士業・金融・医療・物流・建設・農業など多岐にわたる業種で支援実績あり。東証プライム上場企業・都内大手銀行・大手税理士法人など、幅広い規模・業種への導入実績があります。スタートアップ期の企業から売上数百億規模の上場企業まで、規模を問わず対応してきました。</p>
           <div class="why-card-tags">
-            <span class="why-card-tag">東証プライム6社</span>
-            <span class="why-card-tag">都内大手銀行2社</span>
-            <span class="why-card-tag">税理士法人5社</span>
-            <span class="why-card-tag">10業種以上</span>
+            <span class="why-card-tag">東証プライム上場企業</span>
+            <span class="why-card-tag">都内大手銀行</span>
+            <span class="why-card-tag">大手税理士法人</span>
+            <span class="why-card-tag">多業種対応</span>
           </div>
         </div>
 
