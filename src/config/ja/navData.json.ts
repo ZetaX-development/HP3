@@ -28,7 +28,7 @@ const navConfig: navItem[] = [
   },
   {
     text: "ニュース",
-    link: "/news",
+    link: "/news/",
   },
 ];
 

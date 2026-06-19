@@ -28,7 +28,7 @@ const navConfig: navItem[] = [
   },
   {
     text: "News",
-    link: "/news",
+    link: "/news/",
   },
   {
     text: "Join Us",
