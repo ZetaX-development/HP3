@@ -29,7 +29,7 @@ const fmtDate = (d: Date) =>
 
 const breadcrumbs = [
   { name: "ニュース", url: "/news/" },
-  { name: data.category, url: `/news/?cat=${encodeURIComponent(data.category)}` },
+  { name: data.title, url: `/news/${post.id}/` },
 ];
 
 const shareUrl = new URL(`/news/${post.id}/`, site).href;
@@ -37,6 +37,7 @@ const shareUrl = new URL(`/news/${post.id}/`, site).href;
 
 <NewsLayout
   title={`${data.title} — ZetaX`}
+  articleTitle={data.title}
   description={data.description}
   imageUrl={heroAbs}
   ogType="article"

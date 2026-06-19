@@ -13,12 +13,18 @@ const rest = all.filter((p) => p.id !== featured?.id);
 
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+
+const site = Astro.site ?? new URL("https://zetax.jp");
+const ogImage = featured
+  ? new URL(featured.data.heroImage.src, site).href
+  : undefined;
 ---
 
 <NewsLayout
   title="ニュース — ZetaX"
   description="ZetaXの最新ニュース・実績・技術コラム。"
   ogType="website"
+  imageUrl={ogImage}
 >
   <section class="section">
     <div class="container">

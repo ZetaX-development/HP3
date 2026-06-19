@@ -9,6 +9,8 @@ interface Breadcrumb {
 }
 interface Props {
   title: string;
+  /** JSON-LD headline 用の素のタイトル（サイトサフィックスなし）。未指定時は title を使用 */
+  articleTitle?: string;
   description: string;
   /** og:image に使う絶対URL。未指定可 */
   imageUrl?: string;
@@ -24,6 +26,7 @@ interface Props {
 
 const {
   title,
+  articleTitle,
   description,
   imageUrl,
   ogType = "website",
@@ -63,7 +66,7 @@ const articleLd =
     ? {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
-        headline: title,
+        headline: articleTitle ?? title,
         description,
         image: imageUrl ? [imageUrl] : undefined,
         datePublished: publishDate?.toISOString(),
