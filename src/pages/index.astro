@@ -1,3 +1,13 @@
+---
+import { getCollection } from "astro:content";
+
+const latestNews = (await getCollection("news", ({ data }) => data.draft !== true))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+---
 <!DOCTYPE html>
 <html lang="ja" data-lang="ja">
 
@@ -1024,7 +1034,7 @@
             <a href="#company" data-ja="会社概要" data-en="Company Info">会社概要</a>
             <a href="/about#founders" data-ja="代表紹介" data-en="Representatives">代表紹介</a>
             <div class="nav-dropdown-divider"></div>
-            <a href="#news" data-ja="ニュース" data-en="News">ニュース</a>
+            <a href="/news" data-ja="ニュース" data-en="News">ニュース</a>
           </div>
         </li>
 
@@ -1680,19 +1690,16 @@
           <span class="section-label">News</span>
           <h2 class="section-heading" data-ja="最新情報" data-en="Latest News">最新情報</h2>
         </div>
-        <a href="#" class="btn-sm" data-ja="すべて見る" data-en="View all">すべて見る</a>
+        <a href="/news" class="btn-sm" data-ja="すべて見る" data-en="View all">すべて見る</a>
       </div>
       <div class="news-list reveal d1">
-<div class="news-item">
-          <span class="news-date">2025.05.20</span>
-          <span class="news-cat" data-ja="実績" data-en="Track Record">実績</span>
-          <span class="news-title" data-ja="大手銀行2社へのセキュリティコンサルティングを開始しました" data-en="Launched security consulting engagements with two major banks">大手銀行2社へのセキュリティコンサルティングを開始しました</span>
-        </div>
-        <div class="news-item">
-          <span class="news-date">2025.04.15</span>
-          <span class="news-cat" data-ja="サービス" data-en="Service">サービス</span>
-          <span class="news-title" data-ja="AI研修プログラムの提供を開始しました。経営層から現場社員まで幅広く対応します" data-en="Launched AI training program for executives and frontline staff">AI研修プログラムの提供を開始しました。経営層から現場社員まで幅広く対応します</span>
-        </div>
+        {latestNews.map((post) => (
+          <a class="news-item" href={`/news/${post.id}/`}>
+            <span class="news-date">{fmtDate(post.data.pubDate)}</span>
+            <span class="news-cat" data-ja={post.data.category} data-en={post.data.category}>{post.data.category}</span>
+            <span class="news-title" data-ja={post.data.title} data-en={post.data.title}>{post.data.title}</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -1826,7 +1833,7 @@
             <li><a href="#why" data-ja="ZetaXについて" data-en="About ZetaX">ZetaXについて</a></li>
             <li><a href="#cases" data-ja="事例" data-en="Cases">事例</a></li>
             <li><a href="/about" data-ja="会社紹介" data-en="About Us">会社紹介</a></li>
-            <li><a href="#news" data-ja="ニュース" data-en="News">ニュース</a></li>
+            <li><a href="/news" data-ja="ニュース" data-en="News">ニュース</a></li>
             <li><a href="#contact" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</a></li>
           </ul>
         </div>
