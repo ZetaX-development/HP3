@@ -24,22 +24,9 @@ ZetaX サイトを `https://zetax.jp` に本番公開するまでに必要な作
 
 ---
 
-## 2. 🔴 Cloudflare の SESSION KV バインディング
+## 2. ✅ Cloudflare の SESSION KV バインディング（設定済み）
 
-Astro のセッション機能が Cloudflare アダプタで有効になり、`SESSION` という KV バインディングを要求する（dev起動時に警告が出ている）。本番で未設定だとランタイムエラーの恐れ。
-
-手順:
-```bash
-npx wrangler kv namespace create SESSION
-```
-返ってきた `id` を `wrangler.jsonc` に記入（該当箇所にコメントで雛形を用意済み）:
-```jsonc
-"kv_namespaces": [
-  { "binding": "SESSION", "id": "<上で得たid>" }
-]
-```
-
-> 注: Keystatic を「選択肢C（本番でCMS無効）」にする場合でも、Astro セッションを使う箇所がなければこの警告は無害。確実を期すなら設定推奨。
+`SESSION` KV 名前空間を作成し（id `7518dd60ca1b49959d5564ab472516fe`、ZetaXアカウント）、`wrangler.jsonc` に `kv_namespaces` としてバインド済み。追加作業なし。
 
 ---
 
