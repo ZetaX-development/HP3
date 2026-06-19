@@ -12,11 +12,9 @@
 	},
 	"observability": {
     "enabled": true
-  }
-  // Astro/Keystatic sessions on Cloudflare need a KV namespace bound as "SESSION".
-  // 1) Create it:  npx wrangler kv namespace create SESSION
-  // 2) Uncomment below and paste the returned id:
-  // ,"kv_namespaces": [
-  //   { "binding": "SESSION", "id": "<paste-kv-namespace-id-here>" }
-  // ]
+  },
+  // KV namespace for Astro/Keystatic sessions (created via `wrangler kv namespace create SESSION`)
+  "kv_namespaces": [
+    { "binding": "SESSION", "id": "7518dd60ca1b49959d5564ab472516fe" }
+  ]
 }
