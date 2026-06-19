@@ -46,25 +46,25 @@ npx wrangler kv namespace create SESSION
 ## 3. ✅ 問い合わせフォーム → `/api/contact`（実装済み）
 
 以前は「送信完了」を出すだけの偽実装だった。**実装済み**:
-- `src/pages/api/contact.ts`（SSR, `prerender=false`）でフォームを受信し、[Resend](https://resend.com) で `info@zetax.jp` へメール送信（`reply_to` は送信者）。
-- `src/pages/index.astro` の `submitForm()` を実 `POST /api/contact` に変更。成功時のみ完了表示、失敗時は「info@zetax.jp へ直接連絡」を案内してボタン復帰。
+- `src/pages/api/contact.ts`（SSR, `prerender=false`）でフォームを受信し、[Resend](https://resend.com) で `contact@zetax.co.jp` へメール送信（`reply_to` は送信者）。
+- `src/pages/index.astro` の `submitForm()` を実 `POST /api/contact` に変更。成功時のみ完了表示、失敗時は「contact@zetax.co.jp へ直接連絡」を案内してボタン復帰。
 - APIキー未設定時は `503 not_configured` を返し、フォールバック案内を表示（問い合わせを黙って失う事故を防止）。
 
 **残りの一回だけの設定（本番で実際にメールを送るため）:**
 1. [Resend](https://resend.com) で無料アカウント作成。
-2. **`zetax.jp` ドメインを Resend で検証**（DNSにSPF/DKIMレコードを追加）。検証後 `noreply@zetax.jp` から送信可能に。
+2. **`zetax.co.jp` ドメインを Resend で検証**（DNSにSPF/DKIMレコードを追加）。検証後 `noreply@zetax.co.jp` から送信可能に。
 3. APIキーを発行し、**Cloudflare のシークレット**に `RESEND_API_KEY` として登録。
 4. ローカルで試すなら、リポジトリ直下に `.dev.vars`（gitignore対象）を作り `RESEND_API_KEY=xxxxx` を記載。
 
-> 送信先(`info@zetax.jp`)や送信元(`noreply@zetax.jp`)を変える場合は `src/pages/api/contact.ts` の `TO`/`FROM` を編集。Resendのドメイン検証が面倒なら、フォームサービス（Formspree / Web3Forms）に切り替える手もある（その場合フォームの送信先だけ差し替え）。
+> 送信先(`contact@zetax.co.jp`)や送信元(`noreply@zetax.co.jp`)を変える場合は `src/pages/api/contact.ts` の `TO`/`FROM` を編集。Resendのドメイン検証が面倒なら、フォームサービス（Formspree / Web3Forms）に切り替える手もある（その場合フォームの送信先だけ差し替え）。
 
 ---
 
-## 4. 🟠 コンテンツ・会社情報の実データ化
+## 4. コンテンツ・会社情報の実データ化
 
-- **ニュース記事が仮**: ヒーロー画像は流用の `storm-*.webp`、本文は短いスタブ。実画像・実記事に差し替え（CMS or `src/data/news/`）。
-- **会社情報のプレースホルダ**: `src/config/{ja,en,fr}/siteData.json.ts` の住所「1234 Main Street / New York」「(123) 456-7890」を実住所・実電話に。`info@zetax.jp` は要確認。
-- **anomaly-detection ページ**の「準備中」事例ボックス（`src/pages/anomaly-detection.astro`）の扱い（記事化 or 非表示）。
+- ✅ **会社情報を実データ化（zetax.jp から取得）**: `src/config/{ja,en,fr}/siteData.json.ts` を更新。所在地「〒150-0041 東京都渋谷区神南1丁目11−4 FPGリンクス神南 5階」、メール `contact@zetax.co.jp`。電話は**公開掲載が無い**ため空（必要なら実番号を `contact.phone` に記入）。問い合わせフォームの宛先も `contact@zetax.co.jp` に修正済み。
+- 🟠 **ニュースのヒーロー画像が仮**: `storm-*.webp` を流用中。**zetax.jp のニュースはテキスト一覧で実画像が存在しない**ため取得不可。実写真を用意でき次第 `src/data/news/<slug>/heroImage.*` を差し替え（CMSからも可）。本文も実績の詳細が出せれば加筆推奨（現状は要点のみの簡潔版で内容は正確）。
+- 🟠 **anomaly-detection ページ**の「準備中」事例ボックス（`src/pages/anomaly-detection.astro`）の扱い（記事化 or 非表示）。
 
 > 注: en/fr の「お客様の声(testimonialData)」「FAQ(faqData)」にCosmic Themes称賛文やcosmicthemes.comリンクが残るが、**現在のライブページからは未使用＝公開サイトには表示されない**（残骸）。気になればコンポーネントごと削除可（未使用のため安全、ビルドで検証）。
 

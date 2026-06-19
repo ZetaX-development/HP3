@@ -10,16 +10,16 @@ const siteData: SiteDataProps = {
 
   // used on contact page and footer
   contact: {
-    address1: "1234 Main Street",
-    address2: "New York, NY 10001",
-    phone: "(123) 456-7890",
-    email: "info@zetax.jp",
+    address1: "FPG Links Jinnan 5F, 1-11-4 Jinnan",
+    address2: "Shibuya-ku, Tokyo 150-0041",
+    phone: "",
+    email: "contact@zetax.co.jp",
   },
 
   // Your information for blog post purposes
   author: {
     name: "ZetaX Team",
-    email: "info@zetax.jp",
+    email: "contact@zetax.co.jp",
     twitter: "ZetaX_JP",
   },
 

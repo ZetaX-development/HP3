@@ -8,8 +8,8 @@ import type { APIRoute } from "astro";
 
 export const prerender = false;
 
-const TO = "info@zetax.jp";
-const FROM = "noreply@zetax.jp";
+const TO = "contact@zetax.co.jp";
+const FROM = "noreply@zetax.co.jp";
 
 export const POST: APIRoute = async ({ request, locals }) => {
   let form: FormData;
