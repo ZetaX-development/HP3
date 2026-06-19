@@ -404,23 +404,6 @@ const props = Astro.props as Props;
     .footer-legal a { font-family: var(--font-en); font-size: 0.74rem; color: rgba(255,255,255,0.3); transition: color 0.2s; }
     .footer-legal a:hover { color: rgba(255,255,255,0.65); }
 
-    /* ─── CURSOR ─── */
-    * { cursor: none !important; }
-    .cursor-dot {
-      position: fixed; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent); pointer-events: none; z-index: 99999;
-      transform: translate(-50%,-50%); transition: transform 0.08s, background 0.2s, width 0.2s, height 0.2s;
-      will-change: left, top;
-    }
-    .cursor-ring {
-      position: fixed; width: 38px; height: 38px; border-radius: 50%;
-      border: 1.5px solid rgba(26,63,191,0.35); pointer-events: none; z-index: 99998;
-      transform: translate(-50%,-50%); transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s, opacity 0.3s;
-      will-change: left, top;
-    }
-    body:has(a:hover, button:hover) .cursor-dot { width: 12px; height: 12px; background: var(--accent-light); }
-    body:has(a:hover, button:hover) .cursor-ring { width: 56px; height: 56px; border-color: rgba(26,63,191,0.2); }
-    @media (hover: none) { * { cursor: auto !important; } .cursor-dot, .cursor-ring { display: none; } }
 
     /* ─── SCROLL PROGRESS ─── */
     .scroll-progress {
