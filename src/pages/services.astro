@@ -1,0 +1,116 @@
+---
+import NewsLayout from "@layouts/NewsLayout.astro";
+
+const services = [
+  {
+    num: "01",
+    name: "Zeta Consulting",
+    sub: "AI/ITコンサルティング・開発",
+    href: "/ai-dx/",
+    icon: "consulting",
+    desc: "何を作るべきか分からない段階から伴走します。課題定義・要件整理・設計・開発・運用保守まで、一つのチームが責任を持って一気通貫で対応します。金融、医療、流通、建設など幅広い業界に対応しています。",
+    tags: ["戦略立案", "AI導入支援", "システム開発", "DX推進", "運用・保守"],
+  },
+  {
+    num: "02",
+    name: "Zeta Shield",
+    sub: "セキュリティコンサルティング",
+    href: "/security/",
+    icon: "shield",
+    desc: "都内大手銀行をはじめとする金融機関との支援実績を持つセキュリティコンサルチームです。脆弱性診断・セキュリティポリシー策定にとどまらず、量子コンピュータ時代に対応した次世代暗号（耐量子暗号）の導入支援まで対応します。",
+    tags: ["脆弱性診断", "ポリシー策定", "次世代暗号 / PQC", "都内大手銀行実績"],
+  },
+  {
+    num: "03",
+    name: "Zeta Coach",
+    sub: "AI研修・リテラシー教育",
+    href: "/ai-training/",
+    icon: "coach",
+    desc: "上場企業・士業事務所・製造業など、幅広い組織でのAI研修実績があります。経営層から現場社員まで対象に合わせてプログラムを設計し、AIを実務で使いこなせる人材の育成をサポートします。ツールの操作研修にとどまらず、業務への応用・活用戦略まで一貫して対応します。",
+    tags: ["上場企業実績", "士業事務所", "製造業", "カスタマイズ設計"],
+  },
+  {
+    num: "04",
+    name: "Zeta Edge",
+    sub: "ハードウェア開発",
+    href: "/hardware/",
+    icon: "edge",
+    desc: "PCB基板の設計から組み込みソフトウェアの実装まで、ハードウェア開発を完全内製で行います。主力プロダクトは製造業向け予兆保全システム。工場の機械が壊れる前に異常を検知し、突発的な設備停止を未然に防ぎます。クラウド・Wi-Fi不要で動作するため、ネットワーク環境が整っていない工場でも即日導入が可能です。",
+    tags: ["PCB基板設計", "組み込み開発", "予兆保全システム", "クラウド不要", "3工場導入済み"],
+  },
+];
+
+// インラインSVGラインアイコン（stroke=currentColor）
+const icons: Record<string, string> = {
+  consulting: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h6a2 2 0 0 1 2 2v2M7 18h6a2 2 0 0 0 2-2v-2"/></svg>`,
+  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>`,
+  coach: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4z"/><path d="M7 10v5c0 1.5 2.5 3 5 3s5-1.5 5-3v-5"/><path d="M21 8v5"/></svg>`,
+  edge: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 4v3M14 4v3M10 17v3M14 17v3M4 10h3M4 14h3M17 10h3M17 14h3"/></svg>`,
+};
+---
+
+<NewsLayout
+  title="サービス — ZetaX"
+  description="ZetaXのサービス。AI/ITコンサルから開発、セキュリティ、AI研修、ハードウェアまで、完全内製で一気通貫に提供します。"
+  ogType="website"
+>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Services</span>
+      <h1 class="section-heading">サービス</h1>
+      <p class="section-sub">AI/ITのコンサルから開発、セキュリティ、ハードウェアまで。すべて自社チームが完全内製でお届けします。</p>
+
+      <div class="svc-grid">
+        {services.map((s) => (
+          <a class="svc-card" href={s.href}>
+            <div class={`svc-head svc-head-${s.icon}`}>
+              <span class="svc-icon" set:html={icons[s.icon]} />
+              <span class="svc-num">{s.num}</span>
+            </div>
+            <div class="svc-body">
+              <h2 class="svc-name">{s.name}</h2>
+              <p class="svc-sub">{s.sub}</p>
+              <p class="svc-desc">{s.desc}</p>
+              <div class="svc-tags">
+                {s.tags.map((t) => <span class="svc-tag">{t}</span>)}
+              </div>
+              <span class="svc-link">詳細を見る →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="svc-cta">
+        <a href="/#contact" class="btn-sm">ご相談はこちら →</a>
+      </div>
+    </div>
+  </section>
+</NewsLayout>
+
+<style>
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2.5rem 0 2rem; }
+  .svc-card { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--bg-card); transition: transform 0.2s, box-shadow 0.2s; }
+  .svc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+  .svc-head { position: relative; height: 132px; background: linear-gradient(135deg, #0d2060, #3b5fdf); display: flex; align-items: center; justify-content: center; }
+  .svc-head-shield { background: linear-gradient(135deg, #0a1840, #1a3fbf); }
+  .svc-head-coach { background: linear-gradient(135deg, #14224f, #4a5ad0); }
+  .svc-head-edge { background: linear-gradient(135deg, #0d2060, #6a7aff); }
+  .svc-icon { color: #fff; opacity: 0.95; }
+  .svc-icon :global(svg) { width: 46px; height: 46px; display: block; }
+  .svc-num { position: absolute; right: 16px; bottom: 8px; font-family: var(--font-en); font-size: 2.6rem; font-weight: 800; color: rgba(255,255,255,0.16); line-height: 1; }
+
+  .svc-body { padding: 1.6rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  .svc-name { font-family: var(--font-en); font-size: 1.35rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
+  .svc-sub { font-size: 0.82rem; font-weight: 600; color: var(--accent); }
+  .svc-desc { font-size: 0.9rem; line-height: 1.85; color: var(--text-secondary); margin-top: 0.3rem; }
+  .svc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
+  .svc-tag { font-family: var(--font-jp); font-size: 0.68rem; font-weight: 600; padding: 3px 9px; border-radius: 2px; background: var(--accent-pale); color: var(--accent); }
+  .svc-link { margin-top: auto; padding-top: 0.9rem; font-family: var(--font-en); font-size: 0.82rem; font-weight: 600; color: var(--accent); }
+
+  .svc-cta { text-align: center; margin-top: 1.5rem; }
+
+  @media (max-width: 900px) {
+    .svc-grid { grid-template-columns: 1fr; }
+  }
+</style>
