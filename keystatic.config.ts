@@ -14,14 +14,9 @@ import Collections from "@components/KeystaticComponents/Collections";
 import { config } from "@keystatic/core";
 
 export default config({
-  // local mode in dev, GitHub storage in prod (saves commit directly to this repo)
-  // prod requires a connected GitHub App + env vars:
-  //   KEYSTATIC_GITHUB_CLIENT_ID / KEYSTATIC_GITHUB_CLIENT_SECRET / KEYSTATIC_SECRET
-  // (Keystatic guides the one-time setup at /keystatic when first connecting)
-  storage:
-    import.meta.env.DEV === true
-      ? { kind: "local" }
-      : { kind: "github", repo: { owner: "ZetaX-development", name: "HP3" } },
+  // local mode in dev, Keystatic Cloud in prod (auth handled by Keystatic Cloud)
+  storage: import.meta.env.DEV === true ? { kind: "local" } : { kind: "cloud" },
+  cloud: { project: "zeta-x/zetax-hp3" },
   ui: {
     brand: { name: "ZetaX" },
   },
