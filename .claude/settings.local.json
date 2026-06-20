@@ -6,7 +6,16 @@
       "Bash(npm run:*)",
       "Bash(npx vercel:*)",
       "Bash(cat /Users/yosato/HP3/wrangler.toml 2>/dev/null || echo \"no wrangler.toml\" && ls /Users/yosato/HP3/*.toml 2>/dev/null)",
-      "Bash(npx wrangler:*)"
+      "Bash(npx wrangler:*)",
+      "Bash(git commit:*)",
+      "Bash(git add:*)",
+      "mcp__claude_ai_Vercel__get_project",
+      "Bash(sips -Z 800 /Users/yosato/HP3/public/people/team1.png --out /Users/yosato/HP3/public/people/team1.png && sips -Z 800 /Users/yosato/HP3/public/people/team2.jpg --out /Users/yosato/HP3/public/people/team2.jpg && ls -lh /Users/yosato/HP3/public/people/team1.png /Users/yosato/HP3/public/people/team2.jpg)",
+      "Bash(scripts/start-server.sh --project-dir /Users/yosato/HP3)",
+      "Bash(sed -n '1,40p' src/pages/index.astro)",
+      "Bash(sed -n '1676,1720p' src/pages/index.astro)",
+      "Bash(sed -n '1,60p' src/pages/rss.xml.ts)",
+      "Bash(scripts/stop-server.sh /Users/yosato/HP3/.superpowers/brainstorm/50755-1781891186)"
     ]
   }
 }

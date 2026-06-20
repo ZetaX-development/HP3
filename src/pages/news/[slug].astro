@@ -1,0 +1,172 @@
+---
+import { getCollection, render } from "astro:content";
+import NewsLayout from "@layouts/NewsLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("news", ({ data }) => data.draft !== true);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post, posts },
+  }));
+}
+
+const { post, posts } = Astro.props;
+const { data } = post;
+const { Content } = await render(post);
+
+const site = Astro.site ?? new URL("https://zetax.jp");
+const heroAbs = new URL(data.heroImage.src, site).href;
+
+const related = [
+  ...posts.filter((p) => p.id !== post.id && p.data.category === data.category),
+  ...posts.filter((p) => p.id !== post.id && p.data.category !== data.category),
+]
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 2);
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+
+const breadcrumbs = [
+  { name: "ニュース", url: "/news/" },
+  { name: data.title, url: `/news/${post.id}/` },
+];
+
+const shareUrl = new URL(`/news/${post.id}/`, site).href;
+---
+
+<NewsLayout
+  title={`${data.title} — ZetaX`}
+  articleTitle={data.title}
+  description={data.description}
+  imageUrl={heroAbs}
+  ogType="article"
+  publishDate={data.pubDate}
+  modifiedDate={data.updatedDate}
+  author={data.author}
+  authorRole={data.authorRole}
+  faq={data.faq}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="section">
+    <div class="container news-article">
+      <nav class="news-breadcrumb">
+        <a href="/news/">ニュース</a> <span>›</span> <span>{data.category}</span>
+      </nav>
+
+      <span class="news-cat">{data.category}</span>
+      <h1 class="news-article-title">{data.title}</h1>
+      <time class="news-date" datetime={data.pubDate.toISOString()}>{fmtDate(data.pubDate)}</time>
+
+      <div class="news-author">
+        {data.authorAvatar && <img src={data.authorAvatar.src} alt={data.author} class="news-author-avatar" />}
+        <div>
+          <span class="news-author-name">{data.author}</span>
+          <span class="news-author-role">{data.authorRole}</span>
+        </div>
+      </div>
+
+      <img src={data.heroImage.src} alt={data.title} class="news-hero" />
+
+      {data.summary && (
+        <div class="news-summary">
+          <span class="news-summary-label">要点</span>
+          <p>{data.summary}</p>
+        </div>
+      )}
+
+      <div class="news-body">
+        <Content />
+      </div>
+
+      {data.faq && data.faq.length > 0 && (
+        <section class="news-faq">
+          <h2>よくある質問</h2>
+          {data.faq.map((f) => (
+            <div class="news-faq-item">
+              <h3>{f.question}</h3>
+              <p>{f.answer}</p>
+            </div>
+          ))}
+        </section>
+      )}
+
+      {related.length > 0 && (
+        <section class="news-related">
+          <span class="section-label">関連記事</span>
+          <div class="news-related-grid">
+            {related.map((p) => (
+              <a class="news-card" href={`/news/${p.id}/`}>
+                <img src={p.data.heroImage.src} alt={p.data.title} class="news-card-img" />
+                <div class="news-card-body">
+                  <span class="news-cat">{p.data.category}</span>
+                  <h3 class="news-card-title">{p.data.title}</h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <div class="news-foot">
+        <a href="/news/" class="btn-sm">← ニュース一覧へ戻る</a>
+        <div class="news-share">
+          <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(data.title)}`} target="_blank" rel="noopener">Xで共有</a>
+          <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener">LinkedInで共有</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</NewsLayout>
+
+<style>
+  .news-article { max-width: 760px; }
+  .news-breadcrumb { font-family: var(--font-en); font-size: 0.78rem; color: var(--text-dim); margin-bottom: 1.5rem; }
+  .news-breadcrumb a { color: var(--accent); }
+  .news-breadcrumb span { margin: 0 0.4rem; }
+  .news-cat { display: inline-block; font-family: var(--font-jp); font-size: 0.68rem; font-weight: 600; padding: 3px 10px; border-radius: 2px; background: var(--accent-pale); color: var(--accent); }
+  .news-article-title { font-size: 2rem; line-height: 1.5; color: var(--text-primary); margin: 0.8rem 0 0.5rem; }
+  .news-date { font-family: var(--font-en); font-size: 0.8rem; color: var(--text-dim); }
+
+  .news-author { display: flex; align-items: center; gap: 0.7rem; margin: 1.2rem 0 1.8rem; }
+  .news-author-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+  .news-author-name { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+  .news-author-role { display: block; font-size: 0.78rem; color: var(--text-secondary); }
+
+  .news-hero { width: 100%; border-radius: 6px; margin-bottom: 1.8rem; }
+
+  .news-summary { border-left: 3px solid var(--accent); background: var(--accent-pale); padding: 1rem 1.2rem; border-radius: 0 4px 4px 0; margin-bottom: 2rem; }
+  .news-summary-label { font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; }
+  .news-summary p { margin-top: 0.3rem; color: var(--text-primary); }
+
+  .news-body { font-size: 1rem; line-height: 1.95; color: var(--text-primary); }
+  .news-body :global(h2) { font-size: 1.4rem; margin: 2.2rem 0 0.8rem; }
+  .news-body :global(h3) { font-size: 1.15rem; margin: 1.6rem 0 0.6rem; }
+  .news-body :global(p) { margin-bottom: 1.1rem; }
+  .news-body :global(ul), .news-body :global(ol) { margin: 0 0 1.1rem 1.4rem; }
+  .news-body :global(img) { max-width: 100%; border-radius: 4px; margin: 1.2rem 0; }
+  .news-body :global(blockquote) { border-left: 3px solid var(--border); padding-left: 1rem; color: var(--text-secondary); margin: 1.2rem 0; }
+
+  .news-faq { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .news-faq h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+  .news-faq-item { margin-bottom: 1.2rem; }
+  .news-faq-item h3 { font-size: 1rem; color: var(--text-primary); margin-bottom: 0.3rem; }
+  .news-faq-item p { color: var(--text-secondary); }
+
+  .news-related { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .news-related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+  .news-card { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--bg-card); transition: transform 0.2s; }
+  .news-card:hover { transform: translateY(-4px); }
+  .news-card-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .news-card-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .news-card-title { font-size: 0.92rem; line-height: 1.6; color: var(--text-primary); }
+
+  .news-foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .news-share { display: flex; gap: 1rem; font-size: 0.82rem; }
+  .news-share a { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    .news-article-title { font-size: 1.5rem; }
+    .news-related-grid { grid-template-columns: 1fr; }
+  }
+</style>

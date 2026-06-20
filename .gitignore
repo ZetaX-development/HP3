@@ -29,3 +29,8 @@ pnpm-debug.log*
 .wrangler
 
 #*.pdf
+# Visual brainstorm companion
+.superpowers/
+
+# Cloudflare local secrets
+.dev.vars

@@ -1,0 +1,128 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+interface Breadcrumb {
+  name: string;
+  url: string; // 絶対 or サイト相対パス
+}
+interface Props {
+  title: string;
+  /** JSON-LD headline 用の素のタイトル（サイトサフィックスなし）。未指定時は title を使用 */
+  articleTitle?: string;
+  description: string;
+  /** og:image に使う絶対URL。未指定可 */
+  imageUrl?: string;
+  /** "article" | "website" */
+  ogType?: "article" | "website";
+  publishDate?: Date;
+  modifiedDate?: Date;
+  author?: string;
+  authorRole?: string;
+  faq?: FaqItem[];
+  breadcrumbs?: Breadcrumb[];
+}
+
+const {
+  title,
+  articleTitle,
+  description,
+  imageUrl,
+  ogType = "website",
+  publishDate,
+  modifiedDate,
+  author,
+  authorRole,
+  faq,
+  breadcrumbs,
+} = Astro.props as Props;
+
+const site = Astro.site ?? new URL("https://zetax.jp");
+const canonicalURL = new URL(Astro.url.pathname, site).href;
+const abs = (path: string) =>
+  path.startsWith("http") ? path : new URL(path, site).href;
+
+const publisher = {
+  "@type": "Organization",
+  name: "ZetaX",
+  url: site.href,
+  logo: {
+    "@type": "ImageObject",
+    url: abs("/icon_image/ロゴ背景白正方形.png"),
+  },
+};
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ZetaX",
+  url: site.href,
+  logo: abs("/icon_image/ロゴ背景白正方形.png"),
+};
+
+const articleLd =
+  ogType === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        headline: articleTitle ?? title,
+        description,
+        image: imageUrl ? [imageUrl] : undefined,
+        datePublished: publishDate?.toISOString(),
+        dateModified: (modifiedDate ?? publishDate)?.toISOString(),
+        author: author
+          ? { "@type": "Person", name: author, jobTitle: authorRole }
+          : undefined,
+        publisher,
+        mainEntityOfPage: { "@type": "WebPage", "@id": canonicalURL },
+      }
+    : null;
+
+const breadcrumbLd =
+  breadcrumbs && breadcrumbs.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbs.map((b, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: b.name,
+          item: abs(b.url),
+        })),
+      }
+    : null;
+
+const faqLd =
+  faq && faq.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : null;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalURL} />
+{imageUrl && <meta property="og:image" content={imageUrl} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
+{articleLd && <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />}
+{breadcrumbLd && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />}
+{faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}

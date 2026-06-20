@@ -12,5 +12,9 @@
 	},
 	"observability": {
     "enabled": true
-  }
+  },
+  // KV namespace for Astro/Keystatic sessions (created via `wrangler kv namespace create SESSION`)
+  "kv_namespaces": [
+    { "binding": "SESSION", "id": "7518dd60ca1b49959d5564ab472516fe" }
+  ]
 }
