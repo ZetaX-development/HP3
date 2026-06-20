@@ -21,14 +21,13 @@ export default config({
     brand: { name: "ZetaX" },
   },
   collections: {
-    blogEN: Collections.Blog("en"),
-
-    // for now there is a limitation with keystatic where relationship fields don't work well with i18n features
-    // If you need multiple languages here (you might not) just create multiple variants of the same author
-    // this might look like "author-1-en" and "author-1-fr"
-    authors: Collections.Authors(""),
-
-    otherPagesEN: Collections.OtherPages("en"),
+    // ZetaX uses only the News collection in the CMS.
+    // The theme's Blog / Authors / Other Pages collections are hidden from the
+    // admin UI (their content files remain in src/data and are unaffected).
+    // To re-enable, uncomment the lines below.
+    // blogEN: Collections.Blog("en"),
+    // authors: Collections.Authors(""),
+    // otherPagesEN: Collections.OtherPages("en"),
     news: Collections.News(),
   },
 });
