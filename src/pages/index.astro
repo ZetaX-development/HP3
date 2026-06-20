@@ -1006,10 +1006,11 @@ const fmtDate = (d: Date) =>
           </button>
           <div class="nav-dropdown">
             <p class="nav-dropdown-label">Services</p>
-            <a href="/ai-dx" data-ja="AI/ITコンサル・開発" data-en="AI/IT Consulting & Dev">AI/ITコンサル・開発</a>
-            <a href="/security" data-ja="セキュリティコンサル" data-en="Security Consulting">セキュリティコンサル</a>
-            <a href="/ai-training" data-ja="AI研修" data-en="AI Training">AI研修</a>
-            <a href="/hardware" data-ja="ハードウェア開発" data-en="Hardware Dev">ハードウェア開発</a>
+            <a href="/services/" data-ja="サービス一覧" data-en="All Services">サービス一覧</a>
+            <a href="/ai-dx" data-ja="Zeta Consulting" data-en="Zeta Consulting">Zeta Consulting</a>
+            <a href="/security" data-ja="Zeta Shield" data-en="Zeta Shield">Zeta Shield</a>
+            <a href="/ai-training" data-ja="Zeta Coach" data-en="Zeta Coach">Zeta Coach</a>
+            <a href="/hardware" data-ja="Zeta Edge" data-en="Zeta Edge">Zeta Edge</a>
             <div class="nav-dropdown-divider"></div>
             <p class="nav-dropdown-label">Products</p>
             <a href="#products" data-ja="自社プロダクト" data-en="Our Products">自社プロダクト</a>
@@ -1071,7 +1072,7 @@ const fmtDate = (d: Date) =>
         </h1>
         <p class="hero-title-sub" data-ja="東京大学・東京工業大学出身エンジニアが完全内製で、超上流から下流まで一気通貫でサポートします。地方の中小企業から東証プライム上場企業まで、幅広い規模・業種の支援実績があります。" data-en="Engineers from the University of Tokyo and Tokyo Tech. 100% in-house, end-to-end. Proven track record from local SMEs to TSE Prime-listed companies.">東京大学・東京工業大学出身エンジニアが完全内製で、超上流から下流まで<span class="grad-text">一気通貫</span>でサポートします。地方の中小企業から東証プライム上場企業まで、幅広い規模・業種の支援実績があります。</p>
         <div class="hero-actions">
-          <a href="#services" class="btn-primary" data-ja="サービスを見る" data-en="Our Services">サービスを見る</a>
+          <a href="/services/" class="btn-primary" data-ja="サービスを見る" data-en="Our Services">サービスを見る</a>
           <a href="#contact" class="btn-outline" data-ja="無料相談する" data-en="Free Consultation">無料相談する</a>
         </div>
         <div class="hero-badges">
@@ -1380,7 +1381,7 @@ const fmtDate = (d: Date) =>
           <span class="service-card-deco" aria-hidden="true">01</span>
           <div class="service-badge-label" data-ja="超上流から下流まで一気通貫" data-en="Strategy to Delivery, End-to-End">超上流から下流まで一気通貫</div>
           <p class="service-num">01</p>
-          <h3 class="service-title" data-ja="AI/ITコンサルティング<br>およびシステム開発" data-en="AI/IT Consulting<br>and System Development">AI/ITコンサルティング<br>およびシステム開発</h3>
+          <h3 class="service-title">Zeta Consulting<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">AI/ITコンサルティング・開発</span></h3>
           <p class="service-desc" data-ja="何を作るべきか分からない段階から伴走します。課題定義・要件整理・設計・開発・運用保守まで、一つのチームが責任を持って一気通貫で対応します。金融、医療、流通、建設など幅広い業界に対応しています。" data-en="We start from even before you know what to build. One team takes full ownership across problem definition, requirements, design, development, and operations. We serve finance, healthcare, retail, construction, and beyond.">何を作るべきか分からない段階から伴走します。課題定義・要件整理・設計・開発・運用保守まで、一つのチームが責任を持って一気通貫で対応します。金融、医療、流通、建設など幅広い業界に対応しています。</p>
           <div class="service-tags">
             <span class="service-tag" data-ja="戦略立案" data-en="Strategy">戦略立案</span>
@@ -1395,7 +1396,7 @@ const fmtDate = (d: Date) =>
         <a href="/security" class="service-card reveal d2">
           <span class="service-card-deco" aria-hidden="true">02</span>
           <p class="service-num">02</p>
-          <h3 class="service-title" data-ja="セキュリティ<br>コンサルティング" data-en="Security<br>Consulting">セキュリティ<br>コンサルティング</h3>
+          <h3 class="service-title">Zeta Shield<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">セキュリティコンサルティング</span></h3>
           <p class="service-desc" data-ja="都内大手銀行をはじめとする金融機関との支援実績を持つセキュリティコンサルチームです。脆弱性診断・セキュリティポリシー策定にとどまらず、量子コンピュータ時代に対応した次世代暗号（耐量子暗号）の導入支援まで対応します。" data-en="A security consulting team with a proven track record at major Tokyo banks and financial institutions. We go beyond vulnerability assessments and policy development — we also support the implementation of post-quantum cryptography (PQC) to prepare for the quantum computing era.">都内大手銀行をはじめとする金融機関との支援実績を持つセキュリティコンサルチームです。脆弱性診断・セキュリティポリシー策定にとどまらず、量子コンピュータ時代に対応した次世代暗号（耐量子暗号）の導入支援まで対応します。</p>
           <div class="service-tags">
             <span class="service-tag" data-ja="脆弱性診断" data-en="Vuln. Assessment">脆弱性診断</span>
@@ -1409,7 +1410,7 @@ const fmtDate = (d: Date) =>
         <a href="/ai-training" class="service-card reveal d1">
           <span class="service-card-deco" aria-hidden="true">03</span>
           <p class="service-num">03</p>
-          <h3 class="service-title" data-ja="AI研修・<br>リテラシー教育" data-en="AI Training &amp;<br>Literacy Education">AI研修・<br>リテラシー教育</h3>
+          <h3 class="service-title">Zeta Coach<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">AI研修・リテラシー教育</span></h3>
           <p class="service-desc" data-ja="上場企業・士業事務所・製造業など、幅広い組織でのAI研修実績があります。経営層から現場社員まで対象に合わせてプログラムを設計し、AIを実務で使いこなせる人材の育成をサポートします。ツールの操作研修にとどまらず、業務への応用・活用戦略まで一貫して対応します。" data-en="We have a track record of AI training at listed companies, professional service firms, and manufacturing businesses. We design programs tailored to each audience — from executives to frontline staff — and support the development of people who can actually apply AI in their daily work. We cover not just tool operation, but practical application and adoption strategy.">上場企業・士業事務所・製造業など、幅広い組織でのAI研修実績があります。経営層から現場社員まで対象に合わせてプログラムを設計し、AIを実務で使いこなせる人材の育成をサポートします。ツールの操作研修にとどまらず、業務への応用・活用戦略まで一貫して対応します。</p>
           <div class="service-tags">
             <span class="service-tag" data-ja="上場企業実績" data-en="Listed Company Track Record">上場企業実績</span>
@@ -1423,7 +1424,7 @@ const fmtDate = (d: Date) =>
         <a href="/hardware" class="service-card reveal d2">
           <span class="service-card-deco" aria-hidden="true">04</span>
           <p class="service-num">04</p>
-          <h3 class="service-title" data-ja="ハードウェア<br>開発" data-en="Hardware<br>Development">ハードウェア<br>開発</h3>
+          <h3 class="service-title">Zeta Edge<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">ハードウェア開発</span></h3>
           <p class="service-desc" data-ja="PCB基板の設計から組み込みソフトウェアの実装まで、ハードウェア開発を完全内製で行います。主力プロダクトは製造業向け予兆保全システム。工場の機械が壊れる前に異常を検知し、突発的な設備停止を未然に防ぎます。クラウド・Wi-Fi不要で動作するため、ネットワーク環境が整っていない工場でも即日導入が可能です。" data-en="We handle all hardware development fully in-house — from PCB design to embedded software implementation. Our flagship product is a predictive maintenance system for manufacturing. It detects signs of machine failure before breakdowns occur, preventing unexpected downtime. Operates without cloud or Wi-Fi, enabling same-day deployment even in factories without network infrastructure.">PCB基板の設計から組み込みソフトウェアの実装まで、ハードウェア開発を完全内製で行います。主力プロダクトは製造業向け予兆保全システム。工場の機械が壊れる前に異常を検知し、突発的な設備停止を未然に防ぎます。クラウド・Wi-Fi不要で動作するため、ネットワーク環境が整っていない工場でも即日導入が可能です。</p>
           <div class="service-tags">
             <span class="service-tag" data-ja="PCB基板設計" data-en="PCB Design">PCB基板設計</span>
@@ -1825,10 +1826,10 @@ const fmtDate = (d: Date) =>
         <div>
           <p class="footer-col-label">Services</p>
           <ul class="footer-links">
-            <li><a href="/ai-dx" data-ja="AI/ITコンサル・開発" data-en="AI/IT Consulting & Dev">AI/ITコンサル・開発</a></li>
-            <li><a href="/security" data-ja="セキュリティコンサル" data-en="Security Consulting">セキュリティコンサル</a></li>
-            <li><a href="/ai-training" data-ja="AI研修" data-en="AI Training">AI研修</a></li>
-            <li><a href="/hardware" data-ja="ハードウェア開発" data-en="Hardware Dev">ハードウェア開発</a></li>
+            <li><a href="/ai-dx" data-ja="Zeta Consulting" data-en="Zeta Consulting">Zeta Consulting</a></li>
+            <li><a href="/security" data-ja="Zeta Shield" data-en="Zeta Shield">Zeta Shield</a></li>
+            <li><a href="/ai-training" data-ja="Zeta Coach" data-en="Zeta Coach">Zeta Coach</a></li>
+            <li><a href="/hardware" data-ja="Zeta Edge" data-en="Zeta Edge">Zeta Edge</a></li>
           </ul>
         </div>
         <div>
