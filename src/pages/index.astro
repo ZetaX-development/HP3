@@ -1923,8 +1923,8 @@ const fmtDate = (d: Date) =>
         throw new Error(data.error || 'send_failed');
       } catch (err) {
         alert(currentLang === 'ja'
-          ? '送信に失敗しました。お手数ですが contact@zetax.co.jp まで直接ご連絡ください。'
-          : 'Sending failed. Please email us directly at contact@zetax.co.jp.');
+          ? '送信に失敗しました。お手数ですが contact@zetax.jp まで直接ご連絡ください。'
+          : 'Sending failed. Please email us directly at contact@zetax.jp.');
         btn.textContent = originalLabel;
         btn.disabled = false;
       }
