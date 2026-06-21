@@ -8,7 +8,7 @@ import type { APIRoute } from "astro";
 
 export const prerender = false;
 
-const TO = "contact@zetax.jp";
+const TO = ["contact@zetax.jp", "ysato@zetax.jp", "kyanagisawa@zetax.jp"];
 const FROM = "noreply@zetax.jp";
 
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -58,7 +58,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       },
       body: JSON.stringify({
         from: `ZetaX <${FROM}>`,
-        to: [TO],
+        to: TO,
         reply_to: email,
         subject: `お問い合わせ: ${name}${company ? `（${company}）` : ""}`,
         text,
