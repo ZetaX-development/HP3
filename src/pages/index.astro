@@ -1768,7 +1768,7 @@ const fmtDate = (d: Date) =>
               <svg class="contact-meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
-              <span class="contact-meta-text">contact@zetax.co.jp</span>
+              <span class="contact-meta-text">ysato@zetax.jp</span>
             </div>
           </div>
         </div>
@@ -1923,8 +1923,8 @@ const fmtDate = (d: Date) =>
         throw new Error(data.error || 'send_failed');
       } catch (err) {
         alert(currentLang === 'ja'
-          ? '送信に失敗しました。お手数ですが contact@zetax.jp まで直接ご連絡ください。'
-          : 'Sending failed. Please email us directly at contact@zetax.jp.');
+          ? '送信に失敗しました。お手数ですが ysato@zetax.jp まで直接ご連絡ください。'
+          : 'Sending failed. Please email us directly at ysato@zetax.jp.');
         btn.textContent = originalLabel;
         btn.disabled = false;
       }

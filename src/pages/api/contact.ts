@@ -8,7 +8,7 @@ import type { APIRoute } from "astro";
 
 export const prerender = false;
 
-const TO = ["contact@zetax.jp", "ysato@zetax.jp", "kyanagisawa@zetax.jp"];
+const TO = ["ysato@zetax.jp", "kyanagisawa@zetax.jp"];
 const FROM = "noreply@zetax.jp";
 
 export const POST: APIRoute = async ({ request, locals }) => {

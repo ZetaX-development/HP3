@@ -13,13 +13,13 @@ const siteData: SiteDataProps = {
     address1: "FPG Links Jinnan 5F, 1-11-4 Jinnan",
     address2: "Shibuya-ku, Tokyo 150-0041",
     phone: "",
-    email: "contact@zetax.co.jp",
+    email: "ysato@zetax.jp",
   },
 
   // Your information for blog post purposes
   author: {
     name: "ZetaX Team",
-    email: "contact@zetax.co.jp",
+    email: "ysato@zetax.jp",
     twitter: "ZetaX_JP",
   },
 

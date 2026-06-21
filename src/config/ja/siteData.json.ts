@@ -13,13 +13,13 @@ const siteData: SiteDataProps = {
         address1: "〒150-0041 東京都渋谷区神南1丁目11−4",
         address2: "FPGリンクス神南 5階",
         phone: "",
-        email: "contact@zetax.co.jp",
+        email: "ysato@zetax.jp",
     },
 
     // Your information for blog post purposes
     author: {
         name: "ZetaX Team",
-        email: "contact@zetax.co.jp",
+        email: "ysato@zetax.jp",
         twitter: "ZetaX_JP",
     },
 
