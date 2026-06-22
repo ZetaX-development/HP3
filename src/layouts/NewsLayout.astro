@@ -1,4 +1,5 @@
 ---
+import MobileNav from "@components/Nav/MobileNav.astro";
 import NewsSeo from "@components/Seo/NewsSeo.astro";
 
 interface Props {
@@ -1023,6 +1024,7 @@ const props = Astro.props as Props;
       </div>
       <a href="/#contact" class="nav-cta" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</a>
     </div>
+      <MobileNav />
   </nav>
 
   <main style="padding-top: 68px;">
