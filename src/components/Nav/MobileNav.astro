@@ -39,31 +39,35 @@
   .mnav-burger { display: none; }
 
   @media (max-width: 768px) {
-    /* Hide the desktop nav controls on mobile (covers pages with or without their own rule) */
+    /* Hide the whole desktop nav cluster on mobile (the .nav-right wrapper and any
+       loose items), so only the logo + burger remain. */
+    .nav .nav-right,
     .nav .nav-links,
     .nav .nav-cta,
-    .nav .lang-toggle { display: none !important; }
+    .nav .lang-toggle,
+    .nav .nav-status { display: none !important; }
 
+    /* Burger as a flex item pushed to the right — robust regardless of nav internals. */
     .mnav-burger {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       gap: 5px;
-      position: absolute;
-      right: 5vw;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
-      padding: 0;
+      position: fixed;
+      top: 14px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      padding: 9px;
       background: none;
       border: none;
       cursor: pointer;
-      z-index: 1002;
+      z-index: 1500;
     }
     .mnav-burger span {
       display: block;
-      width: 26px;
+      width: 24px;
       height: 2px;
       background: var(--text-primary, #0d0d14);
       border-radius: 2px;
@@ -150,12 +154,13 @@
   const overlay = document.getElementById("mnav-overlay");
   const closeBtn = document.getElementById("mnav-close");
 
-  // The overlay is authored inside <nav>, but the nav uses backdrop-filter which
-  // makes it the containing block for position:fixed descendants (collapsing the
-  // overlay into the nav's height). Move the overlay to <body> so fixed = viewport.
-  if (overlay && overlay.parentElement !== document.body) {
-    document.body.appendChild(overlay);
-  }
+  // The burger + overlay are authored inside <nav>, but the nav uses backdrop-filter
+  // which makes it the containing block for position:fixed descendants (collapsing
+  // them into the nav's box and breaking compositing). Move both to <body> so their
+  // fixed positioning is relative to the viewport.
+  [burger, overlay].forEach((el) => {
+    if (el && el.parentElement !== document.body) document.body.appendChild(el);
+  });
 
   const openMenu = () => {
     overlay?.classList.add("open");
