@@ -1,0 +1,180 @@
+---
+// Shared full-screen mobile navigation (hamburger -> overlay).
+// Drop <MobileNav /> inside each page's <nav class="nav">. The component carries
+// its own global CSS (hides desktop nav + shows the burger on mobile) and script,
+// so each page only needs the import + this one tag.
+---
+
+<button class="mnav-burger" id="mnav-burger" aria-label="メニューを開く" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="mnav-overlay" id="mnav-overlay" role="dialog" aria-modal="true" aria-label="メニュー">
+  <button class="mnav-close" id="mnav-close" aria-label="メニューを閉じる">&times;</button>
+  <nav class="mnav-menu">
+    <a href="/" data-ja="ホーム" data-en="Home">ホーム</a>
+
+    <span class="mnav-label">Services</span>
+    <a href="/services/" data-ja="サービス一覧" data-en="All Services">サービス一覧</a>
+    <a href="/ai-dx" data-ja="Zeta Consulting" data-en="Zeta Consulting">Zeta Consulting</a>
+    <a href="/security" data-ja="Zeta Shield" data-en="Zeta Shield">Zeta Shield</a>
+    <a href="/ai-training" data-ja="Zeta Coach" data-en="Zeta Coach">Zeta Coach</a>
+    <a href="/hardware" data-ja="Zeta Edge" data-en="Zeta Edge">Zeta Edge</a>
+
+    <span class="mnav-label">Company</span>
+    <a href="/news/" data-ja="ニュース" data-en="News">ニュース</a>
+    <a href="/about" data-ja="会社紹介" data-en="About">会社紹介</a>
+
+    <a href="/#contact" class="mnav-cta" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</a>
+
+    <div class="mnav-lang">
+      <button type="button" data-set-lang="ja">JP</button>
+      <button type="button" data-set-lang="en">EN</button>
+    </div>
+  </nav>
+</div>
+
+<style is:global>
+  /* Burger hidden on desktop */
+  .mnav-burger { display: none; }
+
+  @media (max-width: 768px) {
+    /* Hide the desktop nav controls on mobile (covers pages with or without their own rule) */
+    .nav .nav-links,
+    .nav .nav-cta,
+    .nav .lang-toggle { display: none !important; }
+
+    .mnav-burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      position: absolute;
+      right: 5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1002;
+    }
+    .mnav-burger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text-primary, #0d0d14);
+      border-radius: 2px;
+    }
+  }
+
+  .mnav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: #0a1430;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+    padding: 4rem 1.5rem;
+  }
+  .mnav-overlay.open { opacity: 1; visibility: visible; }
+
+  .mnav-close {
+    position: absolute;
+    top: 16px;
+    right: 22px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.3rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .mnav-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 360px;
+  }
+  .mnav-menu a {
+    color: #fff;
+    font-family: var(--font-jp, sans-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 0.7rem 0;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+  }
+  .mnav-menu a:active { opacity: 0.6; }
+  .mnav-label {
+    font-family: var(--font-en, sans-serif);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+  .mnav-cta {
+    margin-top: 1.6rem;
+    background: var(--accent, #1a3fbf);
+    border-radius: 4px;
+  }
+  .mnav-lang { display: flex; gap: 0.5rem; margin-top: 1.8rem; }
+  .mnav-lang button {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  body.mnav-open { overflow: hidden; }
+</style>
+
+<script>
+  const burger = document.getElementById("mnav-burger");
+  const overlay = document.getElementById("mnav-overlay");
+  const closeBtn = document.getElementById("mnav-close");
+
+  const openMenu = () => {
+    overlay?.classList.add("open");
+    document.body.classList.add("mnav-open");
+    burger?.setAttribute("aria-expanded", "true");
+  };
+  const closeMenu = () => {
+    overlay?.classList.remove("open");
+    document.body.classList.remove("mnav-open");
+    burger?.setAttribute("aria-expanded", "false");
+  };
+
+  burger?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+  overlay?.querySelectorAll(".mnav-menu a").forEach((a) => a.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  // Language buttons delegate to the page's existing desktop lang toggle if present
+  overlay?.querySelectorAll<HTMLButtonElement>("[data-set-lang]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const lang = btn.getAttribute("data-set-lang");
+      const target = document.querySelector<HTMLElement>(`.lang-btn[data-lang="${lang}"]`);
+      if (target) target.click();
+      else if (lang) document.documentElement.setAttribute("data-lang", lang);
+    });
+  });
+</script>
