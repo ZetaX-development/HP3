@@ -150,6 +150,13 @@
   const overlay = document.getElementById("mnav-overlay");
   const closeBtn = document.getElementById("mnav-close");
 
+  // The overlay is authored inside <nav>, but the nav uses backdrop-filter which
+  // makes it the containing block for position:fixed descendants (collapsing the
+  // overlay into the nav's height). Move the overlay to <body> so fixed = viewport.
+  if (overlay && overlay.parentElement !== document.body) {
+    document.body.appendChild(overlay);
+  }
+
   const openMenu = () => {
     overlay?.classList.add("open");
     document.body.classList.add("mnav-open");
