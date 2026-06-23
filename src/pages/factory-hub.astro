@@ -65,7 +65,8 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
-    @media (max-width: 768px) { .container { padding: 0 1.5rem; } }
+    @media (max-width: 768px) { .container { padding: 0 1.5rem; } .section-title { font-size: 1.3rem; } .section-sub { font-size: 0.85rem; } }
+    @media (max-width: 520px) { .footer-inner { flex-direction: column; text-align: center; } .footer-nav { justify-content: center; } }
     .section-title { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 700; line-height: 1.4; color: var(--text-primary); text-align: center; }
     .section-sub { font-size: 0.92rem; color: var(--text-secondary); line-height: 2; text-align: center; margin-top: 0.6rem; }
 
@@ -271,7 +272,7 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     .hero-stat-label { font-size: 0.68rem; color: rgba(255,255,255,0.3); }
 
     @media (max-width: 900px) {
-      .hero-content { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; padding: 3rem 0 4rem; }
+      .hero-content { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; padding: 3rem 0 3rem; }
       .hero-text { animation-delay: 0s; }
       .hero-desc { margin-left: auto; margin-right: auto; }
       .hero-actions { justify-content: center; }
@@ -279,6 +280,20 @@ import MobileNav from "@components/Nav/MobileNav.astro";
       .hero-float-card { display: none; }
       .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
       .hero { min-height: auto; }
+      .hero-stat-strip { flex-wrap: wrap; gap: 1rem; }
+      .hero-stat { flex: 0 0 40%; }
+    }
+    @media (max-width: 520px) {
+      .hero-content { padding: 2rem 0 2.5rem; }
+      .hero-badge { font-size: 0.6rem; padding: 5px 12px; margin-bottom: 1.2rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .hero-desc { font-size: 0.82rem; }
+      .hero-cta { font-size: 0.88rem; padding: 13px 28px; }
+      .hero-cta-ghost { font-size: 0.82rem; padding: 11px 18px; }
+      .hero-mockup { padding: 1rem; }
+      .hm-row { padding: 0.5rem 0.7rem; }
+      .hm-label { font-size: 0.7rem; }
+      .hm-val { font-size: 0.72rem; }
     }
 
     /* ═══════════════════════════════════════════
@@ -301,7 +316,7 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     .pain-card h3 { font-size: 0.92rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; line-height: 1.4; }
     .pain-card p { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.7; }
     @media (max-width: 900px) { .pain-grid { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 520px) { .pain-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) { .pain-grid { grid-template-columns: 1fr; } .pain { padding: 60px 0; } .pain-card { padding: 1.5rem 1.2rem; } }
 
     /* ═══════════════════════════════════════════
        3. NUMBERS — Factory Hub が全て解決します
@@ -320,7 +335,8 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     }
     .numbers-unit { font-size: 0.82rem; font-weight: 600; color: var(--blue-300); margin-bottom: 0.2rem; }
     .numbers-label { font-size: 0.76rem; color: rgba(255,255,255,0.4); }
-    @media (max-width: 768px) { .numbers-row { grid-template-columns: repeat(2,1fr); gap: 2rem 1rem; } }
+    @media (max-width: 768px) { .numbers-row { grid-template-columns: repeat(2,1fr); gap: 2rem 1rem; } .numbers { padding: 50px 0; } }
+    @media (max-width: 520px) { .numbers-val { font-size: 1.8rem; } }
 
     /* ═══════════════════════════════════════════
        3.5 DEMO — インタラクティブデモ
@@ -362,7 +378,8 @@ import MobileNav from "@components/Nav/MobileNav.astro";
       transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
     }
     .demo-fullscreen a:hover { color: var(--accent-light); }
-    @media (max-width: 768px) { .demo-iframe { height: 500px; } }
+    @media (max-width: 768px) { .demo-iframe { height: 500px; } .demo { padding: 60px 0; } }
+    @media (max-width: 520px) { .demo-iframe { height: 400px; } .demo-frame-wrap { border-radius: 8px; } }
 
     /* ═══════════════════════════════════════════
        4. FEATURES — 主要機能（交互レイアウト）
@@ -427,6 +444,12 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     @media (max-width: 900px) {
       .feat-block, .feat-block.reverse { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
       .feat-block { margin-bottom: 3rem; padding-bottom: 3rem; }
+      .features { padding: 70px 0; }
+      .features .section-title { margin-bottom: 2.5rem; }
+    }
+    @media (max-width: 520px) {
+      .feat-text h3 { font-size: 1.1rem; }
+      .feat-visual { min-height: 200px; padding: 1.2rem; }
     }
 
     /* ═══════════════════════════════════════════
@@ -453,7 +476,8 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     .ba-list li::before { flex-shrink: 0; font-size: 0.75rem; margin-top: 0.2rem; font-weight: 700; }
     .ba-before .ba-list li::before { content: '✕'; color: var(--red); }
     .ba-after .ba-list li::before { content: '✓'; color: var(--green); }
-    @media (max-width: 768px) { .ba-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .ba-grid { grid-template-columns: 1fr; } .ba { padding: 70px 0; } }
+    @media (max-width: 520px) { .ba-col { padding: 1.6rem; } .ba-list li { font-size: 0.8rem; } }
 
     /* ═══════════════════════════════════════════
        6. ROI — 導入効果
@@ -472,7 +496,8 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     }
     .roi-unit { font-size: 0.82rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem; }
     .roi-desc { font-size: 0.72rem; color: var(--text-dim); line-height: 1.5; }
-    @media (max-width: 768px) { .roi-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 768px) { .roi-grid { grid-template-columns: repeat(2,1fr); } .roi { padding: 60px 0; } }
+    @media (max-width: 520px) { .roi-card { padding: 1.4rem 1rem; } }
 
     /* ═══════════════════════════════════════════
        7. ROADMAP — 導入ロードマップ
