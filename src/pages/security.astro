@@ -270,6 +270,33 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     </div>
   </section>
 
+  <!-- PQC CHECKER -->
+  <section class="pqc-check section" id="pqc-check">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">PQC Readiness Check</span>
+        <h2 class="section-heading">あなたのサイトは量子時代に対応していますか？</h2>
+        <p class="section-sub">URLを入力するだけで、TLS証明書・暗号スイートの耐量子暗号（PQC）対応状況を即座に診断します。</p>
+      </div>
+      <div class="pqc-frame-wrap reveal d1">
+        <div class="pqc-frame-bar">
+          <div class="pf-dot pf-dot-r"></div><div class="pf-dot pf-dot-y"></div><div class="pf-dot pf-dot-g"></div>
+          <div class="pf-url">pqc-check.zetax.jp</div>
+        </div>
+        <iframe
+          class="pqc-iframe"
+          src="https://pqc-check.zetax.jp"
+          loading="lazy"
+          title="PQC Readiness Checker"
+          allow="clipboard-read; clipboard-write"
+        ></iframe>
+      </div>
+      <div class="pqc-fullscreen">
+        <a href="https://pqc-check.zetax.jp" target="_blank" rel="noopener">フルスクリーンで開く →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- SERVICES -->
   <section class="section" id="services">
     <div class="container">
@@ -379,33 +406,6 @@ import MobileNav from "@components/Nav/MobileNav.astro";
       </div>
     </div>
   </div>
-
-  <!-- PQC CHECKER -->
-  <section class="pqc-check section" id="pqc-check">
-    <div class="container">
-      <div class="reveal">
-        <span class="section-label">PQC Readiness Check</span>
-        <h2 class="section-heading">あなたのサイトは量子時代に対応していますか？</h2>
-        <p class="section-sub">URLを入力するだけで、TLS証明書・暗号スイートの耐量子暗号（PQC）対応状況を即座に診断します。</p>
-      </div>
-      <div class="pqc-frame-wrap reveal d1">
-        <div class="pqc-frame-bar">
-          <div class="pf-dot pf-dot-r"></div><div class="pf-dot pf-dot-y"></div><div class="pf-dot pf-dot-g"></div>
-          <div class="pf-url">pqc-check.zetax.jp</div>
-        </div>
-        <iframe
-          class="pqc-iframe"
-          src="https://pqc-check.zetax.jp"
-          loading="lazy"
-          title="PQC Readiness Checker"
-          allow="clipboard-read; clipboard-write"
-        ></iframe>
-      </div>
-      <div class="pqc-fullscreen">
-        <a href="https://pqc-check.zetax.jp" target="_blank" rel="noopener">フルスクリーンで開く →</a>
-      </div>
-    </div>
-  </section>
 
   <!-- FAQ -->
   <section class="section" id="faq">
