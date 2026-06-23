@@ -38,6 +38,15 @@ const services = [
     desc: "PCB基板の設計から組み込みソフトウェアの実装まで、ハードウェア開発を完全内製で行います。主力プロダクトは製造業向け予兆保全システム。工場の機械が壊れる前に異常を検知し、突発的な設備停止を未然に防ぎます。クラウド・Wi-Fi不要で動作するため、ネットワーク環境が整っていない工場でも即日導入が可能です。",
     tags: ["PCB基板設計", "組み込み開発", "予兆保全システム", "クラウド不要", "3工場導入済み"],
   },
+  {
+    num: "05",
+    name: "Factory Hub",
+    sub: "製造業 業務統合プラットフォーム",
+    href: "/factory-hub/",
+    icon: "factory",
+    desc: "受注・納品・顧客管理をひとつのポータルに統合する製造業向けプラットフォーム。AI-OCRによる注文書自動読み取り、音声からの議事録自動生成、名刺スキャンからのメール自動作成機能を搭載。Access 2010 からの段階移行にも対応し、バラバラの業務をひとつにまとめます。",
+    tags: ["顧客ポータル", "AI-OCR", "音声議事録", "名刺スキャン", "Access移行"],
+  },
 ];
 
 // インラインSVGラインアイコン（stroke=currentColor）
@@ -46,6 +55,7 @@ const icons: Record<string, string> = {
   shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>`,
   coach: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4z"/><path d="M7 10v5c0 1.5 2.5 3 5 3s5-1.5 5-3v-5"/><path d="M21 8v5"/></svg>`,
   edge: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 4v3M14 4v3M10 17v3M14 17v3M4 10h3M4 14h3M17 10h3M17 14h3"/></svg>`,
+  factory: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V10l4 3V8l4 3V6l4 3v11"/><path d="M18 20V9l2-2v13"/><circle cx="8" cy="16" r="1"/><circle cx="14" cy="16" r="1"/></svg>`,
 };
 ---
 
@@ -96,6 +106,7 @@ const icons: Record<string, string> = {
   .svc-head-shield { background: linear-gradient(135deg, #0a1840, #1a3fbf); }
   .svc-head-coach { background: linear-gradient(135deg, #14224f, #4a5ad0); }
   .svc-head-edge { background: linear-gradient(135deg, #0d2060, #6a7aff); }
+  .svc-head-factory { background: linear-gradient(135deg, #0f1b3d, #2b4ea0); }
   .svc-icon { color: #fff; opacity: 0.95; }
   .svc-icon :global(svg) { width: 46px; height: 46px; display: block; }
   .svc-num { position: absolute; right: 16px; bottom: 8px; font-family: var(--font-en); font-size: 2.6rem; font-weight: 800; color: rgba(255,255,255,0.16); line-height: 1; }
