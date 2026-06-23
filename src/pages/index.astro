@@ -298,7 +298,31 @@ const fmtDate = (d: Date) =>
     .service-link { font-family: var(--font-en); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; color: var(--accent); }
 
     /* ─── PRODUCTS ─── */
-    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
+    .product-featured { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 4rem; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg); transition: box-shadow 0.3s; }
+    .product-featured:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.06); }
+    .product-featured-text { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .product-featured-badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-en); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 5px 14px; border-radius: 4px; margin-bottom: 1.2rem; width: fit-content; }
+    .product-featured-name { font-family: var(--font-en); font-size: 1.6rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.3rem; }
+    .product-featured-sub { font-family: var(--font-jp); font-size: 0.88rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem; }
+    .product-featured-desc { font-size: 0.88rem; line-height: 2; color: var(--text-secondary); margin-bottom: 1.6rem; }
+    .product-featured-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.6rem; }
+    .product-featured-tags span { font-size: 0.68rem; font-weight: 600; padding: 4px 10px; border-radius: 3px; background: var(--accent-pale, #e8edf8); color: var(--accent); }
+    .product-featured-cta { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-jp); font-size: 0.88rem; font-weight: 700; color: #fff; background: var(--accent); padding: 12px 28px; border-radius: 6px; transition: background 0.2s, transform 0.2s; width: fit-content; }
+    .product-featured-cta:hover { background: #4a6fc4; transform: translateY(-2px); }
+    .product-featured-visual { background: linear-gradient(160deg, #0f1b3d, #1e3a7b); display: flex; align-items: center; justify-content: center; padding: 2.5rem; min-height: 320px; position: relative; overflow: hidden; }
+    .product-featured-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 30% 50%, rgba(74,111,196,0.2) 0%, transparent 70%); pointer-events: none; }
+    .pf-mockup { position: relative; z-index: 1; width: 100%; max-width: 360px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1rem; backdrop-filter: blur(8px); }
+    .pf-mockup-bar { display: flex; align-items: center; gap: 5px; margin-bottom: 0.8rem; }
+    .pfm-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .pfm-dot-r { background: #ff5f57; } .pfm-dot-y { background: #febc2e; } .pfm-dot-g { background: #28c840; }
+    .pfm-title { font-family: var(--font-en); font-size: 0.6rem; color: rgba(255,255,255,0.35); margin-left: 6px; }
+    .pf-mockup-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.7rem; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 0.35rem; font-size: 0.72rem; }
+    .pf-mockup-row:last-child { margin-bottom: 0; }
+    .pfm-label { color: rgba(255,255,255,0.45); }
+    .pfm-val { font-family: var(--font-en); font-weight: 700; color: #fff; }
+    .pfm-badge { font-size: 0.56rem; font-weight: 700; padding: 2px 7px; border-radius: 3px; background: rgba(22,163,74,0.2); color: #4ade80; }
+    @media (max-width: 900px) { .product-featured { grid-template-columns: 1fr; } .product-featured-visual { min-height: 240px; } }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
     .product-card { background: var(--bg); padding: 2.8rem; transition: background 0.2s; }
     .product-card:hover { background: #fafbff; }
     .product-type { font-family: var(--font-en); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.4rem; color: var(--accent); }
@@ -1448,6 +1472,37 @@ const fmtDate = (d: Date) =>
           <h3 class="section-heading" style="font-size:1.5rem;" data-ja="自社プロダクト" data-en="Our Products">自社プロダクト</h3>
           <p class="section-sub" data-ja="コンサル・開発で培った知見をもとに、自社プロダクトも展開しています。" data-en="Drawing on our consulting and development expertise, we also build and ship our own products.">コンサル・開発で培った知見をもとに、自社プロダクトも展開しています。</p>
         </div>
+        <a href="/factory-hub" class="product-featured reveal d1">
+          <div class="product-featured-text">
+            <span class="product-featured-badge">New Product</span>
+            <p class="product-featured-name" data-ja="Factory Hub" data-en="Factory Hub">Factory Hub</p>
+            <p class="product-featured-sub" data-ja="製造業務統合管理プラットフォーム" data-en="Manufacturing Workflow Platform">製造業務統合管理プラットフォーム</p>
+            <p class="product-featured-desc" data-ja="お客様ごとの注文書・納品書・議事録・名刺・単価履歴を1画面に集約。AI-OCRで注文書を自動読取、音声から議事録を自動生成。散在するデータベースを一元化し、二度打ちゼロ・紙ゼロを実現します。" data-en="Consolidate orders, delivery notes, meeting minutes, business cards, and price history per customer in one view. AI-OCR auto-reads orders, voice-to-text generates meeting notes. Unify scattered databases — zero double-entry, zero paper.">お客様ごとの注文書・納品書・議事録・名刺・単価履歴を1画面に集約。AI-OCRで注文書を自動読取、音声から議事録を自動生成。散在するデータベースを一元化し、二度打ちゼロ・紙ゼロを実現します。</p>
+            <div class="product-featured-tags">
+              <span data-ja="顧客ポータル" data-en="Customer Portal">顧客ポータル</span>
+              <span data-ja="AI-OCR" data-en="AI-OCR">AI-OCR</span>
+              <span data-ja="音声議事録" data-en="Voice Minutes">音声議事録</span>
+              <span data-ja="名刺スキャン" data-en="Card Scan">名刺スキャン</span>
+              <span data-ja="Access移行" data-en="Access Migration">Access移行</span>
+            </div>
+            <span class="product-featured-cta" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
+          </div>
+          <div class="product-featured-visual">
+            <div class="pf-mockup">
+              <div class="pf-mockup-bar">
+                <div class="pfm-dot pfm-dot-r"></div><div class="pfm-dot pfm-dot-y"></div><div class="pfm-dot pfm-dot-g"></div>
+                <span class="pfm-title">Customer Portal</span>
+              </div>
+              <div class="pf-mockup-row"><span class="pfm-label" data-ja="注文書" data-en="Orders">注文書</span><span class="pfm-val">12</span><span class="pfm-badge">AI-OCR</span></div>
+              <div class="pf-mockup-row"><span class="pfm-label" data-ja="納品書" data-en="Delivery">納品書</span><span class="pfm-val">8</span><span class="pfm-badge">発行済</span></div>
+              <div class="pf-mockup-row"><span class="pfm-label" data-ja="製作指示書" data-en="Work Orders">製作指示書</span><span class="pfm-val">5</span><span class="pfm-badge">製造中</span></div>
+              <div class="pf-mockup-row"><span class="pfm-label" data-ja="議事録" data-en="Minutes">議事録</span><span class="pfm-val">3</span><span class="pfm-badge">AI生成</span></div>
+              <div class="pf-mockup-row"><span class="pfm-label" data-ja="名刺" data-en="Cards">名刺</span><span class="pfm-val">4名</span><span class="pfm-badge">登録済</span></div>
+              <div class="pf-mockup-row"><span class="pfm-label" data-ja="単価履歴" data-en="Pricing">単価履歴</span><span class="pfm-val">¥1,280/kg</span><span class="pfm-badge">最新</span></div>
+            </div>
+          </div>
+        </a>
+
         <div class="products-grid">
 
           <div class="product-card tilt-card reveal d1" style="grid-column: span 1;">
