@@ -179,10 +179,6 @@ const fmtDate = (d: Date) =>
       background-size: 56px 56px;
       mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 75%);
     }
-    .hero-bg-blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.22; }
-    .hero-bg-blob-1 { width: 700px; height: 700px; top: -180px; right: -100px; background: radial-gradient(circle, #c4d0ff 0%, transparent 70%); }
-    .hero-bg-blob-2 { width: 460px; height: 460px; bottom: -80px; left: -60px; background: radial-gradient(circle, #d4e1ff 0%, transparent 70%); }
-
     .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; max-width: 840px; }
 
     .hero-eyebrow { font-family: var(--font-en); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; opacity: 0; transform: translateY(14px); animation: fadeUp 0.8s 0.2s var(--ease) forwards; }
@@ -198,9 +194,6 @@ const fmtDate = (d: Date) =>
     .btn-outline { font-family: var(--font-jp); font-size: 0.9rem; font-weight: 500; padding: 14px 36px; border-radius: 6px; background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); cursor: pointer; display: inline-block; transition: border-color 0.2s, color 0.2s, transform 0.2s; }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    .hero-badges { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2.6rem; opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s 0.8s var(--ease) forwards; }
-    .hero-badge { font-family: var(--font-jp); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.04em; padding: 5px 14px; border-radius: 2px; border: 1px solid var(--border); color: var(--text-secondary); background: var(--bg); transition: border-color 0.2s, color 0.2s; cursor: default; }
-    .hero-badge:hover { border-color: var(--accent); color: var(--accent); }
 
     .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-family: var(--font-en); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); opacity: 0; animation: fadeUp 1s 1.2s ease forwards; }
     .hero-scroll::after { content: ''; width: 1px; height: 36px; background: linear-gradient(to bottom, var(--accent), transparent); animation: pulse 2s ease-in-out infinite; }
@@ -214,15 +207,6 @@ const fmtDate = (d: Date) =>
     .media-logo-item { display: flex; align-items: center; opacity: 0.45; transition: opacity 0.2s; }
     .media-logo-item:hover { opacity: 0.75; }
     .media-logo-divider { width: 1px; height: 24px; background: var(--border); }
-
-    /* ─── TRUST BAR ─── */
-    .trust-bar { background: var(--text-primary); padding: 48px 0; }
-    .trust-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
-    .trust-item { text-align: center; padding: 0 1.5rem; border-right: 1px solid rgba(255,255,255,0.08); }
-    .trust-item:last-child { border-right: none; }
-    .trust-number { font-family: var(--font-en); font-size: 1.8rem; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .trust-number em { font-style: normal; color: #7b96ff; font-size: 0.6em; }
-    .trust-label { font-family: var(--font-jp); font-size: 0.76rem; color: rgba(255,255,255,0.42); letter-spacing: 0.05em; }
 
     /* ─── SECTION BASE ─── */
     .section { padding: 100px 0; }
@@ -243,12 +227,6 @@ const fmtDate = (d: Date) =>
     .d4 { transition-delay: 0.4s; }
 
     /* ─── WHY ZETAX ─── */
-    .why-achieve-bar { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2.8rem 0 4rem; }
-    .why-achieve-item { background: var(--bg-subtle); padding: 1.8rem 2rem; }
-    .why-achieve-num { font-family: var(--font-en); font-size: 2rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; margin-bottom: 0.3rem; line-height: 1; }
-    .why-achieve-num em { font-style: normal; font-size: 0.55em; vertical-align: 0.1em; }
-    .why-achieve-label { font-size: 0.76rem; color: var(--text-secondary); line-height: 1.7; }
-    @media (max-width: 768px) { .why-achieve-bar { grid-template-columns: repeat(2,1fr); } }
 
     .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
     .why-card { background: var(--bg); padding: 3rem; transition: background 0.2s; }
@@ -256,15 +234,10 @@ const fmtDate = (d: Date) =>
     .why-card-number { font-family: var(--font-en); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 1.2rem; }
     .why-card-title { font-weight: 700; font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.8rem; line-height: 1.5; }
     .why-card-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 2; }
-    .why-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
-    .why-card-tag { font-family: var(--font-jp); font-size: 0.68rem; font-weight: 600; padding: 3px 10px; border-radius: 2px; background: var(--accent-pale); color: var(--accent); }
     .why-card-stat { display: flex; align-items: baseline; gap: 0.35rem; margin-top: 1.6rem; }
     .why-card-stat-num { font-family: var(--font-en); font-size: 1.6rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; line-height: 1; }
     .why-card-stat-num em { font-style: normal; font-size: 0.6em; }
     .why-card-stat-label { font-size: 0.74rem; color: var(--text-dim); }
-    .why-card-features { list-style: none; padding: 0; margin: 1.2rem 0 0; display: flex; flex-direction: column; gap: 0.4rem; }
-    .why-card-features li { font-family: var(--font-jp); font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.45rem; line-height: 1.5; }
-    .why-card-features li::before { content: '—'; color: var(--accent); font-size: 0.75rem; flex-shrink: 0; margin-top: 0.05rem; }
 
 
     /* ─── HERO COMPARISON (E) ─── */
@@ -310,7 +283,6 @@ const fmtDate = (d: Date) =>
     .service-card:hover { background: #fafbff; }
     .service-num { font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 1.6rem; color: var(--accent); }
     .service-title { font-size: 1.05rem; font-weight: 700; line-height: 1.45; margin-bottom: 1rem; color: var(--text-primary); }
-    .service-badge-label { display: inline-block; font-family: var(--font-jp); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; padding: 4px 12px; border-radius: 2px; margin-bottom: 1.4rem; background: rgba(123,150,255,0.12); color: #7b96ff; }
     .service-desc { font-size: 0.88rem; line-height: 2; margin-bottom: 2rem; color: var(--text-secondary); }
     .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
     .service-tag { font-family: var(--font-jp); font-size: 0.7rem; padding: 4px 12px; border-radius: 2px; border: 1px solid var(--border); color: var(--text-secondary); }
@@ -331,10 +303,8 @@ const fmtDate = (d: Date) =>
     .product-featured-visual { background: linear-gradient(160deg, #0f1b3d, #1e3a7b); display: flex; align-items: center; justify-content: center; padding: 2.5rem; min-height: 320px; position: relative; overflow: hidden; }
     .product-featured-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 30% 50%, rgba(74,111,196,0.2) 0%, transparent 70%); pointer-events: none; }
     .pf-mockup { position: relative; z-index: 1; width: 100%; max-width: 360px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1rem; backdrop-filter: blur(8px); }
-    .pf-mockup-bar { display: flex; align-items: center; gap: 5px; margin-bottom: 0.8rem; }
-    .pfm-dot { width: 7px; height: 7px; border-radius: 50%; }
-    .pfm-dot-r { background: #ff5f57; } .pfm-dot-y { background: #febc2e; } .pfm-dot-g { background: #28c840; }
-    .pfm-title { font-family: var(--font-en); font-size: 0.6rem; color: rgba(255,255,255,0.35); margin-left: 6px; }
+    .pf-mockup-bar { display: flex; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .pfm-title { font-family: var(--font-en); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
     .pf-mockup-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.7rem; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 0.35rem; font-size: 0.72rem; }
     .pf-mockup-row:last-child { margin-bottom: 0; }
     .pfm-label { color: rgba(255,255,255,0.45); }
@@ -483,24 +453,6 @@ const fmtDate = (d: Date) =>
       background-size: 180px 180px;
     }
 
-    /* ─── MARQUEE ─── */
-    .marquee-strip {
-      overflow: hidden; background: var(--text-primary); padding: 14px 0; border: none;
-    }
-    .marquee-track {
-      display: flex; width: max-content; gap: 0;
-      animation: marqueeScroll 28s linear infinite;
-    }
-    .marquee-item {
-      font-family: var(--font-en); font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.28);
-      padding: 0 2.5rem; white-space: nowrap;
-    }
-    .marquee-item em {
-      color: #7b96ff; font-style: normal; margin: 0 0.3em;
-    }
-    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
     /* ─── FLOAT CTA ─── */
     .float-cta {
       position: fixed; bottom: 2.4rem; right: 2.4rem; z-index: 800;
@@ -521,12 +473,6 @@ const fmtDate = (d: Date) =>
     .tilt-card { transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); will-change: transform; }
     .tilt-card:hover { box-shadow: 0 20px 60px rgba(26,63,191,0.1); }
 
-    /* ─── GRADIENT ACCENT TEXT ─── */
-    .grad-text {
-      background: linear-gradient(135deg, var(--accent) 0%, #7b96ff 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
 
     /* ─── PROCESS SVG LINE ─── */
     .process-connector { position: absolute; top: 50%; left: 0; right: 0; height: 2px; pointer-events: none; overflow: visible; }
@@ -671,21 +617,6 @@ const fmtDate = (d: Date) =>
        DESIGN UPGRADE — Engineering Aesthetic
     ══════════════════════════════════════════════ */
 
-    /* ─── MONO FONT ─── */
-    .mono { font-family: 'SF Mono','Fira Code','JetBrains Mono','Consolas',monospace; }
-
-    /* ─── SECTION LABEL: code-comment style ─── */
-    .section-label {
-      font-family: 'SF Mono','Fira Code','Consolas',monospace;
-      font-size: 0.64rem; letter-spacing: 0.14em;
-      text-transform: none;
-    }
-    .section-label::before {
-      content: '//'; width: auto; height: auto; border-radius: 0;
-      background: none; font-weight: 400; opacity: 0.5; margin-right: 0.45rem;
-      font-family: 'SF Mono','Fira Code','Consolas',monospace;
-      font-size: inherit; line-height: 1;
-    }
 
     /* ─── HERO 2-COLUMN SPLIT ─── */
     .hero-content {
@@ -695,11 +626,10 @@ const fmtDate = (d: Date) =>
     }
     .hero-split-left { display: flex; flex-direction: column; gap: 0; }
     .hero-split-left .hero-actions { justify-content: flex-start; }
-    .hero-split-left .hero-badges { justify-content: flex-start; }
     .hero-split-right { display: flex; flex-direction: column; gap: 1.4rem; }
     @media (max-width: 900px) {
       .hero-content { grid-template-columns: 1fr; text-align: center; padding: 0 1.5rem; }
-      .hero-split-left .hero-actions, .hero-split-left .hero-badges { justify-content: center; }
+      .hero-split-left .hero-actions { justify-content: center; }
       .hero-split-right { display: none; }
     }
 
@@ -734,19 +664,6 @@ const fmtDate = (d: Date) =>
       font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; color: var(--text-secondary);
     }
 
-    /* ─── SHIMMER on primary button ─── */
-    .btn-primary { position: relative; overflow: hidden; isolation: isolate; }
-    .btn-primary::after {
-      content: '';
-      position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent);
-      transform: skewX(-15deg);
-      animation: btnShimmer 4s ease-in-out infinite;
-    }
-    @keyframes btnShimmer {
-      0%,20%{left:-100%;opacity:0} 28%{opacity:1} 65%,100%{left:150%;opacity:0}
-    }
-
     /* ─── CARD SPOTLIGHT (via JS) — overlay div injected ─── */
     .tilt-card { position: relative; }
 
@@ -757,19 +674,6 @@ const fmtDate = (d: Date) =>
     }
     .service-card:hover { background: #f9faff; }
 
-    /* ─── TAGS: monospace code style ─── */
-    .why-card-tag {
-      font-family: 'SF Mono','Fira Code','Consolas',monospace !important;
-      font-size: 0.64rem !important; letter-spacing: 0;
-    }
-    .service-tag {
-      font-family: 'SF Mono','Fira Code','Consolas',monospace !important;
-      font-size: 0.65rem !important;
-    }
-    .product-type {
-      font-family: 'SF Mono','Fira Code','Consolas',monospace !important;
-    }
-
     /* ─── NAV glass upgrade ─── */
     .nav {
       background: rgba(255,255,255,0.82);
@@ -777,36 +681,9 @@ const fmtDate = (d: Date) =>
       -webkit-backdrop-filter: blur(24px) saturate(180%);
     }
 
-    /* ─── AURORA: blob animations ─── */
-    .hero-bg-blob-1 { animation: blobFloat1 14s ease-in-out infinite alternate; }
-    .hero-bg-blob-2 { animation: blobFloat2 20s ease-in-out infinite alternate; }
-    @keyframes blobFloat1 { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(-6%,10%) scale(1.12)} }
-    @keyframes blobFloat2 { 0%{transform:translate(0,0) scale(1.05)} 100%{transform:translate(8%,-8%) scale(0.9)} }
-
-    /* ─── HERO MOUSE GLOW ─── */
-    .hero-mouse-glow {
-      position: absolute; inset: 0; pointer-events: none; z-index: 1;
-      background: radial-gradient(700px circle at var(--hmx,50%) var(--hmy,50%),rgba(26,63,191,0.04),transparent 55%);
-    }
-
-    /* ─── MARQUEE: pause on hover ─── */
-    .marquee-strip:hover .marquee-track { animation-play-state: paused; }
-
-    /* ─── FLOAT CTA pulse ring ─── */
-    .float-cta { position: relative; }
-    .float-cta::before {
-      content: ''; position: absolute; inset: -3px;
-      border-radius: 50px; background: var(--accent); opacity: 0;
-      animation: ctaPulse 3s ease-out infinite; z-index: -1;
-    }
-    @keyframes ctaPulse { 0%{transform:scale(1);opacity:0.3} 100%{transform:scale(1.5);opacity:0} }
-
     /* ─── PROCESS STEP ─── */
     .process-step { transition: background 0.2s; }
     .process-step:hover { background: #f9faff; }
-
-    /* ─── TRUST NUM subtle glow ─── */
-    .trust-number { text-shadow: 0 0 40px rgba(123,150,255,0.25); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
@@ -815,7 +692,6 @@ const fmtDate = (d: Date) =>
       .why-grid, .services-grid { grid-template-columns: 1fr; }
       .cases-header, .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
       .members-grid { grid-template-columns: repeat(3, 1fr); }
-      .trust-grid { grid-template-columns: repeat(3, 1fr); gap: 0; }
     }
     @media (max-width: 768px) {
       .nav-links, .nav-cta, .lang-toggle { display: none; }
@@ -878,14 +754,6 @@ const fmtDate = (d: Date) =>
       box-shadow: inset 0 0 0 1.5px rgba(26,63,191,0.15) !important;
     }
 
-    /* 5. Trust bar: bigger, more impact */
-    .trust-number { font-size: 2.6rem !important; }
-    .trust-label { font-size: 0.78rem !important; opacity: 0.55; }
-
-    /* 6. Why achieve bar: bigger */
-    .why-achieve-num { font-size: 2.6rem !important; }
-    .why-achieve-label { font-size: 0.78rem !important; }
-
     /* 9. Section sub: slightly bigger */
     .section-sub { font-size: 0.98rem !important; max-width: 600px !important; }
 
@@ -908,21 +776,9 @@ const fmtDate = (d: Date) =>
       line-height: 0.9;
     }
 
-    /* 14. Hero badge: sharper tag feel */
-    .hero-badge {
-      font-size: 0.72rem !important;
-      padding: 5px 14px !important;
-      border-radius: 3px !important;
-      letter-spacing: 0.06em !important;
-      background: rgba(255,255,255,0.85) !important;
-      backdrop-filter: blur(8px);
-    }
 
     /* 15. Process timing: bigger */
     .process-timing { font-size: 1.35rem !important; }
-
-    /* 16. Marquee: slightly bigger, more presence */
-    .marquee-item { font-size: 0.72rem !important; letter-spacing: 0.26em !important; }
 
     /* 17. Case card hover */
     .cases-card:hover {
@@ -936,25 +792,8 @@ const fmtDate = (d: Date) =>
     /* 19. Hero scroll indicator: more visible */
     .hero-scroll { font-size: 0.62rem !important; letter-spacing: 0.28em !important; }
 
-    /* 20. Why-card number: code line-number aesthetic */
-    .why-card-number {
-      font-family: 'SF Mono','Fira Code','Consolas',monospace !important;
-      font-size: 0.6rem !important;
-      letter-spacing: 0.3em;
-      opacity: 0.6;
-    }
 
     /* 21. Nav status indicator */
-    .nav-status {
-      display: flex; align-items: center; gap: 5px;
-      font-family: var(--font-en); font-size: 0.66rem; font-weight: 500;
-      color: var(--text-dim); margin-left: 1rem; white-space: nowrap;
-    }
-    .nav-status-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: #22c55e;
-      animation: pulse 2s ease-in-out infinite; flex-shrink: 0;
-    }
-
     /* 22. Footer watermark: stronger */
     .footer-watermark { -webkit-text-stroke: 1px rgba(255,255,255,0.05) !important; }
 
@@ -1067,7 +906,6 @@ const fmtDate = (d: Date) =>
         </li>
 
       </ul>
-      <span class="nav-status"><span class="nav-status-dot"></span>相談受付中</span>
       <div class="lang-toggle">
         <button class="lang-btn active" data-lang="ja">JP</button>
         <button class="lang-btn" data-lang="en">EN</button>
@@ -1081,11 +919,8 @@ const fmtDate = (d: Date) =>
   <section class="hero" id="hero">
     <div class="hero-bg">
       <div class="hero-bg-grid"></div>
-      <div class="hero-bg-blob hero-bg-blob-1"></div>
-      <div class="hero-bg-blob hero-bg-blob-2"></div>
       <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
     </div>
-    <div class="hero-mouse-glow" id="hero-mouse-glow"></div>
     <div class="hero-content">
 
       <!-- LEFT: text -->
@@ -1099,14 +934,6 @@ const fmtDate = (d: Date) =>
           <a href="/services/" class="btn-primary" data-ja="サービスを見る" data-en="Our Services">サービスを見る</a>
           <a href="#contact" class="btn-outline" data-ja="無料相談する" data-en="Free Consultation">無料相談する</a>
         </div>
-        <div class="hero-badges">
-          <span class="hero-badge" data-ja="東京大学・東京工業大学出身" data-en="UTokyo / Tokyo Tech Alumni">東京大学・東京工業大学出身</span>
-          <span class="hero-badge" data-ja="完全内製" data-en="100% In-House">完全内製</span>
-          <span class="hero-badge" data-ja="AI / ITコンサル・開発" data-en="AI / IT Consulting & Dev">AI / ITコンサル・開発</span>
-          <span class="hero-badge" data-ja="セキュリティ" data-en="Security">セキュリティ</span>
-          <span class="hero-badge" data-ja="AI研修" data-en="AI Training">AI研修</span>
-          <span class="hero-badge" data-ja="ハードウェア" data-en="Hardware">ハードウェア</span>
-        </div>
       </div>
 
       <!-- RIGHT: facts -->
@@ -1114,15 +941,15 @@ const fmtDate = (d: Date) =>
         <div class="hero-facts">
           <div class="hero-facts-nums">
             <div class="hf-cell">
-              <span class="hf-val">25<small data-ja="社+" data-en="+">社+</small></span>
+              <span class="hf-val" data-count="25"><span class="count-val">25</span><small data-ja="社+" data-en="+">社+</small></span>
               <span class="hf-label" data-ja="支援実績" data-en="Clients">支援実績</span>
             </div>
             <div class="hf-cell">
-              <span class="hf-val">10<small data-ja="業種" data-en="industries">業種</small></span>
+              <span class="hf-val" data-count="10"><span class="count-val">10</span><small data-ja="業種" data-en="industries">業種</small></span>
               <span class="hf-label" data-ja="製造業から金融まで" data-en="Manufacturing to finance">製造業から金融まで</span>
             </div>
             <div class="hf-cell">
-              <span class="hf-val">100<small>%</small></span>
+              <span class="hf-val" data-count="100"><span class="count-val">100</span><small>%</small></span>
               <span class="hf-label" data-ja="内製率" data-en="In-house">内製率</span>
             </div>
           </div>
@@ -1137,26 +964,6 @@ const fmtDate = (d: Date) =>
     </div>
     <div class="hero-scroll">Scroll</div>
   </section>
-
-  <!-- MARQUEE STRIP -->
-  <div class="marquee-strip" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item">完全内製 <em>·</em> 下請けゼロ</span>
-      <span class="marquee-item">東京大学 <em>·</em> 東京工業大学</span>
-      <span class="marquee-item">AI Native <em>·</em> Consulting</span>
-      <span class="marquee-item">超上流から下流まで <em>·</em> 一気通貫</span>
-      <span class="marquee-item">Security <em>·</em> Built-In</span>
-      <span class="marquee-item">地方中小 <em>·</em> 東証プライム上場まで</span>
-      <span class="marquee-item">スピード感 <em>·</em> 丁寧さ</span>
-      <span class="marquee-item">完全内製 <em>·</em> 下請けゼロ</span>
-      <span class="marquee-item">東京大学 <em>·</em> 東京工業大学</span>
-      <span class="marquee-item">AI Native <em>·</em> Consulting</span>
-      <span class="marquee-item">超上流から下流まで <em>·</em> 一気通貫</span>
-      <span class="marquee-item">Security <em>·</em> Built-In</span>
-      <span class="marquee-item">地方中小 <em>·</em> 東証プライム上場まで</span>
-      <span class="marquee-item">スピード感 <em>·</em> 丁寧さ</span>
-    </div>
-  </div>
 
   <!-- MEDIA BAR -->
   <div class="media-bar">
@@ -1200,148 +1007,56 @@ const fmtDate = (d: Date) =>
     </div>
   </div>
 
-  <!-- TRUST BAR -->
-  <div class="trust-bar">
-    <div class="container">
-      <div class="trust-grid">
-        <div class="trust-item reveal">
-          <div class="trust-number" data-count="100" data-suffix="%"><span class="count-val">100</span><em>%</em></div>
-          <div class="trust-label" data-ja="完全内製・下請けゼロ" data-en="100% In-House, Zero Outsourcing">完全内製・下請けゼロ</div>
-        </div>
-        <div class="trust-item reveal d1">
-          <div class="trust-number"><em>超</em>上流</div>
-          <div class="trust-label" data-ja="戦略立案から一気通貫で対応" data-en="From strategy to delivery, end-to-end">戦略立案から一気通貫で対応</div>
-        </div>
-        <div class="trust-item reveal d2">
-          <div class="trust-number" data-count="2" data-suffix="社+"><span class="count-val">2</span><em>社+</em></div>
-          <div class="trust-label" data-ja="大手銀行とのセキュリティ実績" data-en="Security track record with major banks">大手銀行とのセキュリティ実績</div>
-        </div>
-        <div class="trust-item reveal d3">
-          <div class="trust-number" style="font-size:1.6rem;letter-spacing:-0.01em;">東大<em>・東工大</em></div>
-          <div class="trust-label" data-ja="出身エンジニアが中心メンバー" data-en="Core team from UTokyo & Tokyo Tech">出身エンジニアが中心メンバー</div>
-        </div>
-        <div class="trust-item reveal d4">
-          <div class="trust-number" style="font-size:1.4rem;letter-spacing:-0.01em;">上場企業<em>含む</em></div>
-          <div class="trust-label" data-ja="多数の支援実績" data-en="Clients served incl. listed companies">多数の支援実績</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- WHY ZETAX -->
   <section class="section" id="why">
     <div class="container">
       <div class="reveal">
         <span class="section-label">Why ZetaX</span>
-        <h2 class="section-heading" data-ja="お客様に、<br>徹底的に寄り添う。" data-en="We Stand By Our Clients,<br>Every Step of the Way.">お客様に、<br>徹底的に寄り添う。</h2>
-        <p class="section-sub" data-ja="東京大学・東京工業大学出身エンジニアを中心に、AI開発・セキュリティ・ハードウェアまでを完全内製で担うチームです。戦略立案から保守まで、すべてのフェーズで同じエンジニアが責任を持って関わります。" data-en="A fully in-house team of engineers from the University of Tokyo and Tokyo Tech, covering AI development, security, and hardware. The same engineers take responsibility across every phase — from strategy through maintenance.">東京大学・東京工業大学出身エンジニアを中心に、AI開発・セキュリティ・ハードウェアまでを完全内製で担うチームです。戦略立案から保守まで、すべてのフェーズで同じエンジニアが責任を持って関わります。</p>
-      </div>
-
-      <!-- 実績ハイライト -->
-      <div class="why-achieve-bar reveal d1">
-        <div class="why-achieve-item">
-          <div class="why-achieve-num" style="font-size:1.2rem;">上場企業<em>含む</em></div>
-          <div class="why-achieve-label" data-ja="多数のAI・IT支援実績" data-en="AI & IT clients served incl. listed companies">多数のAI・IT支援実績</div>
-        </div>
-        <div class="why-achieve-item">
-          <div class="why-achieve-num">2<em>社</em></div>
-          <div class="why-achieve-label" data-ja="都内大手銀行へのセキュリティ<br>コンサル実績" data-en="Security consulting at<br>major Tokyo banks">都内大手銀行へのセキュリティ<br>コンサル実績</div>
-        </div>
-        <div class="why-achieve-item">
-          <div class="why-achieve-num">10<em>+</em></div>
-          <div class="why-achieve-label" data-ja="対応業種<br>製造・金融・医療・建設ほか" data-en="Industries served<br>Manufacturing, Finance, Healthcare…">対応業種<br>製造・金融・医療・建設ほか</div>
-        </div>
-        <div class="why-achieve-item">
-          <div class="why-achieve-num">日本<em>トップ</em></div>
-          <div class="why-achieve-label" data-ja="エンジニア人材<br>日本最高水準" data-en="Japan's Top-Tier<br>Engineering Talent">エンジニア人材<br>日本最高水準</div>
-        </div>
+        <h2 class="section-heading" data-ja="同じエンジニアが、<br>最初から最後まで。" data-en="The same engineers,<br>first day to last.">同じエンジニアが、<br>最初から最後まで。</h2>
+        <p class="section-sub" data-ja="東京大学・東京工業大学出身のエンジニアが、AI開発・セキュリティ・ハードウェアまで完全内製。戦略から保守まで、担当は変わりません。" data-en="Engineers from UTokyo and Tokyo Tech. AI, security, and hardware — all in-house. From strategy to maintenance, the team never changes.">東京大学・東京工業大学出身のエンジニアが、AI開発・セキュリティ・ハードウェアまで完全内製。戦略から保守まで、担当は変わりません。</p>
       </div>
 
       <div class="why-grid">
         <div class="why-card tilt-card reveal d1">
           <p class="why-card-number">01</p>
           <h3 class="why-card-title" data-ja="完全内製 — 下請けゼロ" data-en="100% In-House, Zero Outsourcing">完全内製 — 下請けゼロ</h3>
-          <p class="why-card-desc" data-ja="すべての作業を自社エンジニアが担当します。外部委託を一切行わないため、品質・スピード・機密保持の3つを同時に確保できます。お客様の情報が外部に出ることはありません。" data-en="Every task is handled by our own engineers. No outsourcing, ever. Quality, speed, and confidentiality — all three, simultaneously. Your information never leaves our team.">すべての作業を自社エンジニアが担当します。外部委託を一切行わないため、品質・スピード・機密保持の3つを同時に確保できます。お客様の情報が外部に出ることはありません。</p>
-          <div class="why-card-tags">
-            <span class="why-card-tag">外部委託ゼロ</span>
-            <span class="why-card-tag">情報漏洩リスク最小</span>
-            <span class="why-card-tag">品質管理徹底</span>
-          </div>
+          <p class="why-card-desc" data-ja="すべて自社エンジニアの手で作ります。外部委託ゼロ。品質もスピードも機密も、社内で完結します。" data-en="Everything is built by our own engineers. Zero outsourcing. Quality, speed, and confidentiality stay in-house.">すべて自社エンジニアの手で作ります。外部委託ゼロ。品質もスピードも機密も、社内で完結します。</p>
         </div>
         <div class="why-card tilt-card reveal d2">
           <p class="why-card-number">02</p>
-          <h3 class="why-card-title" data-ja="超上流から下流まで一気通貫" data-en="End-to-End, From Strategy to Delivery">超上流から下流まで一気通貫</h3>
-          <p class="why-card-desc" data-ja="「何を作るべきか分からない」段階でもご相談ください。課題の定義から戦略立案・設計・開発・保守運用まで、引き継ぎなしで一つのチームが一気に担います。担当が変わるたびに意図が薄れる、という問題がありません。" data-en="Come to us even when you're not sure what to build. One team takes full ownership — problem definition, strategy, design, development, and operations — with no handoffs. No information is lost in translation.">「何を作るべきか分からない」段階でもご相談ください。課題の定義から戦略立案・設計・開発・保守運用まで、引き継ぎなしで一つのチームが一気に担います。担当が変わるたびに意図が薄れる、という問題がありません。</p>
-          <div class="why-card-tags">
-            <span class="why-card-tag">戦略〜保守まで</span>
-            <span class="why-card-tag">担当変更なし</span>
-            <span class="why-card-tag">初日プロトタイプ</span>
-          </div>
+          <h3 class="why-card-title" data-ja="戦略から保守まで、同じチーム" data-en="Strategy to Maintenance, One Team">戦略から保守まで、同じチーム</h3>
+          <p class="why-card-desc" data-ja="「何を作るべきか分からない」段階から入ります。課題定義・設計・開発・運用まで引き継ぎなし。担当が変わるたびに意図が薄れる、が起きません。" data-en="We start before you know what to build. Problem definition, design, development, operations — no handoffs, so nothing gets lost in translation.">「何を作るべきか分からない」段階から入ります。課題定義・設計・開発・運用まで引き継ぎなし。担当が変わるたびに意図が薄れる、が起きません。</p>
         </div>
         <div class="why-card tilt-card reveal d1">
           <p class="why-card-number">03</p>
-          <h3 class="why-card-title" data-ja="東大・東工大出身、AI Native集団" data-en="UTokyo / Tokyo Tech Alumni — AI Native by Design">東大・東工大出身、AI Native集団</h3>
-          <p class="why-card-desc" data-ja="中心メンバーは東京大学・東京工業大学工学部出身のエンジニアです。AIが当たり前の時代に育ったAI Nativeとして、最新技術を即戦力で活用します。スタートアップでの数億円規模プロジェクト経験から、ベンチャーキャピタルでの投資経験まで、多様なビジネス知見も持ち合わせています。" data-en="Our core members are engineers from the Faculty of Engineering at UTokyo and Tokyo Tech. As AI Natives who grew up in the age of AI, we deploy the latest tools as first-class instruments. Combined with startup experience on projects worth hundreds of millions and VC investment track records.">中心メンバーは東京大学・東京工業大学工学部出身のエンジニアです。AIが当たり前の時代に育ったAI Nativeとして、最新技術を即戦力で活用します。スタートアップでの数億円規模プロジェクト経験から、ベンチャーキャピタルでの投資経験まで、多様なビジネス知見も持ち合わせています。</p>
-          <div class="why-card-tags">
-            <span class="why-card-tag">東京大学</span>
-            <span class="why-card-tag">東京工業大学</span>
-            <span class="why-card-tag">数億円規模PM経験</span>
-          </div>
+          <h3 class="why-card-title" data-ja="東大・東工大出身のエンジニア" data-en="Engineers from UTokyo & Tokyo Tech">東大・東工大出身のエンジニア</h3>
+          <p class="why-card-desc" data-ja="中心メンバーは東京大学・東京工業大学工学部の出身。数億円規模のPM経験と、VCでの投資経験。技術とビジネス、両方の言葉で話せます。" data-en="Core members are from the engineering faculties of UTokyo and Tokyo Tech. PM experience on nine-figure projects, plus VC investment backgrounds. We speak both engineering and business.">中心メンバーは東京大学・東京工業大学工学部の出身。数億円規模のPM経験と、VCでの投資経験。技術とビジネス、両方の言葉で話せます。</p>
         </div>
         <div class="why-card tilt-card reveal d2">
           <p class="why-card-number">04</p>
-          <h3 class="why-card-title" data-ja="納品後も、ずっと伴走する" data-en="We Stay With You After Launch">納品後も、ずっと伴走する</h3>
-          <p class="why-card-desc" data-ja="納品して終わりではありません。導入研修・保守・点検まで継続して対応します。現場の作業員から経営層まで幅広くヒアリングし、必要があれば現場に出勤して業務を共にします。北は青森から南は福岡まで、全国どこでも対面支援の実績があります。" data-en="Delivery is just the beginning. We continue with onboarding, maintenance, and inspection. We talk to everyone from floor workers to executives, and show up on-site when needed. We've delivered in-person support everywhere from Aomori to Fukuoka.">納品して終わりではありません。導入研修・保守・点検まで継続して対応します。現場の作業員から経営層まで幅広くヒアリングし、必要があれば現場に出勤して業務を共にします。北は青森から南は福岡まで、全国どこでも対面支援の実績があります。</p>
-          <div class="why-card-tags">
-            <span class="why-card-tag">導入研修対応</span>
-            <span class="why-card-tag">全国対面支援</span>
-            <span class="why-card-tag">青森〜福岡</span>
-          </div>
+          <h3 class="why-card-title" data-ja="納品後も、現場に通う" data-en="After Launch, We Keep Showing Up">納品後も、現場に通う</h3>
+          <p class="why-card-desc" data-ja="納品して終わりにしません。導入研修・保守・点検まで続けます。必要なら現場に出勤し、業務を共にします。青森から福岡まで、全国で対面支援の実績。" data-en="Delivery is not the end. Onboarding, maintenance, inspection — we keep going. We'll even work on-site alongside your team. In-person support delivered from Aomori to Fukuoka.">納品して終わりにしません。導入研修・保守・点検まで続けます。必要なら現場に出勤し、業務を共にします。青森から福岡まで、全国で対面支援の実績。</p>
         </div>
 
         <!-- 05: SECURITY -->
         <div class="why-card tilt-card reveal d1">
           <p class="why-card-number">05</p>
-          <h3 class="why-card-title" data-ja="セキュリティが、設計に最初から入っている" data-en="Security Built Into Every Design">セキュリティが、設計に最初から入っている</h3>
-          <p class="why-card-desc" data-ja="外部に発注すると、セキュリティへの対応が後回しになりがちです。ZetaXでは、設計の段階からセキュリティを組み込みます。都内大手銀行2社とのセキュリティコンサル実績を持つエンジニアが、システム開発にも携わるため、脆弱性の見落としや情報漏洩リスクを最小化した状態でお届けします。" data-en="Security is often an afterthought when outsourcing. At ZetaX, it's built in from the design phase. Our engineers with bank-level security track records are directly involved in every build.">外部に発注すると、セキュリティへの対応が後回しになりがちです。ZetaXでは、設計の段階からセキュリティを組み込みます。都内大手銀行2社とのセキュリティコンサル実績を持つエンジニアが、システム開発にも携わるため、脆弱性の見落としや情報漏洩リスクを最小化した状態でお届けします。</p>
-          <ul class="why-card-features">
-            <li data-ja="設計段階からのセキュリティ設計" data-en="Security-by-Design from Day One">設計段階からのセキュリティ設計</li>
-            <li data-ja="銀行レベルのセキュリティ水準" data-en="Bank-Grade Security Standards">銀行レベルのセキュリティ水準</li>
-            <li data-ja="完全内製だから情報漏洩リスクが低い" data-en="No Outsourcing = Fewer Leak Vectors">完全内製だから情報漏洩リスクが低い</li>
-            <li data-ja="全国大会入賞レベルの専門知識" data-en="National Competition Award-Level Expertise">全国大会入賞レベルの専門知識</li>
-          </ul>
-          <div class="why-card-tags">
-            <span class="why-card-tag">銀行実績2社</span>
-            <span class="why-card-tag">全国大会3位</span>
-            <span class="why-card-tag">PQC対応</span>
-            <span class="why-card-tag">脆弱性診断</span>
-          </div>
+          <h3 class="why-card-title" data-ja="セキュリティは、設計段階から" data-en="Security, From the Design Phase">セキュリティは、設計段階から</h3>
+          <p class="why-card-desc" data-ja="後付けのセキュリティはやりません。都内大手銀行2社へのコンサル実績を持つエンジニアが、開発にも直接携わります。耐量子暗号（PQC）まで対応。サイバーセキュリティ全国大会3位。" data-en="No bolted-on security. Engineers with consulting track records at two major Tokyo banks are directly involved in every build. Post-quantum cryptography included. 3rd place, National Cybersecurity Competition.">後付けのセキュリティはやりません。都内大手銀行2社へのコンサル実績を持つエンジニアが、開発にも直接携わります。耐量子暗号（PQC）まで対応。サイバーセキュリティ全国大会3位。</p>
         </div>
 
         <!-- 06: TRACK RECORD -->
         <div class="why-card tilt-card reveal d2">
           <p class="why-card-number">06</p>
-          <h3 class="why-card-title" data-ja="地方中小から東証プライム上場まで。実績が語る。" data-en="From Local SMEs to TSE Prime. Results Speak.">地方中小から東証プライム上場まで。実績が語る。</h3>
-          <p class="why-card-desc" data-ja="製造業・士業・金融・医療・物流・建設・農業など多岐にわたる業種で支援実績あり。東証プライム上場企業・都内大手銀行・大手税理士法人など、幅広い規模・業種への導入実績があります。スタートアップ期の企業から売上数百億規模の上場企業まで、規模を問わず対応してきました。" data-en="Track record across manufacturing, professional services, finance, healthcare, logistics, and more. Clients include TSE Prime-listed companies, major Tokyo banks, and large tax corporations. We've served companies from seed-stage startups to listed enterprises with revenues in the billions.">製造業・士業・金融・医療・物流・建設・農業など多岐にわたる業種で支援実績あり。東証プライム上場企業・都内大手銀行・大手税理士法人など、幅広い規模・業種への導入実績があります。スタートアップ期の企業から売上数百億規模の上場企業まで、規模を問わず対応してきました。</p>
-          <div class="why-card-tags">
-            <span class="why-card-tag">東証プライム上場企業</span>
-            <span class="why-card-tag">都内大手銀行</span>
-            <span class="why-card-tag">大手税理士法人</span>
-            <span class="why-card-tag">多業種対応</span>
-          </div>
+          <h3 class="why-card-title" data-ja="地方の中小から、東証プライムまで" data-en="From Local SMEs to TSE Prime">地方の中小から、東証プライムまで</h3>
+          <p class="why-card-desc" data-ja="製造・士業・金融・医療・物流・建設・農業。スタートアップから売上数百億の上場企業まで、規模も業種も問いません。都内大手銀行、大手税理士法人の実績を含みます。" data-en="Manufacturing, professional services, finance, healthcare, logistics, construction, agriculture. From startups to listed enterprises with billions in revenue — including major Tokyo banks and large tax corporations.">製造・士業・金融・医療・物流・建設・農業。スタートアップから売上数百億の上場企業まで、規模も業種も問いません。都内大手銀行、大手税理士法人の実績を含みます。</p>
         </div>
 
         <!-- 07: HW × SW -->
         <div class="why-card tilt-card reveal d1" style="grid-column: span 2;">
           <p class="why-card-number">07</p>
-          <h3 class="why-card-title" data-ja="ハードウェアとソフトウェアを、同じチームで。" data-en="Hardware and Software. One Team.">ハードウェアとソフトウェアを、同じチームで。</h3>
-          <p class="why-card-desc" data-ja="PCB基板設計・組み込み開発からクラウド・AIまで、ハードとソフトを横断できるエンジニアが社内に揃っています。「センサーで取ったデータをAIで分析してクラウドに送る」といった要件を、外部との調整なしに一気通貫で実装できます。ベンダーをまたぐたびに生まれる仕様の齟齬・責任の曖昧さ・コストの増大を、そもそも発生させません。製造業向け予兆保全デバイスはその象徴です。" data-en="Our team spans PCB design and embedded development all the way to cloud and AI. Requirements like 'collect sensor data, analyze it with AI, and send it to the cloud' are handled entirely in-house — no cross-vendor coordination. The ambiguity, blame gaps, and cost overruns that come from stitching together multiple vendors simply don't exist for us. Our predictive maintenance device for manufacturing is proof.">PCB基板設計・組み込み開発からクラウド・AIまで、ハードとソフトを横断できるエンジニアが社内に揃っています。「センサーで取ったデータをAIで分析してクラウドに送る」といった要件を、外部との調整なしに一気通貫で実装できます。ベンダーをまたぐたびに生まれる仕様の齟齬・責任の曖昧さ・コストの増大を、そもそも発生させません。製造業向け予兆保全デバイスはその象徴です。</p>
-          <div class="why-card-tags">
-            <span class="why-card-tag">PCB設計 × AI開発</span>
-            <span class="why-card-tag">組み込み × クラウド</span>
-            <span class="why-card-tag">ベンダー調整ゼロ</span>
-            <span class="why-card-tag">予兆保全デバイス実績</span>
-          </div>
+          <h3 class="why-card-title" data-ja="ハードもソフトも、同じチームで" data-en="Hardware and Software, One Team">ハードもソフトも、同じチームで</h3>
+          <p class="why-card-desc" data-ja="PCB設計・組み込みからクラウド・AIまで、社内で横断します。「センサーで取って、AIで分析」を、ベンダー間の調整なしに実装。仕様の齟齬も、責任の曖昧さも、そもそも生まれません。製造業向け予兆保全デバイスはその象徴です。" data-en="From PCB design and embedded systems to cloud and AI, all under one roof. 'Read the sensor, analyze with AI' — built with zero cross-vendor coordination. Spec drift and blame gaps never get a chance to exist. Our predictive maintenance device is the proof.">PCB設計・組み込みからクラウド・AIまで、社内で横断します。「センサーで取って、AIで分析」を、ベンダー間の調整なしに実装。仕様の齟齬も、責任の曖昧さも、そもそも生まれません。製造業向け予兆保全デバイスはその象徴です。</p>
         </div>
       </div>
     </div>
@@ -1391,21 +1106,18 @@ const fmtDate = (d: Date) =>
       <div class="reveal">
         <span class="section-label">Services &amp; Products</span>
         <h2 class="section-heading" data-ja="サービスとプロダクト" data-en="Services &amp; Products">サービスとプロダクト</h2>
-        <p class="section-sub" data-ja="AI/ITのコンサルから開発、セキュリティ、ハードウェアまで。すべて自社チームが完全内製でお届けします。" data-en="From AI/IT consulting and development to security and hardware. All delivered in-house by our own team.">AI/ITのコンサルから開発、セキュリティ、ハードウェアまで。すべて自社チームが完全内製でお届けします。</p>
+        <p class="section-sub" data-ja="コンサルから開発、セキュリティ、ハードウェアまで。すべて自社チームの完全内製。" data-en="Consulting, development, security, hardware. All built in-house by one team.">コンサルから開発、セキュリティ、ハードウェアまで。すべて自社チームの完全内製。</p>
       </div>
       <div class="services-grid">
 
         <a href="/ai-dx" class="service-card reveal d1">
           <span class="service-card-deco" aria-hidden="true">01</span>
-          <div class="service-badge-label" data-ja="超上流から下流まで一気通貫" data-en="Strategy to Delivery, End-to-End">超上流から下流まで一気通貫</div>
           <p class="service-num">01</p>
           <h3 class="service-title">Zeta Consulting<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">AI/ITコンサルティング・開発</span></h3>
-          <p class="service-desc" data-ja="何を作るべきか分からない段階から伴走します。課題定義・要件整理・設計・開発・運用保守まで、一つのチームが責任を持って一気通貫で対応します。金融、医療、流通、建設など幅広い業界に対応しています。" data-en="We start from even before you know what to build. One team takes full ownership across problem definition, requirements, design, development, and operations. We serve finance, healthcare, retail, construction, and beyond.">何を作るべきか分からない段階から伴走します。課題定義・要件整理・設計・開発・運用保守まで、一つのチームが責任を持って一気通貫で対応します。金融、医療、流通、建設など幅広い業界に対応しています。</p>
+          <p class="service-desc" data-ja="「何を作るべきか分からない」段階から入ります。課題定義・設計・開発・運用保守まで、一つのチームが最後まで持ちます。金融・医療・流通・建設ほか、実績多数。" data-en="We start before you know what to build. Problem definition, design, development, operations — one team owns it to the end. Track record in finance, healthcare, retail, construction, and more.">「何を作るべきか分からない」段階から入ります。課題定義・設計・開発・運用保守まで、一つのチームが最後まで持ちます。金融・医療・流通・建設ほか、実績多数。</p>
           <div class="service-tags">
             <span class="service-tag" data-ja="戦略立案" data-en="Strategy">戦略立案</span>
-            <span class="service-tag" data-ja="AI導入支援" data-en="AI Adoption">AI導入支援</span>
             <span class="service-tag" data-ja="システム開発" data-en="System Dev">システム開発</span>
-            <span class="service-tag" data-ja="DX推進" data-en="DX">DX推進</span>
             <span class="service-tag" data-ja="運用・保守" data-en="Operations">運用・保守</span>
           </div>
           <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
@@ -1415,10 +1127,9 @@ const fmtDate = (d: Date) =>
           <span class="service-card-deco" aria-hidden="true">02</span>
           <p class="service-num">02</p>
           <h3 class="service-title">Zeta Shield<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">セキュリティコンサルティング</span></h3>
-          <p class="service-desc" data-ja="都内大手銀行をはじめとする金融機関との支援実績を持つセキュリティコンサルチームです。脆弱性診断・セキュリティポリシー策定にとどまらず、量子コンピュータ時代に対応した次世代暗号（耐量子暗号）の導入支援まで対応します。" data-en="A security consulting team with a proven track record at major Tokyo banks and financial institutions. We go beyond vulnerability assessments and policy development — we also support the implementation of post-quantum cryptography (PQC) to prepare for the quantum computing era.">都内大手銀行をはじめとする金融機関との支援実績を持つセキュリティコンサルチームです。脆弱性診断・セキュリティポリシー策定にとどまらず、量子コンピュータ時代に対応した次世代暗号（耐量子暗号）の導入支援まで対応します。</p>
+          <p class="service-desc" data-ja="都内大手銀行をはじめ、金融機関で実績のあるチームです。脆弱性診断・ポリシー策定から、量子コンピュータ時代の暗号——耐量子暗号（PQC）の導入まで。" data-en="A team with a track record at major Tokyo banks and financial institutions. From vulnerability assessment and policy design to post-quantum cryptography (PQC) for the quantum era.">都内大手銀行をはじめ、金融機関で実績のあるチームです。脆弱性診断・ポリシー策定から、量子コンピュータ時代の暗号——耐量子暗号（PQC）の導入まで。</p>
           <div class="service-tags">
             <span class="service-tag" data-ja="脆弱性診断" data-en="Vuln. Assessment">脆弱性診断</span>
-            <span class="service-tag" data-ja="ポリシー策定" data-en="Policy Design">ポリシー策定</span>
             <span class="service-tag" data-ja="次世代暗号 / PQC" data-en="Post-Quantum Cryptography">次世代暗号 / PQC</span>
             <span class="service-tag" data-ja="都内大手銀行実績" data-en="Major Tokyo Bank Track Record">都内大手銀行実績</span>
           </div>
@@ -1429,12 +1140,11 @@ const fmtDate = (d: Date) =>
           <span class="service-card-deco" aria-hidden="true">03</span>
           <p class="service-num">03</p>
           <h3 class="service-title">Zeta Coach<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">AI研修・リテラシー教育</span></h3>
-          <p class="service-desc" data-ja="上場企業・士業事務所・製造業など、幅広い組織でのAI研修実績があります。経営層から現場社員まで対象に合わせてプログラムを設計し、AIを実務で使いこなせる人材の育成をサポートします。ツールの操作研修にとどまらず、業務への応用・活用戦略まで一貫して対応します。" data-en="We have a track record of AI training at listed companies, professional service firms, and manufacturing businesses. We design programs tailored to each audience — from executives to frontline staff — and support the development of people who can actually apply AI in their daily work. We cover not just tool operation, but practical application and adoption strategy.">上場企業・士業事務所・製造業など、幅広い組織でのAI研修実績があります。経営層から現場社員まで対象に合わせてプログラムを設計し、AIを実務で使いこなせる人材の育成をサポートします。ツールの操作研修にとどまらず、業務への応用・活用戦略まで一貫して対応します。</p>
+          <p class="service-desc" data-ja="上場企業・士業事務所・製造業でのAI研修実績。経営層から現場まで、対象に合わせてプログラムを設計します。ツールの操作で終わらせず、実務での使い方まで。" data-en="AI training delivered at listed companies, professional firms, and manufacturers. Programs designed for each audience, from executives to the front line. Beyond tool operation — how to actually use AI at work.">上場企業・士業事務所・製造業でのAI研修実績。経営層から現場まで、対象に合わせてプログラムを設計します。ツールの操作で終わらせず、実務での使い方まで。</p>
           <div class="service-tags">
             <span class="service-tag" data-ja="上場企業実績" data-en="Listed Company Track Record">上場企業実績</span>
             <span class="service-tag" data-ja="士業事務所" data-en="Professional Firms">士業事務所</span>
             <span class="service-tag" data-ja="製造業" data-en="Manufacturing">製造業</span>
-            <span class="service-tag" data-ja="カスタマイズ設計" data-en="Custom Programs">カスタマイズ設計</span>
           </div>
           <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
         </a>
@@ -1443,12 +1153,10 @@ const fmtDate = (d: Date) =>
           <span class="service-card-deco" aria-hidden="true">04</span>
           <p class="service-num">04</p>
           <h3 class="service-title">Zeta Edge<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">ハードウェア開発</span></h3>
-          <p class="service-desc" data-ja="PCB基板の設計から組み込みソフトウェアの実装まで、ハードウェア開発を完全内製で行います。主力プロダクトは製造業向け予兆保全システム。工場の機械が壊れる前に異常を検知し、突発的な設備停止を未然に防ぎます。クラウド・Wi-Fi不要で動作するため、ネットワーク環境が整っていない工場でも即日導入が可能です。" data-en="We handle all hardware development fully in-house — from PCB design to embedded software implementation. Our flagship product is a predictive maintenance system for manufacturing. It detects signs of machine failure before breakdowns occur, preventing unexpected downtime. Operates without cloud or Wi-Fi, enabling same-day deployment even in factories without network infrastructure.">PCB基板の設計から組み込みソフトウェアの実装まで、ハードウェア開発を完全内製で行います。主力プロダクトは製造業向け予兆保全システム。工場の機械が壊れる前に異常を検知し、突発的な設備停止を未然に防ぎます。クラウド・Wi-Fi不要で動作するため、ネットワーク環境が整っていない工場でも即日導入が可能です。</p>
+          <p class="service-desc" data-ja="PCB設計から組み込みソフトまで完全内製。主力は製造業向け予兆保全システム。機械が壊れる前に異常を検知します。クラウド・Wi-Fi不要、ネットワークのない工場でも即日導入。" data-en="PCB design to embedded software, all in-house. Flagship: a predictive maintenance system for manufacturing that catches anomalies before machines fail. No cloud, no Wi-Fi — same-day deployment even in offline factories.">PCB設計から組み込みソフトまで完全内製。主力は製造業向け予兆保全システム。機械が壊れる前に異常を検知します。クラウド・Wi-Fi不要、ネットワークのない工場でも即日導入。</p>
           <div class="service-tags">
             <span class="service-tag" data-ja="PCB基板設計" data-en="PCB Design">PCB基板設計</span>
-            <span class="service-tag" data-ja="組み込み開発" data-en="Embedded Dev">組み込み開発</span>
             <span class="service-tag" data-ja="予兆保全システム" data-en="Predictive Maintenance">予兆保全システム</span>
-            <span class="service-tag" data-ja="クラウド不要" data-en="No Cloud Required">クラウド不要</span>
             <span class="service-tag" data-ja="3工場導入済み" data-en="3 Factories Deployed">3工場導入済み</span>
           </div>
           <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
@@ -1468,7 +1176,7 @@ const fmtDate = (d: Date) =>
             <span class="product-featured-badge">New Product</span>
             <p class="product-featured-name" data-ja="Factory Hub" data-en="Factory Hub">Factory Hub</p>
             <p class="product-featured-sub" data-ja="製造業務統合管理プラットフォーム" data-en="Manufacturing Workflow Platform">製造業務統合管理プラットフォーム</p>
-            <p class="product-featured-desc" data-ja="お客様ごとの注文書・納品書・議事録・名刺・単価履歴を1画面に集約。AI-OCRで注文書を自動読取、音声から議事録を自動生成。散在するデータベースを一元化し、二度打ちゼロ・紙ゼロを実現します。" data-en="Consolidate orders, delivery notes, meeting minutes, business cards, and price history per customer in one view. AI-OCR auto-reads orders, voice-to-text generates meeting notes. Unify scattered databases — zero double-entry, zero paper.">お客様ごとの注文書・納品書・議事録・名刺・単価履歴を1画面に集約。AI-OCRで注文書を自動読取、音声から議事録を自動生成。散在するデータベースを一元化し、二度打ちゼロ・紙ゼロを実現します。</p>
+            <p class="product-featured-desc" data-ja="顧客ごとの注文書・納品書・議事録・名刺・単価履歴を、1画面に。注文書はAI-OCRで自動読取、議事録は音声から自動生成。散らばったデータベースをひとつにして、二度打ちも紙も、ゼロに。" data-en="Orders, delivery notes, minutes, business cards, and price history — one screen per customer. AI-OCR reads orders, voice becomes minutes. Scattered databases become one. Double-entry and paper go to zero.">顧客ごとの注文書・納品書・議事録・名刺・単価履歴を、1画面に。注文書はAI-OCRで自動読取、議事録は音声から自動生成。散らばったデータベースをひとつにして、二度打ちも紙も、ゼロに。</p>
             <div class="product-featured-tags">
               <span data-ja="顧客ポータル" data-en="Customer Portal">顧客ポータル</span>
               <span data-ja="AI-OCR" data-en="AI-OCR">AI-OCR</span>
@@ -1481,7 +1189,6 @@ const fmtDate = (d: Date) =>
           <div class="product-featured-visual">
             <div class="pf-mockup">
               <div class="pf-mockup-bar">
-                <div class="pfm-dot pfm-dot-r"></div><div class="pfm-dot pfm-dot-y"></div><div class="pfm-dot pfm-dot-g"></div>
                 <span class="pfm-title">Customer Portal</span>
               </div>
               <div class="pf-mockup-row"><span class="pfm-label" data-ja="注文書" data-en="Orders">注文書</span><span class="pfm-val">12</span><span class="pfm-badge">AI-OCR</span></div>
@@ -1500,7 +1207,7 @@ const fmtDate = (d: Date) =>
             <p class="product-type">SaaS / AI Agent</p>
             <p class="product-name">経理丸投げAI</p>
             <p class="product-name-en">AI-Powered Accounting &amp; Client Management</p>
-            <p class="product-desc" data-ja="税理士法人向けの顧客管理と経理業務を一体化したAI Nativeプロダクト。既存の会計ソフトの上に乗るかたちで導入でき、顧客情報・案件進捗の管理から、仕訳入力・請求書処理・月次レポート作成まで、AIエージェントが日々の業務を自動化します。" data-en="An AI Native product combining client management and accounting automation for tax corporations. Sits on top of existing accounting software. AI agents handle everything from customer and case management to journal entries, invoice processing, and monthly reporting.">税理士法人向けの顧客管理と経理業務を一体化したAI Nativeプロダクト。既存の会計ソフトの上に乗るかたちで導入でき、顧客情報・案件進捗の管理から、仕訳入力・請求書処理・月次レポート作成まで、AIエージェントが日々の業務を自動化します。</p>
+            <p class="product-desc" data-ja="税理士法人向けに、顧客管理と経理業務をひとつにしたプロダクト。既存の会計ソフトの上に載せて導入できます。仕訳入力・請求書処理・月次レポートまで、AIエージェントが日々の業務を進めます。" data-en="Client management and accounting, unified for tax corporations. Installs on top of your existing accounting software. AI agents carry the daily work — journal entries, invoice processing, monthly reports.">税理士法人向けに、顧客管理と経理業務をひとつにしたプロダクト。既存の会計ソフトの上に載せて導入できます。仕訳入力・請求書処理・月次レポートまで、AIエージェントが日々の業務を進めます。</p>
             <span class="product-achievement" data-ja="大手税理士法人をはじめ5社に導入決定" data-en="Adopted by 5 firms including major tax corporations">大手税理士法人をはじめ5社に導入決定</span>
             <p class="product-creators" data-ja="Product Lead: 柳澤 京佐 · 佐藤 陽" data-en="Product Lead: Kyosuke Yanagisawa · Yo Sato">Product Lead: 柳澤 京佐 · 佐藤 陽</p>
           </div>
@@ -1509,7 +1216,7 @@ const fmtDate = (d: Date) =>
             <p class="product-type">SaaS / AI Agent</p>
             <p class="product-name" data-ja="デモ生成<br>チャットボット" data-en="Demo Generation<br>Chatbot">デモ生成<br>チャットボット</p>
             <p class="product-name-en">for System Development Companies</p>
-            <p class="product-desc" data-ja="システム開発会社向けの、デモ自動生成チャットボット。顧客との商談時に、要件をヒアリングしながらリアルタイムでデモ画面を生成します。提案精度の向上と商談時間の短縮を同時に実現します。" data-en="An automated demo generation chatbot for system development companies. During client meetings, it listens to requirements and generates demo screens in real time — improving proposal quality and shortening sales cycles simultaneously.">システム開発会社向けの、デモ自動生成チャットボット。顧客との商談時に、要件をヒアリングしながらリアルタイムでデモ画面を生成します。提案精度の向上と商談時間の短縮を同時に実現します。</p>
+            <p class="product-desc" data-ja="システム開発会社向けの、デモ自動生成チャットボット。商談中に要件を聞きながら、その場でデモ画面を生成します。提案の精度を上げ、商談の時間を削ります。" data-en="A demo-generating chatbot for system development companies. It listens to requirements during the meeting and builds demo screens on the spot. Sharper proposals, shorter sales cycles.">システム開発会社向けの、デモ自動生成チャットボット。商談中に要件を聞きながら、その場でデモ画面を生成します。提案の精度を上げ、商談の時間を削ります。</p>
             <span class="product-achievement" data-ja="詳細・資料請求はこちら →" data-en="Request details →">詳細・資料請求はこちら →</span>
           </div>
 
@@ -1870,7 +1577,7 @@ const fmtDate = (d: Date) =>
       <div class="footer-grid">
         <div>
           <div class="footer-logo">ZETA<span>X</span></div>
-          <p class="footer-about" data-ja="スピード感と丁寧さを兼ね備えたAI Nativeコンサルエンジニアの集団。完全内製・一気通貫で、お客様の課題に真剣に向き合います。" data-en="A team of AI Native consulting engineers who combine speed with thoroughness. 100% in-house, end-to-end. We take your challenges seriously.">スピード感と丁寧さを兼ね備えたAI Nativeコンサルエンジニアの集団。完全内製・一気通貫で、お客様の課題に真剣に向き合います。</p>
+          <p class="footer-about" data-ja="スピードと丁寧さを、兼ね備えた技術者集団。戦略から実装・保守まで、完全内製。" data-en="Fast and thorough. An engineering team built for both. Strategy to maintenance, all in-house.">スピードと丁寧さを、兼ね備えた技術者集団。戦略から実装・保守まで、完全内製。</p>
         </div>
         <div>
           <p class="footer-col-label">Services</p>
@@ -2117,18 +1824,6 @@ const fmtDate = (d: Date) =>
         });
         card.addEventListener('mouseleave', () => { spot.style.opacity = '0'; });
       });
-    })();
-
-    // ─── HERO MOUSE GRADIENT ───
-    (function () {
-      const hero = document.getElementById('hero');
-      const glow = document.getElementById('hero-mouse-glow');
-      if (!hero || !glow) return;
-      hero.addEventListener('mousemove', e => {
-        const r = hero.getBoundingClientRect();
-        glow.style.setProperty('--hmx', (e.clientX - r.left) + 'px');
-        glow.style.setProperty('--hmy', (e.clientY - r.top) + 'px');
-      }, { passive: true });
     })();
 
     // ─── MAGNETIC all CTAs ───
