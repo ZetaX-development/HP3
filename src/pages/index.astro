@@ -27,6 +27,17 @@ const fmtDate = (d: Date) =>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script is:inline>
+    // INTRO gate: 最初のペイント前に実行。演出を出す時だけ zx-hold を立てる。
+    // sessionStorage 不可(プライベートモード等)や reduced-motion では演出なし。
+    (function () {
+      try {
+        if (!sessionStorage.getItem("zxIntroSeen") && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          document.documentElement.classList.add("zx-hold");
+        }
+      } catch (e) { /* skip intro */ }
+    })();
+  </script>
   <style is:global>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -52,6 +63,29 @@ const fmtDate = (d: Date) =>
     html { scroll-behavior: smooth; font-size: 16px; background: var(--bg); overflow-x: hidden; }
     body { font-family: var(--font-jp); background: var(--bg); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
+
+    /* ─── INTRO（初回のみのローディング演出） ─── */
+    #zx-intro { display: none; position: fixed; inset: 0; z-index: 20000; background: var(--bg); align-items: center; justify-content: center; }
+    html.zx-hold #zx-intro { display: flex; }
+    #zx-intro .zxi-rule {
+      position: absolute; left: 50%; top: 0; width: 1px; height: 100%;
+      background: rgba(13,13,20,0.35);
+      transform: scaleY(0); transform-origin: center top;
+    }
+    #zx-intro.zxi-s1 .zxi-rule { transform: scaleY(1); transition: transform 0.4s var(--ease); }
+    #zx-intro .zxi-mark {
+      position: relative;
+      font-family: var(--font-en); font-weight: 700;
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      letter-spacing: 0.3em; padding: 0.25em 0 0.25em 0.3em; /* 左padding=字間ぶんで光学センター */
+      color: var(--text-primary); background: var(--bg); /* 背後の縦罫をマスク */
+      clip-path: inset(100% 0 0 0);
+    }
+    #zx-intro .zxi-mark span { color: var(--accent); }
+    #zx-intro.zxi-s2 .zxi-mark { clip-path: inset(0 0 0 0); transition: clip-path 0.5s var(--ease); }
+    #zx-intro.zxi-done { opacity: 0; pointer-events: none; transition: opacity 0.45s ease; }
+    /* 幕が明けるまでヒーローの fadeUp を一時停止（二重再生防止） */
+    html.zx-hold .hero * { animation-play-state: paused !important; }
 
     /* ─── NAV ─── */
     .nav {
@@ -153,7 +187,7 @@ const fmtDate = (d: Date) =>
 
     .hero-eyebrow { font-family: var(--font-en); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; opacity: 0; transform: translateY(14px); animation: fadeUp 0.8s 0.2s var(--ease) forwards; }
 
-    .hero-title { font-family: var(--font-jp); font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.45; color: var(--text-primary); margin-bottom: 1.6rem; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.35s var(--ease) forwards; }
+    .hero-title { font-family: var(--font-jp); font-size: clamp(1.7rem, 3.2vw, 2.9rem); font-weight: 700; line-height: 1.5; color: var(--text-primary); margin-bottom: 1.6rem; word-break: keep-all; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.35s var(--ease) forwards; }
     .hero-title .accent { color: var(--accent); }
     .hero-title-sub { font-family: var(--font-jp); font-size: clamp(0.88rem, 1.4vw, 1.05rem); font-weight: 400; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2.8rem; letter-spacing: 0.04em; opacity: 0; transform: translateY(14px); animation: fadeUp 0.8s 0.5s var(--ease) forwards; }
     .hero-title-sub .accent { color: var(--accent); font-weight: 600; }
@@ -234,21 +268,6 @@ const fmtDate = (d: Date) =>
 
 
     /* ─── HERO COMPARISON (E) ─── */
-    .hero-compare { display: flex; gap: 0.8rem; justify-content: center; align-items: stretch; margin-top: 2.8rem; opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s 0.9s var(--ease) forwards; }
-    .hero-compare-col { padding: 1.4rem 1.8rem; flex: 1; border-radius: 6px; }
-    .hero-compare-col:first-child { background: var(--bg-subtle); border: 1px solid var(--border); }
-    .hero-compare-col:last-child { background: var(--accent-pale); border: 1.5px solid var(--accent); }
-    .hero-compare-vs { display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-en); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; color: var(--text-dim); }
-    .hero-compare-label { font-family: var(--font-en); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; }
-    .hero-compare-col:first-child .hero-compare-label { color: var(--text-dim); }
-    .hero-compare-col:last-child .hero-compare-label { color: var(--accent); }
-    .hero-compare-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; }
-    .hero-compare-item { font-family: var(--font-jp); font-size: 0.82rem; line-height: 1.55; display: flex; align-items: flex-start; gap: 0.45rem; }
-    .hero-compare-item::before { flex-shrink: 0; font-size: 0.7rem; margin-top: 0.1rem; }
-    .hero-compare-item.bad { color: var(--text-secondary); }
-    .hero-compare-item.bad::before { content: '✕'; color: var(--text-dim); }
-    .hero-compare-item.good { color: var(--accent); font-weight: 600; }
-    .hero-compare-item.good::before { content: '✓'; color: var(--accent); }
 
     /* ─── PROCESS (B) ─── */
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
@@ -684,21 +703,6 @@ const fmtDate = (d: Date) =>
       .hero-split-right { display: none; }
     }
 
-    /* ─── HERO EYEBROW: terminal prompt ─── */
-    .hero-eyebrow {
-      font-family: 'SF Mono','Fira Code','Consolas',monospace;
-      font-size: 0.72rem; letter-spacing: 0.04em;
-      text-transform: none; font-weight: 400;
-      color: var(--text-secondary);
-    }
-    .hero-eyebrow-prompt { color: #7b96ff; font-weight: 700; margin-right: 0.5rem; }
-    .hero-eyebrow-cursor {
-      display: inline-block; width: 7px; height: 0.9em;
-      background: var(--accent); vertical-align: text-bottom; margin-left: 3px;
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
     /* ─── ANIMATED GRADIENT: hero accent text ─── */
     .hero-title .accent {
       background: linear-gradient(270deg, #1a3fbf 0%, #5577ff 35%, #8aa4ff 60%, #1a3fbf 100%);
@@ -709,36 +713,25 @@ const fmtDate = (d: Date) =>
     }
     @keyframes accentFlow { 0%{background-position:0% center} 100%{background-position:300% center} }
 
-    /* ─── TERMINAL WINDOW ─── */
-    .terminal-window {
-      background: #0d0d18;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.09);
-      overflow: hidden;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.04),
-                  inset 0 1px 0 rgba(255,255,255,0.06);
-      font-family: 'SF Mono','Fira Code','Consolas',monospace;
-      font-size: 0.76rem; line-height: 1.9;
+    /* ─── HERO FACTS（罫線ベースの実績パネル） ─── */
+    .hero-facts { opacity: 0; transform: translateY(12px); animation: fadeUp 0.8s 0.9s var(--ease) forwards; }
+    .hero-facts-nums {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
     }
-    .terminal-bar {
-      background: rgba(255,255,255,0.06);
-      padding: 10px 16px; display: flex; align-items: center; gap: 6px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+    .hf-cell { padding: 1.6rem 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .hf-cell + .hf-cell { border-left: 1px solid var(--border-light); }
+    .hf-val {
+      font-family: var(--font-en); font-weight: 600;
+      font-size: clamp(2rem, 3.2vw, 2.9rem); line-height: 1; letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums; color: var(--text-primary);
     }
-    .term-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
-    .term-dot-r { background: #ff5f57; } .term-dot-y { background: #febc2e; } .term-dot-g { background: #28c840; }
-    .terminal-title { flex: 1; text-align: center; font-size: 0.62rem; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; }
-    .terminal-body { padding: 18px 22px; min-height: 180px; }
-    .term-line { color: rgba(255,255,255,0.7); display: block; min-height: 1.9em; }
-    .term-prompt { color: #7b96ff; }
-    .term-cmd { color: #fff; font-weight: 500; }
-    .term-key { color: #febc2e; }
-    .term-ok { color: #28c840; }
-    .term-dim { color: rgba(255,255,255,0.28); }
-    .term-blink {
-      display: inline-block; width: 7px; height: 0.85em;
-      background: #7b96ff; vertical-align: text-bottom;
-      animation: blink 1s step-end infinite; margin-left: 2px;
+    .hf-val small { font-size: 0.42em; font-weight: 500; letter-spacing: 0.04em; margin-left: 2px; color: var(--text-secondary); }
+    .hf-label { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--text-dim); }
+    .hero-facts-list { list-style: none; margin: 0; padding: 0; }
+    .hero-facts-list li {
+      padding: 1rem 0.2rem; border-bottom: 1px solid var(--border-light);
+      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; color: var(--text-secondary);
     }
 
     /* ─── SHIMMER on primary button ─── */
@@ -808,13 +801,6 @@ const fmtDate = (d: Date) =>
     }
     @keyframes ctaPulse { 0%{transform:scale(1);opacity:0.3} 100%{transform:scale(1.5);opacity:0} }
 
-    /* ─── GRADIENT BORDER on hero-compare ZetaX col ─── */
-    .hero-compare-col:last-child {
-      background: linear-gradient(var(--bg),var(--bg)) padding-box,
-                  linear-gradient(135deg,var(--accent),#7b96ff) border-box;
-      border: 1.5px solid transparent !important;
-    }
-
     /* ─── PROCESS STEP ─── */
     .process-step { transition: background 0.2s; }
     .process-step:hover { background: #f9faff; }
@@ -848,11 +834,11 @@ const fmtDate = (d: Date) =>
        PRO UPGRADE v2 — Typography & Interaction
     ══════════════════════════════════════════ */
 
-    /* 1. Hero headline: dramatically larger, editorial weight */
+    /* 1. Hero headline: 和文2行が列幅(約494px)に収まる上限。負の字間は和文に不向きなので廃止 */
     .hero-title {
-      font-size: clamp(2.6rem, 4.4vw, 4.6rem) !important;
-      letter-spacing: -0.03em;
-      line-height: 1.14 !important;
+      font-size: clamp(2rem, 2.9vw, 2.6rem) !important;
+      letter-spacing: 0.02em;
+      line-height: 1.42 !important;
       font-weight: 700;
     }
     .hero-title-sub {
@@ -899,19 +885,6 @@ const fmtDate = (d: Date) =>
     /* 6. Why achieve bar: bigger */
     .why-achieve-num { font-size: 2.6rem !important; }
     .why-achieve-label { font-size: 0.78rem !important; }
-
-    /* 7. Terminal: deeper shadow + ambient glow */
-    .terminal-window {
-      box-shadow: 0 40px 100px rgba(0,0,0,0.28),
-                  0 0 0 1px rgba(255,255,255,0.06),
-                  inset 0 1px 0 rgba(255,255,255,0.08),
-                  0 0 120px rgba(26,63,191,0.08) !important;
-    }
-
-    /* 8. Hero compare: ZetaX col more dramatic */
-    .hero-compare-col:last-child {
-      box-shadow: 0 8px 48px rgba(26,63,191,0.18) !important;
-    }
 
     /* 9. Section sub: slightly bigger */
     .section-sub { font-size: 0.98rem !important; max-width: 600px !important; }
@@ -1001,6 +974,30 @@ const fmtDate = (d: Date) =>
 </head>
 
 <body>
+
+  <!-- INTRO -->
+  <div id="zx-intro" aria-hidden="true">
+    <div class="zxi-rule"></div>
+    <div class="zxi-mark">ZETA<span>X</span></div>
+  </div>
+  <script>
+    // INTRO staging: 縦罫 → 題字 → 幕明け。head の zx-hold ゲートと対で動く。
+    const zxIntro = document.getElementById("zx-intro");
+    if (zxIntro && document.documentElement.classList.contains("zx-hold")) {
+      requestAnimationFrame(() => {
+        zxIntro.classList.add("zxi-s1");                       // 縦罫が引かれる
+        setTimeout(() => zxIntro.classList.add("zxi-s2"), 380); // 題字が刷り上がる
+        setTimeout(() => {
+          zxIntro.classList.add("zxi-done");                    // 幕が明ける
+          document.documentElement.classList.remove("zx-hold"); // ヒーローの fadeUp 再生開始
+        }, 1150);
+        setTimeout(() => zxIntro.remove(), 1700);
+      });
+      try { sessionStorage.setItem("zxIntroSeen", "1"); } catch (e) { /* noop */ }
+    } else if (zxIntro) {
+      zxIntro.remove();
+    }
+  </script>
 
   <!-- CURSOR -->
   <div class="cursor-dot" id="cursor-dot"></div>
@@ -1093,11 +1090,11 @@ const fmtDate = (d: Date) =>
 
       <!-- LEFT: text -->
       <div class="hero-split-left">
-        <p class="hero-eyebrow"><span class="hero-eyebrow-prompt">$</span> zetax --mode ai-native<span class="hero-eyebrow-cursor"></span></p>
+        <p class="hero-eyebrow">AI &amp; Engineering — Tokyo</p>
         <h1 class="hero-title">
-          <span data-ja="スピード感と丁寧さを兼ね備えた、<span class='accent'>AI Nativeコンサルエンジニアの集団。</span>" data-en="Speed and thoroughness, united. <span class='accent'>AI Native Consulting Engineers.</span>">スピード感と丁寧さを兼ね備えた、<span class="accent">AI Nativeコンサルエンジニアの集団。</span></span>
+          <span data-ja="スピードと丁寧さを、<br>兼ね備えた<span class='accent'>技術者集団</span>。" data-en="Fast and thorough.<br>An <span class='accent'>engineering team</span> built for both.">スピードと丁寧さを、<br>兼ね備えた<span class="accent">技術者集団</span>。</span>
         </h1>
-        <p class="hero-title-sub" data-ja="東京大学・東京工業大学出身エンジニアが完全内製で、超上流から下流まで一気通貫でサポートします。地方の中小企業から東証プライム上場企業まで、幅広い規模・業種の支援実績があります。" data-en="Engineers from the University of Tokyo and Tokyo Tech. 100% in-house, end-to-end. Proven track record from local SMEs to TSE Prime-listed companies.">東京大学・東京工業大学出身エンジニアが完全内製で、超上流から下流まで<span class="grad-text">一気通貫</span>でサポートします。地方の中小企業から東証プライム上場企業まで、幅広い規模・業種の支援実績があります。</p>
+        <p class="hero-title-sub" data-ja="東京大学・東京工業大学出身のエンジニアが、戦略から実装・保守まで完全内製で担当。地方の中小企業から東証プライム上場企業まで、10業種・25社以上の支援実績。" data-en="Engineers from UTokyo and Tokyo Tech, covering strategy through implementation and maintenance — all in-house. 25+ clients across 10 industries, from local SMEs to TSE Prime-listed companies.">東京大学・東京工業大学出身のエンジニアが、戦略から実装・保守まで完全内製で担当。地方の中小企業から東証プライム上場企業まで、10業種・25社以上の支援実績。</p>
         <div class="hero-actions">
           <a href="/services/" class="btn-primary" data-ja="サービスを見る" data-en="Our Services">サービスを見る</a>
           <a href="#contact" class="btn-outline" data-ja="無料相談する" data-en="Free Consultation">無料相談する</a>
@@ -1112,34 +1109,28 @@ const fmtDate = (d: Date) =>
         </div>
       </div>
 
-      <!-- RIGHT: terminal + compare -->
+      <!-- RIGHT: facts -->
       <div class="hero-split-right">
-        <div class="terminal-window" id="hero-terminal" aria-hidden="true">
-          <div class="terminal-bar">
-            <span class="term-dot term-dot-r"></span>
-            <span class="term-dot term-dot-y"></span>
-            <span class="term-dot term-dot-g"></span>
-            <span class="terminal-title">zetax@production ~ </span>
+        <div class="hero-facts">
+          <div class="hero-facts-nums">
+            <div class="hf-cell">
+              <span class="hf-val">25<small data-ja="社+" data-en="+">社+</small></span>
+              <span class="hf-label" data-ja="支援実績" data-en="Clients">支援実績</span>
+            </div>
+            <div class="hf-cell">
+              <span class="hf-val">10<small data-ja="業種" data-en="industries">業種</small></span>
+              <span class="hf-label" data-ja="製造業から金融まで" data-en="Manufacturing to finance">製造業から金融まで</span>
+            </div>
+            <div class="hf-cell">
+              <span class="hf-val">100<small>%</small></span>
+              <span class="hf-label" data-ja="内製率" data-en="In-house">内製率</span>
+            </div>
           </div>
-          <div class="terminal-body" id="terminal-body"></div>
-        </div>
-
-        <div class="hero-compare">
-          <div class="hero-compare-col">
-            <p class="hero-compare-label" data-ja="従来の開発会社" data-en="Traditional Firms">従来の開発会社</p>
-            <ul class="hero-compare-list">
-              <li class="hero-compare-item bad" data-ja="要件定義3ヶ月 → 開発6ヶ月" data-en="3 months requirements → 6 months dev">要件定義3ヶ月 → 開発6ヶ月</li>
-              <li class="hero-compare-item bad" data-ja="納品後は追加発注" data-en="New contract for every fix">納品後は追加発注</li>
-            </ul>
-          </div>
-          <div class="hero-compare-vs">VS</div>
-          <div class="hero-compare-col">
-            <p class="hero-compare-label">ZetaX</p>
-            <ul class="hero-compare-list">
-              <li class="hero-compare-item good" data-ja="初日にプロトタイプ提示" data-en="Prototype on Day 1">初日にプロトタイプ提示</li>
-              <li class="hero-compare-item good" data-ja="納品後も継続サポート" data-en="Continuous support after launch">納品後も継続サポート</li>
-            </ul>
-          </div>
+          <ul class="hero-facts-list">
+            <li data-ja="初日にプロトタイプ提示" data-en="Prototype on Day 1">初日にプロトタイプ提示</li>
+            <li data-ja="納品後も、現場に通って保守・改善" data-en="On-site support after launch">納品後も、現場に通って保守・改善</li>
+            <li data-ja="都内大手銀行へのセキュリティ実績" data-en="Security work for major Tokyo banks">都内大手銀行へのセキュリティ実績</li>
+          </ul>
         </div>
       </div>
 
@@ -2111,40 +2102,6 @@ const fmtDate = (d: Date) =>
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); charObserver.unobserve(e.target); } });
     }, { threshold: 0.3 });
     document.querySelectorAll('.char-stagger').forEach(el => charObserver.observe(el));
-
-    // ─── TERMINAL TYPEWRITER ───
-    (function () {
-      const body = document.getElementById('terminal-body');
-      if (!body) return;
-      const lines = [
-        { html: '<span class="term-prompt">$</span> <span class="term-cmd">zetax deploy</span> <span class="term-key">--stack</span> ai-native', pause: 700 },
-        { html: '<span class="term-dim">›</span> Loading team <span class="term-dim">UTokyo / Tokyo Tech</span>... <span class="term-ok">✓</span>', pause: 500 },
-        { html: '<span class="term-dim">›</span> Prototype ready <span class="term-dim">Day 1</span>... <span class="term-ok">✓</span>', pause: 500 },
-        { html: '<span class="term-dim">›</span> Security-by-design <span class="term-dim">enabled</span>... <span class="term-ok">✓</span>', pause: 500 },
-        { html: '<span class="term-dim">›</span> HW <span class="term-key">×</span> SW stack <span class="term-dim">initialized</span>... <span class="term-ok">✓</span>', pause: 500 },
-        { html: '<span class="term-dim">›</span> 25+ clients deployed <span class="term-dim">across 10 industries</span>... <span class="term-ok">✓</span>', pause: 700 },
-        { html: '<span class="term-prompt">$</span> <span class="term-blink"></span>', pause: 0 },
-      ];
-      let li = 0;
-      function showLine() {
-        if (li >= lines.length) return;
-        const div = document.createElement('p');
-        div.className = 'term-line';
-        div.innerHTML = lines[li].html;
-        div.style.opacity = '0';
-        div.style.transform = 'translateY(4px)';
-        div.style.transition = 'opacity 0.3s, transform 0.3s';
-        body.appendChild(div);
-        requestAnimationFrame(() => { div.style.opacity = '1'; div.style.transform = 'none'; });
-        li++;
-        if (li < lines.length) setTimeout(showLine, lines[li - 1].pause);
-      }
-      // Start when in view
-      const io = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) { io.disconnect(); setTimeout(showLine, 600); }
-      }, { threshold: 0.3 });
-      io.observe(body);
-    })();
 
     // ─── SPOTLIGHT on tilt-cards ───
     (function () {
