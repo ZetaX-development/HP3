@@ -1832,7 +1832,7 @@ const fmtDate = (d: Date) =>
         </div>
 
         <div class="contact-form reveal d1">
-          <form id="contactForm" onsubmit="submitForm(event)">
+          <form id="contactForm">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="name"><span data-ja="お名前" data-en="Name">お名前</span><span class="req">*</span></label>
@@ -1987,6 +1987,10 @@ const fmtDate = (d: Date) =>
         btn.disabled = false;
       }
     }
+    // Wire up the submit handler. The <script> is bundled by Astro as an ES
+    // module, so submitForm is NOT global — an inline onsubmit="" attribute
+    // can't reach it (it threw ReferenceError and the form did a native reload).
+    document.getElementById('contactForm')?.addEventListener('submit', submitForm);
 
     // ANCHOR SCROLL
     document.querySelectorAll('a[href^="#"]').forEach(a => {
