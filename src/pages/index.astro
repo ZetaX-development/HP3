@@ -200,13 +200,27 @@ const fmtDate = (d: Date) =>
     @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
     /* ─── MEDIA BAR ─── */
-    .media-bar { padding: 32px 0; border-bottom: 1px solid var(--border); background: var(--bg); }
-    .media-bar .container { display: flex; align-items: center; gap: 3rem; }
-    .media-label { font-family: var(--font-en); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; flex-shrink: 0; }
-    .media-logos { display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+    .media-showcase { padding: 56px 0 48px; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .media-label { font-family: var(--font-en); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
+    .media-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.4rem; }
+    .media-card { display: flex; flex-direction: column; border: 1px solid var(--border); background: var(--bg); transition: border-color 0.25s; }
+    .media-card:hover { border-color: var(--accent); }
+    .media-card-photo { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--bg-subtle); border-bottom: 1px solid var(--border-light); }
+    .media-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s var(--ease); }
+    .media-card:hover .media-card-photo img { transform: scale(1.03); }
+    /* 写真ファイル未設置時のフォールバック（media/README.md 参照） */
+    .media-card-plate { display: none; position: absolute; inset: 0; align-items: center; justify-content: center; font-family: var(--font-en); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.18em; color: var(--text-dim); }
+    .media-card-plate em { font-style: normal; color: var(--accent); margin-left: 0.4em; }
+    .media-card.noimg .media-card-photo img { display: none; }
+    .media-card.noimg .media-card-plate { display: flex; }
+    .media-card-body { padding: 1.1rem 1.3rem 1.3rem; }
+    .media-card-date { font-family: var(--font-en); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.14em; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+    .media-card-title { font-size: 0.84rem; font-weight: 500; line-height: 1.7; color: var(--text-primary); margin-top: 0.45rem; }
+    .media-logos-row { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; margin-top: 2rem; }
+    .media-logos-row .media-label { font-size: 0.6rem; }
     .media-logo-item { display: flex; align-items: center; opacity: 0.45; transition: opacity 0.2s; }
     .media-logo-item:hover { opacity: 0.75; }
-    .media-logo-divider { width: 1px; height: 24px; background: var(--border); }
+    @media (max-width: 860px) { .media-cards { grid-template-columns: 1fr; } }
 
     /* ─── SECTION BASE ─── */
     .section { padding: 100px 0; }
@@ -965,11 +979,46 @@ const fmtDate = (d: Date) =>
     <div class="hero-scroll">Scroll</div>
   </section>
 
-  <!-- MEDIA BAR -->
-  <div class="media-bar">
+  <!-- MEDIA & RECOGNITION -->
+  <div class="media-showcase">
     <div class="container">
-      <p class="media-label" data-ja="メディア掲載実績" data-en="Media Coverage">メディア掲載実績</p>
-      <div class="media-logos">
+      <p class="media-label" data-ja="メディア掲載・登壇実績" data-en="Media & Recognition">メディア掲載・登壇実績</p>
+
+      <div class="media-cards">
+        <a class="media-card" href="/news/ivs-launchpad-2026-finalist/">
+          <div class="media-card-photo">
+            <img src="/media/ivs-launchpad.jpg" alt="IVS LaunchPad 2026 登壇の様子" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
+            <span class="media-card-plate">IVS <em>LaunchPad</em></span>
+          </div>
+          <div class="media-card-body">
+            <time class="media-card-date">2026.06</time>
+            <p class="media-card-title" data-ja="「IVS LaunchPad 2026」ファイナリスト15社に選出" data-en="Selected as one of 15 finalists at IVS LaunchPad 2026">「IVS LaunchPad 2026」ファイナリスト15社に選出</p>
+          </div>
+        </a>
+        <a class="media-card" href="/news/nttdata-hardware-hackathon-award/">
+          <div class="media-card-photo">
+            <img src="/media/nttdata-hackathon.jpg" alt="NTT DATA ハードウェアハッカソン授賞式" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
+            <span class="media-card-plate">NTT DATA <em>Hackathon</em></span>
+          </div>
+          <div class="media-card-body">
+            <time class="media-card-date">2026.03</time>
+            <p class="media-card-title" data-ja="NTT DATA ハードウェアハッカソンで受賞" data-en="Award winner at the NTT DATA hardware hackathon">NTT DATA ハードウェアハッカソンで受賞</p>
+          </div>
+        </a>
+        <a class="media-card" href="/news/dsf-talk/">
+          <div class="media-card-photo">
+            <img src="/media/dsf-talk.jpg" alt="DSF 登壇の様子" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
+            <span class="media-card-plate">DSF <em>2026</em></span>
+          </div>
+          <div class="media-card-body">
+            <time class="media-card-date">2026.06</time>
+            <p class="media-card-title" data-ja="「DSF」に代表 佐藤・柳澤と杉浦が登壇" data-en="Co-CEOs Sato & Yanagisawa and Sugiura spoke at DSF">「DSF」に代表 佐藤・柳澤と杉浦が登壇</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="media-logos-row">
+        <p class="media-label" data-ja="掲載メディア" data-en="As seen in">掲載メディア</p>
         <!-- 日本経済新聞 -->
         <div class="media-logo-item">
           <svg height="28" viewBox="0 0 160 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="日本経済新聞">
@@ -978,7 +1027,6 @@ const fmtDate = (d: Date) =>
             <text x="44" y="20" font-family="'Noto Sans JP', sans-serif" font-weight="700" font-size="13" fill="#1a1a1a" letter-spacing="1">日本経済新聞</text>
           </svg>
         </div>
-        <div class="media-logo-divider"></div>
         <!-- 毎日新聞 -->
         <div class="media-logo-item">
           <svg height="28" viewBox="0 0 148 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="毎日新聞">
@@ -987,7 +1035,6 @@ const fmtDate = (d: Date) =>
             <text x="44" y="20" font-family="'Noto Sans JP', sans-serif" font-weight="700" font-size="13" fill="#1a1a1a" letter-spacing="1">毎日新聞</text>
           </svg>
         </div>
-        <div class="media-logo-divider"></div>
         <!-- VOIX life -->
         <div class="media-logo-item">
           <svg height="28" viewBox="0 0 130 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="VOIX life">
@@ -995,7 +1042,6 @@ const fmtDate = (d: Date) =>
             <text x="62" y="20" font-family="'Montserrat', 'Inter', sans-serif" font-weight="400" font-size="14" fill="#888888" letter-spacing="1">life</text>
           </svg>
         </div>
-        <div class="media-logo-divider"></div>
         <!-- SushiTech Tokyo -->
         <div class="media-logo-item">
           <svg height="28" viewBox="0 0 170 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SushiTech Tokyo">

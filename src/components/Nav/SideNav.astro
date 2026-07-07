@@ -1,0 +1,167 @@
+---
+const sections = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About Us' },
+  { id: 'mvv', label: 'MVV' },
+  { id: 'prc', label: 'PRC Technology' },
+  { id: 'team', label: 'Team' },
+  { id: 'cases', label: '導入事例' },
+  { id: 'recruitment', label: 'Recruitment' },
+];
+---
+
+<nav class="side-nav">
+  <ul class="nav-list">
+    {sections.map((section) => (
+      <li class="nav-item">
+        <a href={`#${section.id}`} class="nav-link">
+          {section.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  function initSideNav() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('[id]');
+    
+    // Smooth scroll
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href')?.substring(1);
+        const targetSection = document.getElementById(targetId || '');
+        
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+    
+    // Active state on scroll
+    function updateActiveLink() {
+      let current = '';
+      
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (window.scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id') || '';
+        }
+      });
+      
+      navLinks.forEach((link) => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    updateActiveLink();
+  }
+  
+  // Initialize on page load
+  initSideNav();
+  
+  // Reinitialize after view transitions
+  document.addEventListener('astro:after-swap', initSideNav);
+</script>
+
+<style>
+  .side-nav {
+    position: fixed;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    transition: opacity 0.3s ease;
+  }
+
+  @media (max-width: 1024px) {
+    .side-nav {
+      display: none;
+    }
+  }
+
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link {
+    display: block;
+    color: var(--nav-color, rgba(255, 255, 255, 0.6));
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--dot-color, rgba(255, 255, 255, 0.3));
+    transition: all 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--nav-hover-color, rgba(255, 255, 255, 0.9));
+  }
+
+  .nav-link:hover::before {
+    width: 12px;
+    background: var(--dot-hover-color, rgba(255, 255, 255, 0.7));
+  }
+
+  .nav-link.active {
+    color: var(--nav-active-color, #ffffff);
+    font-weight: 700;
+  }
+
+  .nav-link.active::before {
+    width: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 0 12px rgba(102, 126, 234, 0.6);
+  }
+
+  :global(.dark) .nav-link {
+    --nav-color: rgba(255, 255, 255, 0.6);
+    --nav-hover-color: rgba(255, 255, 255, 0.9);
+    --nav-active-color: #ffffff;
+    --dot-color: rgba(255, 255, 255, 0.3);
+    --dot-hover-color: rgba(255, 255, 255, 0.7);
+  }
+
+  :global(body:not(.dark)) .nav-link {
+    --nav-color: rgba(0, 0, 0, 0.5);
+    --nav-hover-color: rgba(0, 0, 0, 0.8);
+    --nav-active-color: #000000;
+    --dot-color: rgba(0, 0, 0, 0.2);
+    --dot-hover-color: rgba(0, 0, 0, 0.5);
+  }
+</style>

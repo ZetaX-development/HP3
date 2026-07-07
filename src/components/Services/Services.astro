@@ -1,0 +1,191 @@
+---
+---
+
+<section class="services-section">
+  <div class="container mx-auto px-4">
+    <h2 class="section-title" data-mos="fade-down">
+      導入事例
+    </h2>
+    
+    <!-- 導入事例画像 -->
+    <div class="title-image-container" data-mos="fade-up">
+      <img src="/other/image13.png" alt="導入事例" />
+    </div>
+    
+    <div class="services-grid">
+      <!-- PRC Service -->
+      <div class="service-card" data-mos="fade-up">
+        <div class="card-inner">
+          <h3 class="service-title">Photonics Reservoir Computingの社会実装</h3>
+          <div class="service-content">
+            <p>
+              東京科学大学の研究室と連携し、世界最先端技術である
+              Photonics Reservoir Computingの半導体の社会実装を研究している。
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- DX Service -->
+      <div class="service-card" data-mos="fade-up">
+        <div class="card-inner">
+          <h3 class="service-title">AI技術を用いたDX支援</h3>
+          <div class="service-content">
+            <p>
+              企業独自の課題に合わせたオーダーメイドソリューションの提供により
+              業務の効率化、販売促進を進める。<br/>
+              実務経験豊富な最先端技術を研究しているメンバーが開発。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    padding: 5rem 0;
+    background: var(--services-bg, linear-gradient(180deg, rgba(240, 244, 248, 1) 0%, rgba(255, 255, 255, 1) 100%));
+  }
+
+  :global(.dark) .services-section {
+    --services-bg: linear-gradient(180deg, rgba(15, 23, 42, 1) 0%, rgba(30, 41, 59, 1) 100%);
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    line-height: 1.3;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+  }
+
+  .title-image-container {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .title-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 1rem;
+    box-shadow: 0 8px 30px var(--img-shadow, rgba(0, 0, 0, 0.1));
+  }
+
+  :global(.dark) .title-image-container img {
+    --img-shadow: rgba(0, 0, 0, 0.4);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .service-card {
+    position: relative;
+    border-radius: 1.5rem;
+    background: var(--card-bg, #f3f4f6);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--card-border, #d1d5db);
+    padding: 2.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px var(--card-shadow, rgba(0, 0, 0, 0.08));
+  }
+
+  :global(.dark) .service-card {
+    --card-bg: rgba(30, 41, 59, 0.6);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --card-shadow: rgba(0, 0, 0, 0.3);
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(102, 126, 234, 0.5);
+    box-shadow: 
+      0 20px 40px var(--hover-shadow, rgba(102, 126, 234, 0.15)),
+      0 0 60px var(--hover-glow, rgba(118, 75, 162, 0.1));
+  }
+
+  :global(.dark) .service-card:hover {
+    --hover-shadow: rgba(102, 126, 234, 0.2);
+    --hover-glow: rgba(118, 75, 162, 0.15);
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  .service-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color, #334155);
+  }
+
+  :global(.dark) .service-content {
+    --text-color: #e2e8f0;
+  }
+
+  .service-content p {
+    margin: 0.75rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .services-section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .service-card {
+      padding: 2rem;
+    }
+
+    .service-title {
+      font-size: 1.25rem;
+    }
+
+    .service-content {
+      font-size: 1rem;
+    }
+  }
+</style>
