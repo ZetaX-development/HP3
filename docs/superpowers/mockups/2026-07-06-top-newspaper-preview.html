@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZETAX — 新聞・版組 デザインプレビュー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F6F2;
+  --ink:#141414;
+  --ink-invert:#0E0E0E;
+  --vermilion:#1A3FBF;
+  --rule-strong:rgba(20,20,20,.40);
+  --rule-mid:rgba(20,20,20,.18);
+  --rule-faint:rgba(20,20,20,.08);
+  --rule-strong-inv:rgba(247,246,242,.40);
+  --rule-mid-inv:rgba(247,246,242,.18);
+  --font-mincho:"Shippori Mincho B1",serif;
+  --font-gothic:"Noto Sans JP",sans-serif;
+  --font-latin:"Inter",sans-serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-in:cubic-bezier(.7,0,.84,0);
+  --gutter:clamp(20px,5vw,80px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--font-gothic);font-weight:300;font-size:15px;
+  letter-spacing:.04em;line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--vermilion);color:var(--paper)}
+a{color:inherit;text-decoration:none;cursor:pointer}
+.container{max-width:1280px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter)}
+
+/* ───────── 罫線（基調動作: スクロールで引かれる） ───────── */
+.rule-h{height:1px;background:var(--rule-mid);transform:scaleX(0);transform-origin:left center;transition:transform 1.1s var(--ease-out)}
+.rule-h.strong{background:var(--rule-strong)}
+.rule-h.faint{background:var(--rule-faint)}
+.rule-h.drawn{transform:scaleX(1)}
+.rule-v{width:1px;background:var(--rule-mid);transform:scaleY(0);transform-origin:center top;transition:transform 1.1s var(--ease-out)}
+.rule-v.drawn{transform:scaleY(1)}
+
+/* ───────── ローディング ───────── */
+#loader{position:fixed;inset:0;background:var(--paper);z-index:100;display:flex;align-items:center;justify-content:center;transition:opacity .45s var(--ease-in),visibility .45s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .l-rule{position:absolute;left:50%;top:0;width:1px;height:100%;background:var(--rule-strong);transform:scaleY(0);transform-origin:center top}
+#loader.s1 .l-rule{transform:scaleY(1);transition:transform .4s var(--ease-out)}
+#loader .l-mark{font-family:var(--font-mincho);font-weight:700;font-size:clamp(2.4rem,6vw,4.2rem);letter-spacing:.34em;padding-left:.34em;background:var(--paper);padding-top:.2em;padding-bottom:.2em;clip-path:inset(100% 0 0 0)}
+#loader.s2 .l-mark{clip-path:inset(0 0 0 0);transition:clip-path .5s var(--ease-out)}
+
+/* ───────── 題字バー ───────── */
+.masthead{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--rule-strong)}
+.masthead .container{display:flex;align-items:baseline;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+.m-logo{font-family:var(--font-mincho);font-weight:700;font-size:1.3rem;letter-spacing:.3em}
+.m-meta{font-family:var(--font-latin);font-size:.66rem;letter-spacing:.18em;display:flex;gap:2.2em;color:var(--ink)}
+.m-meta .ed{color:var(--vermilion)}
+@media(max-width:640px){.m-meta span:nth-child(2){display:none}}
+
+/* ───────── ① 一面（ヒーロー） ───────── */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:clamp(2rem,6vw,7rem);align-items:center}
+.hero h1{
+  font-family:var(--font-mincho);font-weight:700;
+  font-size:clamp(2.2rem,5.4vw,4.6rem);line-height:1.62;letter-spacing:.12em;
+}
+.hero .lede{margin-top:2.6rem;font-size:.92rem;letter-spacing:.08em;color:rgba(20,20,20,.72);max-width:34em}
+.hashira{
+  writing-mode:vertical-rl;font-family:var(--font-mincho);font-weight:400;
+  font-size:clamp(.95rem,1.5vw,1.2rem);letter-spacing:.42em;line-height:2.4;
+  border-left:1px solid var(--rule-mid);border-right:1px solid var(--rule-mid);
+  padding:1.4em .9em;height:min(58vh,460px);
+}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr}.hashira{display:none}}
+.hero-foot{margin-top:4.2rem}
+.hero-links{display:flex;gap:3.5em;padding-top:1.4rem;font-size:.86rem;letter-spacing:.14em;font-weight:400}
+.btn-ink{display:inline-block;background:var(--ink);color:var(--paper);padding:1em 2.6em;letter-spacing:.2em;font-size:.84rem;transition:background .25s}
+.btn-ink:hover{background:var(--vermilion)}
+.u-link{position:relative;padding-bottom:.5em}
+.u-link::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left center;transition:transform .45s var(--ease-out)}
+.u-link:hover{color:var(--vermilion)}
+.u-link:hover::after{transform:scaleX(1);background:var(--vermilion)}
+
+/* 字起こし */
+.chars .ch{display:inline-block;transform:translateY(.65em);opacity:0;transition:transform .8s var(--ease-out),opacity .8s var(--ease-out)}
+.chars.on .ch{transform:translateY(0);opacity:1}
+
+/* ───────── ② 数字の帯 ───────── */
+.numbers{padding:5.5rem 0 6rem}
+.num-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.num-cell{padding:2.6rem 2rem 2.2rem;position:relative}
+.num-cell+.num-cell{border-left:1px solid var(--rule-mid)}
+.num-val{font-family:var(--font-latin);font-weight:600;font-variant-numeric:tabular-nums;font-size:clamp(3rem,7vw,5.6rem);letter-spacing:-.02em;line-height:1}
+.num-val small{font-size:.42em;font-weight:400;letter-spacing:.06em;margin-left:.1em}
+.num-label{margin-top:1.1rem;font-size:.78rem;letter-spacing:.22em;color:rgba(20,20,20,.6)}
+@media(max-width:640px){.num-grid{grid-template-columns:1fr}.num-cell+.num-cell{border-left:0;border-top:1px solid var(--rule-mid)}}
+
+/* ───────── セクション共通 ───────── */
+.sec{padding:7.5rem 0}
+.sec-label{font-family:var(--font-latin);font-size:.66rem;font-weight:600;letter-spacing:.3em;color:var(--vermilion);display:block;margin-bottom:1.2rem}
+.sec-title{font-family:var(--font-mincho);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.7rem);letter-spacing:.14em;line-height:1.7}
+
+/* ───────── ③ 社説 ───────── */
+.claims{margin-top:4.4rem}
+.claim{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.6rem,4vw,4rem);align-items:baseline;padding:2.6rem 0}
+.claim-no{font-family:var(--font-latin);font-size:.72rem;font-weight:600;letter-spacing:.2em;color:rgba(20,20,20,.45)}
+.claim-txt{font-family:var(--font-mincho);font-weight:400;font-size:clamp(1.25rem,2.4vw,1.9rem);letter-spacing:.1em;line-height:1.9}
+
+/* ───────── ④ 事業 ───────── */
+.biz-lede{font-family:var(--font-mincho);font-size:clamp(1.05rem,1.8vw,1.35rem);letter-spacing:.12em;margin-top:2.4rem}
+.biz-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:4.2rem;border:1px solid var(--rule-mid)}
+.biz{padding:3.2rem 2.8rem 3rem;position:relative;outline:1px solid transparent;outline-offset:-1px;transition:outline-color .3s}
+.biz:nth-child(2){border-left:1px solid var(--rule-mid)}
+.biz:nth-child(3){border-top:1px solid var(--rule-mid)}
+.biz:nth-child(4){border-top:1px solid var(--rule-mid);border-left:1px solid var(--rule-mid)}
+.biz:hover{outline:3px solid var(--ink)}
+.biz-no{font-family:var(--font-latin);font-weight:600;font-size:.7rem;letter-spacing:.24em;color:rgba(20,20,20,.45);transition:color .3s}
+.biz:hover .biz-no{color:var(--vermilion)}
+.biz-name{font-family:var(--font-latin);font-weight:600;font-size:1.28rem;letter-spacing:.02em;margin-top:1.6rem}
+.biz-ja{font-size:.85rem;letter-spacing:.16em;margin-top:.5rem;color:rgba(20,20,20,.66)}
+@media(max-width:720px){.biz-grid{grid-template-columns:1fr}.biz:nth-child(n+2){border-left:0;border-top:1px solid var(--rule-mid)}}
+
+/* ───────── ⑤ 黒面（刷り重ね） ───────── */
+.press{background:var(--ink-invert);color:var(--paper);clip-path:inset(100% 0 0 0);transition:clip-path 1.2s var(--ease-out)}
+.press.on{clip-path:inset(0 0 0 0)}
+.press .sec-label{color:var(--vermilion);filter:brightness(1.9)}
+.press-inner{display:grid;grid-template-columns:auto 1fr;gap:clamp(3rem,8vw,9rem);align-items:center;padding:9rem 0}
+.press .hashira-b{
+  writing-mode:vertical-rl;font-family:var(--font-mincho);font-weight:700;
+  font-size:clamp(2rem,4.6vw,3.6rem);letter-spacing:.3em;line-height:1.9;
+  border-left:1px solid var(--rule-mid-inv);border-right:1px solid var(--rule-mid-inv);padding:1em .55em;
+}
+.press p{color:rgba(247,246,242,.78);max-width:36em}
+.press .facts{margin-top:3rem;display:flex;flex-direction:column;gap:0}
+.press .fact{display:flex;gap:2.4em;padding:1.15em 0;border-top:1px solid var(--rule-mid-inv);font-size:.86rem;letter-spacing:.1em}
+.press .fact:last-child{border-bottom:1px solid var(--rule-mid-inv)}
+.press .fact b{font-weight:500;min-width:9em;color:rgba(247,246,242,.5);font-family:var(--font-latin);font-size:.7rem;letter-spacing:.22em;padding-top:.35em}
+@media(max-width:720px){.press-inner{grid-template-columns:1fr}.press .hashira-b{writing-mode:horizontal-tb;border:0;border-top:1px solid var(--rule-mid-inv);border-bottom:1px solid var(--rule-mid-inv);padding:.5em 0}}
+
+/* ───────── ⑦ 人物欄 ───────── */
+.people{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:4rem;border-top:1px solid var(--rule-strong)}
+.person{display:grid;grid-template-columns:auto 1fr;gap:2.4rem;padding:3.4rem 2.4rem 3.4rem 0}
+.person+.person{border-left:1px solid var(--rule-mid);padding-left:3rem}
+.p-name{writing-mode:vertical-rl;font-family:var(--font-mincho);font-weight:700;font-size:1.5rem;letter-spacing:.5em;line-height:1}
+.p-bio{font-size:.86rem;line-height:2.1;color:rgba(20,20,20,.75)}
+.p-role{font-family:var(--font-latin);font-size:.64rem;letter-spacing:.26em;color:var(--vermilion);display:block;margin-bottom:1em}
+@media(max-width:760px){.people{grid-template-columns:1fr}.person+.person{border-left:0;border-top:1px solid var(--rule-mid);padding-left:0;padding-top:3rem}}
+
+/* ───────── ⑨ 社告 ───────── */
+.notices{margin-top:3.6rem}
+.notice{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.8rem,5vw,5rem);padding:1.6rem 0;border-top:1px solid var(--rule-mid);align-items:baseline;transition:color .25s}
+.notice:last-child{border-bottom:1px solid var(--rule-mid)}
+.notice time{font-family:var(--font-latin);font-size:.72rem;letter-spacing:.16em;color:rgba(20,20,20,.5);font-variant-numeric:tabular-nums}
+.notice:hover{color:var(--vermilion)}
+
+/* ───────── ⑪ 問い合わせ ───────── */
+.contact{padding:9rem 0;text-align:center}
+.contact .sec-title{font-size:clamp(2rem,4.4vw,3.4rem)}
+.contact p{margin-top:2rem;color:rgba(20,20,20,.66);font-size:.9rem}
+.contact .btn-ink{margin-top:3.2rem}
+
+/* ───────── ⑫ 奥付 ───────── */
+footer{background:var(--ink-invert);color:rgba(247,246,242,.7);padding:4.5rem 0 3rem;font-size:.78rem;letter-spacing:.1em}
+footer .f-grid{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:2rem}
+footer .f-logo{font-family:var(--font-mincho);font-weight:700;font-size:1.1rem;letter-spacing:.3em;color:var(--paper)}
+footer .f-meta{font-family:var(--font-latin);font-size:.62rem;letter-spacing:.2em}
+
+/* ───────── カスタムカーソル ───────── */
+@media(hover:hover) and (pointer:fine){
+  body{cursor:none}
+  a,button{cursor:none}
+  #cursor{position:fixed;z-index:200;pointer-events:none;width:6px;height:6px;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%);transition:width .2s,height .2s,border-radius .2s,background .2s}
+  #cursor.link{width:2px;height:22px;border-radius:0;background:var(--vermilion)}
+  .press-zone #cursor{background:var(--paper)}
+}
+@media(hover:none){#cursor{display:none}}
+
+/* ───────── reduced motion ───────── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .rule-h,.rule-v{transform:none!important}
+  .chars .ch{transform:none;opacity:1}
+  .press{clip-path:none}
+  #loader{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<!-- ローディング -->
+<div id="loader"><div class="l-rule"></div><div class="l-mark">ZETAX</div></div>
+
+<!-- 題字 -->
+<header class="masthead">
+  <div class="container">
+    <div class="m-logo">ZETAX</div>
+    <div class="m-meta"><span>2026.07.06</span><span>東京・渋谷</span><span class="ed">第一版</span></div>
+  </div>
+</header>
+
+<!-- ① 一面 -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1 class="chars">考えるのも、<br>作るのも、<br>同じ人間。</h1>
+      <p class="lede">東京大学・東京工業大学出身のエンジニアが、戦略の立案からコードの一行まで。ZetaXに外注はありません。</p>
+      <div class="hero-foot">
+        <div class="rule-h strong"></div>
+        <div class="hero-links">
+          <a class="btn-ink" href="#contact">まず30分、話しましょう</a>
+          <a class="u-link" href="#biz">事業を見る</a>
+        </div>
+      </div>
+    </div>
+    <div class="hashira" id="hashira">戦略から実装まで、外注なし。</div>
+  </div>
+</section>
+
+<!-- ② 数字の帯 -->
+<section class="numbers">
+  <div class="container">
+    <div class="rule-h strong"></div>
+    <div class="num-grid">
+      <div class="num-cell"><div class="num-val"><span class="count" data-to="25">0</span><small>社+</small></div><div class="num-label">支援実績</div></div>
+      <div class="num-cell"><div class="num-val"><span class="count" data-to="10">0</span><small>業種</small></div><div class="num-label">製造業から金融まで</div></div>
+      <div class="num-cell"><div class="num-val"><span class="count" data-to="100">0</span><small>%</small></div><div class="num-label">内製率</div></div>
+    </div>
+    <div class="rule-h strong"></div>
+  </div>
+</section>
+
+<!-- ③ 社説 -->
+<section class="sec">
+  <div class="container">
+    <span class="sec-label">EDITORIAL</span>
+    <h2 class="sec-title chars">社説: なぜ我々か</h2>
+    <div class="claims">
+      <div class="rule-h"></div>
+      <div class="claim"><span class="claim-no">01</span><p class="claim-txt">東大・東工大出身。AIが母語の世代。</p></div>
+      <div class="rule-h"></div>
+      <div class="claim"><span class="claim-no">02</span><p class="claim-txt">納品して終わりにしない。現場に通う。</p></div>
+      <div class="rule-h"></div>
+      <div class="claim"><span class="claim-no">03</span><p class="claim-txt">青森から福岡まで。製造業から銀行まで。</p></div>
+      <div class="rule-h"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 事業 -->
+<section class="sec" id="biz">
+  <div class="container">
+    <span class="sec-label">FRONT PAGE</span>
+    <h2 class="sec-title chars">一面: 何をやるか</h2>
+    <p class="biz-lede">戦略、実装、保守。全部、同じ手で。</p>
+    <div class="biz-grid">
+      <a class="biz"><span class="biz-no">01</span><div class="biz-name">Zeta Consulting</div><div class="biz-ja">AI/ITコンサル・開発</div></a>
+      <a class="biz"><span class="biz-no">02</span><div class="biz-name">Zeta Shield</div><div class="biz-ja">セキュリティ</div></a>
+      <a class="biz"><span class="biz-no">03</span><div class="biz-name">Zeta Coach</div><div class="biz-ja">AI研修</div></a>
+      <a class="biz"><span class="biz-no">04</span><div class="biz-name">Zeta Edge</div><div class="biz-ja">ハードウェア</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ 黒面 -->
+<section class="press" id="press">
+  <div class="container press-inner">
+    <div class="hashira-b">夜も、守る。</div>
+    <div>
+      <span class="sec-label">SECURITY</span>
+      <p>都内大手銀行のセキュリティコンサルティング。脆弱性診断からポリシー策定、そして量子コンピュータ時代の暗号——耐量子暗号（PQC）の導入まで。</p>
+      <div class="facts">
+        <div class="fact"><b>TRACK RECORD</b><span>都内大手銀行・金融機関への支援実績</span></div>
+        <div class="fact"><b>PQC</b><span>耐量子暗号への移行支援</span></div>
+        <div class="fact"><b>AWARD</b><span>サイバーセキュリティ全国大会 第3位</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ 人物欄 -->
+<section class="sec">
+  <div class="container">
+    <span class="sec-label">PEOPLE</span>
+    <h2 class="sec-title chars">人物欄</h2>
+    <div class="people">
+      <div class="person">
+        <div class="p-name">佐藤</div>
+        <div class="p-bio"><span class="p-role">CO-FOUNDER</span>東京大学工学部。数億円規模の上場企業案件をPMとして統括。都内大手銀行へのセキュリティコンサル実績。サイバーセキュリティ全国大会3位。</div>
+      </div>
+      <div class="person">
+        <div class="p-name">柳澤</div>
+        <div class="p-bio"><span class="p-role">CO-FOUNDER</span>東京大学工学部。VCで投資に携わり、その後AIスタートアップのPMへ。東証プライム上場企業の案件を担当。4カ国語を操る。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑨ 社告 -->
+<section class="sec" style="padding-top:3rem">
+  <div class="container">
+    <span class="sec-label">NOTICES</span>
+    <h2 class="sec-title">社告</h2>
+    <div class="notices">
+      <a class="notice"><time>2026.06.12</time><span>Digital Sales Forum に佐藤・柳澤・杉浦が登壇</span></a>
+      <a class="notice"><time>2026.05.28</time><span>IVS 2026 ピッチコンテスト ファイナリスト選出</span></a>
+      <a class="notice"><time>2026.05.02</time><span>全国ハッカソンにて最優秀賞を受賞</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ⑪ 問い合わせ -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="rule-h strong"></div>
+    <div style="padding:5rem 0 0">
+      <h2 class="sec-title chars">話は、30分から。</h2>
+      <p>整理できていない段階でも構いません。<br>課題を聞かせてください。</p>
+      <a class="btn-ink">30分の相談を申し込む（無料）</a>
+    </div>
+  </div>
+</section>
+
+<!-- ⑫ 奥付 -->
+<footer>
+  <div class="container f-grid">
+    <div class="f-logo">ZETAX</div>
+    <div>東京都渋谷区神南1丁目11−4 FPGリンクス神南 5階</div>
+    <div class="f-meta">© 2026 ZETAX INC. — DESIGN PREVIEW</div>
+  </div>
+</footer>
+
+<script>
+// ───── ローディング ─────
+const loader=document.getElementById('loader');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduced||sessionStorage.getItem('zx-loaded')){loader.remove();}
+else{
+  requestAnimationFrame(()=>{loader.classList.add('s1');
+    setTimeout(()=>loader.classList.add('s2'),380);
+    setTimeout(()=>loader.classList.add('done'),1050);
+    setTimeout(()=>loader.remove(),1600);
+    sessionStorage.setItem('zx-loaded','1');
+  });
+}
+
+// ───── 字起こし: 1文字ずつ span 分割 ─────
+document.querySelectorAll('.chars').forEach(el=>{
+  const walk=node=>{
+    [...node.childNodes].forEach(n=>{
+      if(n.nodeType===3){
+        const frag=document.createDocumentFragment();
+        [...n.textContent].forEach(c=>{
+          if(/\s/.test(c)){frag.append(c);return;}
+          const s=document.createElement('span');s.className='ch';s.textContent=c;frag.append(s);
+        });
+        n.replaceWith(frag);
+      } else if(n.nodeType===1&&n.tagName!=='BR'){walk(n);}
+    });
+  };
+  const label=el.textContent;
+  walk(el);
+  el.setAttribute('aria-label',label);
+  el.querySelectorAll('.ch').forEach((s,i)=>{s.setAttribute('aria-hidden','true');s.style.transitionDelay=(i*38)+'ms';});
+});
+
+// ───── IntersectionObserver: 罫線・字起こし・黒面・数字 ─────
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const t=e.target;
+  if(t.classList.contains('rule-h')||t.classList.contains('rule-v'))t.classList.add('drawn');
+  if(t.classList.contains('chars'))t.classList.add('on');
+  if(t.classList.contains('press'))t.classList.add('on');
+  if(t.classList.contains('count'))countUp(t);
+  io.unobserve(t);
+}),{threshold:.25,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rule-h,.rule-v,.chars,.press,.count').forEach(el=>io.observe(el));
+
+// ───── カウントアップ ─────
+function countUp(el){
+  const to=+el.dataset.to,dur=1300,t0=performance.now();
+  const tick=t=>{
+    const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,4);
+    el.textContent=Math.round(to*e);
+    if(p<1)requestAnimationFrame(tick);
+  };
+  if(reduced){el.textContent=to;return;}
+  requestAnimationFrame(tick);
+}
+
+// ───── 柱の逆行（唯一のパララックス） ─────
+const hashira=document.getElementById('hashira');
+if(hashira&&!reduced){
+  addEventListener('scroll',()=>{hashira.style.transform=`translateY(${scrollY*0.06}px)`;},{passive:true});
+}
+
+// ───── カスタムカーソル ─────
+const cur=document.getElementById('cursor');
+if(cur&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+  addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+  document.querySelectorAll('a,button').forEach(a=>{
+    a.addEventListener('mouseenter',()=>cur.classList.add('link'));
+    a.addEventListener('mouseleave',()=>cur.classList.remove('link'));
+  });
+  const press=document.getElementById('press');
+  addEventListener('scroll',()=>{
+    const r=press.getBoundingClientRect();
+    const mid=innerHeight/2;
+    document.body.classList.toggle('press-zone',r.top<mid&&r.bottom>mid);
+  },{passive:true});
+}
+</script>
+</body>
+</html>
