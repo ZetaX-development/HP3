@@ -883,22 +883,12 @@ const fmtDate = (d: Date) =>
             <a href="/hardware" data-ja="Zeta Edge" data-en="Zeta Edge">Zeta Edge</a>
             <div class="nav-dropdown-divider"></div>
             <p class="nav-dropdown-label">Products</p>
-            <a href="#products" data-ja="自社プロダクト" data-en="Our Products">自社プロダクト</a>
             <a href="/factory-hub" data-ja="Factory Hub" data-en="Factory Hub">Factory Hub</a>
           </div>
         </li>
 
-        <!-- 実績 ▾ -->
-        <li>
-          <button class="nav-dropdown-trigger" data-ja="実績" data-en="Results">
-            実績 <span class="nav-dropdown-arrow">▼</span>
-          </button>
-          <div class="nav-dropdown">
-            <p class="nav-dropdown-label">Track Record</p>
-            <a href="#cases" data-ja="業種別支援事例" data-en="Industry Cases">業種別支援事例</a>
-            <a href="#testimonials" data-ja="お客様の声" data-en="Client Voices">お客様の声</a>
-          </div>
-        </li>
+        <!-- 実績 -->
+        <li><a href="#results" data-ja="実績" data-en="Results">実績</a></li>
 
         <!-- 会社 ▾ -->
         <li>
@@ -970,7 +960,7 @@ const fmtDate = (d: Date) =>
   </section>
 
   <!-- MEDIA & RECOGNITION -->
-  <div class="media-showcase">
+  <div class="media-showcase" id="results">
     <div class="container">
       <p class="media-label" data-ja="メディア掲載・登壇実績" data-en="Media & Recognition">メディア掲載・登壇実績</p>
 
@@ -1009,25 +999,73 @@ const fmtDate = (d: Date) =>
 
       <div class="media-logos-row">
         <p class="media-label" data-ja="掲載メディア" data-en="As seen in">掲載メディア</p>
-        <!-- 日本経済新聞 -->
         <div class="media-logo-item">
           <img src="/media-logos/nikkei.png" alt="日本経済新聞" height="24" style="height:24px;width:auto;">
         </div>
-        <!-- 毎日新聞 -->
+        <div class="media-logo-item">
+          <img src="/media-logos/asahi.svg" alt="朝日新聞" height="22" style="height:22px;width:auto;">
+        </div>
         <div class="media-logo-item">
           <img src="/media-logos/mainichi.svg" alt="毎日新聞" height="24" style="height:24px;width:auto;">
         </div>
-        <!-- VOIX -->
+        <div class="media-logo-item">
+          <img src="/media-logos/sankei.svg" alt="産経新聞" height="30" style="height:30px;width:auto;">
+        </div>
+        <div class="media-logo-item">
+          <img src="/media-logos/jiji.svg" alt="時事通信" height="24" style="height:24px;width:auto;">
+        </div>
+        <div class="media-logo-item">
+          <img src="/media-logos/tvtokyo.svg" alt="テレビ東京" height="24" style="height:24px;width:auto;">
+        </div>
+        <div class="media-logo-item">
+          <img src="/media-logos/newsdig.svg" alt="TBS NEWS DIG" height="20" style="height:20px;width:auto;">
+        </div>
+        <div class="media-logo-item">
+          <img src="/media-logos/toyokeizai.svg" alt="東洋経済オンライン" height="26" style="height:26px;width:auto;">
+        </div>
+        <div class="media-logo-item">
+          <img src="/media-logos/newspicks.svg" alt="NewsPicks" height="24" style="height:24px;width:auto;">
+        </div>
+        <div class="media-logo-item">
+          <img src="/media-logos/president.svg" alt="PRESIDENT Online" height="18" style="height:18px;width:auto;">
+        </div>
+        <div class="media-logo-item">
+          <img src="/media-logos/kodansha.svg" alt="講談社" height="22" style="height:22px;width:auto;">
+        </div>
+        <div class="media-logo-item">
+          <img src="/media-logos/shogakukan.png" alt="小学館" height="26" style="height:26px;width:auto;">
+        </div>
         <div class="media-logo-item">
           <img src="/media-logos/voix.png" alt="VOIX" height="26" style="height:26px;width:auto;">
         </div>
-        <!-- SusHi Tech Tokyo -->
         <div class="media-logo-item">
           <img src="/media-logos/sushitech.png" alt="SusHi Tech Tokyo" height="28" style="height:28px;width:auto;">
         </div>
       </div>
     </div>
   </div>
+
+  <!-- NEWS -->
+  <section class="section" id="news">
+    <div class="container">
+      <div class="news-header reveal">
+        <div>
+          <span class="section-label">News</span>
+          <h2 class="section-heading" data-ja="最新情報" data-en="Latest News">最新情報</h2>
+        </div>
+        <a href="/news/" class="btn-sm" data-ja="すべて見る" data-en="View all">すべて見る</a>
+      </div>
+      <div class="news-list reveal d1">
+        {latestNews.map((post) => (
+          <a class="news-item" href={`/news/${post.id}/`}>
+            <span class="news-date">{fmtDate(post.data.pubDate)}</span>
+            <span class="news-cat" data-ja={post.data.category} data-en={post.data.category}>{post.data.category}</span>
+            <span class="news-title" data-ja={post.data.title} data-en={post.data.title}>{post.data.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- WHY ZETAX -->
   <section class="section" id="why">
@@ -1058,257 +1096,6 @@ const fmtDate = (d: Date) =>
           <p class="why-card-number">04</p>
           <h3 class="why-card-title" data-ja="セキュリティは、設計段階から" data-en="Security, From the Design Phase">セキュリティは、設計段階から</h3>
           <p class="why-card-desc" data-ja="都内大手銀行へのコンサル実績を持つエンジニアが、開発にも直接携わります。" data-en="Engineers with consulting track records at major Tokyo banks are directly involved in every build.">都内大手銀行へのコンサル実績を持つエンジニアが、開発にも直接携わります。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS (B) -->
-  <section class="section section-alt" id="process">
-    <div class="container">
-      <div class="reveal">
-        <span class="section-label">How We Work</span>
-        <h2 class="section-heading" data-ja="私たちの進め方" data-en="Our Process">私たちの進め方</h2>
-        <p class="section-sub" data-ja="初日から現場に入り、納品後も改善を続けます。" data-en="In the field from day one, improving long after launch.">初日から現場に入り、納品後も改善を続けます。</p>
-      </div>
-      <div class="process-grid reveal" id="process-grid">
-        <div class="process-step reveal d1">
-          <p class="process-num">STEP 01</p>
-          <p class="process-timing" data-ja="初日" data-en="Day 1">初日</p>
-          <p class="process-title" data-ja="ヒアリング + プロトタイプ提示" data-en="Listening + Prototype">ヒアリング + プロトタイプ提示</p>
-          <p class="process-desc" data-ja="現場から経営層までヒアリングし、最初の20分でプロトタイプを提示します。" data-en="We interview the floor and the boardroom, then show a prototype within 20 minutes.">現場から経営層までヒアリングし、最初の20分でプロトタイプを提示します。</p>
-        </div>
-        <div class="process-step reveal d2">
-          <p class="process-num">STEP 02</p>
-          <p class="process-timing" data-ja="第1週" data-en="Week 1">第1週</p>
-          <p class="process-title" data-ja="動くプロトタイプで方向性確定" data-en="Working Prototype">動くプロトタイプで方向性確定</p>
-          <p class="process-desc" data-ja="実際に触れるプロトタイプで、作るものを最初に固めます。" data-en="A working prototype settles what to build, early.">実際に触れるプロトタイプで、作るものを最初に固めます。</p>
-        </div>
-        <div class="process-step reveal d3">
-          <p class="process-num">STEP 03</p>
-          <p class="process-timing" data-ja="開発期間中" data-en="Development">開発期間中</p>
-          <p class="process-title" data-ja="毎週現場で改善・報告" data-en="Weekly On-Site Iteration">毎週現場で改善・報告</p>
-          <p class="process-desc" data-ja="小さく作り、現場で試し、毎週改善します。" data-en="Build small, test on-site, improve every week.">小さく作り、現場で試し、毎週改善します。</p>
-        </div>
-        <div class="process-step reveal d4">
-          <p class="process-num">STEP 04</p>
-          <p class="process-timing" data-ja="納品後" data-en="Post-Launch">納品後</p>
-          <p class="process-title" data-ja="導入研修・保守・改善を継続" data-en="Training, Maintenance & Improvement">導入研修・保守・改善を継続</p>
-          <p class="process-desc" data-ja="導入研修から保守まで、実際に使われるまで伴走します。" data-en="Training to maintenance — until the system is genuinely used.">導入研修から保守まで、実際に使われるまで伴走します。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section section-alt" id="services">
-    <div class="container" style="position:relative;">
-      <span class="section-deco-text" aria-hidden="true">SERVICES</span>
-      <div class="reveal">
-        <span class="section-label">Services &amp; Products</span>
-        <h2 class="section-heading" data-ja="サービスとプロダクト" data-en="Services &amp; Products">サービスとプロダクト</h2>
-        <p class="section-sub" data-ja="コンサルから開発、セキュリティ、ハードウェアまで。すべて自社チームの完全内製。" data-en="Consulting, development, security, hardware. All built in-house by one team.">コンサルから開発、セキュリティ、ハードウェアまで。すべて自社チームの完全内製。</p>
-      </div>
-      <div class="services-grid">
-
-        <a href="/ai-dx" class="service-card reveal d1">
-          <span class="service-card-deco" aria-hidden="true">01</span>
-          <p class="service-num">01</p>
-          <h3 class="service-title">Zeta Consulting<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">AI/ITコンサルティング・開発</span></h3>
-          <p class="service-desc" data-ja="「何を作るべきか分からない」段階から。課題定義から運用保守まで、一つのチームで持ちます。" data-en="We start before you know what to build. One team, from problem definition to operations.">「何を作るべきか分からない」段階から。課題定義から運用保守まで、一つのチームで持ちます。</p>
-          <div class="service-tags">
-            <span class="service-tag" data-ja="戦略立案" data-en="Strategy">戦略立案</span>
-            <span class="service-tag" data-ja="システム開発" data-en="System Dev">システム開発</span>
-            <span class="service-tag" data-ja="運用・保守" data-en="Operations">運用・保守</span>
-          </div>
-          <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
-        </a>
-
-        <a href="/security" class="service-card reveal d2">
-          <span class="service-card-deco" aria-hidden="true">02</span>
-          <p class="service-num">02</p>
-          <h3 class="service-title">Zeta Shield<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">セキュリティコンサルティング</span></h3>
-          <p class="service-desc" data-ja="都内大手銀行で実績のあるチームが、脆弱性診断から耐量子暗号（PQC）導入まで対応します。" data-en="A team proven at major Tokyo banks — from vulnerability assessment to post-quantum cryptography (PQC).">都内大手銀行で実績のあるチームが、脆弱性診断から耐量子暗号（PQC）導入まで対応します。</p>
-          <div class="service-tags">
-            <span class="service-tag" data-ja="脆弱性診断" data-en="Vuln. Assessment">脆弱性診断</span>
-            <span class="service-tag" data-ja="次世代暗号 / PQC" data-en="Post-Quantum Cryptography">次世代暗号 / PQC</span>
-            <span class="service-tag" data-ja="都内大手銀行実績" data-en="Major Tokyo Bank Track Record">都内大手銀行実績</span>
-          </div>
-          <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
-        </a>
-
-        <a href="/ai-training" class="service-card reveal d1">
-          <span class="service-card-deco" aria-hidden="true">03</span>
-          <p class="service-num">03</p>
-          <h3 class="service-title">Zeta Coach<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">AI研修・リテラシー教育</span></h3>
-          <p class="service-desc" data-ja="経営層から現場まで、対象に合わせて研修を設計。実務で使えるところまで教えます。" data-en="Training designed for each audience, from executives to the front line — until AI is used in real work.">経営層から現場まで、対象に合わせて研修を設計。実務で使えるところまで教えます。</p>
-          <div class="service-tags">
-            <span class="service-tag" data-ja="上場企業実績" data-en="Listed Company Track Record">上場企業実績</span>
-            <span class="service-tag" data-ja="士業事務所" data-en="Professional Firms">士業事務所</span>
-            <span class="service-tag" data-ja="製造業" data-en="Manufacturing">製造業</span>
-          </div>
-          <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
-        </a>
-
-        <a href="/hardware" class="service-card reveal d2">
-          <span class="service-card-deco" aria-hidden="true">04</span>
-          <p class="service-num">04</p>
-          <h3 class="service-title">Zeta Edge<br><span style="font-size:0.82rem;font-weight:600;color:var(--text-secondary)">ハードウェア開発</span></h3>
-          <p class="service-desc" data-ja="PCB設計から組み込みまで完全内製。主力はクラウド・Wi-Fi不要の予兆保全システムです。" data-en="PCB design to embedded software, all in-house. Flagship: a predictive maintenance system that needs no cloud or Wi-Fi.">PCB設計から組み込みまで完全内製。主力はクラウド・Wi-Fi不要の予兆保全システムです。</p>
-          <div class="service-tags">
-            <span class="service-tag" data-ja="PCB基板設計" data-en="PCB Design">PCB基板設計</span>
-            <span class="service-tag" data-ja="予兆保全システム" data-en="Predictive Maintenance">予兆保全システム</span>
-            <span class="service-tag" data-ja="3工場導入済み" data-en="3 Factories Deployed">3工場導入済み</span>
-          </div>
-          <span class="service-link" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
-        </a>
-
-      </div>
-
-      <!-- PRODUCTS sub-section -->
-      <div id="products" style="margin-top: 4rem;">
-        <div class="reveal">
-          <span class="section-label">Products</span>
-          <h3 class="section-heading" style="font-size:1.5rem;" data-ja="自社プロダクト" data-en="Our Products">自社プロダクト</h3>
-          <p class="section-sub" data-ja="コンサル・開発で培った知見をもとに、自社プロダクトも展開しています。" data-en="Drawing on our consulting and development expertise, we also build and ship our own products.">コンサル・開発で培った知見をもとに、自社プロダクトも展開しています。</p>
-        </div>
-        <a href="/factory-hub" class="product-featured reveal d1">
-          <div class="product-featured-text">
-            <span class="product-featured-badge">New Product</span>
-            <p class="product-featured-name" data-ja="Factory Hub" data-en="Factory Hub">Factory Hub</p>
-            <p class="product-featured-sub" data-ja="製造業務統合管理プラットフォーム" data-en="Manufacturing Workflow Platform">製造業務統合管理プラットフォーム</p>
-            <p class="product-featured-desc" data-ja="注文書・納品書・議事録・単価履歴を、顧客ごとに1画面へ。AI-OCRと音声議事録で、二度打ちも紙もゼロに。" data-en="Orders, delivery notes, minutes, and price history — one screen per customer. AI-OCR and voice minutes take double-entry and paper to zero.">注文書・納品書・議事録・単価履歴を、顧客ごとに1画面へ。AI-OCRと音声議事録で、二度打ちも紙もゼロに。</p>
-            <div class="product-featured-tags">
-              <span data-ja="顧客ポータル" data-en="Customer Portal">顧客ポータル</span>
-              <span data-ja="AI-OCR" data-en="AI-OCR">AI-OCR</span>
-              <span data-ja="音声議事録" data-en="Voice Minutes">音声議事録</span>
-            </div>
-            <span class="product-featured-cta" data-ja="詳細を見る →" data-en="Learn more →">詳細を見る →</span>
-          </div>
-          <div class="product-featured-visual">
-            <div class="pf-mockup">
-              <div class="pf-mockup-bar">
-                <span class="pfm-title">Customer Portal</span>
-              </div>
-              <div class="pf-mockup-row"><span class="pfm-label" data-ja="注文書" data-en="Orders">注文書</span><span class="pfm-val">12</span><span class="pfm-badge">AI-OCR</span></div>
-              <div class="pf-mockup-row"><span class="pfm-label" data-ja="納品書" data-en="Delivery">納品書</span><span class="pfm-val">8</span><span class="pfm-badge">発行済</span></div>
-              <div class="pf-mockup-row"><span class="pfm-label" data-ja="製作指示書" data-en="Work Orders">製作指示書</span><span class="pfm-val">5</span><span class="pfm-badge">製造中</span></div>
-              <div class="pf-mockup-row"><span class="pfm-label" data-ja="議事録" data-en="Minutes">議事録</span><span class="pfm-val">3</span><span class="pfm-badge">AI生成</span></div>
-              <div class="pf-mockup-row"><span class="pfm-label" data-ja="名刺" data-en="Cards">名刺</span><span class="pfm-val">4名</span><span class="pfm-badge">登録済</span></div>
-              <div class="pf-mockup-row"><span class="pfm-label" data-ja="単価履歴" data-en="Pricing">単価履歴</span><span class="pfm-val">¥1,280/kg</span><span class="pfm-badge">最新</span></div>
-            </div>
-          </div>
-        </a>
-
-        <div class="products-grid">
-
-          <div class="product-card tilt-card reveal d1" style="grid-column: span 1;">
-            <p class="product-type">SaaS / AI Agent</p>
-            <p class="product-name">経理丸投げAI</p>
-            <p class="product-name-en">AI-Powered Accounting &amp; Client Management</p>
-            <p class="product-desc" data-ja="税理士法人向けに、顧客管理と経理をひとつに。仕訳から月次レポートまで、AIエージェントが進めます。" data-en="Client management and accounting, unified for tax corporations. AI agents carry the work from journal entries to monthly reports.">税理士法人向けに、顧客管理と経理をひとつに。仕訳から月次レポートまで、AIエージェントが進めます。</p>
-            <span class="product-achievement" data-ja="大手税理士法人をはじめ5社に導入決定" data-en="Adopted by 5 firms including major tax corporations">大手税理士法人をはじめ5社に導入決定</span>
-          </div>
-
-          <div class="product-card tilt-card reveal d2">
-            <p class="product-type">SaaS / AI Agent</p>
-            <p class="product-name" data-ja="デモ生成<br>チャットボット" data-en="Demo Generation<br>Chatbot">デモ生成<br>チャットボット</p>
-            <p class="product-name-en">for System Development Companies</p>
-            <p class="product-desc" data-ja="商談中に要件を聞きながら、その場でデモ画面を生成。提案の精度を上げ、商談時間を削ります。" data-en="Listens to requirements mid-meeting and builds demo screens on the spot. Sharper proposals, shorter sales cycles.">商談中に要件を聞きながら、その場でデモ画面を生成。提案の精度を上げ、商談時間を削ります。</p>
-            <span class="product-achievement" data-ja="詳細・資料請求はこちら →" data-en="Request details →">詳細・資料請求はこちら →</span>
-          </div>
-
-          <div class="product-card tilt-card reveal d3">
-            <p class="product-type">Hardware</p>
-            <p class="product-name" data-ja="製造業向け<br>予兆保全デバイス" data-en="Predictive Maintenance<br>Device for Manufacturing">製造業向け<br>予兆保全デバイス</p>
-            <p class="product-name-en">Standalone. No Cloud. No Wi-Fi Required.</p>
-            <p class="product-desc" data-ja="クラウド・Wi-Fi不要の自律型デバイスが、機器の異常を早期検知。ネットのない工場でも即日導入できます。" data-en="An autonomous device — no cloud, no Wi-Fi — that catches equipment anomalies early. Same-day deployment even in offline factories.">クラウド・Wi-Fi不要の自律型デバイスが、機器の異常を早期検知。ネットのない工場でも即日導入できます。</p>
-            <span class="product-achievement" data-ja="3工場に導入済み" data-en="Deployed in 3 factories">3工場に導入済み</span>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASES -->
-  <section class="section" id="cases">
-    <div class="container" style="position:relative;">
-      <span class="section-deco-text" aria-hidden="true">CASES</span>
-      <div class="cases-header">
-        <div class="reveal">
-          <span class="section-label">Cases</span>
-          <h2 class="section-heading" data-ja="業種別の支援実績" data-en="Industry Track Record">業種別の支援実績</h2>
-        </div>
-        <div class="reveal d1">
-          <p class="section-sub" style="margin-top:0;" data-ja="士業から製造業、物流、金融まで。業種を問わず、現場に入り込んで課題を解決してきました。" data-en="From professional services to manufacturing, logistics, and finance. We've solved real problems across industries.">士業から製造業、物流、金融まで。業種を問わず、現場に入り込んで課題を解決してきました。</p>
-        </div>
-      </div>
-
-      <p class="cases-scroll-hint reveal d2">← drag to explore →</p>
-      <div class="cases-scroll-outer reveal" id="cases-scroll">
-        <div class="cases-scroll-wrap">
-
-          <div class="cases-card">
-            <p class="cases-card-industry" data-ja="製造業" data-en="Manufacturing">製造業</p>
-            <p class="cases-card-industry-en">Manufacturing</p>
-            <ul class="cases-card-items">
-              <li data-ja="注文書 AI-OCR" data-en="Purchase Order AI-OCR">注文書 AI-OCR</li>
-              <li data-ja="見積もり自動算出システム" data-en="Automated Quotation System">見積もり自動算出システム</li>
-              <li data-ja="受注データ連携AI" data-en="Order Data Integration AI">受注データ連携AI</li>
-            </ul>
-          </div>
-
-          <div class="cases-card">
-            <p class="cases-card-industry" data-ja="士業" data-en="Professional Services">士業</p>
-            <p class="cases-card-industry-en">Professional Services</p>
-            <ul class="cases-card-items">
-              <li data-ja="契約書レビュー支援AI" data-en="Contract Review AI">契約書レビュー支援AI</li>
-              <li data-ja="申告書類の自動仕分け" data-en="Automated Document Classification">申告書類の自動仕分け</li>
-              <li data-ja="顧客DBチャットボット" data-en="Customer DB Chatbot">顧客DBチャットボット</li>
-            </ul>
-          </div>
-
-          <div class="cases-card">
-            <p class="cases-card-industry" data-ja="物流業" data-en="Logistics">物流業</p>
-            <p class="cases-card-industry-en">Logistics</p>
-            <ul class="cases-card-items">
-              <li data-ja="倉庫一元管理システム" data-en="Unified Warehouse Management">倉庫一元管理システム</li>
-              <li data-ja="配送ルート最適化AI" data-en="Delivery Route Optimization AI">配送ルート最適化AI</li>
-              <li data-ja="在庫予測・補充自動化" data-en="Inventory Forecasting & Auto-Replenishment">在庫予測・補充自動化</li>
-            </ul>
-          </div>
-
-          <div class="cases-card">
-            <p class="cases-card-industry" data-ja="金融・銀行" data-en="Finance & Banking">金融・銀行</p>
-            <p class="cases-card-industry-en">Finance &amp; Banking</p>
-            <ul class="cases-card-items">
-              <li data-ja="不正検知システム" data-en="Fraud Detection System">不正検知システム</li>
-              <li data-ja="次世代暗号（PQC）導入支援" data-en="Post-Quantum Cryptography Implementation">次世代暗号（PQC）導入支援</li>
-              <li data-ja="審査業務の自動化" data-en="Automated Screening">審査業務の自動化</li>
-            </ul>
-          </div>
-
-          <div class="cases-card">
-            <p class="cases-card-industry" data-ja="医療・ヘルスケア" data-en="Healthcare">医療・ヘルスケア</p>
-            <p class="cases-card-industry-en">Healthcare</p>
-            <ul class="cases-card-items">
-              <li data-ja="電子カルテ連携システム" data-en="EMR Integration System">電子カルテ連携システム</li>
-              <li data-ja="問診票の自動要約AI" data-en="Medical Questionnaire Summarization AI">問診票の自動要約AI</li>
-              <li data-ja="シフト最適化システム" data-en="Staff Scheduling Optimization">シフト最適化システム</li>
-            </ul>
-          </div>
-
-          <div class="cases-card">
-            <p class="cases-card-industry" data-ja="建設・不動産" data-en="Construction & Real Estate">建設・不動産</p>
-            <p class="cases-card-industry-en">Construction &amp; Real Estate</p>
-            <ul class="cases-card-items">
-              <li data-ja="現場進捗管理アプリ" data-en="Site Progress Management App">現場進捗管理アプリ</li>
-              <li data-ja="設備点検・異常検知システム" data-en="Equipment Inspection & Anomaly Detection">設備点検・異常検知システム</li>
-              <li data-ja="図面・仕様書の自動解析AI" data-en="Blueprint & Spec Auto-Analysis AI">図面・仕様書の自動解析AI</li>
-            </ul>
-          </div>
-
         </div>
       </div>
     </div>
@@ -1377,66 +1164,6 @@ const fmtDate = (d: Date) =>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NEWS -->
-  <section class="section" id="news">
-    <div class="container">
-      <div class="news-header reveal">
-        <div>
-          <span class="section-label">News</span>
-          <h2 class="section-heading" data-ja="最新情報" data-en="Latest News">最新情報</h2>
-        </div>
-        <a href="/news/" class="btn-sm" data-ja="すべて見る" data-en="View all">すべて見る</a>
-      </div>
-      <div class="news-list reveal d1">
-        {latestNews.map((post) => (
-          <a class="news-item" href={`/news/${post.id}/`}>
-            <span class="news-date">{fmtDate(post.data.pubDate)}</span>
-            <span class="news-cat" data-ja={post.data.category} data-en={post.data.category}>{post.data.category}</span>
-            <span class="news-title" data-ja={post.data.title} data-en={post.data.title}>{post.data.title}</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS (D) -->
-  <section class="section section-alt" id="testimonials">
-    <div class="container">
-      <div class="reveal">
-        <span class="section-label">Client Voices</span>
-        <h2 class="section-heading" data-ja="お客様の声" data-en="What Clients Say">お客様の声</h2>
-        <p class="section-sub" data-ja="すべてのご意見は、実際のお客様からいただいたものです（掲載にあたり一部匿名・情報を変更しています）。" data-en="All feedback is from real clients (anonymized or modified at request).">すべてのご意見は、実際のお客様からいただいたものです（掲載にあたり一部匿名・情報を変更しています）。</p>
-      </div>
-      <div class="testimonials-grid">
-
-        <div class="testimonial-card reveal d1">
-          <p class="testimonial-quote" data-ja="初回のミーティングでプロトタイプを見せてもらったときは驚きました。私たちがこう作りたいと言う前に、もうそこにあった。スピードと理解の深さが同時にある会社は初めてでした。" data-en="I was stunned when they showed us a prototype at the very first meeting. It was already there before we even said what we wanted. I'd never encountered a company with that combination of speed and depth of understanding.">初回のミーティングでプロトタイプを見せてもらったときは驚きました。私たちがこう作りたいと言う前に、もうそこにあった。スピードと理解の深さが同時にある会社は初めてでした。</p>
-          <div class="testimonial-source">
-            <p class="testimonial-company" data-ja="東証プライム上場企業 DX推進部" data-en="TSE Prime Listed Company, DX Division">東証プライム上場企業 DX推進部</p>
-            <p class="testimonial-person" data-ja="部長 / AI導入プロジェクトご担当" data-en="Department Head / AI Implementation Lead">部長 / AI導入プロジェクトご担当</p>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal d2">
-          <p class="testimonial-quote" data-ja="セキュリティの専門家は多いですが、ここまで現場のことを理解したうえで提案してくれる会社は珍しい。PQCの導入も、段階的な計画を作ってくれたので無理なく進められました。" data-en="There are plenty of security experts out there, but companies that understand our actual operations and propose accordingly are rare. Their phased approach to PQC implementation made it manageable.">セキュリティの専門家は多いですが、ここまで現場のことを理解したうえで提案してくれる会社は珍しい。PQCの導入も、段階的な計画を作ってくれたので無理なく進められました。</p>
-          <div class="testimonial-source">
-            <p class="testimonial-company" data-ja="都内大手金融機関 情報セキュリティ部門" data-en="Major Tokyo Financial Institution, Information Security Division">都内大手金融機関 情報セキュリティ部門</p>
-            <p class="testimonial-person" data-ja="セキュリティ担当マネージャー" data-en="Security Manager">セキュリティ担当マネージャー</p>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal d3">
-          <p class="testimonial-quote" data-ja="税理士業務は独自の慣行が多くて、外部のIT会社に任せても「分かってない」と感じることが続いていました。ZetaXさんは違いました。現場の言葉で話してくれるし、実際に業務を一緒にやってくれる。" data-en="Tax work has its own conventions and we kept feeling like external IT firms just 'didn't get it.' ZetaX was different. They spoke our language and literally worked alongside us.">税理士業務は独自の慣行が多くて、外部のIT会社に任せても「分かってない」と感じることが続いていました。ZetaXさんは違いました。現場の言葉で話してくれるし、実際に業務を一緒にやってくれる。</p>
-          <div class="testimonial-source">
-            <p class="testimonial-company" data-ja="大手税理士法人" data-en="Major Tax Corporation">大手税理士法人</p>
-            <p class="testimonial-person" data-ja="代表社員 / 経理丸投げAI導入" data-en="Managing Partner / AI Accounting Adoption">代表社員 / 経理丸投げAI導入</p>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -1530,7 +1257,7 @@ const fmtDate = (d: Date) =>
           <p class="footer-col-label">Company</p>
           <ul class="footer-links">
             <li><a href="#why" data-ja="ZetaXについて" data-en="About ZetaX">ZetaXについて</a></li>
-            <li><a href="#cases" data-ja="事例" data-en="Cases">事例</a></li>
+            <li><a href="#results" data-ja="実績" data-en="Results">実績</a></li>
             <li><a href="/about" data-ja="会社紹介" data-en="About Us">会社紹介</a></li>
             <li><a href="/news/" data-ja="ニュース" data-en="News">ニュース</a></li>
             <li><a href="#contact" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</a></li>
