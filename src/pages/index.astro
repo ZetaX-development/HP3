@@ -218,8 +218,8 @@ const fmtDate = (d: Date) =>
     .media-card-title { font-size: 0.84rem; font-weight: 500; line-height: 1.7; color: var(--text-primary); margin-top: 0.45rem; }
     .media-logos-row { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; margin-top: 2rem; }
     .media-logos-row .media-label { font-size: 0.6rem; }
-    .media-logo-item { display: flex; align-items: center; opacity: 0.45; transition: opacity 0.2s; }
-    .media-logo-item:hover { opacity: 0.75; }
+    .media-logo-item { display: flex; align-items: center; opacity: 1; transition: opacity 0.2s; }
+    .media-logo-item:hover { opacity: 0.8; }
     @media (max-width: 860px) { .media-cards { grid-template-columns: 1fr; } }
 
     /* ─── SECTION BASE ─── */
@@ -965,14 +965,14 @@ const fmtDate = (d: Date) =>
       <p class="media-label" data-ja="メディア掲載・登壇実績" data-en="Media & Recognition">メディア掲載・登壇実績</p>
 
       <div class="media-cards">
-        <a class="media-card" href="/news/ivs-launchpad-2026-5th-place/">
+        <a class="media-card" href="/news/reiwa-accounting-partnership/">
           <div class="media-card-photo">
-            <img src="/media/ivs-launchpad.jpg" alt="IVS2026 LAUNCHPAD" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
-            <span class="media-card-plate">IVS <em>LaunchPad</em></span>
+            <img src="/media/reiwa.jpg" alt="令和アカウンティング・ホールディングス" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
+            <span class="media-card-plate">Reiwa <em>AH</em></span>
           </div>
           <div class="media-card-body">
             <time class="media-card-date">2026.07</time>
-            <p class="media-card-title" data-ja="「IVS2026 LAUNCHPAD」で5位入賞 — 学生唯一" data-en="5th place at IVS2026 LAUNCHPAD — the only student team">「IVS2026 LAUNCHPAD」で5位入賞 — 学生唯一</p>
+            <p class="media-card-title" data-ja="令和アカウンティングHD（東証グロース296A）と事業提携" data-en="Business alliance with Reiwa Accounting Holdings (TSE Growth 296A)">令和アカウンティングHD（東証グロース296A）と事業提携</p>
           </div>
         </a>
         <a class="media-card" href="/news/nttdata-hardware-hackathon-award/">
@@ -985,14 +985,14 @@ const fmtDate = (d: Date) =>
             <p class="media-card-title" data-ja="NTT DATA ハードウェアハッカソンで受賞" data-en="Award winner at the NTT DATA hardware hackathon">NTT DATA ハードウェアハッカソンで受賞</p>
           </div>
         </a>
-        <a class="media-card" href="/news/dsf-talk/">
+        <a class="media-card" href="/news/azbil-pitch-event/">
           <div class="media-card-photo">
-            <img src="/media/dsf-talk.jpg" alt="DSF 登壇の様子" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
-            <span class="media-card-plate">DSF <em>2026</em></span>
+            <img src="/media/azbil.jpg" alt="アズビル株式会社" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
+            <span class="media-card-plate">azbil</span>
           </div>
           <div class="media-card-body">
-            <time class="media-card-date">2026.06</time>
-            <p class="media-card-title" data-ja="「DSF」に代表 佐藤・柳澤と杉浦が登壇" data-en="Co-CEOs Sato & Yanagisawa and Sugiura spoke at DSF">「DSF」に代表 佐藤・柳澤と杉浦が登壇</p>
+            <time class="media-card-date">2026.07</time>
+            <p class="media-card-title" data-ja="アズビル（東証プライム）のピッチイベントに登壇" data-en="Pitched at azbil's startup event (TSE Prime)">アズビル（東証プライム）のピッチイベントに登壇</p>
           </div>
         </a>
       </div>
@@ -1037,9 +1037,6 @@ const fmtDate = (d: Date) =>
         </div>
         <div class="media-logo-item">
           <img src="/media-logos/voix.png" alt="VOIX" height="26" style="height:26px;width:auto;">
-        </div>
-        <div class="media-logo-item">
-          <img src="/media-logos/sushitech.png" alt="SusHi Tech Tokyo" height="28" style="height:28px;width:auto;">
         </div>
       </div>
     </div>
