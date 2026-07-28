@@ -493,7 +493,7 @@ const fmtDate = (d: Date) =>
     /* ─── FLOAT VIDEO ─── */
     .float-video {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 790;
-      width: 620px; max-width: calc(100vw - 3rem); border-radius: 12px; overflow: hidden;
+      width: 500px; max-width: calc(100vw - 3rem); border-radius: 12px; overflow: hidden;
       box-shadow: 0 14px 48px rgba(0,0,0,0.3); background: #000;
     }
     .float-video-caption {
@@ -896,7 +896,7 @@ const fmtDate = (d: Date) =>
   <div class="float-video" id="float-video">
     <button class="float-video-close" id="float-video-close" aria-label="動画を閉じる">×</button>
     <div class="float-video-frame"><div id="float-video-player"></div></div>
-    <div class="float-video-caption" data-ja="YouTube『ビジネスジャーナルTV』出演 — IVS2026 LAUNCHPAD ピッチ" data-en="Featured on YouTube 'Business Journal TV' — IVS2026 LAUNCHPAD pitch">YouTube『ビジネスジャーナルTV』出演 — IVS2026 LAUNCHPAD ピッチ</div>
+    <div class="float-video-caption" data-ja="YouTube『ビジネスジャーナルTV』に弊社代表 佐藤・柳澤が出演" data-en="Co-CEOs Sato &amp; Yanagisawa on YouTube 'Business Journal TV'">YouTube『ビジネスジャーナルTV』に弊社代表 佐藤・柳澤が出演</div>
   </div>
   <script is:inline>
     (function () {
@@ -907,6 +907,12 @@ const fmtDate = (d: Date) =>
       tag.src = 'https://www.youtube.com/iframe_api';
       document.head.appendChild(tag);
       var player = null, poll = null;
+      function killCaptions(p) {
+        try {
+          p.unloadModule('captions'); p.unloadModule('cc');
+          p.setOption('captions', 'track', {}); p.setOption('cc', 'track', {});
+        } catch (err) {}
+      }
       window.onYouTubeIframeAPIReady = function () {
         player = new YT.Player('float-video-player', {
           videoId: VID,
@@ -914,9 +920,10 @@ const fmtDate = (d: Date) =>
           events: {
             onReady: function (e) {
               e.target.mute();
-              try { e.target.unloadModule('captions'); e.target.unloadModule('cc'); } catch (err) {}
+              killCaptions(e.target);
               e.target.playVideo();
             },
+            onApiChange: function (e) { killCaptions(e.target); },
             onStateChange: function (e) {
               if (e.data === YT.PlayerState.ENDED) { e.target.seekTo(START, true); e.target.playVideo(); }
               if (e.data === YT.PlayerState.PLAYING && !poll) {
