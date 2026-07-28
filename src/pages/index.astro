@@ -483,6 +483,22 @@ const fmtDate = (d: Date) =>
     .float-cta-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.6); animation: pulse 2s ease-in-out infinite; }
     @media (max-width: 768px) { .float-cta { bottom: 1.4rem; right: 1.4rem; font-size: 0.76rem; padding: 11px 18px; } }
 
+    /* ─── FLOAT VIDEO ─── */
+    .float-video {
+      position: fixed; bottom: 6.6rem; right: 2.4rem; z-index: 790;
+      width: 300px; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.28); background: #000;
+    }
+    .float-video-frame { aspect-ratio: 16 / 9; }
+    .float-video-frame iframe { width: 100%; height: 100%; display: block; }
+    .float-video-close {
+      position: absolute; top: 6px; right: 6px; z-index: 2;
+      width: 26px; height: 26px; border: none; border-radius: 50%;
+      background: rgba(0,0,0,0.55); color: #fff; font-size: 15px; line-height: 1; cursor: pointer;
+    }
+    .float-video-close:hover { background: rgba(0,0,0,0.8); }
+    @media (max-width: 768px) { .float-video { width: 210px; right: 1.4rem; bottom: 5.4rem; } }
+
     /* ─── 3D TILT CARDS ─── */
     .tilt-card { transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); will-change: transform; }
     .tilt-card:hover { box-shadow: 0 20px 60px rgba(26,63,191,0.1); }
@@ -860,6 +876,46 @@ const fmtDate = (d: Date) =>
     <span data-ja="まず30分、話しましょう" data-en="Book a Free Call">まず30分、話しましょう</span>
   </a>
 
+  <!-- FLOAT VIDEO (IVS2026 LAUNCHPAD ピッチ 28:40-32:00 ループ) -->
+  <div class="float-video" id="float-video">
+    <button class="float-video-close" id="float-video-close" aria-label="動画を閉じる">×</button>
+    <div class="float-video-frame"><div id="float-video-player"></div></div>
+  </div>
+  <script is:inline>
+    (function () {
+      var START = 1720, END = 1920, VID = 'xA09lbcwwJY';
+      var holder = document.getElementById('float-video');
+      if (!holder) return;
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+      var player = null, poll = null;
+      window.onYouTubeIframeAPIReady = function () {
+        player = new YT.Player('float-video-player', {
+          videoId: VID,
+          playerVars: { autoplay: 1, mute: 1, controls: 0, start: START, end: END, playsinline: 1, rel: 0, modestbranding: 1 },
+          events: {
+            onReady: function (e) { e.target.mute(); e.target.playVideo(); },
+            onStateChange: function (e) {
+              if (e.data === YT.PlayerState.ENDED) { e.target.seekTo(START, true); e.target.playVideo(); }
+              if (e.data === YT.PlayerState.PLAYING && !poll) {
+                poll = setInterval(function () {
+                  var t = player && player.getCurrentTime ? player.getCurrentTime() : 0;
+                  if (t >= END - 0.3) player.seekTo(START, true);
+                }, 500);
+              }
+            }
+          }
+        });
+      };
+      document.getElementById('float-video-close').addEventListener('click', function () {
+        if (poll) clearInterval(poll);
+        try { if (player && player.destroy) player.destroy(); } catch (err) {}
+        holder.remove();
+      });
+    })();
+  </script>
+
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a href="/" class="nav-logo">ZETA<span>X</span></a>
@@ -926,9 +982,9 @@ const fmtDate = (d: Date) =>
       <div class="hero-split-left">
         <p class="hero-eyebrow">AI &amp; Engineering — Tokyo</p>
         <h1 class="hero-title">
-          <span data-ja="AIの戦略から開発・運用まで、<br><span class='accent'>まるごと</span>引き受ける。" data-en="AI from strategy to operations.<br><span class='accent'>We handle all of it.</span>">AIの戦略から開発・運用まで、<br><span class="accent">まるごと</span>引き受ける。</span>
+          <span data-ja="AI・IT・セキュリティの<br><span class='accent'>スペシャリスト</span>集団。" data-en="A team of AI, IT &amp; security<br><span class='accent'>specialists.</span>">AI・IT・セキュリティの<br><span class="accent">スペシャリスト</span>集団。</span>
         </h1>
-        <p class="hero-title-sub" data-ja="東大・東工大出身のエンジニアチームが、御社専用のAIをつくり、現場に定着させます。" data-en="Engineers from UTokyo and Tokyo Tech build your custom AI and make it work on the ground.">東大・東工大出身のエンジニアチームが、御社専用のAIをつくり、現場に定着させます。</p>
+        <p class="hero-title-sub" data-ja="日本トップレベルの技術力と、圧倒的な実績に基づく確かな課題解決を。戦略から開発・運用まで、まるごと引き受けます。" data-en="Japan's top-tier engineering, proven by an overwhelming track record. From strategy to development and operations — we take on all of it.">日本トップレベルの技術力と、圧倒的な実績に基づく確かな課題解決を。戦略から開発・運用まで、まるごと引き受けます。</p>
         <div class="hero-actions">
           <a href="/services/" class="btn-primary" data-ja="サービスを見る" data-en="Our Services">サービスを見る</a>
           <a href="#contact" class="btn-outline" data-ja="無料相談する" data-en="Free Consultation">無料相談する</a>
@@ -1239,7 +1295,7 @@ const fmtDate = (d: Date) =>
       <div class="footer-grid">
         <div>
           <div class="footer-logo">ZETA<span>X</span></div>
-          <p class="footer-about" data-ja="AIの戦略から開発・運用まで、まるごと引き受ける。完全内製。" data-en="AI from strategy to operations — all of it, in-house.">AIの戦略から開発・運用まで、まるごと引き受ける。完全内製。</p>
+          <p class="footer-about" data-ja="AI・IT・セキュリティのスペシャリスト集団。戦略から開発・運用まで、完全内製。" data-en="A team of AI, IT & security specialists. Strategy to operations, all in-house.">AI・IT・セキュリティのスペシャリスト集団。戦略から開発・運用まで、完全内製。</p>
         </div>
         <div>
           <p class="footer-col-label">Services</p>
