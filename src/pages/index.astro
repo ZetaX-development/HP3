@@ -561,7 +561,11 @@ const fmtDate = (d: Date) =>
       position: fixed; bottom: 2rem; right: 2rem; z-index: 790;
       width: 500px; max-width: calc(100vw - 3rem); border-radius: 12px; overflow: hidden;
       box-shadow: 0 14px 48px rgba(0,0,0,0.3); background: #000;
+      /* 初期状態は画面右外に隠す → 数秒後に .fv-in でスライドイン */
+      transform: translateX(calc(100% + 3rem));
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .float-video.fv-in { transform: none; }
     .float-video-caption {
       display: flex; align-items: center; gap: 8px;
       background: #0b0f1e; color: #fff;
@@ -980,6 +984,8 @@ const fmtDate = (d: Date) =>
       var tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
       document.head.appendChild(tag);
+      // ページを開いて数秒後に右からスライドイン
+      setTimeout(function () { holder.classList.add('fv-in'); }, 6000);
       var player = null, poll = null;
       function killCaptions(p) {
         try {
