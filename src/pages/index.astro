@@ -72,18 +72,42 @@ const fmtDate = (d: Date) =>
       background: rgba(13,13,20,0.35);
       transform: scaleY(0); transform-origin: center top;
     }
-    #zx-intro.zxi-s1 .zxi-rule { transform: scaleY(1); transition: transform 0.4s var(--ease); }
-    #zx-intro .zxi-mark {
-      position: relative;
-      font-family: var(--font-en); font-weight: 700;
-      font-size: clamp(2rem, 6vw, 3.6rem);
-      letter-spacing: 0.3em; padding: 0.25em 0 0.25em 0.3em; /* 左padding=字間ぶんで光学センター */
-      color: var(--text-primary); background: var(--bg); /* 背後の縦罫をマスク */
-      clip-path: inset(100% 0 0 0);
+    #zx-intro.zxi-s1 .zxi-rule { transform: scaleY(1); transition: transform 0.5s var(--ease); }
+    #zx-intro .zxi-center {
+      position: relative; display: flex; flex-direction: column; align-items: center; gap: 1rem;
+      background: var(--bg); padding: 1.2em 1.6em; /* 背後の縦罫をマスク */
     }
-    #zx-intro .zxi-mark span { color: var(--accent); }
-    #zx-intro.zxi-s2 .zxi-mark { clip-path: inset(0 0 0 0); transition: clip-path 0.5s var(--ease); }
-    #zx-intro.zxi-done { opacity: 0; pointer-events: none; transition: opacity 0.45s ease; }
+    #zx-intro .zxi-mark {
+      display: flex;
+      font-family: var(--font-en); font-weight: 700;
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+      transition: letter-spacing 1.8s var(--ease);
+    }
+    #zx-intro.zxi-s2 .zxi-mark { letter-spacing: 0.34em; }
+    #zx-intro .zxi-l {
+      opacity: 0; transform: translateY(0.55em); filter: blur(10px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease), filter 0.6s var(--ease);
+    }
+    #zx-intro .zxi-l:nth-child(1) { transition-delay: 0.00s; }
+    #zx-intro .zxi-l:nth-child(2) { transition-delay: 0.09s; }
+    #zx-intro .zxi-l:nth-child(3) { transition-delay: 0.18s; }
+    #zx-intro .zxi-l:nth-child(4) { transition-delay: 0.27s; }
+    #zx-intro .zxi-l:nth-child(5) { transition-delay: 0.40s; }
+    #zx-intro.zxi-s2 .zxi-l { opacity: 1; transform: none; filter: none; }
+    #zx-intro .zxi-l.x { color: var(--accent); }
+    #zx-intro .zxi-bar { width: 0; height: 1px; background: var(--accent); transition: width 0.9s var(--ease); }
+    #zx-intro.zxi-s3 .zxi-bar { width: 132px; }
+    #zx-intro .zxi-sub {
+      font-family: var(--font-en); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.46em; text-transform: uppercase; color: var(--text-dim);
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.8s ease, transform 0.8s var(--ease);
+    }
+    #zx-intro.zxi-s3 .zxi-sub { opacity: 1; transform: none; }
+    #zx-intro.zxi-done { opacity: 0; pointer-events: none; transition: opacity 0.6s ease; }
+    #zx-intro.zxi-done .zxi-center { transform: scale(1.04); transition: transform 0.9s var(--ease); }
     /* 幕が明けるまでヒーローの fadeUp を一時停止（二重再生防止） */
     html.zx-hold .hero * { animation-play-state: paused !important; }
 
@@ -864,20 +888,25 @@ const fmtDate = (d: Date) =>
   <!-- INTRO -->
   <div id="zx-intro" aria-hidden="true">
     <div class="zxi-rule"></div>
-    <div class="zxi-mark">ZETA<span>X</span></div>
+    <div class="zxi-center">
+      <div class="zxi-mark"><span class="zxi-l">Z</span><span class="zxi-l">E</span><span class="zxi-l">T</span><span class="zxi-l">A</span><span class="zxi-l x">X</span></div>
+      <div class="zxi-bar"></div>
+      <div class="zxi-sub">AI · IT · Security Specialists</div>
+    </div>
   </div>
   <script>
-    // INTRO staging: 縦罫 → 題字 → 幕明け。head の zx-hold ゲートと対で動く。
+    // INTRO staging: 縦罫 → 一文字ずつ題字 → 字間が開きタグライン → 幕明け。head の zx-hold ゲートと対で動く。
     const zxIntro = document.getElementById("zx-intro");
     if (zxIntro && document.documentElement.classList.contains("zx-hold")) {
       requestAnimationFrame(() => {
-        zxIntro.classList.add("zxi-s1");                       // 縦罫が引かれる
-        setTimeout(() => zxIntro.classList.add("zxi-s2"), 380); // 題字が刷り上がる
+        zxIntro.classList.add("zxi-s1");                        // 縦罫が引かれる
+        setTimeout(() => zxIntro.classList.add("zxi-s2"), 450);  // 題字が一文字ずつ浮かぶ＋字間が開く
+        setTimeout(() => zxIntro.classList.add("zxi-s3"), 1450); // アクセントラインとタグライン
         setTimeout(() => {
-          zxIntro.classList.add("zxi-done");                    // 幕が明ける
-          document.documentElement.classList.remove("zx-hold"); // ヒーローの fadeUp 再生開始
-        }, 1150);
-        setTimeout(() => zxIntro.remove(), 1700);
+          zxIntro.classList.add("zxi-done");                     // 幕が明ける
+          document.documentElement.classList.remove("zx-hold");  // ヒーローの fadeUp 再生開始
+        }, 2650);
+        setTimeout(() => zxIntro.remove(), 3350);
       });
       try { sessionStorage.setItem("zxIntroSeen", "1"); } catch (e) { /* noop */ }
     } else if (zxIntro) {
