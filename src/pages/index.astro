@@ -63,6 +63,8 @@ const fmtDate = (d: Date) =>
     html { scroll-behavior: smooth; font-size: 16px; background: var(--bg); overflow-x: hidden; }
     body { font-family: var(--font-jp); background: var(--bg); color: var(--text-primary); line-height: 1.8; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--accent); color: #fff; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
     /* ─── INTRO（初回のみのローディング演出） ─── */
     #zx-intro { display: none; position: fixed; inset: 0; z-index: 20000; background: var(--bg); align-items: center; justify-content: center; }
@@ -247,7 +249,14 @@ const fmtDate = (d: Date) =>
     }
     .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; max-width: 840px; }
 
-    .hero-eyebrow { font-family: var(--font-en); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; opacity: 0; transform: translateY(14px); animation: fadeUp 0.8s 0.2s var(--ease) forwards; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--font-jp); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.08em;
+      color: var(--accent); background: var(--accent-pale); border: 1px solid rgba(26,63,191,0.16);
+      padding: 7px 16px; border-radius: 50px; margin-bottom: 2rem;
+      opacity: 0; transform: translateY(14px); animation: fadeUp 0.8s 0.2s var(--ease) forwards;
+    }
+    .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
 
     .hero-title { font-family: var(--font-jp); font-size: clamp(1.7rem, 3.2vw, 2.9rem); font-weight: 700; line-height: 1.5; color: var(--text-primary); margin-bottom: 1.6rem; word-break: keep-all; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.35s var(--ease) forwards; }
     .hero-title .accent { color: var(--accent); }
@@ -276,8 +285,9 @@ const fmtDate = (d: Date) =>
     @keyframes media-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .media-label { font-family: var(--font-en); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
     .media-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.4rem; }
-    .media-card { display: flex; flex-direction: column; border: 1px solid var(--border); background: var(--bg); transition: border-color 0.25s; }
-    .media-card:hover { border-color: var(--accent); }
+    .media-card { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg); transition: border-color 0.25s, transform 0.25s var(--ease), box-shadow 0.25s; }
+    .media-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,63,191,0.1); }
+    .media-card-tag { display: inline-block; font-family: var(--font-jp); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); background: var(--accent-pale); border-radius: 3px; padding: 2px 8px; margin-left: 0.6rem; vertical-align: 1px; }
     .media-card-photo { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--bg-subtle); border-bottom: 1px solid var(--border-light); }
     .media-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s var(--ease); }
     .media-card:hover .media-card-photo img { transform: scale(1.03); }
@@ -316,8 +326,10 @@ const fmtDate = (d: Date) =>
     /* ─── WHY ZETAX ─── */
 
     .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .why-card { background: var(--bg); padding: 3rem; transition: background 0.2s; }
+    .why-card { position: relative; background: var(--bg); padding: 3rem; transition: background 0.2s; overflow: hidden; }
+    .why-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
     .why-card:hover { background: #fafbff; }
+    .why-card:hover::before { transform: scaleX(1); }
     .why-card-number { font-family: var(--font-en); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 1.2rem; }
     .why-card-title { font-weight: 700; font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.8rem; line-height: 1.5; }
     .why-card-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 2; }
@@ -462,8 +474,10 @@ const fmtDate = (d: Date) =>
     .btn-sm { font-family: var(--font-en); font-size: 0.76rem; font-weight: 500; padding: 8px 18px; border-radius: 4px; border: 1px solid var(--border); color: var(--text-secondary); background: transparent; transition: border-color 0.2s, color 0.2s; display: inline-block; }
     .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
     .news-list { border-top: 1px solid var(--border); margin-top: 2rem; }
-    .news-item { display: flex; align-items: center; gap: 2rem; padding: 1.3rem 0; border-bottom: 1px solid var(--border-light); transition: opacity 0.2s; }
-    .news-item:hover { opacity: 0.7; }
+    .news-item { display: flex; align-items: center; gap: 2rem; padding: 1.3rem 0.9rem; border-bottom: 1px solid var(--border-light); border-radius: 8px; transition: background 0.2s; }
+    .news-item:hover { background: var(--accent-pale); }
+    .news-item::after { content: '→'; margin-left: auto; color: var(--accent); opacity: 0; transform: translateX(-8px); transition: opacity 0.25s, transform 0.25s var(--ease); }
+    .news-item:hover::after { opacity: 1; transform: none; }
     .news-date { font-family: var(--font-en); font-size: 0.76rem; color: var(--text-dim); white-space: nowrap; min-width: 88px; }
     .news-cat { font-family: var(--font-jp); font-size: 0.68rem; font-weight: 600; padding: 3px 10px; border-radius: 2px; background: var(--accent-pale); color: var(--accent); white-space: nowrap; }
     .news-title { font-size: 0.92rem; color: var(--text-primary); flex: 1; line-height: 1.6; }
@@ -1088,7 +1102,7 @@ const fmtDate = (d: Date) =>
 
       <!-- LEFT: text -->
       <div class="hero-split-left">
-        <p class="hero-eyebrow">AI &amp; Engineering — Tokyo</p>
+        <p class="hero-eyebrow" data-ja="東京大学・東京工業大学発" data-en="Founded by UTokyo &amp; Tokyo Tech engineers">東京大学・東京工業大学発</p>
         <h1 class="hero-title">
           <span data-ja="AI・IT・セキュリティの<br><span class='accent'>スペシャリスト</span>集団。" data-en="A team of AI, IT &amp; security<br><span class='accent'>specialists.</span>">AI・IT・セキュリティの<br><span class="accent">スペシャリスト</span>集団。</span>
         </h1>
@@ -1135,7 +1149,7 @@ const fmtDate = (d: Date) =>
             <span class="media-card-plate">Reiwa <em>AH</em></span>
           </div>
           <div class="media-card-body">
-            <time class="media-card-date">2026.07</time>
+            <time class="media-card-date">2026.07</time><span class="media-card-tag" data-ja="提携" data-en="Alliance">提携</span>
             <p class="media-card-title" data-ja="令和アカウンティングHD（東証グロース296A）と事業提携" data-en="Business alliance with Reiwa Accounting Holdings (TSE Growth 296A)">令和アカウンティングHD（東証グロース296A）と事業提携</p>
           </div>
         </a>
@@ -1145,7 +1159,7 @@ const fmtDate = (d: Date) =>
             <span class="media-card-plate">NTT DATA <em>Hackathon</em></span>
           </div>
           <div class="media-card-body">
-            <time class="media-card-date">2026.03</time>
+            <time class="media-card-date">2026.03</time><span class="media-card-tag" data-ja="受賞" data-en="Award">受賞</span>
             <p class="media-card-title" data-ja="NTT DATA ハードウェアハッカソンで受賞" data-en="Award winner at the NTT DATA hardware hackathon">NTT DATA ハードウェアハッカソンで受賞</p>
           </div>
         </a>
@@ -1155,7 +1169,7 @@ const fmtDate = (d: Date) =>
             <span class="media-card-plate">azbil</span>
           </div>
           <div class="media-card-body">
-            <time class="media-card-date">2026.07</time>
+            <time class="media-card-date">2026.07</time><span class="media-card-tag" data-ja="登壇" data-en="Talk">登壇</span>
             <p class="media-card-title" data-ja="アズビル（東証プライム）のピッチイベントに登壇" data-en="Pitched at azbil's startup event (TSE Prime)">アズビル（東証プライム）のピッチイベントに登壇</p>
           </div>
         </a>
