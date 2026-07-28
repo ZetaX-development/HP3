@@ -226,8 +226,10 @@ const fmtDate = (d: Date) =>
     .hero {
       position: relative; min-height: 66vh;
       display: flex; align-items: center; justify-content: center;
-      overflow: hidden; background: #ffffff; padding-top: 68px; padding-bottom: 40px;
+      overflow: hidden; background: #ffffff; padding-top: 68px; padding-bottom: 120px;
     }
+    /* ヒーロー下部の掲載メディア帯（ファーストビュー内） */
+    .hero-media-strip { position: absolute; left: 0; right: 0; bottom: 16px; z-index: 2; }
     .hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
     /* teamLab-inspired kinetic-typography canvas — drawn on white, behind content */
     .hero-canvas {
@@ -1134,47 +1136,8 @@ const fmtDate = (d: Date) =>
       </div>
 
     </div>
-    <div class="hero-scroll">Scroll</div>
-  </section>
-
-  <!-- MEDIA & RECOGNITION -->
-  <div class="media-showcase" id="results">
-    <div class="container">
-      <p class="media-label" data-ja="メディア掲載・登壇実績" data-en="Media & Recognition">メディア掲載・登壇実績</p>
-
-      <div class="media-cards">
-        <a class="media-card" href="/news/reiwa-accounting-partnership/">
-          <div class="media-card-photo">
-            <img src="/media/reiwa.jpg" alt="令和アカウンティング・ホールディングス" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
-            <span class="media-card-plate">Reiwa <em>AH</em></span>
-          </div>
-          <div class="media-card-body">
-            <time class="media-card-date">2026.07</time><span class="media-card-tag" data-ja="提携" data-en="Alliance">提携</span>
-            <p class="media-card-title" data-ja="令和アカウンティングHD（東証グロース296A）と事業提携" data-en="Business alliance with Reiwa Accounting Holdings (TSE Growth 296A)">令和アカウンティングHD（東証グロース296A）と事業提携</p>
-          </div>
-        </a>
-        <a class="media-card" href="/news/nttdata-hardware-hackathon-award/">
-          <div class="media-card-photo">
-            <img src="/media/nttdata-hackathon.jpg" alt="NTT DATA ハードウェアハッカソン授賞式" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
-            <span class="media-card-plate">NTT DATA <em>Hackathon</em></span>
-          </div>
-          <div class="media-card-body">
-            <time class="media-card-date">2026.03</time><span class="media-card-tag" data-ja="受賞" data-en="Award">受賞</span>
-            <p class="media-card-title" data-ja="NTT DATA ハードウェアハッカソンで受賞" data-en="Award winner at the NTT DATA hardware hackathon">NTT DATA ハードウェアハッカソンで受賞</p>
-          </div>
-        </a>
-        <a class="media-card" href="/news/azbil-pitch-event/">
-          <div class="media-card-photo">
-            <img src="/media/azbil.jpg" alt="アズビル株式会社" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
-            <span class="media-card-plate">azbil</span>
-          </div>
-          <div class="media-card-body">
-            <time class="media-card-date">2026.07</time><span class="media-card-tag" data-ja="登壇" data-en="Talk">登壇</span>
-            <p class="media-card-title" data-ja="アズビル（東証プライム）のピッチイベントに登壇" data-en="Pitched at azbil's startup event (TSE Prime)">アズビル（東証プライム）のピッチイベントに登壇</p>
-          </div>
-        </a>
-      </div>
-
+    <div class="hero-media-strip">
+      <div class="container">
       <div class="media-logos-row">
         <p class="media-label" data-ja="掲載メディア" data-en="As seen in">掲載メディア</p>
         <div class="media-marquee">
@@ -1264,6 +1227,49 @@ const fmtDate = (d: Date) =>
           </div>
         </div>
       </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA & RECOGNITION -->
+  <div class="media-showcase" id="results">
+    <div class="container">
+      <p class="media-label" data-ja="メディア掲載・登壇実績" data-en="Media & Recognition">メディア掲載・登壇実績</p>
+
+      <div class="media-cards">
+        <a class="media-card" href="/news/reiwa-accounting-partnership/">
+          <div class="media-card-photo">
+            <img src="/media/reiwa.jpg" alt="令和アカウンティング・ホールディングス" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
+            <span class="media-card-plate">Reiwa <em>AH</em></span>
+          </div>
+          <div class="media-card-body">
+            <time class="media-card-date">2026.07</time><span class="media-card-tag" data-ja="提携" data-en="Alliance">提携</span>
+            <p class="media-card-title" data-ja="令和アカウンティングHD（東証グロース296A）と事業提携" data-en="Business alliance with Reiwa Accounting Holdings (TSE Growth 296A)">令和アカウンティングHD（東証グロース296A）と事業提携</p>
+          </div>
+        </a>
+        <a class="media-card" href="/news/nttdata-hardware-hackathon-award/">
+          <div class="media-card-photo">
+            <img src="/media/nttdata-hackathon.jpg" alt="NTT DATA ハードウェアハッカソン授賞式" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
+            <span class="media-card-plate">NTT DATA <em>Hackathon</em></span>
+          </div>
+          <div class="media-card-body">
+            <time class="media-card-date">2026.03</time><span class="media-card-tag" data-ja="受賞" data-en="Award">受賞</span>
+            <p class="media-card-title" data-ja="NTT DATA ハードウェアハッカソンで受賞" data-en="Award winner at the NTT DATA hardware hackathon">NTT DATA ハードウェアハッカソンで受賞</p>
+          </div>
+        </a>
+        <a class="media-card" href="/news/azbil-pitch-event/">
+          <div class="media-card-photo">
+            <img src="/media/azbil.jpg" alt="アズビル株式会社" loading="lazy" onerror="this.closest('.media-card').classList.add('noimg')">
+            <span class="media-card-plate">azbil</span>
+          </div>
+          <div class="media-card-body">
+            <time class="media-card-date">2026.07</time><span class="media-card-tag" data-ja="登壇" data-en="Talk">登壇</span>
+            <p class="media-card-title" data-ja="アズビル（東証プライム）のピッチイベントに登壇" data-en="Pitched at azbil's startup event (TSE Prime)">アズビル（東証プライム）のピッチイベントに登壇</p>
+          </div>
+        </a>
+      </div>
+
+
     </div>
   </div>
 
