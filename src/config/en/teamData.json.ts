@@ -11,7 +11,7 @@ export const teamData: teamMember[] = [
     },
     name: "Kyosuke Yanagisawa",
     title: "Co-CEO",
-    bio: `The University of Tokyo, Faculty of Engineering (Admitted via Selective Recommendation Track).
+    bio: `The University of Tokyo, Faculty of Engineering.
     
     Distinguished award winner in competitions such as the Nikkei Stock League, Mynavi Career Koshien, and Cyber Sakura. Leads the team as Product Manager while actively engineering at a UTokyo AI startup. Successfully drove operational efficiency improvements for major hotels and logistics warehouses.`,
   },
@@ -24,7 +24,7 @@ export const teamData: teamMember[] = [
     },
     name: "Yo Sato",
     title: "Co-CEO",
-    bio: `The University of Tokyo, College of Arts and Sciences (Natural Sciences II).
+    bio: `The University of Tokyo, Faculty of Engineering.
     
     Recipient of the Excellence Award at Japan National Model United Nations and multiple awards in Mathematical Olympiads (Brazil and Japan). Brings extensive project management experience from a UTokyo startup and a VC firm. Spent over a decade living abroad and is fluent in four languages.`,
   },
