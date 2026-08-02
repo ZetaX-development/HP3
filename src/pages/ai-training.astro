@@ -11,7 +11,7 @@ import MobileNav from "@components/Nav/MobileNav.astro";
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <title>AI研修・リテラシー教育 — ZetaX</title>
-  <meta name="description" content="ZetaXのAI研修・リテラシー教育。上場企業・士業事務所・製造業での実績。経営層から現場社員まで、実務で使えるAI人材を育成。カスタマイズ設計対応。">
+  <meta name="description" content="ZetaXのAI研修・リテラシー教育。上場企業・銀行・製造業など30社以上の支援実績。現役AI開発エンジニアが実業務を題材に研修を設計。研修と要件定義のセット提供。資料請求無料。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -129,6 +129,87 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     .feature-desc { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.9; }
     @media (max-width: 768px) { .features-grid { grid-template-columns: 1fr; } }
 
+    /* ISSUES */
+    .issues-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
+    .issue-card { background: var(--bg); padding: 2.6rem 2.2rem; }
+    .issue-num { font-family: var(--font-en); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 1rem; }
+    .issue-title { font-weight: 700; font-size: 1rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 1rem; }
+    .issue-items { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .issue-items li { font-size: 0.8rem; color: var(--text-secondary); padding-left: 1rem; position: relative; }
+    .issue-items li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; }
+    .issues-band { margin-top: 2.5rem; background: var(--accent-pale); border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem 2rem; text-align: center; font-size: 0.95rem; font-weight: 700; color: var(--text-primary); }
+    .issues-band .em { color: var(--accent); }
+    @media (max-width: 768px) { .issues-grid { grid-template-columns: 1fr; } }
+
+    /* APPROACH */
+    .approach-grid { display: grid; grid-template-columns: 1fr 1fr 1.6fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem; }
+    .approach-step { background: var(--bg); padding: 2.4rem 2rem; }
+    .approach-step.highlight { background: var(--accent-pale); }
+    .approach-num { font-family: var(--font-en); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 0.8rem; }
+    .approach-title { font-weight: 700; font-size: 0.96rem; color: var(--text-primary); margin-bottom: 0.6rem; }
+    .approach-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.9; }
+    .approach-outputs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1.2rem; }
+    .approach-output { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 1rem 1.1rem; }
+    .approach-output-name { font-weight: 700; font-size: 0.82rem; color: var(--accent); margin-bottom: 0.3rem; }
+    .approach-output-desc { font-size: 0.74rem; color: var(--text-secondary); line-height: 1.7; }
+    @media (max-width: 900px) { .approach-grid { grid-template-columns: 1fr; } .approach-outputs { grid-template-columns: 1fr; } }
+
+    /* CURRICULUM TABLE */
+    .curriculum-table { margin-top: 4rem; border: 1px solid var(--border); overflow-x: auto; }
+    .curriculum-table table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    .curriculum-table th { background: var(--text-primary); color: #fff; font-size: 0.78rem; font-weight: 600; text-align: left; padding: 0.9rem 1.3rem; white-space: nowrap; }
+    .curriculum-table td { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.8; padding: 1.1rem 1.3rem; border-top: 1px solid var(--border); vertical-align: top; }
+    .curriculum-table td.theme { font-weight: 700; color: var(--text-primary); white-space: nowrap; }
+    .curriculum-table td.effect { font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .curriculum-note { font-size: 0.76rem; color: var(--text-dim); margin-top: 1rem; }
+
+    /* CASES */
+    .cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 4rem; }
+    .case-card { border: 1px solid var(--border); border-radius: 10px; padding: 2.6rem 2.4rem; background: var(--bg); }
+    .case-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; color: var(--accent); background: var(--accent-pale); padding: 4px 12px; border-radius: 3px; margin-bottom: 1.2rem; }
+    .case-title { font-weight: 700; font-size: 1.08rem; color: var(--text-primary); margin-bottom: 1.2rem; line-height: 1.5; }
+    .case-meta { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.6rem; }
+    .case-meta li { font-size: 0.82rem; color: var(--text-secondary); display: flex; gap: 0.8rem; }
+    .case-meta .k { flex-shrink: 0; width: 4.5em; font-weight: 600; color: var(--text-primary); }
+    .case-quote { border-left: 3px solid var(--accent); background: var(--bg-subtle); padding: 1.2rem 1.4rem; font-size: 0.84rem; color: var(--text-secondary); line-height: 2; border-radius: 0 6px 6px 0; }
+    .case-quote-label { font-size: 0.7rem; font-weight: 700; color: var(--accent); margin-bottom: 0.4rem; }
+    @media (max-width: 900px) { .cases-grid { grid-template-columns: 1fr; } }
+
+    /* REQUEST FORM */
+    .request-section { background: var(--text-primary); padding: 100px 0; position: relative; overflow: hidden; }
+    .request-mesh { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 15% 50%, rgba(26,63,191,0.3) 0%, transparent 60%), radial-gradient(ellipse 50% 70% at 85% 40%, rgba(123,150,255,0.2) 0%, transparent 55%); pointer-events: none; }
+    .request-wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.1fr; gap: 4.5rem; align-items: start; }
+    .request-label { font-family: var(--font-en); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #7b96ff; margin-bottom: 1.4rem; display: flex; align-items: center; gap: 0.6rem; }
+    .request-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #7b96ff; }
+    .request-title { font-family: var(--font-jp); font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 700; color: #fff; line-height: 1.4; margin-bottom: 1.2rem; }
+    .request-desc { font-size: 0.92rem; color: rgba(255,255,255,0.55); line-height: 2; margin-bottom: 2rem; }
+    .request-points { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .request-points li { font-size: 0.86rem; color: rgba(255,255,255,0.75); padding-left: 1.5rem; position: relative; }
+    .request-points li::before { content: '✓'; position: absolute; left: 0; color: #7b96ff; font-weight: 700; }
+    .request-alt { margin-top: 2.4rem; font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+    .request-alt a { color: #7b96ff; text-decoration: underline; }
+    .request-form-card { background: #fff; border-radius: 12px; padding: 2.6rem 2.4rem; }
+    .rf-title { font-weight: 700; font-size: 1.02rem; color: var(--text-primary); margin-bottom: 1.6rem; }
+    .rf-group { margin-bottom: 1.2rem; }
+    .rf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .rf-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.4rem; }
+    .rf-label .req { color: #d43c3c; margin-left: 2px; }
+    .rf-input, .rf-textarea { width: 100%; font-family: var(--font-jp); font-size: 0.88rem; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 6px; background: var(--bg-subtle); color: var(--text-primary); transition: border-color 0.2s, background 0.2s; }
+    .rf-input:focus, .rf-textarea:focus { outline: none; border-color: var(--accent); background: #fff; }
+    .rf-textarea { resize: vertical; min-height: 90px; }
+    .rf-submit { width: 100%; font-family: var(--font-jp); font-size: 0.94rem; font-weight: 700; padding: 14px; border-radius: 6px; background: var(--accent); color: #fff; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; margin-top: 0.4rem; }
+    .rf-submit:hover { background: var(--accent-light); transform: translateY(-1px); }
+    .rf-submit:disabled { opacity: 0.6; cursor: wait; transform: none; }
+    .rf-privacy { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.9rem; line-height: 1.7; }
+    .rf-privacy a { color: var(--accent); text-decoration: underline; }
+    .rf-success { display: none; text-align: center; padding: 3rem 1rem; }
+    .rf-success.show { display: block; }
+    .rf-success-icon { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
+    .rf-success p { font-size: 0.92rem; color: var(--text-secondary); line-height: 2; }
+    .rf-error { display: none; font-size: 0.8rem; color: #d43c3c; background: #fdf0f0; border: 1px solid #f2cccc; border-radius: 6px; padding: 0.8rem 1rem; margin-top: 1rem; line-height: 1.8; }
+    .rf-error.show { display: block; }
+    @media (max-width: 900px) { .request-wrap { grid-template-columns: 1fr; gap: 3rem; } .rf-row { grid-template-columns: 1fr; } }
+
     /* FAQ */
     .faq-list { margin-top: 3rem; border-top: 1px solid var(--border); }
     .faq-item { border-bottom: 1px solid var(--border); }
@@ -223,19 +304,19 @@ import MobileNav from "@components/Nav/MobileNav.astro";
       <div class="hero-content">
         <p class="hero-badge">Service 03 — AI Training & Literacy Education</p>
         <h1 class="hero-title">AIを使いこなす<br>組織をつくる。<br><span class="accent">ツール操作から、</span><br><span class="accent">実務活用戦略まで。</span></h1>
-        <p class="hero-sub">上場企業・士業事務所・製造業での研修実績。経営層から現場社員まで対象に応じてプログラムを設計し、AIを実際の業務で使える人材を育成します。</p>
+        <p class="hero-sub">上場企業・銀行・製造業など30社以上の支援実績。現場ヒアリングから貴社の実業務を題材に研修を設計し、講師は現役のAI開発エンジニアが務めます。学んで終わりではなく、明日から使えるところまで伴走します。</p>
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-num">上場<em>企業</em></div>
-            <div class="hero-stat-label">複数社での研修実績</div>
+            <div class="hero-stat-num">30<em>社+</em></div>
+            <div class="hero-stat-label">支援実績（上場企業・銀行・製造業など）</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-num">士業<em>事務所</em></div>
-            <div class="hero-stat-label">税理士・弁護士事務所など</div>
+            <div class="hero-stat-num">98<em>%</em></div>
+            <div class="hero-stat-label">受講者満足度（商社様導入事例）</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-num">製造<em>業</em></div>
-            <div class="hero-stat-label">現場〜経営層まで対応</div>
+            <div class="hero-stat-num">20<em>名以下</em></div>
+            <div class="hero-stat-label">各回の少人数制で確実に定着</div>
           </div>
           <div class="hero-stat">
             <div class="hero-stat-num">100<em>%</em></div>
@@ -243,8 +324,87 @@ import MobileNav from "@components/Nav/MobileNav.astro";
           </div>
         </div>
         <div class="hero-actions">
-          <a href="/#contact" class="btn-primary">研修内容を相談する（無料）</a>
+          <a href="#request" class="btn-primary">研修資料を請求する（無料）</a>
           <a href="#programs" class="btn-outline">プログラム一覧を見る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ISSUES -->
+  <section class="section" id="issues">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Challenges</span>
+        <h2 class="section-heading">こんな課題ありませんか？</h2>
+        <p class="section-sub">AIを使いたい企業が、最初にぶつかりやすい代表的な悩みです。</p>
+      </div>
+      <div class="issues-grid">
+        <div class="issue-card reveal d1">
+          <div class="issue-num">01</div>
+          <div class="issue-title">社内でAIをどう使えるのかわからない</div>
+          <ul class="issue-items">
+            <li>部署ごとの活用イメージが湧かない</li>
+            <li>現場業務にどう落とし込むか不明</li>
+            <li>とりあえず触って終わってしまう</li>
+          </ul>
+        </div>
+        <div class="issue-card reveal d2">
+          <div class="issue-num">02</div>
+          <div class="issue-title">AIのユースケースがわからない</div>
+          <ul class="issue-items">
+            <li>他社事例との違いが分からない</li>
+            <li>業務別の具体的パターンが知りたい</li>
+            <li>現場に合う使い方を実務ベースで知りたい</li>
+          </ul>
+        </div>
+        <div class="issue-card reveal d3">
+          <div class="issue-num">03</div>
+          <div class="issue-title">費用がいくらかかるのかわからない</div>
+          <ul class="issue-items">
+            <li>研修で済むのか、開発が必要なのか不透明</li>
+            <li>初期費用の目安が分からない</li>
+            <li>投資対効果を社内に説明しづらい</li>
+          </ul>
+        </div>
+      </div>
+      <div class="issues-band reveal">“分からない”を、ヒアリングと整理で<span class="em">“実行できる状態”</span>へ。現場ヒアリングを通じて、活用テーマ・ユースケース・費用感を明確化します。</div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="section section-alt" id="approach">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Our Service</span>
+        <h2 class="section-heading">提供サービス：研修と要件定義をセットで</h2>
+        <p class="section-sub">現場ヒアリングから、AI活用の実行方針策定までを一気通貫で支援します。「何にAIを使うべきか分からない」状態から、具体的な実行計画まで伴走します。</p>
+      </div>
+      <div class="approach-grid">
+        <div class="approach-step reveal d1">
+          <div class="approach-num">STEP 01</div>
+          <div class="approach-title">社内業務のヒアリング</div>
+          <p class="approach-desc">現場担当者へのヒアリングを通じて、業務の流れ・課題・工数を整理します。</p>
+        </div>
+        <div class="approach-step reveal d2">
+          <div class="approach-num">STEP 02</div>
+          <div class="approach-title">AI活用ポイントの洗い出し</div>
+          <p class="approach-desc">AIで効率化・高度化できそうな業務を特定し、活用ユースケースを整理します。</p>
+        </div>
+        <div class="approach-step highlight reveal d3">
+          <div class="approach-num">STEP 03</div>
+          <div class="approach-title">研修・要件定義をセットで提供</div>
+          <p class="approach-desc">整理した業務を2つに分けて、それぞれ最適な形でお渡しします。</p>
+          <div class="approach-outputs">
+            <div class="approach-output">
+              <div class="approach-output-name">AI研修</div>
+              <div class="approach-output-desc">既存のAIツールで対応できる業務は、実務に即した研修として提供</div>
+            </div>
+            <div class="approach-output">
+              <div class="approach-output-name">要件定義書の作成・納品</div>
+              <div class="approach-output-desc">開発が必要な業務は、工数・費用まで明記した要件定義書として納品</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -299,8 +459,63 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     </div>
   </section>
 
+  <!-- CURRICULUM EXAMPLES -->
+  <section class="section section-alt" id="curriculum">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Curriculum</span>
+        <h2 class="section-heading">研修内容（例）</h2>
+        <p class="section-sub">各業務について、AIで「何をするか」と「どんな効果が出るか」を、実務ベースで学べる構成です。</p>
+      </div>
+      <div class="curriculum-table reveal d1">
+        <table>
+          <thead>
+            <tr>
+              <th>テーマ</th>
+              <th>導入前</th>
+              <th>研修で学ぶこと</th>
+              <th>導入後</th>
+              <th>期待効果</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="theme">資料・スライド作成</td>
+              <td>構成整理から文章化まで手作業。1本あたり半日〜数日かかる</td>
+              <td>AIで構成案・たたき台・既存資料ベースのドラフトを作る</td>
+              <td>数時間で初稿を用意し、仕上げや判断に集中できる</td>
+              <td class="effect">作成工数 約70〜80%減</td>
+            </tr>
+            <tr>
+              <td class="theme">議事録作成</td>
+              <td>会議後30分ほどかけて要点整理・議事録化</td>
+              <td>会議内容の要約、決定事項・ToDoの抽出、共有文面の整形をAIで行う</td>
+              <td>約5分で共有できる状態まで整理できる</td>
+              <td class="effect">作成時間 約80%減</td>
+            </tr>
+            <tr>
+              <td class="theme">社内資料の整理・検索</td>
+              <td>必要な資料を都度探し、見つからなければ作り直す</td>
+              <td>過去資料をAIに読み込ませ、検索・要約・再利用を効率化する</td>
+              <td>必要情報をすぐ呼び出し、既存資産をそのまま活用できる</td>
+              <td class="effect">探す・作り直す作業を削減</td>
+            </tr>
+            <tr>
+              <td class="theme">名刺交換後のお礼・フォローメール</td>
+              <td>名刺情報の整理やお礼メール作成を後回しにしがち</td>
+              <td>名刺の読み込み、お礼文の作成、送信フローの自動化</td>
+              <td>名刺を読み込ませるだけで当日中に文面作成・送信できる</td>
+              <td class="effect">ほぼ即日化・送り漏れゼロへ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="curriculum-note reveal">※企業様ごとの業務に応じて、内容はカスタマイズ可能です。</p>
+    </div>
+  </section>
+
   <!-- TARGET AUDIENCES -->
-  <section class="section section-alt" id="targets">
+  <section class="section" id="targets">
     <div class="container">
       <div class="reveal">
         <span class="section-label">Track Record</span>
@@ -345,7 +560,7 @@ import MobileNav from "@components/Nav/MobileNav.astro";
   </section>
 
   <!-- FLOW -->
-  <section class="section" id="flow">
+  <section class="section section-alt" id="flow">
     <div class="container">
       <div class="reveal">
         <span class="section-label">How We Design</span>
@@ -377,25 +592,76 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     </div>
   </section>
 
-  <!-- WHY -->
-  <section class="section section-alt">
+  <!-- STRENGTHS -->
+  <section class="section" id="strengths">
     <div class="container">
       <div class="reveal">
         <span class="section-label">Why ZetaX</span>
-        <h2 class="section-heading">ZetaXのAI研修が選ばれる理由</h2>
+        <h2 class="section-heading">ZetaXのAI研修の強み</h2>
+        <p class="section-sub">現場で使えるAI活用まで伴走します。</p>
       </div>
       <div class="features-grid">
         <div class="feature-card reveal d1">
-          <h3 class="feature-title">実務経験者が教える</h3>
-          <p class="feature-desc">AIの研究者ではなく、実際にAIシステムを開発・導入してきたエンジニアが講師を務めます。「理論上はこうだが現場ではこうなる」という実践的な知見を共有します。</p>
+          <h3 class="feature-title">01 — 実業務を題材にした教材と演習</h3>
+          <p class="feature-desc">現場ヒアリングと業務分析を行い、貴社の実業務を題材に教材と演習をゼロから作成します。汎用のサンプルではなく、翌日の業務にそのまま持ち帰れる内容です。</p>
         </div>
         <div class="feature-card reveal d2">
-          <h3 class="feature-title">業務に直結する内容のみ</h3>
-          <p class="feature-desc">技術的な原理説明に時間をかけません。参加者が翌日から業務で使えるスキルの習得にフォーカスします。研修後にすぐ実践できる具体的なプロンプトやワークフローをお渡しします。</p>
+          <h3 class="feature-title">02 — 講師は現役のAI開発エンジニア</h3>
+          <p class="feature-desc">専任講師ではなく、AIシステムの開発・導入を日々手がける現役エンジニアが登壇します。その場の質問にも、技術の裏付けをもって具体的に回答します。背後には20名超のエンジニア組織が控えています。</p>
         </div>
         <div class="feature-card reveal d3">
-          <h3 class="feature-title">開発もできるから、深く教えられる</h3>
-          <p class="feature-desc">ZetaXはAI研修だけでなく、AIシステムの開発・実装も行っています。「この業務を自動化したい」という相談があれば、研修と開発を組み合わせて、より大きな効果を生み出せます。</p>
+          <h3 class="feature-title">03 — 各回20名までの少人数制</h3>
+          <p class="feature-desc">演習中に手が止まった受講者を放置しません。少人数制で一人ひとりの進捗を確認しながら進行します。大人数の場合は回を分けて全員に行き渡らせます。</p>
+        </div>
+        <div class="feature-card reveal d1">
+          <h3 class="feature-title">04 — 社内AIガイドライン・利用環境まで事前整備</h3>
+          <p class="feature-desc">研修の前に、社内AIガイドラインへの準拠化と利用環境の事前確認まで実施します。「研修はしたが、社内ルール上使えない」という事態を防ぎます。</p>
+        </div>
+        <div class="feature-card reveal d2">
+          <h3 class="feature-title">05 — 研修後のフォローアップまで伴走</h3>
+          <p class="feature-desc">学んで終わりにしません。研修後の質問対応や活用状況のフォローまで含めて、受講者が実務でAIを使い続けられる状態をつくります。</p>
+        </div>
+        <div class="feature-card reveal d3">
+          <h3 class="feature-title">＋ 開発もできるから、深く教えられる</h3>
+          <p class="feature-desc">ZetaXはAI研修だけでなく、AIシステムの開発・実装も行っています。「この業務を自動化したい」という相談には、研修と開発を組み合わせてより大きな効果を生み出せます。</p>
+        </div>
+      </div>
+      <div class="issues-band reveal">学んで終わりではなく、<span class="em">明日から使えるところまで</span>支援します。</div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section class="section section-alt" id="cases">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Case Studies</span>
+        <h2 class="section-heading">導入事例</h2>
+        <p class="section-sub">経営層から現場まで、企業の状況に合わせた研修を設計・実施しています。</p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card reveal d1">
+          <span class="case-tag">製造業（プライム上場）</span>
+          <div class="case-title">Microsoft Copilot を起点としたAI活用研修</div>
+          <ul class="case-meta">
+            <li><span class="k">受講者</span><span>経営層ならびに管理部従業員 計70名</span></li>
+            <li><span class="k">形式</span><span>2時間半 × 4回（計8時間）</span></li>
+          </ul>
+          <div class="case-quote">
+            <div class="case-quote-label">ご担当者様のコメント</div>
+            カリキュラムの制定から研修、フォローアップまで、豊富な経験をお持ちのエンジニアの方が担当してくださいました。圧倒的な経験に裏打ちされた、とても有意義な研修になりました。次回は新入社員向けにお願いしたいと思います。
+          </div>
+        </div>
+        <div class="case-card reveal d2">
+          <span class="case-tag">商社（大企業）— 受講者満足度98%</span>
+          <div class="case-title">Claude / ChatGPT を起点としたAI活用研修</div>
+          <ul class="case-meta">
+            <li><span class="k">受講者</span><span>経営層ならびに上層部 計50名</span></li>
+            <li><span class="k">形式</span><span>1時間半 × 4回（計6時間）</span></li>
+          </ul>
+          <div class="case-quote">
+            <div class="case-quote-label">ご担当者様のコメント</div>
+            初めは要件すら定まっていませんでしたが、ZetaXさんと話していくうちにだんだん解像度が上がり、最終的には受講者満足度98%の研修を提供できました。担当が一流のエンジニアということもあり、その場で質問しても毎回丁寧で分かりやすい回答をくださいました。
+          </div>
         </div>
       </div>
     </div>
@@ -415,7 +681,7 @@ import MobileNav from "@components/Nav/MobileNav.astro";
         </div>
         <div class="faq-item">
           <button class="faq-q">何人から研修を受けられますか？<span class="faq-icon">+</span></button>
-          <div class="faq-a">1名からの個別コーチングから、数百名規模の全社研修まで対応しています。少人数のハンズオンから大規模な講演形式まで、目的に合わせた形式をご提案します。</div>
+          <div class="faq-a">1名からの個別コーチングにも対応しています。演習の質を保つため受講は各回20名までとし、大人数の場合は回を分けて実施します。数百名規模の全社展開も、回を分けることで対応可能です。</div>
         </div>
         <div class="faq-item">
           <button class="faq-q">オンラインと対面、どちらで実施できますか？<span class="faq-icon">+</span></button>
@@ -423,7 +689,7 @@ import MobileNav from "@components/Nav/MobileNav.astro";
         </div>
         <div class="faq-item">
           <button class="faq-q">研修費用の目安はいくらですか？<span class="faq-icon">+</span></button>
-          <div class="faq-a">内容・規模・時間数によって異なります。単発のセミナーから継続的なプログラムまで、予算に合わせてご提案します。まずは無料でのヒアリングにてご要望をお聞かせください。</div>
+          <div class="faq-a">回数・時間数に応じたパッケージ料金をご用意しています（時間割・回数・人数は柔軟に調整可能です）。料金表を含む詳細資料は<a href="#request" style="color:var(--accent);text-decoration:underline;">資料請求</a>にて無料でお送りします。ご要望に合わせた個別のお見積りも可能です。</div>
         </div>
         <div class="faq-item">
           <button class="faq-q">研修後のフォローアップはありますか？<span class="faq-icon">+</span></button>
@@ -433,15 +699,58 @@ import MobileNav from "@components/Nav/MobileNav.astro";
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-mesh"></div>
+  <!-- REQUEST FORM -->
+  <section class="request-section" id="request">
+    <div class="request-mesh"></div>
     <div class="container">
-      <div class="cta-inner reveal">
-        <p class="cta-label">Contact</p>
-        <h2 class="cta-title">まずは無料で<br>研修内容をご相談ください。</h2>
-        <p class="cta-sub">お客様の業種・参加人数・目標をお聞きした上で、<br>最適なプログラムをご提案します。</p>
-        <a href="/#contact" class="cta-btn">研修を相談する（無料） →</a>
+      <div class="request-wrap">
+        <div class="reveal">
+          <p class="request-label">Request Materials</p>
+          <h2 class="request-title">AI研修にご興味のある<br>企業様はこちら</h2>
+          <p class="request-desc">研修プログラムの詳細・料金パッケージ・導入事例をまとめた資料を無料でお送りします。フォーム送信後、2営業日以内に担当者よりメールでお届けします。</p>
+          <ul class="request-points">
+            <li>研修プログラムと設計の流れの詳細</li>
+            <li>料金パッケージ（回数・時間別）</li>
+            <li>導入事例と受講者の声</li>
+            <li>AI開発事例（見積AI・注文書OCRなど）</li>
+          </ul>
+          <p class="request-alt">まずは話を聞いてみたい方は、<a href="/#contact">無料相談フォーム</a>からもご連絡いただけます。</p>
+        </div>
+        <div class="request-form-card reveal d1">
+          <form id="requestForm">
+            <p class="rf-title">研修資料を請求する（無料）</p>
+            <input type="hidden" name="formType" value="training" />
+            <div class="rf-group">
+              <label class="rf-label" for="rf-company">会社名<span class="req">*</span></label>
+              <input class="rf-input" type="text" id="rf-company" name="company" placeholder="株式会社〇〇" required />
+            </div>
+            <div class="rf-row rf-group" style="margin-bottom:1.2rem;">
+              <div>
+                <label class="rf-label" for="rf-name">お名前<span class="req">*</span></label>
+                <input class="rf-input" type="text" id="rf-name" name="name" placeholder="山田 太郎" required />
+              </div>
+              <div>
+                <label class="rf-label" for="rf-department">部署</label>
+                <input class="rf-input" type="text" id="rf-department" name="department" placeholder="経営企画部" />
+              </div>
+            </div>
+            <div class="rf-group">
+              <label class="rf-label" for="rf-email">社用メールアドレス<span class="req">*</span></label>
+              <input class="rf-input" type="email" id="rf-email" name="email" inputmode="email" placeholder="you@company.co.jp" required />
+            </div>
+            <div class="rf-group">
+              <label class="rf-label" for="rf-message">コメント</label>
+              <textarea class="rf-textarea" id="rf-message" name="message" placeholder="ご検討状況やご質問があればご記入ください（任意）"></textarea>
+            </div>
+            <button class="rf-submit" type="submit" id="rf-submit">資料を請求する（無料）</button>
+            <p class="rf-privacy">ご入力いただいた情報は、資料送付とご連絡のためにのみ使用します。詳細は<a href="/privacy-policy">プライバシーポリシー</a>をご覧ください。</p>
+            <div class="rf-error" id="rfError">送信に失敗しました。お手数ですが、<a href="mailto:ysato@zetax.jp" style="color:var(--accent);">ysato@zetax.jp</a> まで直接ご連絡ください。</div>
+          </form>
+          <div class="rf-success" id="rfSuccess">
+            <div class="rf-success-icon">✓</div>
+            <p><strong>資料請求を受け付けました。</strong><br>確認メールをお送りしましたのでご確認ください。<br>2営業日以内に担当者より研修資料をお送りします。</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -484,6 +793,31 @@ import MobileNav from "@components/Nav/MobileNav.astro";
         document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
         if (!isOpen) item.classList.add('open');
       });
+    });
+
+    // 資料請求フォーム
+    const requestForm = document.getElementById('requestForm');
+    requestForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = document.getElementById('rf-submit');
+      const errorBox = document.getElementById('rfError');
+      errorBox.classList.remove('show');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中…';
+      try {
+        const res = await fetch('/api/contact', { method: 'POST', body: new FormData(requestForm) });
+        const data = await res.json().catch(() => ({ ok: false }));
+        if (data.ok) {
+          requestForm.style.display = 'none';
+          document.getElementById('rfSuccess').classList.add('show');
+        } else {
+          errorBox.classList.add('show');
+        }
+      } catch {
+        errorBox.classList.add('show');
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = '資料を請求する（無料）';
     });
   </script>
 </body>
