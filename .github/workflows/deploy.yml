@@ -26,3 +26,17 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: deploy
+
+      # AEO/SEO: デプロイ後、サイトマップの全URLをIndexNowに通知
+      # （Bing等に即時インデックス依頼。BingはChatGPT検索のソースでもある）
+      - name: Notify IndexNow
+        if: success()
+        run: |
+          KEY=3a268337c8d14c4eaeedcd4de89d88aa
+          URLS=$(grep -oE '<loc>[^<]+</loc>' dist/sitemap-0.xml | sed -E 's#</?loc>##g' | jq -R . | jq -s .)
+          jq -n --arg host "zetax.jp" --arg key "$KEY" --argjson urls "$URLS" \
+            '{host: $host, key: $key, keyLocation: ("https://zetax.jp/" + $key + ".txt"), urlList: $urls}' \
+            > indexnow.json
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data @indexnow.json -w "\nIndexNow HTTP %{http_code}\n" || true

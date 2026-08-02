@@ -2,11 +2,15 @@
 import { getCollection } from "astro:content";
 import NewsLayout from "@layouts/NewsLayout.astro";
 
-const CATEGORIES = ["お知らせ", "実績", "サービス", "技術コラム", "事例"] as const;
+const CATEGORIES = ["お知らせ", "実績", "サービス", "事例"] as const;
 
-const all = (await getCollection("news", ({ data }) => data.draft !== true)).sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
-);
+// 技術コラム（SEO記事・毎日追加）は /column/ に分離。ここは会社ニュースのみ
+const all = (
+  await getCollection(
+    "news",
+    ({ data }) => data.draft !== true && data.category !== "技術コラム",
+  )
+).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const featured = all.find((p) => p.data.featured) ?? all[0];
 const rest = all.filter((p) => p.id !== featured?.id);
@@ -36,6 +40,7 @@ const ogImage = featured
         {CATEGORIES.map((c) => (
           <button class="news-filter-btn" data-filter={c}>{c}</button>
         ))}
+        <a class="news-filter-link" href="/column/">技術コラム →</a>
       </div>
 
       {featured && (
@@ -72,6 +77,8 @@ const ogImage = featured
   .news-filter { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.5rem 0 2.5rem; }
   .news-filter-btn { font-family: var(--font-jp); font-size: 0.8rem; padding: 6px 16px; border: 1px solid var(--border); border-radius: 20px; background: var(--bg); color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
   .news-filter-btn.active, .news-filter-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .news-filter-link { font-family: var(--font-jp); font-size: 0.8rem; padding: 6px 16px; border: 1px solid var(--accent); border-radius: 20px; background: var(--accent-pale); color: var(--accent); font-weight: 600; transition: all 0.2s; }
+  .news-filter-link:hover { background: var(--accent); color: #fff; }
 
   .news-featured { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: stretch; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 3rem; transition: box-shadow 0.2s; }
   .news-featured:hover { box-shadow: var(--shadow-md); }

@@ -2,7 +2,13 @@
 import MobileNav from "@components/Nav/MobileNav.astro";
 import { getCollection } from "astro:content";
 
-const latestNews = (await getCollection("news", ({ data }) => data.draft !== true))
+// 技術コラム（SEO記事・毎日追加）はトップの最新ニュースには出さない — /column/ に分離
+const latestNews = (
+  await getCollection(
+    "news",
+    ({ data }) => data.draft !== true && data.category !== "技術コラム",
+  )
+)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
   .slice(0, 3);
 
@@ -24,6 +30,29 @@ const fmtDate = (d: Date) =>
   <meta property="og:title" content="ZetaX — 上流から下流まで。妥協しない、一気通貫。">
   <meta property="og:description" content="東大発AI・ITプロフェッショナル集団。完全内製、超上流から下流まで一気通貫。">
   <meta property="og:type" content="website">
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "株式会社ZetaX",
+    alternateName: "ZetaX",
+    url: "https://zetax.jp",
+    logo: "https://zetax.jp/icon_image/ロゴ背景白正方形.png",
+    description:
+      "東京大学のエンジニアを中心とするAI・ITプロフェッショナル集団。AI/ITコンサルティング・開発、セキュリティコンサルティング、法人向けAI研修、ハードウェア開発を完全内製で提供。",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "JP",
+      addressRegion: "東京都",
+      addressLocality: "渋谷区",
+      streetAddress: "神南1丁目11−4 FPGリンクス神南 5階",
+    },
+    founder: [
+      { "@type": "Person", name: "佐藤陽", jobTitle: "Co-CEO" },
+      { "@type": "Person", name: "柳澤京佐", jobTitle: "Co-CEO" },
+    ],
+    sameAs: ["https://github.com/ZetaX-development"],
+    knowsAbout: ["AI研修", "生成AI活用", "AIコンサルティング", "セキュリティコンサルティング", "エッジAI", "製造業DX"],
+  })} />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1081,6 +1110,7 @@ const fmtDate = (d: Date) =>
             <a href="/about#founders" data-ja="代表紹介" data-en="Representatives">代表紹介</a>
             <div class="nav-dropdown-divider"></div>
             <a href="/news/" data-ja="ニュース" data-en="News">ニュース</a>
+            <a href="/column/" data-ja="技術コラム" data-en="Column">技術コラム</a>
           </div>
         </li>
 
@@ -1488,6 +1518,7 @@ const fmtDate = (d: Date) =>
             <li><a href="#results" data-ja="実績" data-en="Results">実績</a></li>
             <li><a href="/about" data-ja="会社紹介" data-en="About Us">会社紹介</a></li>
             <li><a href="/news/" data-ja="ニュース" data-en="News">ニュース</a></li>
+            <li><a href="/column/" data-ja="技術コラム" data-en="Column">技術コラム</a></li>
             <li><a href="#contact" data-ja="お問い合わせ" data-en="Contact">お問い合わせ</a></li>
           </ul>
         </div>
