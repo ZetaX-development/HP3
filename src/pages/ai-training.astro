@@ -10,11 +10,67 @@ import MobileNav from "@components/Nav/MobileNav.astro";
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <title>AI研修・リテラシー教育 — ZetaX</title>
+  <title>法人向けAI研修・生成AI研修 | ZetaX — 現役AIエンジニアが設計する実務直結型プログラム</title>
   <meta name="description" content="ZetaXのAI研修・リテラシー教育。上場企業・銀行・製造業など30社以上の支援実績。現役AI開発エンジニアが実業務を題材に研修を設計。研修と要件定義のセット提供。資料請求無料。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://zetax.jp/ai-training/">
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "ZetaX AI研修（法人向けAI研修・生成AI研修）",
+    serviceType: "AI研修・リテラシー教育",
+    provider: {
+      "@type": "Organization",
+      name: "ZetaX",
+      url: "https://zetax.jp",
+    },
+    areaServed: "JP",
+    description:
+      "現役AI開発エンジニアが、現場ヒアリングをもとに貴社の実業務を題材とした法人向けAI研修を設計・実施。研修と要件定義書のセット提供で、学んで終わりではなく明日から使えるところまで伴走します。",
+    url: "https://zetax.jp/ai-training/",
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://zetax.jp/" },
+      { "@type": "ListItem", position: 2, name: "Services", item: "https://zetax.jp/services/" },
+      { "@type": "ListItem", position: 3, name: "AI研修・リテラシー教育", item: "https://zetax.jp/ai-training/" },
+    ],
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "AIについて全く知識がない社員でも参加できますか？",
+        acceptedAnswer: { "@type": "Answer", text: "はい、ゼロから始められるプログラムをご用意できます。参加者の現状のリテラシーに合わせてカリキュラムを調整しますので、事前知識は不要です。「スマートフォンを使えれば十分」というレベルから始められます。" },
+      },
+      {
+        "@type": "Question",
+        name: "何人から研修を受けられますか？",
+        acceptedAnswer: { "@type": "Answer", text: "1名からの個別コーチングにも対応しています。演習の質を保つため受講は各回20名までとし、大人数の場合は回を分けて実施します。数百名規模の全社展開も、回を分けることで対応可能です。" },
+      },
+      {
+        "@type": "Question",
+        name: "オンラインと対面、どちらで実施できますか？",
+        acceptedAnswer: { "@type": "Answer", text: "両方に対応しています。ハンズオン研修は対面が効果的ですが、オンラインでも十分な成果が出ます。全国どこでも対面での出張研修が可能です（北は青森から南は福岡まで実績あり）。" },
+      },
+      {
+        "@type": "Question",
+        name: "研修費用の目安はいくらですか？",
+        acceptedAnswer: { "@type": "Answer", text: "回数・時間数に応じたパッケージ料金をご用意しています（時間割・回数・人数は柔軟に調整可能です）。料金表を含む詳細資料は資料請求にて無料でお送りします。ご要望に合わせた個別のお見積りも可能です。" },
+      },
+      {
+        "@type": "Question",
+        name: "研修後のフォローアップはありますか？",
+        acceptedAnswer: { "@type": "Answer", text: "あります。研修後のQ&Aサポート・追加コンテンツ提供・定期的なフォローアップ研修など、継続的なサポートプランをご用意しています。「研修したけど現場で使われていない」という事態を防ぎます。" },
+      },
+    ],
+  })} />
   <style is:global>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
