@@ -119,8 +119,8 @@ const fmtDate = (d: Date) =>
       background: rgba(13,13,20,0.16);
       transform: scaleX(0); transform-origin: center;
     }
-    #zx-intro.zxi-s1 .zxi-rule { transform: scaleY(1); transition: transform 0.5s var(--ease); }
-    #zx-intro.zxi-s1 .zxi-rule-h { transform: scaleX(1); transition: transform 0.7s 0.1s var(--ease); }
+    #zx-intro.zxi-s1 .zxi-rule { transform: scaleY(1); transition: transform 0.35s var(--ease); }
+    #zx-intro.zxi-s1 .zxi-rule-h { transform: scaleX(1); transition: transform 0.45s 0.05s var(--ease); }
     /* トンボ（コーナーマーク） */
     #zx-intro .zxi-frame { position: absolute; left: 50%; top: 46%; width: min(560px, 84vw); height: 210px; transform: translate(-50%, -50%); pointer-events: none; }
     #zx-intro .zxi-frame i {
@@ -144,7 +144,7 @@ const fmtDate = (d: Date) =>
       letter-spacing: 0.18em;
       color: var(--text-primary);
       opacity: 0;
-      transition: letter-spacing 1.6s var(--ease);
+      transition: letter-spacing 1s var(--ease);
     }
     /* ぼんっ：拡大状態から一気に叩きつけて着地（オーバーシュート付き） */
     @keyframes zxi-slam {
@@ -169,13 +169,13 @@ const fmtDate = (d: Date) =>
       100% { transform: translate(-50%, -50%) scale(42); opacity: 0; }
     }
     #zx-intro.zxi-s2 .zxi-shock { animation: zxi-shockwave 0.7s 0.18s ease-out both; }
-    #zx-intro .zxi-bar { width: 0; height: 1px; background: var(--accent); transition: width 0.9s var(--ease); }
+    #zx-intro .zxi-bar { width: 0; height: 1px; background: var(--accent); transition: width 0.55s var(--ease); }
     #zx-intro.zxi-s3 .zxi-bar { width: 132px; }
     #zx-intro .zxi-sub {
       font-family: var(--font-en); font-size: 0.7rem; font-weight: 500;
       letter-spacing: 0.46em; text-transform: uppercase; color: var(--text-dim);
       opacity: 0; transform: translateY(10px);
-      transition: opacity 0.8s ease, transform 0.8s var(--ease);
+      transition: opacity 0.5s ease, transform 0.5s var(--ease);
     }
     #zx-intro.zxi-s3 .zxi-sub { opacity: 1; transform: none; }
     /* 幕が上へ開くワイプ退場 */
@@ -549,24 +549,6 @@ const fmtDate = (d: Date) =>
     .footer-legal { display: flex; gap: 1.5rem; }
     .footer-legal a { font-family: var(--font-en); font-size: 0.74rem; color: rgba(255,255,255,0.3); transition: color 0.2s; }
     .footer-legal a:hover { color: rgba(255,255,255,0.65); }
-
-    /* ─── CURSOR ─── */
-    * { cursor: none !important; }
-    .cursor-dot {
-      position: fixed; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent); pointer-events: none; z-index: 99999;
-      transform: translate(-50%,-50%); transition: transform 0.08s, background 0.2s, width 0.2s, height 0.2s;
-      will-change: left, top;
-    }
-    .cursor-ring {
-      position: fixed; width: 38px; height: 38px; border-radius: 50%;
-      border: 1.5px solid rgba(26,63,191,0.35); pointer-events: none; z-index: 99998;
-      transform: translate(-50%,-50%); transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s, opacity 0.3s;
-      will-change: left, top;
-    }
-    body:has(a:hover, button:hover) .cursor-dot { width: 12px; height: 12px; background: var(--accent-light); }
-    body:has(a:hover, button:hover) .cursor-ring { width: 56px; height: 56px; border-color: rgba(26,63,191,0.2); }
-    @media (hover: none) { * { cursor: auto !important; } .cursor-dot, .cursor-ring { display: none; } }
 
     /* ─── SCROLL PROGRESS ─── */
     .scroll-progress {
@@ -993,23 +975,19 @@ const fmtDate = (d: Date) =>
     if (zxIntro && document.documentElement.classList.contains("zx-hold")) {
       requestAnimationFrame(() => {
         zxIntro.classList.add("zxi-s1");                        // 縦罫が引かれる
-        setTimeout(() => zxIntro.classList.add("zxi-s2"), 400);  // 題字がぼんっと叩きつけられる＋衝撃波
-        setTimeout(() => zxIntro.classList.add("zxi-s3"), 1200); // アクセントラインとタグライン
+        setTimeout(() => zxIntro.classList.add("zxi-s2"), 250);  // 題字がぼんっと叩きつけられる＋衝撃波
+        setTimeout(() => zxIntro.classList.add("zxi-s3"), 700); // アクセントラインとタグライン
         setTimeout(() => {
           zxIntro.classList.add("zxi-done");                     // 幕が明ける
           document.documentElement.classList.remove("zx-hold");  // ヒーローの fadeUp 再生開始
-        }, 2400);
-        setTimeout(() => zxIntro.remove(), 3100);
+        }, 1300);
+        setTimeout(() => zxIntro.remove(), 2000);
       });
       try { sessionStorage.setItem("zxIntroSeen", "1"); } catch (e) { /* noop */ }
     } else if (zxIntro) {
       zxIntro.remove();
     }
   </script>
-
-  <!-- CURSOR -->
-  <div class="cursor-dot" id="cursor-dot"></div>
-  <div class="cursor-ring" id="cursor-ring"></div>
 
   <!-- SCROLL PROGRESS -->
   <div class="scroll-progress" id="scroll-progress"></div>
@@ -1620,23 +1598,6 @@ const fmtDate = (d: Date) =>
         if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
     });
-
-    // ─── CURSOR ───
-    (function () {
-      const dot = document.getElementById('cursor-dot');
-      const ring = document.getElementById('cursor-ring');
-      if (!dot || !ring) return;
-      let rx = 0, ry = 0, mx = 0, my = 0, raf2;
-      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
-      function animateRing() {
-        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-        raf2 = requestAnimationFrame(animateRing);
-      }
-      animateRing();
-      document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
-      document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
-    })();
 
     // ─── SCROLL PROGRESS + FLOAT CTA ───
     (function () {
