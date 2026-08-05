@@ -121,18 +121,6 @@ const fmtDate = (d: Date) =>
     }
     #zx-intro.zxi-s1 .zxi-rule { transform: scaleY(1); transition: transform 0.35s var(--ease); }
     #zx-intro.zxi-s1 .zxi-rule-h { transform: scaleX(1); transition: transform 0.45s 0.05s var(--ease); }
-    /* トンボ（コーナーマーク） */
-    #zx-intro .zxi-frame { position: absolute; left: 50%; top: 46%; width: min(560px, 84vw); height: 210px; transform: translate(-50%, -50%); pointer-events: none; }
-    #zx-intro .zxi-frame i {
-      position: absolute; width: 20px; height: 20px; display: block;
-      opacity: 0; transform: scale(1.6);
-      transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
-    }
-    #zx-intro .zxi-frame i:nth-child(1) { top: 0; left: 0; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
-    #zx-intro .zxi-frame i:nth-child(2) { top: 0; right: 0; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); transition-delay: 0.07s; }
-    #zx-intro .zxi-frame i:nth-child(3) { bottom: 0; left: 0; border-bottom: 2px solid var(--accent); border-left: 2px solid var(--accent); transition-delay: 0.14s; }
-    #zx-intro .zxi-frame i:nth-child(4) { bottom: 0; right: 0; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); transition-delay: 0.21s; }
-    #zx-intro.zxi-s3 .zxi-frame i { opacity: 1; transform: scale(1); }
     #zx-intro .zxi-center {
       position: relative; display: flex; flex-direction: column; align-items: center; gap: 1rem;
       background: var(--bg); padding: 1.2em 1.6em; /* 背後の縦罫をマスク */
@@ -158,17 +146,6 @@ const fmtDate = (d: Date) =>
       animation: zxi-slam 0.42s cubic-bezier(0.2, 0.9, 0.3, 1) both;
     }
     #zx-intro .zxi-l.x { color: var(--accent); }
-    /* 衝撃波リング */
-    #zx-intro .zxi-shock {
-      position: absolute; left: 50%; top: 46%; width: 10px; height: 10px;
-      border: 2px solid var(--accent); border-radius: 50%;
-      transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none;
-    }
-    @keyframes zxi-shockwave {
-      0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
-      100% { transform: translate(-50%, -50%) scale(42); opacity: 0; }
-    }
-    #zx-intro.zxi-s2 .zxi-shock { animation: zxi-shockwave 0.7s 0.18s ease-out both; }
     #zx-intro .zxi-bar { width: 0; height: 1px; background: var(--accent); transition: width 0.55s var(--ease); }
     #zx-intro.zxi-s3 .zxi-bar { width: 132px; }
     #zx-intro .zxi-sub {
@@ -961,8 +938,6 @@ const fmtDate = (d: Date) =>
   <div id="zx-intro" aria-hidden="true">
     <div class="zxi-rule"></div>
     <div class="zxi-rule-h"></div>
-    <div class="zxi-shock"></div>
-    <div class="zxi-frame"><i></i><i></i><i></i><i></i></div>
     <div class="zxi-center">
       <div class="zxi-mark">ZETA<span class="zxi-l x">X</span></div>
       <div class="zxi-bar"></div>
@@ -1127,8 +1102,8 @@ const fmtDate = (d: Date) =>
         <div class="hero-facts">
           <div class="hero-facts-nums">
             <div class="hf-cell">
-              <span class="hf-val" data-count="25"><span class="count-val">25</span><small data-ja="社+" data-en="+">社+</small></span>
-              <span class="hf-label" data-ja="支援実績" data-en="Clients">支援実績</span>
+              <span class="hf-val" data-count="30"><span class="count-val">30</span><small data-ja="社以上" data-en="+">社以上</small></span>
+              <span class="hf-label" data-ja="支援実績(上場企業・金融機関含む)" data-en="Clients incl. listed companies &amp; financial institutions">支援実績(上場企業・金融機関含む)</span>
             </div>
             <div class="hf-cell">
               <span class="hf-val" data-count="10"><span class="count-val">10</span><small data-ja="業種" data-en="industries">業種</small></span>
