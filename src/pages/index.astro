@@ -534,35 +534,12 @@ const fmtDate = (d: Date) =>
     .footer-logo { font-family: var(--font-en); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.1em; color: #fff; margin-bottom: 0.9rem; }
     .footer-logo span { color: #7b96ff; }
     .footer-about { font-size: 0.82rem; color: rgba(255,255,255,0.38); line-height: 1.9; }
-    /* 認定・採択エリア */
-    .footer-creds { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; margin: 0 0 2.6rem; }
-    @media (max-width: 860px) { .footer-creds { grid-template-columns: 1fr; } }
     /* SECURITY ACTION 二つ星バンド（IPAガイドライン遵守：色/比率そのまま・高さ34px以上・視認性確保のため白パネル） */
     .footer-sa-band {
       display: flex; align-items: center; gap: 1.6rem;
-      margin: 0; padding: 1.4rem 1.8rem;
+      margin: 0 0 2.6rem; padding: 1.4rem 1.8rem;
       background: #fff; border-radius: 14px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.22);
-    }
-    /* NVIDIA Inception Program カード */
-    .footer-nv-band {
-      display: flex; align-items: center; gap: 1.6rem;
-      margin: 0; padding: 1.4rem 1.8rem;
-      background: #fff; border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
-    }
-    .footer-nv-logo { flex: 0 0 auto; width: 112px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; border-left: 4px solid #76b900; padding-left: 12px; }
-    .footer-nv-logo b { font-family: var(--font-en); font-weight: 800; font-size: 1.35rem; letter-spacing: 0.01em; color: #0d0d14; line-height: 1; }
-    .footer-nv-logo i { font-family: var(--font-en); font-style: normal; font-weight: 600; font-size: 0.62rem; letter-spacing: 0.04em; color: #4a4f5a; }
-    .footer-nv-badge {
-      align-self: flex-start;
-      font-family: var(--font-jp); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em;
-      color: #4f7d00; background: #eef7e0; border-radius: 4px; padding: 3px 9px;
-    }
-    @media (max-width: 768px) {
-      .footer-nv-band { flex-direction: column; text-align: center; gap: 1rem; padding: 1.4rem; }
-      .footer-nv-logo { width: auto; align-items: center; border-left: none; border-top: 4px solid #76b900; padding-left: 0; padding-top: 10px; }
-      .footer-nv-badge { align-self: center; }
     }
     .footer-sa-logo { flex: 0 0 auto; }
     .footer-sa-logo img { display: block; width: 112px; height: 112px; }
@@ -1540,27 +1517,16 @@ const fmtDate = (d: Date) =>
         </div>
       </div>
 
-      <!-- 認定・採択（IPA SECURITY ACTION / NVIDIA Inception Program） -->
-      <div class="footer-creds">
-        <div class="footer-sa-band">
-          <span class="footer-sa-logo">
-            <img src="/security-action/security-action-futatsuboshi.png" alt="SECURITY ACTION 二つ星" width="112" height="112" loading="lazy" decoding="async">
-          </span>
-          <span class="footer-sa-text">
-            <span class="footer-sa-badge" data-ja="情報セキュリティ対策" data-en="Information Security">情報セキュリティ対策</span>
-            <span class="footer-sa-title" data-ja="「SECURITY ACTION」二つ星" data-en="“SECURITY ACTION” Two-Star">「SECURITY ACTION」二つ星</span>
-            <span class="footer-sa-desc" data-ja="独立行政法人 情報処理推進機構（IPA）が推進する「SECURITY ACTION」制度において、ZetaXは最高段階の「二つ星」を取得しています。" data-en="ZetaX has obtained the top-level “Two-Star” of IPA’s “SECURITY ACTION” program.">独立行政法人 情報処理推進機構（IPA）が推進する「SECURITY ACTION」制度において、ZetaXは最高段階の「二つ星」を取得しています。</span>
-          </span>
-        </div>
-
-        <div class="footer-nv-band">
-          <span class="footer-nv-logo" aria-hidden="true"><b>NVIDIA</b><i>Inception Program</i></span>
-          <span class="footer-sa-text">
-            <span class="footer-nv-badge" data-ja="スタートアップ採択" data-en="Startup Program">スタートアップ採択</span>
-            <span class="footer-sa-title" data-ja="NVIDIA Inception Program 採択" data-en="Accepted into NVIDIA Inception Program">NVIDIA Inception Program 採択</span>
-            <span class="footer-sa-desc" data-ja="2026年4月、NVIDIAのスタートアップ支援プログラム「NVIDIA Inception Program」に採択されました。" data-en="In April 2026, ZetaX was accepted into NVIDIA’s startup program, the NVIDIA Inception Program.">2026年4月、NVIDIAのスタートアップ支援プログラム「NVIDIA Inception Program」に採択されました。</span>
-          </span>
-        </div>
+      <!-- SECURITY ACTION 二つ星（IPAガイドライン遵守で強調表示） -->
+      <div class="footer-sa-band">
+        <span class="footer-sa-logo">
+          <img src="/security-action/security-action-futatsuboshi.png" alt="SECURITY ACTION 二つ星" width="112" height="112" loading="lazy" decoding="async">
+        </span>
+        <span class="footer-sa-text">
+          <span class="footer-sa-badge" data-ja="情報セキュリティ対策" data-en="Information Security">情報セキュリティ対策</span>
+          <span class="footer-sa-title" data-ja="「SECURITY ACTION」二つ星" data-en="“SECURITY ACTION” Two-Star">「SECURITY ACTION」二つ星</span>
+          <span class="footer-sa-desc" data-ja="独立行政法人 情報処理推進機構（IPA）が推進する「SECURITY ACTION」制度において、ZetaXは最高段階の「二つ星」を取得しています。" data-en="ZetaX has obtained the top-level “Two-Star” of IPA’s “SECURITY ACTION” program.">独立行政法人 情報処理推進機構（IPA）が推進する「SECURITY ACTION」制度において、ZetaXは最高段階の「二つ星」を取得しています。</span>
+        </span>
       </div>
 
       <div class="footer-bottom">
