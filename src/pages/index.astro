@@ -540,9 +540,7 @@ const fmtDate = (d: Date) =>
       margin: 0 0 2.6rem; padding: 1.4rem 1.8rem;
       background: #fff; border-radius: 14px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.22);
-      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
     }
-    .footer-sa-band:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(50,170,230,0.28); }
     .footer-sa-logo { flex: 0 0 auto; }
     .footer-sa-logo img { display: block; width: 112px; height: 112px; }
     .footer-sa-text { display: flex; flex-direction: column; gap: 0.35rem; }
@@ -1520,7 +1518,7 @@ const fmtDate = (d: Date) =>
       </div>
 
       <!-- SECURITY ACTION 二つ星（IPAガイドライン遵守で強調表示） -->
-      <a class="footer-sa-band" href="https://www.ipa.go.jp/security/security-action/" target="_blank" rel="noopener noreferrer" aria-label="SECURITY ACTION 二つ星（IPA）">
+      <div class="footer-sa-band">
         <span class="footer-sa-logo">
           <img src="/security-action/security-action-futatsuboshi.png" alt="SECURITY ACTION 二つ星" width="112" height="112" loading="lazy" decoding="async">
         </span>
@@ -1529,7 +1527,7 @@ const fmtDate = (d: Date) =>
           <span class="footer-sa-title" data-ja="「SECURITY ACTION」二つ星" data-en="“SECURITY ACTION” Two-Star">「SECURITY ACTION」二つ星</span>
           <span class="footer-sa-desc" data-ja="独立行政法人 情報処理推進機構（IPA）が推進する「SECURITY ACTION」制度において、ZetaXは最高段階の「二つ星」に取り組んでいます。" data-en="ZetaX is engaged at the top-level “Two-Star” of IPA’s “SECURITY ACTION” program.">独立行政法人 情報処理推進機構（IPA）が推進する「SECURITY ACTION」制度において、ZetaXは最高段階の「二つ星」に取り組んでいます。</span>
         </span>
-      </a>
+      </div>
 
       <div class="footer-bottom">
         <p class="footer-copy">&copy; 2026 ZetaX Inc. All rights reserved.</p>
