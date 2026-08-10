@@ -192,6 +192,23 @@ const fmtDate = (d: Date) =>
     .nav-links > li > a:hover,
     .nav-links > li > .nav-dropdown-trigger:hover,
     .nav-links > li:hover > .nav-dropdown-trigger { color: var(--text-primary); }
+    /* ニュース NEW バッジ（常時表示で誘導） */
+    .nav-links > li > a.nav-news { gap: 6px; }
+    .nav-new-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--font-en); font-size: 0.52rem; font-weight: 800; letter-spacing: 0.06em;
+      line-height: 1; color: #fff; background: #e5342e;
+      padding: 3px 5px; border-radius: 4px; vertical-align: middle;
+      box-shadow: 0 0 0 0 rgba(229,52,46,0.5);
+      animation: navNewPulse 2s var(--ease) infinite;
+    }
+    @keyframes navNewPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(229,52,46,0.45); }
+      70%  { box-shadow: 0 0 0 6px rgba(229,52,46,0); }
+      100% { box-shadow: 0 0 0 0 rgba(229,52,46,0); }
+    }
+    @media (prefers-reduced-motion: reduce) { .nav-new-badge { animation: none; } }
+
     .nav-dropdown-arrow { font-size: 0.55rem; opacity: 0.5; transition: transform 0.2s; }
     .nav-links > li:hover .nav-dropdown-arrow { transform: rotate(180deg); }
 
@@ -1050,6 +1067,9 @@ const fmtDate = (d: Date) =>
 
         <!-- 実績 -->
         <li><a href="#results" data-ja="実績" data-en="Results">実績</a></li>
+
+        <!-- ニュース（常時 NEW 表示で誘導） -->
+        <li><a href="/news/" class="nav-news" data-ja="ニュース" data-en="News">ニュース<span class="nav-new-badge" aria-label="新着あり">NEW</span></a></li>
 
         <!-- 会社 ▾ -->
         <li>

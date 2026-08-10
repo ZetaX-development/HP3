@@ -25,7 +25,7 @@
     <a href="/factory-hub" data-ja="Factory Hub" data-en="Factory Hub">Factory Hub</a>
 
     <span class="mnav-label">Company</span>
-    <a href="/news/" data-ja="ニュース" data-en="News">ニュース</a>
+    <a href="/news/" class="mnav-news" data-ja="ニュース" data-en="News">ニュース<span class="mnav-new-badge">NEW</span></a>
     <a href="/column/" data-ja="技術コラム" data-en="Column">技術コラム</a>
     <a href="/about" data-ja="会社紹介" data-en="About">会社紹介</a>
 
@@ -126,6 +126,12 @@
     text-decoration: none;
   }
   .mnav-menu a:active { opacity: 0.6; }
+  .mnav-news { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .mnav-new-badge {
+    font-family: var(--font-en, sans-serif); font-size: 0.6rem; font-weight: 800;
+    letter-spacing: 0.06em; line-height: 1; color: #fff; background: #e5342e;
+    padding: 3px 6px; border-radius: 4px;
+  }
   .mnav-label {
     font-family: var(--font-en, sans-serif);
     font-size: 0.68rem;
