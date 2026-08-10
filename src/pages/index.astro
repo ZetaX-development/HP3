@@ -534,10 +534,29 @@ const fmtDate = (d: Date) =>
     .footer-logo { font-family: var(--font-en); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.1em; color: #fff; margin-bottom: 0.9rem; }
     .footer-logo span { color: #7b96ff; }
     .footer-about { font-size: 0.82rem; color: rgba(255,255,255,0.38); line-height: 1.9; }
-    /* SECURITY ACTION 二つ星（IPAガイドライン遵守：色/比率そのまま・高さ34px以上・視認性確保のため白パネル） */
-    .footer-sa { display: inline-flex; align-items: center; justify-content: center; margin-top: 1.5rem; background: #fff; border-radius: 10px; padding: 11px 15px; transition: transform 0.2s, box-shadow 0.2s; }
-    .footer-sa:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
-    .footer-sa img { display: block; width: 76px; height: 76px; }
+    /* SECURITY ACTION 二つ星バンド（IPAガイドライン遵守：色/比率そのまま・高さ34px以上・視認性確保のため白パネル） */
+    .footer-sa-band {
+      display: flex; align-items: center; gap: 1.6rem;
+      margin: 0 0 2.6rem; padding: 1.4rem 1.8rem;
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .footer-sa-band:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(50,170,230,0.28); }
+    .footer-sa-logo { flex: 0 0 auto; }
+    .footer-sa-logo img { display: block; width: 112px; height: 112px; }
+    .footer-sa-text { display: flex; flex-direction: column; gap: 0.35rem; }
+    .footer-sa-badge {
+      align-self: flex-start;
+      font-family: var(--font-jp); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em;
+      color: #1795d4; background: #e7f6fd; border-radius: 4px; padding: 3px 9px;
+    }
+    .footer-sa-title { font-family: var(--font-jp); font-size: 1.02rem; font-weight: 700; color: #0d0d14; line-height: 1.4; }
+    .footer-sa-desc { font-family: var(--font-jp); font-size: 0.78rem; color: #5a5f6b; line-height: 1.75; }
+    @media (max-width: 768px) {
+      .footer-sa-band { flex-direction: column; text-align: center; gap: 1rem; padding: 1.4rem; }
+      .footer-sa-badge { align-self: center; }
+    }
     .footer-col-label { font-family: var(--font-en); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 1.2rem; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
     .footer-links a { font-size: 0.84rem; color: rgba(255,255,255,0.52); transition: color 0.2s; }
@@ -1477,9 +1496,6 @@ const fmtDate = (d: Date) =>
         <div>
           <div class="footer-logo">ZETA<span>X</span></div>
           <p class="footer-about" data-ja="AI・IT・セキュリティのスペシャリスト集団。戦略から開発・運用まで、完全内製。" data-en="A team of AI, IT & security specialists. Strategy to operations, all in-house.">AI・IT・セキュリティのスペシャリスト集団。戦略から開発・運用まで、完全内製。</p>
-          <a class="footer-sa" href="https://www.ipa.go.jp/security/security-action/" target="_blank" rel="noopener noreferrer" aria-label="SECURITY ACTION 二つ星 セキュリティ対策自己宣言（IPA）">
-            <img src="/security-action/security-action-futatsuboshi.png" alt="SECURITY ACTION 二つ星 セキュリティ対策自己宣言" width="76" height="76" loading="lazy" decoding="async">
-          </a>
         </div>
         <div>
           <p class="footer-col-label">Services</p>
@@ -1502,6 +1518,19 @@ const fmtDate = (d: Date) =>
           </ul>
         </div>
       </div>
+
+      <!-- SECURITY ACTION 二つ星（IPAガイドライン遵守で強調表示） -->
+      <a class="footer-sa-band" href="https://www.ipa.go.jp/security/security-action/" target="_blank" rel="noopener noreferrer" aria-label="SECURITY ACTION 二つ星 セキュリティ対策自己宣言（IPA）">
+        <span class="footer-sa-logo">
+          <img src="/security-action/security-action-futatsuboshi.png" alt="SECURITY ACTION 二つ星 セキュリティ対策自己宣言" width="112" height="112" loading="lazy" decoding="async">
+        </span>
+        <span class="footer-sa-text">
+          <span class="footer-sa-badge" data-ja="情報セキュリティ対策" data-en="Information Security">情報セキュリティ対策</span>
+          <span class="footer-sa-title" data-ja="「SECURITY ACTION」二つ星を宣言" data-en="Declared “SECURITY ACTION” Two-Star">「SECURITY ACTION」二つ星を宣言</span>
+          <span class="footer-sa-desc" data-ja="独立行政法人 情報処理推進機構（IPA）が推進する、中小企業のための情報セキュリティ対策自己宣言。ZetaXは最高段階の「二つ星」を宣言しています。" data-en="A self-declaration of information security measures promoted by IPA. ZetaX has declared the top-level “Two-Star.”">独立行政法人 情報処理推進機構（IPA）が推進する、中小企業のための情報セキュリティ対策自己宣言。ZetaXは最高段階の「二つ星」を宣言しています。</span>
+        </span>
+      </a>
+
       <div class="footer-bottom">
         <p class="footer-copy">&copy; 2026 ZetaX Inc. All rights reserved.</p>
         <div class="footer-legal">
